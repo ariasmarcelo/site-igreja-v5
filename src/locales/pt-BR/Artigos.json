@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "title": "Artigos",
+    "subtitle": "Conhecimento e reflexões sobre o caminho espiritual",
+    "description": "Explore artigos sobre desenvolvimento espiritual, cura interior e transformação pessoal"
+  },
+  "intro": {
+    "title": "Biblioteca Espiritual",
+    "description": "Uma coleção de artigos, reflexões e ensinamentos para apoiar sua jornada de autoconhecimento e cura."
+  },
+  "categories": {
+    "title": "Categorias",
+    "items": [
+      {
+        "id": "desenvolvimento",
+        "name": "Desenvolvimento Espiritual",
+        "description": "Artigos sobre crescimento e evolução espiritual"
+      },
+      {
+        "id": "cura",
+        "name": "Cura Interior",
+        "description": "Textos sobre processos de cura e libertação"
+      },
+      {
+        "id": "meditacao",
+        "name": "Meditação e Práticas",
+        "description": "Técnicas e práticas para o dia a dia"
+      },
+      {
+        "id": "conhecimento",
+        "name": "Conhecimento Esotérico",
+        "description": "Ensinamentos sobre sabedoria ancestral"
+      }
+    ]
+  },
+  "featured": {
+    "title": "Artigos em Destaque",
+    "readMore": "Ler artigo completo",
+    "minutesRead": "min de leitura"
+  },
+  "recent": {
+    "title": "Artigos Recentes",
+    "viewAll": "Ver todos os artigos",
+    "noArticles": "Nenhum artigo publicado ainda"
+  },
+  "cta": {
+    "title": "Quer receber novos artigos?",
+    "description": "Entre em contato conosco para receber notificações sobre novos conteúdos",
+    "button": "Entre em Contato"
+  }
+}

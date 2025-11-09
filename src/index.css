@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "./tailwind.css";
+
+@layer base {
+  :root {
+    /* Paleta Metálica */
+    --gold-500: #CFAF5A;
+    --gold-700: #B38938;
+    --silver-500: #C0C4C7;
+    --silver-700: #9EA2A5;
+    --green-metal-500: #5EA98D;
+    --blue-metal-500: #4A90A9;
+    --bg-light: #FAF9F7;
+    --text-dark: #222222;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .metallic-gold {
+    background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
+  }
+
+  .metallic-silver {
+    background: linear-gradient(135deg, var(--silver-500) 0%, var(--silver-700) 100%);
+  }
+
+  .metallic-green {
+    background: linear-gradient(135deg, var(--green-metal-500) 0%, #4a8a73 100%);
+  }
+
+  .metallic-blue {
+    background: linear-gradient(135deg, var(--blue-metal-500) 0%, #3a7089 100%);
+  }
+
+  .text-gold {
+    color: var(--gold-500);
+  }
+
+  .text-silver {
+    color: var(--silver-500);
+  }
+
+  .text-green-metal {
+    color: var(--green-metal-500);
+  }
+
+  .text-blue-metal {
+    color: var(--blue-metal-500);
+  }
+
+  .btn-gold {
+    background: linear-gradient(to right, #CFAF5A, #B38938);
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+  }
+
+  .btn-gold:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  .btn-silver {
+    background: linear-gradient(to right, #C0C4C7, #9EA2A5);
+    color: #222222;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+  }
+
+  .btn-silver:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
+  }
+
+  .card-hover {
+    transition: all 0.3s;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform: translateY(-0.5rem);
+  }
+}
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 20s linear infinite;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .text-balance {
+    text-wrap: balance;
+    text-wrap: pretty; /* fallback */
+  }
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--gold-500) 0%, var(--gold-700) 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--gold-700) 0%, var(--gold-500) 100%);
+}
+
+/* Animações suaves */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Efeitos de entrada */
+.fade-in {
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 27s linear infinite;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scale(1.08);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 6s ease-in-out infinite;
+}
+
+/* Admin Panel Smooth Animations - Inspired by react-emotion-multi-step-form */
+@keyframes slide-in-smooth {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tab-activate {
+  0% {
+    transform: scale(0.95) translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.02) translateY(1px);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1) translateY(2px);
+    opacity: 1;
+  }
+}
+
+@keyframes icon-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.admin-content-enter {
+  animation: slide-in-smooth 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.admin-tab-activate {
+  animation: tab-activate 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.admin-icon-bounce {
+  animation: icon-bounce 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Smooth hover effects for tabs */
+.admin-tab-hover {
+  transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-tab-hover:hover {
+  transform: scale(0.98) translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* Error message styling - Inspired by multi-step form */
+.admin-error-message {
+  margin: 0 auto 8px auto;
+  height: 24px;
+  line-height: 24px;
+  font-size: 0.875rem;
+  color: hsl(0, 84%, 60%);
+  font-weight: 500;
+  animation: slide-in-smooth 300ms ease-out;
+}
+
+/* Success message with smooth entrance */
+.admin-success-message {
+  animation: slide-in-smooth 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smooth page transition overlay */
+@keyframes page-transition {
+  0% {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.admin-page-transition {
+  animation: page-transition 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Force remove bottom border on active tabs - Override Shadcn defaults */
+.admin-tab-no-bottom-border[data-state="active"] {
+  border-bottom: 0 !important;
+  border-bottom-width: 0 !important;
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
+  margin-bottom: -2px !important;
+  padding-bottom: calc(0.75rem + 2px) !important;
+  position: relative !important;
+}
+
+/* Ensure active tab has proper borders except bottom */
+.admin-tab-no-bottom-border[data-state="active"] {
+  border-top-width: 2px !important;
+  border-left-width: 2px !important;
+  border-right-width: 2px !important;
+}
+
+/* Create a white pseudo-element to cover any gap */
+.admin-tab-no-bottom-border[data-state="active"]::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 4px !important;
+  background: inherit !important;
+  z-index: 1 !important;
+}
+
+/* Tiptap Editor Styles */
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p {
+  margin: 0.75em 0;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 1em 0 0.5em;
+  line-height: 1.2;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.83em 0 0.5em;
+  line-height: 1.3;
+}
+
+.ProseMirror h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 0.75em 0 0.5em;
+  line-height: 1.4;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 2em;
+  margin: 0.75em 0;
+}
+
+.ProseMirror li {
+  margin: 0.25em 0;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #CFAF5A;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  color: #666;
+}
+
+.ProseMirror code {
+  background-color: #f4f4f4;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.ProseMirror pre {
+  background-color: #f4f4f4;
+  padding: 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.ProseMirror pre code {
+  background: none;
+  padding: 0;
+}
+
+.ProseMirror a {
+  color: #4A90A9;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror a:hover {
+  color: #357A8F;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+}
+
+.ProseMirror mark {
+  background-color: #FFF59D;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}

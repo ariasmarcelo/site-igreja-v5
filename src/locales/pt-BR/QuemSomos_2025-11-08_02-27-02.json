@@ -1,0 +1,92 @@
+{
+  "header": {
+    "title": "Quem Somos",
+    "subtitle": "Conheça nossa história, princípios e fundamentos espirituais"
+  },
+  "historico": {
+    "title": "Histórico",
+    "content": [
+      "A Igreja de Metatron, embora atuando de fato desde 11 de novembro de 2015, foi formalmente constituída há poucos meses. Essa jornada começou com a visão de criar um espaço sagrado dedicado à restauração plena da saúde espiritual das almas humanas.",
+      "Desde o início, nossa missão tem sido clara: oferecer meios assistidos e compassivos para amenizar o sofrimento humano, através do reconhecimento e liberação das cadeias causais que sustentam padrões repetitivos de comportamento geradores de sofrimento.",
+      "O Instituto Metatron, nosso braço técnico-terapêutico, foi desenvolvido para complementar o trabalho espiritual com abordagens científicas baseadas na Teoria Polivagal e na neurofisiologia do trauma, oferecendo tratamentos especializados conduzidos por profissionais habilitados."
+    ]
+  },
+  "principios": {
+    "title": "Os Princípios da Instituição",
+    "subtitle": "Nossa atuação é guiada por princípios fundamentais que garantem integridade, respeito e eficácia em todos os nossos trabalhos.",
+    "items": [
+      {
+        "title": "Universalismo Espiritual",
+        "content": "Promovemos a prática religiosa universalista, sem imposição de crenças ou dogmas, respeitando a jornada espiritual única de cada indivíduo e oferecendo meios compassivos para o desenvolvimento pessoal."
+      },
+      {
+        "title": "Abordagem Científica",
+        "content": "Fundamentamos nossos tratamentos na Teoria Polivagal e nas mais modernas descobertas da neurofisiologia do trauma, garantindo uma compreensão profunda e realista dos sistemas autônômicos e emocionais."
+      },
+      {
+        "title": "Integralidade do Ser",
+        "content": "Reconhecemos que o ser humano não é apenas mente ou corpo, mas um ser completo que precisa de cuidados e bem-estar em todos os aspectos: físico, emocional, mental e espiritual."
+      },
+      {
+        "title": "Inclusão e Acolhimento",
+        "content": "Oferecemos atendimentos sem qualquer discriminação em razão de etnia, cultura, gênero, orientação sexual, religiosa ou partidária, e sem distinção a portadores de necessidades especiais."
+      },
+      {
+        "title": "Ética e Responsabilidade",
+        "content": "Todos os serviços clínicos são prestados por profissionais habilitados, e intervenções com substâncias controladas só ocorrem em contextos legalmente autorizados, sempre com supervisão adequada."
+      },
+      {
+        "title": "Transparência e Consentimento",
+        "content": "Mantemos total transparência em nossos processos, garantindo que todos os participantes compreendam plenamente os trabalhos oferecidos e forneçam consentimento informado."
+      }
+    ]
+  },
+  "magia": {
+    "title": "A Magia Divina",
+    "paragraphs": [
+      "A Magia Divina, trazida aos humanos encarnados por Rubens Saraceni (☆ 18/10/1951 – ✝ 9/03/2015), é um sistema de magia, chaves e práticas iniciáticas secretas que se desenvolve estritamente sob a Égide da Lei Maior para uma função específica em nossos tempos.",
+      "A Magia Divina não pertence a nenhuma religião específica nem estabelece dogmas, exceto o respeito estrito a todos os seres sencientes. Ela pode ser utilizada por membros de qualquer religião sem infringir seus próprios princípios, desde que estes estejam alinhados à Lei Maior."
+    ]
+  },
+  "hermeticos": {
+    "title": "Os Princípios Herméticos",
+    "subtitle": "Fundamentos universais que descrevem os mecanismos da manifestação da natureza e movimento dinâmico da matéria, dos campos, fluxos e de todo o movimento do universo.",
+    "items": [
+      {
+        "number": "1",
+        "title": "Princípio do Mentalismo",
+        "description": "\"O todo é mente em seu fundamento; o universo é mental.\" Este princípio afirma que tudo no universo é uma manifestação da mente original, indicando que o Pensamento do Criador é a criação manifesta e a formação da própria matéria."
+      },
+      {
+        "number": "2",
+        "title": "Princípio da Correspondência",
+        "description": "\"O que está em cima é como o que está embaixo. O que está dentro é como o que está fora.\" Este princípio sugere que há uma correspondência entre os diferentes planos e escalas da existência."
+      },
+      {
+        "number": "3",
+        "title": "Princípio da Vibração",
+        "description": "\"Nada está parado, nada é estático, tudo vibra.\" Tudo no universo está em constante movimento vibratório, o que é intrínseco à própria natureza da manifestação da matéria."
+      },
+      {
+        "number": "4",
+        "title": "Princípio da Polaridade",
+        "description": "\"Tudo é duplo, tudo tem dois polos, tudo tem seu oposto.\" Este princípio nos leva a observar que todos os sistemas dinâmicos são polarizados e que todo polo tem um oposto."
+      },
+      {
+        "number": "5",
+        "title": "Princípio do Ritmo",
+        "description": "\"Tudo tem fluxo e refluxo, tudo sobe e desce, tudo tem suas marés.\" O ritmo é a compensação harmônica cíclica, a respiração dos diferentes sistemas."
+      },
+      {
+        "number": "6",
+        "title": "Princípio do Gênero",
+        "description": "\"O gênero está em tudo: Tudo tem seus princípios masculino e feminino.\" Este princípio ensina que todos os planos e escalas da criação por regra produzem sistemas masculinos e femininos."
+      },
+      {
+        "number": "7",
+        "title": "Princípio da Causa e Efeito",
+        "description": "\"Toda causa tem seu efeito, todo efeito tem sua causa.\" Este princípio afirma que todas as coisas foram criadas ou transformadas por uma ação anterior e que todas as ações têm consequências."
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+/* 
+ * Estilos customizados para a página index
+ * Editados através do Editor Visual em 08/11/2025, 01:04:42
+ */
+
+[data-json-key="index.hero.icon.sun_animated"] {
+  fill: #000000;
+  stroke: #000000;
+  stroke-width: 1px;
+  opacity: 1;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  filter: none;
+  transform: matrix(0.90466, 0.426134, -0.426134, 0.90466, 0, 0);
+  width: 127.983px;
+  height: 127.983px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  border-radius: 0px;
+  display: block;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1;
+  flex-direction: row;
+  justify-content: normal;
+  align-items: normal;
+  gap: normal;
+  grid-template-columns: none;
+  grid-template-rows: none;
+  transition: 0.5s;
+}
+

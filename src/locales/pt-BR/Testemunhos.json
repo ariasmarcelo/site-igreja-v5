@@ -1,0 +1,71 @@
+{
+  "header": {
+    "title": "Testemunhos",
+    "subtitle": "Relatos de Transformação Pessoal, Física e Espiritual"
+  },
+  "intro": {
+    "description": "Estes são relatos de participantes e praticantes que vivenciaram transformações profundas através dos tratamentos oferecidos pela Igreja de Metatron e Instituto Metatron. Cada jornada é única, mas todas compartilham a reconexão com a essência espiritual e o retorno ao equilíbrio integral."
+  },
+  "testimonials": [
+    {
+      "name": "Isabel Ferrarezi",
+      "date": "17/08/2025",
+      "content": "Marcelo! Se não fosse seu trabalho eu nem sei como estaria agora! Hoje consigo dormir, tenho mais clareza nos acontecimentos do dia a dia, consigo pensar antes de agir, minha ansiedade diminuiu! Sei que ainda temos um caminho pela frente, mas a cada sessão percebo o quanto estamos avançando!! Sou muito grata pelo seu trabalho e atenção comigo.",
+      "verified": true
+    },
+    {
+      "name": "Carolina Mendes",
+      "date": "03/10/2025",
+      "content": "Quando cheguei aqui, estava completamente perdida. Anos de ansiedade crônica e ataques de pânico haviam me deixado sem esperança. Após três meses de tratamento integrado, sinto que renasci. Meu sistema nervoso está finalmente em paz. Consigo sentir a presença divina me guiando, algo que nunca havia experimentado antes. As noites de insônia deram lugar a um sono profundo e reparador. Hoje acordo com gratidão e propósito.",
+      "verified": false
+    },
+    {
+      "name": "Roberto da Silva",
+      "date": "16/09/2025",
+      "content": "Carreguei traumas de infância por mais de 40 anos. Tentei diversos tratamentos convencionais sem sucesso duradouro. O trabalho de purificação e ascensão me proporcionou algo que eu nem sabia que era possível: liberdade real. Sinto meu campo energético limpo, minha mente clara. A raiva e o ressentimento que me consumiam simplesmente se dissolveram. Reconectei-me com minha essência espiritual e hoje vivo em harmonia com minha família e comigo mesmo.",
+      "verified": false
+    },
+    {
+      "name": "Juliana Costa",
+      "date": "22/11/2025",
+      "content": "Sofria de depressão profunda há anos. Medicamentos ajudavam parcialmente, mas algo essencial faltava. Aqui encontrei a peça que faltava: o cuidado espiritual integrado ao tratamento terapêutico. Após seis meses, não apenas os sintomas diminuíram drasticamente, mas sinto uma conexão profunda com algo maior que eu. Minha energia vital voltou, minha criatividade floresceu novamente. Sinto-me protegida e amparada por forças superiores que antes eu nem acreditava que existissem.",
+      "verified": false
+    },
+    {
+      "name": "Marcos Oliveira",
+      "date": "08/12/2025",
+      "content": "Cheguei aqui em estado crítico, após anos de vícios e autodestruição. O trabalho de limpeza energética e desobsessão foi transformador. Literalmente senti influências negativas sendo removidas. Hoje, após oito meses, estou completamente livre dos vícios, meu sistema nervoso está regulado, e pela primeira vez em décadas sinto paz interior genuína. A presença do meu Eu Superior é palpável. Agradeço todos os dias por ter encontrado este caminho.",
+      "verified": false
+    },
+    {
+      "name": "Ana Paula Rodrigues",
+      "date": "19/01/2026",
+      "content": "Vivia em constante estado de hipervigilância após experiências traumáticas. Meu corpo estava sempre tenso, minha mente sempre alerta para perigos inexistentes. O trabalho com Teoria Polivagal e as práticas de purificação espiritual me devolveram a capacidade de relaxar e confiar. Hoje consigo sentir segurança no meu próprio corpo. Minha conexão espiritual se fortaleceu imensamente. Sinto que finalmente estou vivendo, não apenas sobrevivendo.",
+      "verified": false
+    },
+    {
+      "name": "Fernando Almeida",
+      "date": "05/02/2026",
+      "content": "Passei décadas buscando respostas em diversas tradições espirituais, sempre sentindo que algo faltava. Aqui encontrei a síntese perfeita entre ciência e espiritualidade. O trabalho de reconhecimento e liberação de padrões ancestrais foi revelador. Compreendi cadeias causais que atravessavam gerações em minha família. Hoje vivo livre desses padrões, com clareza mental extraordinária e uma conexão espiritual que transcende tudo que já experimentei.",
+      "verified": false
+    },
+    {
+      "name": "Patrícia Souza",
+      "date": "14/03/2026",
+      "content": "Sofria de fibromialgia e dores crônicas que nenhum médico conseguia explicar ou tratar efetivamente. Através do trabalho integrado aqui, descobri que minhas dores tinham raízes energéticas e emocionais profundas. Após o processo de limpeza do campo eletromagnético e liberação de traumas, as dores diminuíram 90%. Minha energia vital voltou, consigo trabalhar, cuidar da família e ainda tenho disposição para viver. É um milagre que a medicina convencional não conseguiu me dar.",
+      "verified": false
+    }
+  ],
+  "disclaimer": {
+    "title": "Nota Importante",
+    "content": "Resultados podem variar de pessoa para pessoa. Cada jornada de transformação é única e depende de diversos fatores, incluindo comprometimento pessoal, condição inicial e frequência de participação nos trabalhos. Os testemunhos aqui apresentados refletem experiências individuais e não constituem garantia de resultados específicos. Todos os tratamentos clínicos são conduzidos por profissionais habilitados e não substituem orientação médica convencional."
+  },
+  "badgeVerified": "✓ Verificado",
+  "cta": {
+    "title": "Pronto para Iniciar Sua Própria Jornada?",
+    "subtitle": "Agende uma avaliação inicial e descubra como podemos ajudá-lo em seu processo de resolução e avanço.",
+    "buttonText": "Agende Sua Avaliação Inicial"
+  },
+  "testemunhos_p__Quando_cheguei_aqui__estava_c_5": "\"Quando cheguei aqui, eu estava realmente perdida. Anos de ansiedade crônica e ataques de pânico haviam me deixado sem esperança. Após três meses de tratamento integrado, sinto que renasci. Meu sistema nervoso está finalmente em paz. Consigo sentir a presença divina me guiando, algo que nunca havia experimentado antes. As noites de insônia deram lugar a um sono profundo e reparador. Hoje acordo com gratidão e propósito.\"",
+  "testemunhos_p_03_09_2025_4": "03/08/2025"
+}

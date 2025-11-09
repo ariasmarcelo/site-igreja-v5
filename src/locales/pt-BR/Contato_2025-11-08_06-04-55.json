@@ -1,0 +1,70 @@
+{
+  "header": {
+    "title": "Entre em Contato",
+    "subtitle": "Estamos aqui para ouvir você e auxiliar em sua jornada"
+  },
+  "mainSection": {
+    "title": "Faça Contato",
+    "description": "Se você está preocupado com um ente querido ou pensa em indicar alguém, já passou por outros tratamentos antes e ainda sofre, ou quer ouvir uma voz acolhedora do outro lado da linha, estamos aqui para você."
+  },
+  "initialAssessment": {
+    "title": "Sobre a Avaliação Inicial",
+    "whatToExpect": {
+      "title": "O Que Esperar",
+      "items": [
+        "Sessões de anamnese servem para compreender sua história, condições atuais e necessidades",
+        "Avaliação do estado do seu sistema nervoso",
+        "Discussão sobre objetivos terapêuticos",
+        "Apresentação de abordagens e tratamentos adequados"
+      ]
+    },
+    "commitment": {
+      "title": "Nosso Compromisso",
+      "description": "Oferecemos um espaço seguro, acolhedor e livre de julgamentos. Nossa equipe é treinada em abordagens trauma-informed e trabalha com profundo respeito pela sua jornada única. Valorizamos a transparência, o rigor técnico e o cuidado humanizado em cada etapa de O Trabalho de Resgate."
+    }
+  },
+  "contactCard": {
+    "title": "Contato Direto",
+    "whatsapp": {
+      "label": "WhatsApp",
+      "number": "+55 (11) 949-555-555"
+    },
+    "email": {
+      "label": "E-mail",
+      "address": "contato@igrejademetatron.org.br"
+    },
+    "whatsappButton": {
+      "text": "Atendimento pelo WhatsApp",
+      "description": "Clique no botão acima para iniciar uma conversa diretamente pelo WhatsApp"
+    }
+  },
+  "businessHours": {
+    "title": "Horário de Atendimento",
+    "hours": {
+      "weekdays": "De Segunda a Sexta, das 9h às 18h",
+      "saturday": "E aos Sábados, das 9h às 14h",
+      "sunday": ""
+    }
+  },
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "items": [
+      {
+        "question": "Como funciona a primeira consulta?",
+        "answer": "A primeira consulta é uma avaliação inicial onde conhecemos sua história, suas necessidades e objetivos. Juntos, identificamos o melhor caminho terapêutico para você, seja através dos trabalhos de Purificação e Ascensão ou dos Tratamentos Associados do Instituto Metatron."
+      },
+      {
+        "question": "Preciso ter alguma crença religiosa específica?",
+        "answer": "Não. A Igreja de Metatron promove práticas religiosas universalistas, sem imposição de crenças ou dogmas. Respeitamos todas as tradições espirituais e acolhemos pessoas de todas as origens e crenças."
+      },
+      {
+        "question": "Os tratamentos substituem acompanhamento médico?",
+        "answer": "Não. Nossos tratamentos são complementares e não substituem orientação médica. Todos os serviços clínicos são prestados por profissionais habilitados, e recomendamos manter acompanhamento médico quando necessário."
+      },
+      {
+        "question": "Quanto tempo dura o processo de Purificação e Ascensão?",
+        "answer": "O tempo varia para cada pessoa, pois respeitamos o ritmo individual de cada jornada. Não há prazos rígidos. O importante é a genuinidade e profundidade da transformação, não a velocidade do processo."
+      }
+    ]
+  }
+}

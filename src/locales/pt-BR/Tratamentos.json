@@ -1,0 +1,107 @@
+{
+  "header": {
+    "title": "Tratamentos Associados",
+    "subtitle": "Instituto Metatron — Abordagens técnico-terapêuticas baseadas em ciência e supervisão integrada"
+  },
+  "legal": {
+    "title": "Aviso Legal / Limitação:",
+    "notice": "Serviços clínicos são prestados por profissionais habilitados; intervenções com substâncias controladas só ocorrem em contextos legalmente autorizados; não substitui orientação médica. Todos os tratamentos requerem avaliação prévia por profissional qualificado."
+  },
+  "intro": {
+    "p1": "Quando entendemos que a personalidade humana é composta por diferentes elementos e fisiologias, compreendemos que a qualidade com que se vive as experiências da vida depende de autorregulação nervosa saudável e de melhor compreensão de nossa constituição interna.",
+    "p2": "Cada um dos tratamentos abaixo é descrito brevemente somente para informação. Todas estas linhas de tratamento são conduzidas exclusivamente por profissionais especialistas associados a este instituto, como médicos, psicólogos e fisioterapeutas, dentre outros."
+  },
+  "labels": {
+    "about": "Sobre o Tratamento:",
+    "indications": "Indicações:",
+    "benefits": "Benefícios:",
+    "contraindications": "Contraindicações:",
+    "duration": "Duração Típica:",
+    "professional": "Profissional Responsável:"
+  },
+  "treatments": [
+    {
+      "title": "Psicoterapia Humanista e Transpessoal (supervisão geral integrada)",
+      "color": "from-[#3B82F6] to-[#4F46E5]",
+      "description": "Reconhecendo sua natureza e sua identidade, explorando seus estados internos, emoções e experiências com um olhar compassivo e restaurador.",
+      "details": "Intervenções fundadas na neurofisiologia do trauma, oferecendo compreensão profunda dos sistemas autônomos e emocionais. Abordagem que valoriza a experiência subjetiva, acreditando que somos essencialmente bons e capazes de escolhas conscientes.",
+      "indications": "Autoexploração, reflexão, ajustes internos, reequilíbrio, sublimação e transcendência",
+      "duration": "Sessões semanais ou quinzenais",
+      "professional": "Psicólogo(a) habilitado(a) com CRP ativo"
+    },
+    {
+      "title": "Neurofeedback",
+      "color": "from-[#2d6b78] to-[#1e4f5a]",
+      "description": "Os benefícios do Neurofeedback decorrem da melhoria da função cerebral, contribuindo para melhor regulação geral, concentração, cognição e equilíbrio do comportamento.",
+      "details": "Utiliza predominantemente a eletroencefalografia quantitativa (QEEG), uma técnica avançada que permite a análise computadorizada detalhada dos padrões de atividade elétrica cerebral em tempo-real. Sistemas modernos incorporam elementos como jogos digitais, que incentivam o cérebro a otimizar seus padrões de funcionamento.",
+      "indications": "Transtornos de ansiedade, déficit de atenção e hiperatividade (TDAH), depressão, insônia, transtorno de estresse pós-traumático (TEPT), epilepsia, dores crônicas, desempenho cognitivo",
+      "contraindications": "Nenhuma contraindicação absoluta conhecida. Não invasivo.",
+      "duration": "40 a 80 sessões para resultados completos",
+      "professional": "Profissional treinado em neurofeedback"
+    },
+    {
+      "title": "Breathworking — A Ciência da Respiração Funcional",
+      "color": "from-[#22D3EE] to-[#0EA5E9]",
+      "description": "Breathwork (trabalho respiratório) é a versão moderna do Pranayama, agora com as descobertas e fundamentos da neurofisiologia humana.",
+      "details": "As práticas de breathwork têm sido amplamente estudadas por sua capacidade de modular o sistema nervoso autônomo (SNA) e promover a regulação neurofisiológica em condições de estresse crônico, ansiedade, depressão e desregulações severas decorrentes de traumas simples, complexos e de desenvolvimento (infância).",
+      "indications": "Regulação do sistema nervoso autônomo, modulação do eixo hipotálamo-pituitária-adrenal (HPA), regulação da atividade das amígdalas, melhoria da variabilidade da frequência cardíaca (HRV)",
+      "benefits": "Técnicas específicas de respiração consciente e controlada podem induzir um estado parassimpático predominante, reduzindo a hiperatividade do Sistema Nervoso Simpático (SNS) ligada diretamente ao estresse crônico",
+      "duration": "Sessões individuais ou em grupo",
+      "professional": "Instrutor certificado em breathwork"
+    },
+    {
+      "title": "EMDR",
+      "color": "from-[#6D28D9] to-[#A78BFA]",
+      "description": "O EMDR estimula mecanismos naturais do sistema nervoso para acessar e reintegrar memórias traumáticas, reduzindo sofrimento emocional e desregulação neurofisiológica.",
+      "details": "Técnica eficaz para dessensibilização e reprocessamento de memórias traumáticas, produzindo remodelação e regulação progressiva e generalizada do sistema nervoso, emoções, percepção, comportamento e autoimagem. Recomendada pela OMS e APA como intervenção de primeira linha.",
+      "indications": "Transtorno de estresse pós-traumático (TEPT), transtornos de ansiedade e depressão, fobias e transtornos relacionados ao medo, adições e transtornos de controle de impulsos, transtornos alimentares, dores crônicas e distúrbios psicossomáticos, traumas complexos",
+      "duration": "Variável conforme o caso, geralmente 8-12 sessões",
+      "professional": "Psicoterapeuta treinado em EMDR"
+    },
+    {
+      "title": "Terapia Corporal Biodinâmica",
+      "color": "from-[#DB2777] to-[#FB7185]",
+      "description": "Desenvolvida pela psicóloga e fisioterapeuta norueguesa Gerda Boyesen, essa técnica faz parte da psicoterapia corporal, que se baseia na ideia de que o corpo e a mente estão muito profundamente integrados.",
+      "details": "A Terapia Corporal Biodinâmica é uma abordagem terapêutica que integra elementos da psicologia e da neurofisiologia para promover a saúde do sistema nervoso e do corpo físico de forma integral. Durante as sessões, são aplicados toques sutis, pressão leve e movimentos específicos para liberar tensões e bloqueios emocionais armazenados em diferentes regiões de todo o corpo.",
+      "indications": "Ansiedade e depressão, estresse crônico, traumas, problemas de sono",
+      "benefits": "Ajuda a liberar emoções reprimidas e a restaurar o equilíbrio nervoso e emocional. Promove a reativação do sistema parassimpático e progressivamente uma melhor regulação nervosa, relaxamento profundo e redução do estado de estresse hipervigilante.",
+      "duration": "Sessões semanais ou quinzenais",
+      "professional": "Terapeuta qualificado em Terapia Corporal Biodinâmica"
+    },
+    {
+      "title": "CBD (Canabidiol)",
+      "color": "from-[#15803D] to-[#22C55E]",
+      "description": "O canabidiol (CBD) é um dos compostos encontrados na planta Cannabis Sativa, e é amplamente conhecido por suas propriedades terapêuticas.",
+      "details": "O CBD é amplamente utilizado para o alívio da dor crônica. Ele atua no sistema endocanabinoide, que regula a percepção da dor, proporcionando alívio sem a severa dependência e efeitos colaterais causados por opioides. Estudos mostram que o CBD pode ajudar a reduzir sintomas de ansiedade e depressão, modulando a atividade dos receptores de serotonina no cérebro.",
+      "indications": "Alívio da dor crônica, redução da ansiedade e depressão, neuroproteção, tratamento da epilepsia, alívio de sintomas em pacientes com câncer",
+      "contraindications": "Deve ser usado sob supervisão médica, especialmente em casos de gravidez, lactação ou uso concomitante com outros medicamentos",
+      "duration": "Uso contínuo conforme prescrição médica",
+      "professional": "Médico habilitado"
+    },
+    {
+      "title": "Psicoterapia Assistida por Psicodélicos (PAP)",
+      "color": "from-[#7C3AED] to-[#A855F7]",
+      "description": "A Psicoterapia Assistida com Psicodélicos (PAP) tem se consolidado como uma abordagem inovadora e eficaz para o tratamento de diversas condições médicas e psiquiátricas.",
+      "details": "A PAP tem mostrado eficácia no tratamento da depressão resistente a tratamentos convencionais. Estudos clínicos demonstram que substâncias como a psilocibina podem induzir estados de consciência que facilitam a introspecção e a resolução de desregulações neurofisiológicas como a depressão. Substâncias como o MDMA têm sido utilizadas para facilitar a reexperiência controlada de traumas, permitindo a integração e a cura.",
+      "indications": "Tratamento da depressão resistente, tratamento do transtorno de estresse pós-traumático (TEPT), tratamento de dependências químicas, alívio do sofrimento existencial em pacientes terminais, terapia para ansiedade e depressão em pacientes com câncer, promoção do crescimento pessoal e espiritual",
+      "contraindications": "Requer protocolo de transição gradual e monitorado. Deve ser supervisionado por profissional de saúde qualificado.",
+      "duration": "Sessões preparatórias, sessão de experiência e sessões de integração",
+      "professional": "Psicoterapeuta especializado em PAP com supervisão médica"
+    },
+    {
+      "title": "Fundamentação Espiritual Sólida",
+      "color": "from-[#F59E0B] to-[#D97706]",
+      "description": "Somos mais que um corpo físico, somos o Espírito que o habita, com um campo de força vital que precisa estar limpo, potente e saudável.",
+      "details": "A fundamentação espiritual oferece uma compreensão profunda da natureza do ser humano, integrando corpo, mente e espírito. Através de práticas e ensinamentos baseados na Magia Divina e nos Princípios Herméticos, auxiliamos no desenvolvimento da consciência espiritual e na conexão com dimensões mais elevadas da existência.",
+      "indications": "Busca de sentido e propósito, desenvolvimento espiritual, compreensão de experiências transcendentais, integração de aspectos espirituais com a vida cotidiana",
+      "benefits": "Maior clareza sobre identidade espiritual, fortalecimento da conexão com o Eu Superior, compreensão de padrões kármicos e ancestrais",
+      "duration": "Processo contínuo de desenvolvimento espiritual",
+      "professional": "Adepto ou Iniciado da Igreja de Metatron"
+    }
+  ],
+  "cta": {
+    "title": "Pronto para Começar Seu Tratamento?",
+    "subtitle": "Agende sua avaliação inicial para identificar o melhor caminho terapêutico para você.",
+    "buttonText": "Agendar Avaliação Inicial"
+  }
+}

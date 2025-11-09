@@ -1,0 +1,277 @@
+{
+  "hero": {
+    "title": "O Trabalho de Resgate",
+    "subtitle": "Purificação, Ascensão e Tratamentos Integrados",
+    "description": {
+      "part1": "Igreja de Metatron",
+      "part2": " (práticas religiosas e iniciáticas) • ",
+      "part3": "Instituto Metatron",
+      "part4": " (tratamentos técnico-terapêuticos supervisionados)"
+    },
+    "buttons": {
+      "treatments": "Tratamentos Associados",
+      "purification": "Purificação e Ascensão"
+    }
+  },
+  "igreja": {
+    "title": "Igreja de Metatron",
+    "description": [
+      "A Igreja de Metatron é a entidade principal, dedicada à restauração plena da saúde espiritual das almas humanas. Através de práticas religiosas universalistas e iniciáticas, oferecemos meios assistidos e compassivos para amenizar o sofrimento humano.",
+      "Nosso trabalho se baseia na Magia Divina e nos Princípios Herméticos, promovendo o reconhecimento e a liberação das cadeias causais que sustentam padrões repetitivos de comportamento geradores de sofrimento."
+    ],
+    "knowMoreButton": "Conheça Nossa História"
+  },
+  "purification": {
+    "title": "Trabalho de Purificação e Ascensão",
+    "phases": [
+      {
+        "title": "Fase Inicial",
+        "description": "Limpezas energéticas profundas e estabilização vibratória"
+      },
+      {
+        "title": "Fase Intermediária",
+        "description": "Reconhecimento e liberação de padrões repetitivos"
+      },
+      {
+        "title": "Fase Final",
+        "description": "Iniciação e recebimento do Eu Superior"
+      }
+    ]
+  },
+  "instituto": {
+    "title": "Tratamentos Técnico-Terapêuticos",
+    "description": [
+      "O Instituto Metatron é o braço técnico-terapêutico da Igreja, oferecendo tratamentos especializados baseados na Teoria Polivagal e na neurofisiologia do trauma.",
+      "Todos os profissionais e tratamentos são conduzidos por especialistas associados, como médicos, psicólogos e fisioterapeutas, oferecendo uma compreensão profunda e realista dos sistemas autônomos e emocionais."
+    ],
+    "treatments": [
+      "Psicoterapia Humanista e Transpessoal",
+      "Neurofeedback",
+      "Breathworking",
+      "EMDR",
+      "Massagem Biodinâmica",
+      "Terapia Corporal Biodinâmica",
+      "Fundamentação Espiritual Sólida",
+      "Psicoterapia Assistida por Psicodélicos (PAP)"
+    ],
+    "ctaButton": "Ver Todos os Tratamentos",
+    "benefits": [
+      {
+        "title": "Acolhimento e Segurança",
+        "description": "Propiciamos condições de acolhimento, conforto, amparo, equilíbrio, lucidez e fortalecimento interior, visando o bem-estar individual duradouro."
+      },
+      {
+        "title": "Abordagem Integrada",
+        "description": "Combinamos rigor científico e valorização sóbria da dimensão espiritual, oferecendo intervenção terapêutica personalizada para promover equilíbrio integral."
+      },
+      {
+        "title": "Desenvolvimento Progressivo",
+        "description": "Estimulamos o avanço integrado da saúde física, emocional, mental e espiritual para a realização plena do seu potencial humano."
+      }
+    ],
+    "legalNotice": "Aviso Legal: Serviços clínicos são prestados por profissionais habilitados; intervenções com substâncias controladas só ocorrem em contextos legalmente autorizados; não substitui orientação médica."
+  },
+  "testimonials": [
+    {
+      "name": "Isabel Ferrarezi",
+      "date": "17/08/2025",
+      "content": "Marcelo! Se não fosse seu trabalho eu nem sei como estaria agora! Hoje consigo dormir, tenho mais clareza nos acontecimentos do dia a dia, consigo pensar antes de agir, minha ansiedade diminuiu! Sei que ainda temos um caminho pela frente, mas a cada sessão percebo o quanto estamos avançando!! Sou muito grata pelo seu trabalho e atenção comigo.",
+      "verified": true
+    }
+  ],
+  "cta": {
+    "title": "Pronto para Começar Sua Jornada?",
+    "subtitle": "Agende sua sessão inicial e dê o primeiro passo para transformar sua jornada pessoal de forma segura e responsável.",
+    "buttonText": "Agende Avaliação Inicial"
+  },
+  "benefitsSection": {
+    "title": "Como Podemos Ajudar?",
+    "subtitle": "Se você está pronto para a cura, nós estamos prontos para ajudar."
+  },
+  "testimonialsCta": "Ver Mais Testemunhos",
+  "testimonialBadge": "✓ Consentimento",
+  "testimonialsSection": {
+    "title": "Testemunhos"
+  },
+  "footer": {
+    "igreja": {
+      "title": "Igreja de Metatron",
+      "description": "Restauração plena da saúde espiritual das almas humanas através de práticas religiosas universalistas."
+    },
+    "contact": {
+      "title": "Contato",
+      "address": "Av. Verde Mar 1290, Vila Loty\nItanhaém/SP - CEP 11741-404"
+    },
+    "links": {
+      "title": "Links Importantes",
+      "items": [
+        {
+          "text": "Quem Somos",
+          "url": "/quem-somos"
+        },
+        {
+          "text": "Tratamentos",
+          "url": "/tratamentos"
+        },
+        {
+          "text": "Purificação e Ascensão",
+          "url": "/purificacao"
+        },
+        {
+          "text": "Contato",
+          "url": "/contato"
+        }
+      ]
+    },
+    "copyright": "© 2025 Igreja de Metatron. Todos os direitos reservados.",
+    "trademark": "Marcas registradas protegidas por lei."
+  },
+  "fisicoEspiritual": {
+    "title": "Naquilo que nos acomete, o que é físico e o que é espiritual?",
+    "subtitle": "Compreender a natureza de nossos desafios é essencial para escolher o caminho adequado de cura e desenvolvimento.",
+    "fisico": {
+      "title": "Desafios Físicos e Neurofisiológicos",
+      "subtitle": "→ Instituto Metatron ←",
+      "description": "Quando seus desafios têm origem no corpo físico e no sistema nervoso, manifestando-se como:",
+      "items": [
+        "Desregulações do sistema nervoso autônomo (ansiedade, pânico, hipervigilância)",
+        "Traumas armazenados no corpo (memórias somáticas, tensões crônicas)",
+        "Padrões emocionais reativos (explosões de raiva, desconexão emocional)",
+        "Sintomas psicossomáticos (dores físicas de origem emocional)",
+        "Dificuldades de regulação emocional causadas por experiências traumáticas"
+      ],
+      "abordagem": {
+        "title": "Abordagem do Instituto:",
+        "description": "Tratamentos científicos baseados em Teoria Polivagal, neurofisiologia do trauma e técnicas terapêuticas comprovadas (EMDR, Neurofeedback, Breathwork, Terapia Humanista, etc.) para restaurar o equilíbrio do sistema nervoso e processar traumas armazenados no corpo."
+      }
+    },
+    "espiritual": {
+      "title": "Desafios Espirituais e Energéticos",
+      "subtitle": "→ Igreja de Metatron ←",
+      "description": "Quando seus desafios têm origem no campo espiritual e energético, manifestando-se como:",
+      "items": [
+        "Influências espirituais negativas (trabalhos de magia maléfica, forças maliciosas)",
+        "Obsessões e possessões (influências de entidades desencarnadas)",
+        "Impurezas no campo eletromagnético (energias densas, bloqueios energéticos)",
+        "Padrões ancestrais limitantes (cargas da linhagem familiar)",
+        "Desconexão espiritual (falta de propósito, crises existenciais profundas)"
+      ],
+      "abordagem": {
+        "title": "Abordagem da Igreja:",
+        "description": "Trabalhos espirituais de limpeza energética, desobsessão, restauração do duplo etérico, purificação do campo eletromagnético e desenvolvimento espiritual progressivo através das fases de Purificação, Ascensão e Iniciação."
+      }
+    },
+    "integrada": {
+      "title": "Abordagem Integrada: O Melhor dos Dois Mundos",
+      "description": "Na maioria dos casos, os desafios humanos têm componentes físicos E espirituais entrelaçados. Um trauma físico pode criar vulnerabilidades energéticas, e influências espirituais negativas podem se manifestar como sintomas físicos.",
+      "oferecemos": {
+        "title": "Por isso, a Igreja de Metatron oferece:",
+        "items": [
+          "Avaliação completa para identificar a natureza de seus desafios (física, espiritual ou ambas)",
+          "Tratamentos científicos através do Instituto Metatron para questões neurofisiológicas e traumas somáticos",
+          "Trabalhos espirituais através da Igreja para limpezas energéticas e desenvolvimento espiritual",
+          "Acompanhamento integrado que aborda simultaneamente corpo, mente e espírito"
+        ]
+      },
+      "conclusao": "Essa abordagem integrada garante que você receba o cuidado completo necessário para sua transformação profunda e duradoura."
+    }
+  },
+  "triplaProtecao": {
+    "title": "Tripla Proteção",
+    "subtitle": "Nossa abordagem oferece proteção em três níveis fundamentais, garantindo segurança e eficácia em cada etapa do processo terapêutico.",
+    "items": [
+      {
+        "title": "Técnica Precisa",
+        "description": "Utilizamos métodos cientificamente validados baseados na Teoria Polivagal e neurofisiologia do trauma, garantindo precisão e eficácia em cada intervenção terapêutica."
+      },
+      {
+        "title": "Conexão Humana",
+        "description": "Nossos terapeutas são profundamente treinados e comprometidos com o bem-estar de cada pessoa, oferecendo um ambiente seguro e acolhedor durante todo o processo de cura."
+      },
+      {
+        "title": "Proteção Espiritual",
+        "description": "Integramos práticas espirituais e energéticas que protegem e fortalecem o campo energético durante todo o processo de cura e desenvolvimento espiritual."
+      }
+    ]
+  },
+  "icons": {
+    "Sol_Dourado_Animado": {
+      "styles": "{\"fill\":\"#000000\",\"stroke\":\"#000000\",\"stroke-width\":\"1px\",\"opacity\":\"1\",\"animation-duration\":\"27s\",\"animation-timing-function\":\"linear\",\"animation-iteration-count\":\"infinite\",\"filter\":\"none\",\"transform\":\"matrix(0.483074, 0.87558, -0.87558, 0.483074, 0, 0)\",\"width\":\"127.997px\",\"height\":\"127.997px\",\"margin-top\":\"0px\",\"margin-right\":\"0px\",\"margin-bottom\":\"0px\",\"margin-left\":\"0px\",\"padding-top\":\"0px\",\"padding-right\":\"0px\",\"padding-bottom\":\"0px\",\"padding-left\":\"0px\",\"border-radius\":\"0px\",\"display\":\"block\",\"position\":\"relative\",\"top\":\"0px\",\"left\":\"0px\",\"right\":\"0px\",\"bottom\":\"0px\",\"z-index\":\"1\",\"flex-direction\":\"row\",\"justify-content\":\"normal\",\"align-items\":\"normal\",\"gap\":\"normal\",\"grid-template-columns\":\"none\",\"grid-template-rows\":\"none\",\"transition\":\"0.3s\"}"
+    },
+    "Sol_Branco_Igreja": {
+      "styles": "{}"
+    },
+    "Sol_Branco_Instituto": {
+      "styles": "{}"
+    },
+    "lucide_sun": {
+      "styles": "{}"
+    },
+    "lucide_sun_2": {
+      "styles": "{}"
+    },
+    "lucide_sun_3": {
+      "styles": "{}"
+    },
+    "lucide_sun_4": {
+      "styles": "{}"
+    },
+    "lucide_users": {
+      "styles": "{}"
+    },
+    "lucide_users_2": {
+      "styles": "{}"
+    },
+    "lucide_users_3": {
+      "styles": "{}"
+    },
+    "lucide_book_open": {
+      "styles": "{}"
+    },
+    "lucide_heart": {
+      "styles": "{}"
+    },
+    "lucide_heart_2": {
+      "styles": "{}"
+    },
+    "lucide_heart_3": {
+      "styles": "{}"
+    },
+    "lucide_brain": {
+      "styles": "{}"
+    },
+    "lucide_brain_2": {
+      "styles": "{}"
+    },
+    "lucide_brain_3": {
+      "styles": "{}"
+    },
+    "lucide_ghost": {
+      "styles": "{}"
+    },
+    "lucide_database": {
+      "styles": "{}"
+    },
+    "lucide_compass": {
+      "styles": "{}"
+    },
+    "lucide_heart_crack": {
+      "styles": "{}"
+    },
+    "lucide_user": {
+      "styles": "{}"
+    },
+    "lucide_sparkles": {
+      "styles": "{}"
+    },
+    "lucide_arrow_left_right": {
+      "styles": "{}"
+    },
+    "lucide_user_round": {
+      "styles": "{}"
+    },
+    "lucide_zap": {
+      "styles": "{}"
+    }
+  }
+}
