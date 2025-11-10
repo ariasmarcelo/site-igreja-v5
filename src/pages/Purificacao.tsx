@@ -142,7 +142,7 @@ export default function Purificacao() {
                               <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseInicial.subtitle">{texts.faseInicial.subtitle}</p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-3 self-center">
+                          <div className="flex items-start gap-3 mt-1">
                             {/* Círculo Numerado com Elevação */}
                             <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
                               <div className="absolute inset-0 bg-linear-to-r from-red-700 to-red-800"></div>
@@ -227,7 +227,7 @@ export default function Purificacao() {
                               <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseIntermediaria.subtitle">{texts.faseIntermediaria.subtitle}</p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-3 self-center">
+                          <div className="flex items-start gap-3 mt-1">
                             {/* Círculo Numerado com Elevação */}
                             <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
                               <div className="absolute inset-0 bg-linear-to-r from-[#0891b2] via-[#06b6d4] to-[#0284c7]"></div>
@@ -306,7 +306,7 @@ export default function Purificacao() {
                               <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseFinal.subtitle">{texts.faseFinal.subtitle}</p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-3 self-center">
+                          <div className="flex items-start gap-3 mt-1">
                             {/* Círculo Numerado com Elevação */}
                             <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
                               <div className="absolute inset-0 bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A]"></div>
