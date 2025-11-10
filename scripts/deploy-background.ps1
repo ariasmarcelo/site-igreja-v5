@@ -32,6 +32,7 @@ function Remove-AnsiCodes {
     param([string]`$Text)
     `$cleaned = `$Text -replace '\x1b\[[0-9;]*m', ''
     `$cleaned = `$cleaned -replace '\x1b\[[\d;]*[A-Za-z]', ''
+    `$cleaned = `$cleaned -replace '[^\x20-\x7E\r\n\t]', ''
     return `$cleaned
 }
 
@@ -39,20 +40,20 @@ function Remove-AnsiCodes {
 function Write-Log {
     param([string]`$msg)
     `$timestamp = Get-Date -Format 'HHmmss'
-    "[`$timestamp] `$msg" | Out-File `$logFile -Append -Encoding UTF8
+    "[`$timestamp] `$msg" | Add-Content -Path `$logFile -Encoding ASCII
 }
 
 function Write-CleanLog {
     param([string]`$Content)
     `$cleaned = Remove-AnsiCodes -Text `$Content
-    `$cleaned | Out-File `$logFile -Append -Encoding UTF8
+    Add-Content -Path `$logFile -Value `$cleaned -Encoding ASCII
 }
 
 # Iniciar log
-"========================================" | Out-File `$logFile -Encoding UTF8
+"========================================" | Out-File `$logFile -Encoding ASCII
 Write-Log "DEPLOY INICIADO"
 Write-Log "Mensagem: $Message"
-"========================================" | Out-File `$logFile -Append -Encoding UTF8
+"========================================" | Add-Content -Path `$logFile -Encoding ASCII
 
 try {
     Write-Log ""
@@ -80,16 +81,16 @@ try {
     Write-Log "[OK] Git push concluido!"
     
     Write-Log ""
-    "========================================" | Out-File `$logFile -Append
+    "========================================" | Add-Content -Path `$logFile -Encoding ASCII
     Write-Log "[SUCCESS] Deploy concluido com sucesso!"
     Write-Log "Finalizado: `$(Get-Date -Format 'yyyyMMdd HHmmss')"
-    "========================================" | Out-File `$logFile -Append
+    "========================================" | Add-Content -Path `$logFile -Encoding ASCII
     
 } catch {
     Write-Log ""
-    "========================================" | Out-File `$logFile -Append
+    "========================================" | Add-Content -Path `$logFile -Encoding ASCII
     Write-Log "[ERRO] Deploy falhou: `$_"
-    "========================================" | Out-File `$logFile -Append
+    "========================================" | Add-Content -Path `$logFile -Encoding ASCII
 }
 
 # Limpar logs antigos - manter ultimos 10
