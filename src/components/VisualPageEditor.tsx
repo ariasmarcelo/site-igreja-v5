@@ -1691,9 +1691,9 @@ export default function VisualPageEditor({
         
         // 3. Aplicar valores validados no DOM
         // Função auxiliar para buscar valor em estrutura aninhada
-        const getNestedValue = (obj: any, path: string): any => {
+        const getNestedValue = (obj: Record<string, unknown>, path: string): unknown => {
           const parts = path.split('.');
-          let current = obj;
+          let current: unknown = obj;
           for (const part of parts) {
             if (current && typeof current === 'object' && part in current) {
               current = current[part];
@@ -1938,7 +1938,7 @@ export default function VisualPageEditor({
     <div className="space-y-4">
       {/* Message Alert - Floating Toast */}
       {message && (
-        <div className="fixed top-4 right-4 z-[10000] toast-notification">
+        <div className="fixed top-4 right-4 z-10000 toast-notification">
           <Alert className={`${
             message.type === 'success' 
               ? 'bg-green-500 border-green-600 text-white shadow-2xl' 
@@ -2001,7 +2001,7 @@ export default function VisualPageEditor({
 
       {/* Dialog de Confirmação de Cancelamento */}
       {showCancelDialog && (
-        <div className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/50 backdrop-blur-sm">
+        <div className="fixed inset-0 z-10000 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
             <div className="flex items-start gap-4 mb-6">
               <div className="shrink-0 w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center">
@@ -2040,7 +2040,7 @@ export default function VisualPageEditor({
 
       {/* Info Card - Minimal */}
       {hasChanges && isEditMode && (
-        <div className="fixed top-4 left-4 z-[9999]">
+        <div className="fixed top-4 left-4 z-9999">
           <div className="bg-orange-500 text-white px-4 py-2 rounded-full shadow-lg font-semibold text-sm animate-pulse">
             ⚠️ Alterações não salvas
           </div>
@@ -2048,7 +2048,7 @@ export default function VisualPageEditor({
       )}
 
       {isEditMode && (
-        <div className="fixed top-20 right-4 z-[9999] max-w-xs">
+        <div className="fixed top-20 right-4 z-9999 max-w-xs">
           <Alert className="bg-blue-50 border-blue-300 shadow-lg">
             <AlertDescription className="text-blue-900 text-xs">
               <strong>Modo Ativo:</strong> Clique em textos destacados para editar.

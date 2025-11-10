@@ -113,8 +113,7 @@ export default function Purificacao() {
           <div className="max-w-5xl mx-auto">
             
             {/* Container Visual para as Três Fases - Elevado */}
-            <div className="bg-linear-to-br from-white/90 via-amber-50/85 to-white/90 backdrop-blur-2xl p-8 pr-16 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] border-2 border-white/30 relative transform hover:scale-[1.01] transition-transform duration-500"
-                 style={{ boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 80px rgba(251,191,36,0.15), inset 0 1px 0 rgba(255,255,255,0.8)' }}>
+            <div className="bg-linear-to-br from-white/90 via-amber-50/85 to-white/90 backdrop-blur-2xl p-8 pr-16 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] border-2 border-white/30 relative transform hover:scale-[1.01] transition-transform duration-500 [box-shadow:0_20px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(251,191,36,0.15),inset_0_1px_0_rgba(255,255,255,0.8)]">
               
               {/* Título da Seção - Elevado e Luminoso */}
               <div className="text-center mb-10 relative">
@@ -123,13 +122,7 @@ export default function Purificacao() {
                   <div className="w-[500px] h-40 bg-linear-to-r from-transparent via-amber-400/10 to-transparent blur-3xl"></div>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-light bg-linear-to-r from-amber-700 via-amber-500 to-amber-700 bg-clip-text text-transparent relative z-10" 
-                    style={{ 
-                      fontFamily: "'Poppins', sans-serif",
-                      letterSpacing: '0.08em',
-                      textShadow: '0 2px 4px rgba(180,83,9,0.2)',
-                      filter: 'drop-shadow(0 2px 3px rgba(0,0,0,0.15)) drop-shadow(0 4px 6px rgba(251,191,36,0.2))'
-                    }}>
+                <h2 className="text-4xl md:text-5xl font-light bg-linear-to-r from-amber-700 via-amber-500 to-amber-700 bg-clip-text text-transparent relative z-10 font-['Poppins',sans-serif] tracking-[0.08em] [text-shadow:0_2px_4px_rgba(180,83,9,0.2)] filter-[drop-shadow(0_2px_3px_rgba(0,0,0,0.15))_drop-shadow(0_4px_6px_rgba(251,191,36,0.2))]">
                   AS TRÊS FASES DO PROCESSO
                 </h2>
                 
@@ -434,20 +427,14 @@ export default function Purificacao() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.25),transparent_50%)]"></div>
                 
                 <div className="text-center relative z-10">
-                  <div className="inline-block mb-2" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}>
+                  <div className="inline-block mb-2 animate-[pulse_4s_cubic-bezier(0.4,0,0.6,1)_infinite]">
                     <InfinityIcon className="w-24 h-24 mx-auto drop-shadow-2xl filter brightness-125" />
                   </div>
-                  <CardTitle className="text-4xl md:text-5xl font-semibold mb-3 drop-shadow-lg" 
-                    style={{ 
-                      fontFamily: "'Poppins', sans-serif",
-                      letterSpacing: '0.02em',
-                      textShadow: '0 0 30px rgba(255,255,255,0.5), 0 0 60px rgba(167,139,250,0.4)'
-                    }}
+                  <CardTitle className="text-4xl md:text-5xl font-semibold mb-3 drop-shadow-lg font-['Poppins',sans-serif] tracking-[0.02em] [text-shadow:0_0_30px_rgba(255,255,255,0.5),0_0_60px_rgba(167,139,250,0.4)]" 
                     data-json-key="purificacao.psicodelicos.title">
                     {texts.psicodelicos.title}
                   </CardTitle>
-                  <p className="text-xl font-light italic opacity-95 drop-shadow-md pb-2" 
-                    style={{ letterSpacing: '0.05em' }}
+                  <p className="text-xl font-light italic opacity-95 drop-shadow-md pb-2 tracking-[0.05em]" 
                     data-json-key="purificacao.psicodelicos.subtitle">
                     {texts.psicodelicos.subtitle}
                   </p>
@@ -456,14 +443,14 @@ export default function Purificacao() {
               <CardContent className="p-10 bg-linear-to-br from-white/95 via-purple-50/90 to-white/95 backdrop-blur-sm">
 
                 <div className="space-y-6 leading-relaxed mb-8" data-json-key="purificacao.psicodelicos.intro">
-                  <p className="text-center text-lg text-gray-800 font-light" style={{ letterSpacing: '0.01em' }} data-json-key="purificacao.psicodelicos.intro" dangerouslySetInnerHTML={{ __html: texts.psicodelicos.intro }} />
+                  <p className="text-center text-lg text-gray-800 font-light tracking-[0.01em]" data-json-key="purificacao.psicodelicos.intro" dangerouslySetInnerHTML={{ __html: texts.psicodelicos.intro }} />
                 </div>
 
                 <div className="bg-linear-to-br from-purple-100/80 via-fuchsia-50/70 to-indigo-100/80 p-8 rounded-2xl border-2 border-purple-300/50 shadow-xl backdrop-blur-sm relative overflow-hidden">
                   {/* Efeito de brilho de fundo */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.15),transparent_70%)]"></div>
                   
-                  <h3 className="font-semibold text-2xl text-purple-900 mb-8 text-center relative z-10" style={{ letterSpacing: '0.03em' }} data-json-key="purificacao.psicodelicos.tripleProtection.title">{texts.psicodelicos.tripleProtection.title}</h3>
+                  <h3 className="font-semibold text-2xl text-purple-900 mb-8 text-center relative z-10 tracking-[0.03em]" data-json-key="purificacao.psicodelicos.tripleProtection.title">{texts.psicodelicos.tripleProtection.title}</h3>
                   
                   <div className="grid md:grid-cols-3 gap-8 relative z-10">
                     <div className="text-center bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
@@ -497,11 +484,11 @@ export default function Purificacao() {
                 </div>
 
                 <div className="space-y-4 mt-10">
-                  <h3 className="font-semibold text-2xl text-purple-900 text-center mb-6" style={{ letterSpacing: '0.02em' }} data-json-key="purificacao.psicodelicos.applications.title">{texts.psicodelicos.applications.title}</h3>
+                  <h3 className="font-semibold text-2xl text-purple-900 text-center mb-6 tracking-[0.02em]" data-json-key="purificacao.psicodelicos.applications.title">{texts.psicodelicos.applications.title}</h3>
                   <ul className="space-y-4 max-w-3xl mx-auto">
                     {texts.psicodelicos.applications.items.map((item: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-lg border border-purple-200 hover:border-purple-400 transition-all duration-300 hover:shadow-md">
-                        <span className="text-purple-600 mt-1 text-xl font-bold flex-shrink-0">✦</span>
+                        <span className="text-purple-600 mt-1 text-xl font-bold shrink-0">✦</span>
                         <span className="text-gray-800 leading-relaxed" data-json-key={`purificacao.psicodelicos.applications.items[${idx}]`} dangerouslySetInnerHTML={{ __html: item }} />
                       </li>
                     ))}
@@ -510,7 +497,7 @@ export default function Purificacao() {
 
                 <div className="bg-linear-to-br from-amber-100/80 via-yellow-50/70 to-amber-100/80 p-8 rounded-2xl border-2 border-amber-300/60 mt-10 shadow-xl backdrop-blur-sm relative overflow-hidden">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,191,36,0.15),transparent_70%)]"></div>
-                  <p className="text-center font-semibold text-amber-900 mb-4 text-xl relative z-10" style={{ letterSpacing: '0.02em' }} data-json-key="purificacao.psicodelicos.conclusion.title">
+                  <p className="text-center font-semibold text-amber-900 mb-4 text-xl relative z-10 tracking-[0.02em]" data-json-key="purificacao.psicodelicos.conclusion.title">
                     {texts.psicodelicos.conclusion.title}
                   </p>
                   <p className="text-center text-gray-800 leading-relaxed relative z-10" data-json-key="purificacao.psicodelicos.conclusion.content">

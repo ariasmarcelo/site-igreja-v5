@@ -135,9 +135,9 @@ export default function QuemSomos() {
         <div>
           <div className="text-center mb-12">
             <div className="flex items-center justify-center gap-4 mb-4">
-              <Triangle className="w-14 h-14 text-[#4A7BA7] fill-white stroke-[3]" style={{ stroke: '#4A7BA7' }} />
+              <Triangle className="w-14 h-14 text-[#4A7BA7] fill-white stroke-3" style={{ stroke: '#4A7BA7' }} />
               <h2 className="text-4xl font-bold text-gray-900" data-json-key="quemsomos.hermeticos.title">{texts.hermeticos.title}</h2>
-              <Triangle className="w-14 h-14 text-[#B44C4C] fill-white stroke-[3] rotate-180" style={{ stroke: '#B44C4C' }} />
+              <Triangle className="w-14 h-14 text-[#B44C4C] fill-white stroke-3 rotate-180" style={{ stroke: '#B44C4C' }} />
             </div>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto" data-json-key="quemsomos.hermeticos.subtitle">{texts.hermeticos.subtitle}</p>
           </div>
