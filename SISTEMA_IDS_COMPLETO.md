@@ -23,43 +23,52 @@
 - **0 problemas** detectados
 - **100%** de cobertura
 
-## 🛠️ Ferramentas Criadas
+## 🛠️ Script Definitivo Único ⭐
 
-### 1. Script Unificado (Recomendado) ⭐
-**Arquivo**: `scripts/check-and-fix-ids.js`
+**Arquivo**: `scripts/ids.js` (400 linhas)
 
 ```bash
-# Verificar apenas (não modifica)
-node scripts/check-and-fix-ids.js
+# Verificar apenas (padrão)
+node scripts/ids.js
 
 # Verificar e corrigir automaticamente
-node scripts/check-and-fix-ids.js --fix
+node scripts/ids.js --fix
 
 # Preview das correções
-node scripts/check-and-fix-ids.js --fix --dry-run
+node scripts/ids.js --fix --dry-run
 
 # Página específica
-node scripts/check-and-fix-ids.js --page=Tratamentos --fix
+node scripts/ids.js --page=Tratamentos --fix
+
+# Debug detalhado
+node scripts/ids.js --verbose
 ```
 
 **Output (modo check)**:
 ```
-✅ Todas as páginas estão corretas!
-   Páginas verificadas: 8
+✅ PERFEITO! Todas as páginas estão corretas!
+   Páginas processadas: 8
+   Total de elementos: 141
    Problemas encontrados: 0
 ```
 
 **Output (modo fix)**:
 ```
 🔧 Tratamentos.tsx
-   Total de usos: 45
-   Problemas: 3
+   Total de elementos: 45
+   Problemas encontrados: 3
    ✅ Corrigidos: 3
+
+✅ CONCLUÍDO! Arquivos modificados com backups.
 ```
 
-### 2. Scripts Legados (mantidos para compatibilidade)
-- `scripts/verify-ids.js` - Apenas verificação
-- `scripts/assign-ids-final.js` - Correção completa com análise profunda
+### Recursos
+- ✅ Verifica e corrige em um comando
+- ✅ Detecta contexto de arrays (.map)
+- ✅ Suporta nested structures
+- ✅ Relatório detalhado
+- ✅ Backups automáticos
+- ✅ Dry-run mode
 
 ### 3. Script de Deploy em Background
 **Arquivo**: `scripts/deploy-background.js`
@@ -117,30 +126,30 @@ node scripts/deploy-background.js "mensagem do commit"
 
 ## 🔄 Workflow Recomendado
 
-### Antes de Fazer Deploy (Simplificado)
+### Workflow Simplificado (Um Comando)
 
 ```bash
-# 1. Verificar e corrigir automaticamente
-node scripts/check-and-fix-ids.js --fix
+# Verificar e corrigir automaticamente
+node scripts/ids.js --fix
 
-# 2. Build e deploy
+# Build e deploy
 pnpm build
 git add .
 git commit -m "descrição das mudanças"
 git push
 ```
 
-### Workflow Alternativo (mais seguro)
+### Workflow Seguro (Preview Primeiro)
 
 ```bash
-# 1. Verificar primeiro
-node scripts/check-and-fix-ids.js
+# 1. Verificar
+node scripts/ids.js
 
 # 2. Se houver problemas, ver preview
-node scripts/check-and-fix-ids.js --fix --dry-run
+node scripts/ids.js --fix --dry-run
 
 # 3. Aplicar correções
-node scripts/check-and-fix-ids.js --fix
+node scripts/ids.js --fix
 
 # 4. Build e deploy
 pnpm build
@@ -161,18 +170,16 @@ Isso executa build, commit e push automaticamente em background.
 
 ### "Editei o texto mas não salvou"
 
-**Solução Rápida**:
+**Solução**:
 ```bash
 # Verificar e corrigir em um comando
-node scripts/check-and-fix-ids.js --page=NomeDaPagina --fix
-pnpm build && git add . && git commit -m "fix: ids" && git push
-```
+node scripts/ids.js --page=NomeDaPagina --fix
 
-**Solução Detalhada** (para análise profunda):
-```bash
-# Usar script completo com análise de seções
-node scripts/assign-ids-final.js --page=NomeDaPagina
-pnpm build && git add . && git commit -m "fix: ids" && git push
+# Build e deploy
+pnpm build
+git add .
+git commit -m "fix: ids"
+git push
 ```
 
 ### "Como adicionar IDs manualmente?"
