@@ -144,14 +144,14 @@ export default function Purificacao() {
                           </div>
                           <div className="flex items-center gap-3">
                             {/* Círculo Numerado com Elevação */}
-                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
+                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 self-center">
                               <div className="absolute inset-0 bg-linear-to-r from-red-700 to-red-800"></div>
                               <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
                               <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
                                               <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.5)_0%,transparent_50%)]"></div>
                 <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.2)_50%,transparent_100%)]"></div>
                 {/* Number */}
-                <span className="text-lg md:text-xl font-bold text-white relative z-10 drop-shadow-lg">1</span>
+                <span className="text-xl md:text-2xl font-bold text-white relative z-10 drop-shadow-lg">1</span>
                             </div>
                             <ChevronDown 
                               className={`w-8 h-8 transition-transform duration-300 ${
@@ -229,12 +229,12 @@ export default function Purificacao() {
                           </div>
                           <div className="flex items-center gap-3">
                             {/* Círculo Numerado com Elevação */}
-                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
+                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 self-center">
                               <div className="absolute inset-0 bg-linear-to-r from-[#0891b2] via-[#06b6d4] to-[#0284c7]"></div>
                               <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.4),transparent_50%)]"></div>
                               <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.3),transparent_50%)]"></div>
                               <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_30%,rgba(255,255,255,0.2)_50%,transparent_70%)]"></div>
-                              <span className="text-lg md:text-xl font-bold text-white relative z-10 drop-shadow-lg">2</span>
+                              <span className="text-xl md:text-2xl font-bold text-white relative z-10 drop-shadow-lg">2</span>
                             </div>
                             <ChevronDown 
                               className={`w-8 h-8 transition-transform duration-300 ${
@@ -308,11 +308,11 @@ export default function Purificacao() {
                           </div>
                           <div className="flex items-center gap-3">
                             {/* Círculo Numerado com Elevação */}
-                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
+                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300 self-center">
                               <div className="absolute inset-0 bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A]"></div>
                               <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
                               <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
-                              <span className="text-lg md:text-xl font-bold text-white relative z-10 drop-shadow-lg">3</span>
+                              <span className="text-xl md:text-2xl font-bold text-white relative z-10 drop-shadow-lg">3</span>
                             </div>
                             <ChevronDown 
                               className={`w-8 h-8 transition-transform duration-300 ${
