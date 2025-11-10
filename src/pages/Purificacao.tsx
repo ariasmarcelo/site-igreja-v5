@@ -110,7 +110,7 @@ export default function Purificacao() {
               
               {/* Título da Seção */}
               <div className="text-center mb-10">
-                <h2 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#B8860B] via-[#DAA520] to-[#B8860B] bg-clip-text text-transparent" 
+                <h2 className="text-4xl md:text-5xl font-semibold bg-linear-to-r from-[#B8860B] via-[#DAA520] to-[#B8860B] bg-clip-text text-transparent" 
                     style={{ 
                       fontFamily: "'Poppins', sans-serif",
                       letterSpacing: '-0.02em',
