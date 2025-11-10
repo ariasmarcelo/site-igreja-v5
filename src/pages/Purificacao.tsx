@@ -138,8 +138,8 @@ export default function Purificacao() {
                               <Sparkles className="w-8 h-8 text-red-700" />
                             </div>
                             <div>
-                              <CardTitle className="text-2xl mb-1 drop-shadow-md" data-json-key="purificacao.faseInicial.title">{texts.faseInicial.title}</CardTitle>
-                              <p className="text-base opacity-90 drop-shadow-sm" data-json-key="purificacao.faseInicial.subtitle">{texts.faseInicial.subtitle}</p>
+                              <CardTitle className="text-2xl md:text-3xl mb-1 drop-shadow-md" data-json-key="purificacao.faseInicial.title">{texts.faseInicial.title}</CardTitle>
+                              <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseInicial.subtitle">{texts.faseInicial.subtitle}</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-3 self-center">
@@ -223,8 +223,8 @@ export default function Purificacao() {
                               <LineChart className="w-8 h-8 text-cyan-600" />
                             </div>
                             <div>
-                              <CardTitle className="text-2xl mb-1 drop-shadow-md" data-json-key="purificacao.faseIntermediaria.title">{texts.faseIntermediaria.title}</CardTitle>
-                              <p className="text-base opacity-90 drop-shadow-sm" data-json-key="purificacao.faseIntermediaria.subtitle">{texts.faseIntermediaria.subtitle}</p>
+                              <CardTitle className="text-2xl md:text-3xl mb-1 drop-shadow-md" data-json-key="purificacao.faseIntermediaria.title">{texts.faseIntermediaria.title}</CardTitle>
+                              <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseIntermediaria.subtitle">{texts.faseIntermediaria.subtitle}</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-3 self-center">
@@ -302,8 +302,8 @@ export default function Purificacao() {
                               <Crown className="w-8 h-8 text-[#CFAF5A]" />
                             </div>
                             <div>
-                              <CardTitle className="text-2xl mb-1 drop-shadow-md" data-json-key="purificacao.faseFinal.title">{texts.faseFinal.title}</CardTitle>
-                              <p className="text-base opacity-90 drop-shadow-sm" data-json-key="purificacao.faseFinal.subtitle">{texts.faseFinal.subtitle}</p>
+                              <CardTitle className="text-2xl md:text-3xl mb-1 drop-shadow-md" data-json-key="purificacao.faseFinal.title">{texts.faseFinal.title}</CardTitle>
+                              <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseFinal.subtitle">{texts.faseFinal.subtitle}</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-3 self-center">
