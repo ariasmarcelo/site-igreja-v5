@@ -119,12 +119,6 @@ export default function Purificacao() {
               {/* FASE 1 - INICIAL */}
               <div className="mb-8 relative">
                 <div className="md:flex md:items-center gap-8">
-                  {/* Círculo Numerado à Direita da Linha */}
-                  <div className="hidden md:flex absolute left-4 top-1/2 transform translate-x-1/2 -translate-y-1/2 z-10 w-20 h-20 rounded-full bg-linear-to-r from-red-700 to-red-800 text-white items-center justify-center text-3xl font-bold shadow-2xl border-4 border-white">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)] rounded-full"></div>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)] rounded-full"></div>
-                    <span className="relative z-10 drop-shadow-lg">1</span>
-                  </div>
                   
                   {/* Card da Fase */}
                   <div className="md:w-full">
@@ -138,9 +132,12 @@ export default function Purificacao() {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.2),transparent_50%)]"></div>
                         <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-4">
-                            <div className="md:hidden w-14 h-14 rounded-full bg-linear-to-r from-red-700 to-red-800 flex items-center justify-center shadow-lg border-2 border-white relative overflow-hidden">
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_60%)]"></div>
-                              <span className="text-2xl font-bold text-white relative z-10 drop-shadow-md">1</span>
+                            {/* Círculo Numerado Desktop e Mobile */}
+                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
+                              <div className="absolute inset-0 bg-linear-to-r from-red-700 to-red-800"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
+                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">1</span>
                             </div>
                             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
                               <Sparkles className="w-8 h-8 text-red-700" />
@@ -200,12 +197,6 @@ export default function Purificacao() {
               {/* FASE 2 - INTERMEDIÁRIA */}
               <div className="mb-8 relative">
                 <div className="md:flex md:items-center gap-8">
-                  {/* Círculo Numerado à Direita da Linha */}
-                  <div className="hidden md:flex absolute left-4 top-1/2 transform translate-x-1/2 -translate-y-1/2 z-10 w-20 h-20 rounded-full bg-linear-to-r from-[#4A90A9] to-[#5EA98D] text-white items-center justify-center text-3xl font-bold shadow-2xl border-4 border-white">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)] rounded-full"></div>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)] rounded-full"></div>
-                    <span className="relative z-10 drop-shadow-lg">2</span>
-                  </div>
                   
                   {/* Card da Fase */}
                   <div className="md:w-full">
@@ -219,9 +210,12 @@ export default function Purificacao() {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.2),transparent_50%)]"></div>
                         <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-4">
-                            <div className="md:hidden w-14 h-14 rounded-full bg-linear-to-r from-[#4A90A9] to-[#5EA98D] flex items-center justify-center shadow-lg border-2 border-white relative overflow-hidden">
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_60%)]"></div>
-                              <span className="text-2xl font-bold text-white relative z-10 drop-shadow-md">2</span>
+                            {/* Círculo Numerado Desktop e Mobile */}
+                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
+                              <div className="absolute inset-0 bg-linear-to-r from-[#4A90A9] to-[#5EA98D]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
+                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">2</span>
                             </div>
                             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
                               <LineChart className="w-8 h-8 text-[#4A90A9]" />
@@ -277,12 +271,6 @@ export default function Purificacao() {
               {/* FASE 3 - FINAL */}
               <div className="relative">
                 <div className="md:flex md:items-center gap-8">
-                  {/* Círculo Numerado à Direita da Linha */}
-                  <div className="hidden md:flex absolute left-4 top-1/2 transform translate-x-1/2 -translate-y-1/2 z-10 w-20 h-20 rounded-full bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A] text-white items-center justify-center text-3xl font-bold shadow-2xl border-4 border-white">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)] rounded-full"></div>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)] rounded-full"></div>
-                    <span className="relative z-10 drop-shadow-lg">3</span>
-                  </div>
                   
                   {/* Card da Fase */}
                   <div className="md:w-full">
@@ -296,9 +284,12 @@ export default function Purificacao() {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.2),transparent_50%)]"></div>
                         <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-4">
-                            <div className="md:hidden w-14 h-14 rounded-full bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A] flex items-center justify-center shadow-lg border-2 border-white relative overflow-hidden">
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_60%)]"></div>
-                              <span className="text-2xl font-bold text-white relative z-10 drop-shadow-md">3</span>
+                            {/* Círculo Numerado Desktop e Mobile */}
+                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
+                              <div className="absolute inset-0 bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
+                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">3</span>
                             </div>
                             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
                               <Crown className="w-8 h-8 text-[#CFAF5A]" />
