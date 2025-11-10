@@ -1787,11 +1787,9 @@ export default function VisualPageEditor({
       setMessage({ type: 'error', text: `✗ Erro ao salvar: ${error}` });
       setTimeout(() => setMessage(null), 8000);
     } finally {
-      // Liberar lock após 3 segundos (garantir que não trave permanentemente)
-      setTimeout(() => {
-        isSaving.current = false;
-        // console.log('🔓 Save lock released');
-      }, 3000);
+      // Liberar lock IMEDIATAMENTE para permitir nova tentativa
+      isSaving.current = false;
+      console.log('🔓 Save lock released');
     }
   };
 
