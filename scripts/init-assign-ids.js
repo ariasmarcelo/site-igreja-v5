@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 /**
- * Script de inicialização: Verifica e atribui IDs únicos automaticamente
+ * Script de inicialização: Verifica IDs únicos automaticamente
  * 
  * EXECUÇÃO:
  * - Roda automaticamente via package.json no "predev"
  * - Verifica flag de controle (.ids-assigned)
- * - Executa assign-ids-final.js se necessário
+ * - Executa ids.js (script definitivo) se necessário
  * - Não bloqueia o início do dev server
  */
 
@@ -32,17 +32,17 @@ if (fs.existsSync(FLAG_FILE)) {
   
   // Se executou nas últimas 24h, pular
   if (hoursSince < 24) {
-    console.log('✅ IDs únicos já atribuídos (último: ' + new Date(lastExecution).toLocaleString() + ')');
-    console.log('   Para forçar reexecução: npm run assign-ids\n');
+    console.log('✅ IDs únicos já verificados (último: ' + new Date(lastExecution).toLocaleString() + ')');
+    console.log('   Para forçar verificação: pnpm assign-ids\n');
     process.exit(0);
   }
 }
 
-console.log('🔧 Atribuindo IDs únicos automaticamente...\n');
+console.log('🔧 Verificando IDs únicos...\n');
 
 try {
-  // Executar script de atribuição
-  execSync('node scripts/assign-ids-final.js', {
+  // Executar script definitivo de verificação (apenas check, sem fix)
+  execSync('node scripts/ids.js --check', {
     cwd: ROOT_DIR,
     stdio: 'inherit'
   });
