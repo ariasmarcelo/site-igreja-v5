@@ -4,7 +4,7 @@
   "packageManager": "pnpm@8.10.0",
   "scripts": {
     "dev": "vite",
-    "predev": "node scripts/init-assign-ids.js && node scripts/fix-all-keys.cjs --silent",
+    "predev": "node scripts/ids.js --check",
     "build": "vite build",
     "vercel-build": "vite build",
     "lint": "eslint --quiet ./src",
@@ -12,12 +12,10 @@
     "deploy": "powershell -File scripts/deploy.ps1",
     "deploy:bg": "powershell -File scripts/deploy.ps1 -Background",
     "server": "node server/express-server.js",
-    "preserver": "node scripts/fix-all-keys.cjs --silent",
-    "assign-ids": "node scripts/ids.js",
-    "assign-ids:fix": "node scripts/ids.js --fix",
-    "assign-ids:check": "node scripts/ids.js --check",
-    "fix-keys": "node scripts/fix-all-keys.cjs",
-    "clean-backups": "node scripts/clean-all-backups.cjs"
+    "preserver": "node scripts/ids.js --check",
+    "ids": "node scripts/ids.js",
+    "ids:fix": "node scripts/ids.js --fix",
+    "ids:check": "node scripts/ids.js --check"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
