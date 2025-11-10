@@ -48,6 +48,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       
+      - name: Validate Supabase secrets
+        run: |
+          if [ -z "${{ secrets.VITE_SUPABASE_URL }}" ] || [ -z "${{ secrets.VITE_SUPABASE_ANON_KEY }}" ]; then
+            echo "Error: Supabase secrets are not configured"
+            exit 1
+          fi
+      
       - name: Build
         run: pnpm run build
         env:
