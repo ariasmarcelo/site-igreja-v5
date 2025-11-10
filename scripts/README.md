@@ -1,4 +1,4 @@
-# 📚 Scripts de Automação# 📚 Scripts de Automação# 📚 Scripts de Automação# 📚 Scripts de Automação do Sistema de Edição Visual
+# 📚 Scripts de Automação# 📚 Scripts de Automação# 📚 Scripts de Automação# 📚 Scripts de Automação# 📚 Scripts de Automação do Sistema de Edição Visual
 
 
 
@@ -14,7 +14,7 @@ Scripts essenciais para desenvolvimento, deploy e backup do projeto.
 
 > - **[README-BACKUP.md](./README-BACKUP.md)** - Backup/Restore Supabase
 
-> 📖 Documentação detalhada:Scripts essenciais para desenvolvimento e deploy do projeto.Este diretório contém scripts automatizados para gerenciar os atributos `data-json-key` que conectam elementos visuais ao conteúdo editável.
+> 📖 Documentação detalhada:Scripts essenciais para desenvolvimento, deploy e backup do projeto.
 
 ---
 
@@ -22,7 +22,7 @@ Scripts essenciais para desenvolvimento, deploy e backup do projeto.
 
 ## 🚀 Quick Start
 
-> - **[README-DEPLOY.md](./README-DEPLOY.md)** - Deploy GitHub Pages
+> - **[README-DEPLOY.md](./README-DEPLOY.md)** - Deploy GitHub Pages  
 
 ```bash
 
@@ -30,7 +30,7 @@ Scripts essenciais para desenvolvimento, deploy e backup do projeto.
 
 pnpm dev
 
----> 📖 Veja também: **[README-IDS.md](./README-IDS.md)** - Documentação detalhada do script fix-ids.js
+> 📖 Documentação detalhada:Scripts essenciais para desenvolvimento e deploy do projeto.Este diretório contém scripts automatizados para gerenciar os atributos `data-json-key` que conectam elementos visuais ao conteúdo editável.
 
 # Verificar IDs únicos
 
@@ -38,7 +38,7 @@ pnpm fix-ids---
 
 
 
-# Corrigir IDs automaticamente
+# Corrigir IDs automaticamente> - **[README-FIX-IDS.md](./README-FIX-IDS.md)** - Sistema de IDs únicos
 
 pnpm fix-ids:fix
 
@@ -46,7 +46,7 @@ pnpm fix-ids:fix
 
 # Backup do banco de dados
 
-pnpm backup## 🚀 Quick Start---
+pnpm backup> - **[README-DEPLOY.md](./README-DEPLOY.md)** - Deploy GitHub Pages
 
 
 
@@ -54,7 +54,7 @@ pnpm backup## 🚀 Quick Start---
 
 pnpm restore:latest
 
-# Desenvolvimento normal (IDs verificados automaticamente)
+# Desenvolvimento normal (IDs verificados automaticamente)> - **[README-BACKUP.md](./README-BACKUP.md)** - Backup/Restore Supabase
 
 # Deploy
 
@@ -62,7 +62,7 @@ pnpm restore:latest
 
 .\scripts\deploy.ps1 -b "msg"   # Background
 
-``````bash## 🚀 Quick Start
+```---> 📖 Veja também: **[README-IDS.md](./README-IDS.md)** - Documentação detalhada do script fix-ids.js
 
 
 
@@ -70,7 +70,7 @@ pnpm restore:latest
 
 
 
-## 📋 Scripts Ativospnpm fix-ids# Desenvolvimento
+## 📋 Scripts Ativospnpm fix-ids---
 
 
 
@@ -78,7 +78,7 @@ pnpm restore:latest
 
 |--------|---------|-----------|------------|
 
-| **fix-ids.js** ⭐ | `pnpm fix-ids` | Verificação e correção de IDs | Automático + Manual |# Corrigir IDs automaticamentepnpm dev                    # Inicia dev server (verifica IDs automaticamente)```bash
+| **fix-ids.js** ⭐ | `pnpm fix-ids` | Verificação e correção de IDs | Automático + Manual |# Corrigir IDs automaticamente
 
 | **deploy.ps1** ⭐ | `.\scripts\deploy.ps1 [-b] "msg"` | Deploy síncrono ou background | Por deploy |
 
@@ -86,7 +86,7 @@ pnpm restore:latest
 
 | **restore-supabase.js** 🔄 | `pnpm restore:latest` | Restaura backup do Supabase | Manual |
 
-# Desenvolvimento normal (IDs verificados automaticamente)
+## 🚀 Quick Start
 
 ---
 
@@ -94,7 +94,7 @@ pnpm restore:latest
 
 ## 🎯 O Que São os Scripts?
 
-pnpm backup# IDspnpm dev
+pnpm backup## 🚀 Quick Start---
 
 ### fix-ids.js - Sistema de IDs Únicos
 
@@ -102,7 +102,7 @@ pnpm backup# IDspnpm dev
 
 **Problema:**
 
-```jsx# Restaurar último backuppnpm fix-ids               # Verifica IDs
+```jsx# Restaurar último backup```bash
 
 // Elemento não-editável (sem data-json-key)
 
@@ -110,7 +110,7 @@ pnpm backup# IDspnpm dev
 
 ```
 
-pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
+# Desenvolvimento normal (IDs verificados automaticamente)
 
 **Solução:**
 
@@ -118,7 +118,7 @@ pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
 
 // Elemento editável no Admin Panel
 
-<h1 data-json-key="index.hero.title">{texts.hero.title}</h1>.\scripts\deploy.ps1 "msg"      # Síncronopnpm fix-ids
+<h1 data-json-key="index.hero.title">{texts.hero.title}</h1>.\scripts\deploy.ps1 "msg"      # Síncronopnpm dev
 
 ```
 
@@ -126,7 +126,7 @@ pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
 
 **Como Funciona:**
 
-1. Scripts detectam `{texts.xxx}` no código```# Deploy
+1. Scripts detectam `{texts.xxx}` no código``````bash## 🚀 Quick Start
 
 2. Encontram o elemento JSX pai
 
@@ -134,7 +134,7 @@ pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
 
 4. Injetam `data-json-key="pageName.section.property"`
 
-5. Admin Panel usa esse atributo para permitir edição inline---.\scripts\deploy.ps1 "msg"      # Deploy síncrono# Corrigir IDs automaticamente
+5. Admin Panel usa esse atributo para permitir edição inline---# Verificar IDs únicos
 
 
 
@@ -142,7 +142,7 @@ pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
 
 
 
----## 📋 Scripts Ativos.\scripts\deploy.ps1 -b "msg"   # Deploy backgroundpnpm fix-ids:fix
+---## 📋 Scripts Ativospnpm fix-ids# Desenvolvimento
 
 
 
@@ -150,7 +150,7 @@ pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
 
 
 
-**Recursos:**| Script | Comando | Descrição | Frequência |```
+**Recursos:**| Script | Comando | Descrição | Frequência |
 
 - ✅ Deploy síncrono (padrão) ou background
 
@@ -158,7 +158,7 @@ pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
 
 - ✅ Mantém últimos 10 logs automaticamente
 
-- ✅ Alias curto: `-b` para `-Background`| **fix-ids.js** ⭐ | `pnpm fix-ids` | Verificação e correção de IDs | Automático + Manual |# Correção completa de data-json-key
+- ✅ Alias curto: `-b` para `-Background`| **fix-ids.js** ⭐ | `pnpm fix-ids` | Verificação e correção de IDs | Automático + Manual |# Corrigir IDs automaticamentepnpm dev                    # Inicia dev server (verifica IDs automaticamente)```bash
 
 
 
@@ -166,7 +166,7 @@ pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
 
 1. Build (`pnpm build`)
 
-2. Git add| **backup-supabase.js** 💾 | `pnpm backup` | Backup completo do Supabase | Manual/Agendado |---pnpm fix-keys
+2. Git add| **backup-supabase.js** 💾 | `pnpm backup` | Backup completo do Supabase | Manual/Agendado |pnpm fix-ids:fix
 
 3. Git commit
 
@@ -174,7 +174,7 @@ pnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
 
 
 
-**Monitorar deploy background:**
+**Monitorar deploy background:**# Desenvolvimento normal (IDs verificados automaticamente)
 
 ```bash
 
@@ -182,7 +182,7 @@ Get-Content logs\deploy-YYYYMMDD-HHMMSS.log -Tail 20 -Wait---
 
 ```
 
-## 📋 Scripts Disponíveis# Limpeza de backups antigos
+# Backup do banco de dados
 
 ---
 
@@ -190,7 +190,7 @@ Get-Content logs\deploy-YYYYMMDD-HHMMSS.log -Tail 20 -Wait---
 
 ### backup-supabase.js - Backup do Banco
 
-pnpm clean-backups
+pnpm backup# IDspnpm dev
 
 **O que faz:**
 
@@ -198,7 +198,7 @@ pnpm clean-backups
 
 - 💾 Salva em arquivos JSON individuais
 
-- 📊 Cria arquivo de metadados### 1. **fix-ids.js** ⭐```
+- 📊 Cria arquivo de metadados
 
 - 🧹 Mantém apenas últimos 10 backups
 
@@ -206,7 +206,7 @@ pnpm clean-backups
 
 **Comandos:**
 
-```bash```jsx
+```bash```jsx# Restaurar último backuppnpm fix-ids               # Verifica IDs
 
 # Backup padrão
 
@@ -214,11 +214,233 @@ pnpm backup// Elemento não-editável (sem data-json-key)
 
 
 
-# Com log detalhado<h1>{texts.hero.title}</h1>Script único para gerenciar IDs de elementos editáveis.---
+# Com log detalhado<h1>{texts.hero.title}</h1>pnpm restore:latest
 
 pnpm backup:verbose
 
 ```
+
+# Tabela específica
+
+node scripts/backup-supabase.js --table=page_stylespnpm fix-ids:fix           # Verifica e corrige IDs# Verificar IDs únicos
+
+```
+
+**Solução:**
+
+**Tabelas incluídas:**
+
+- `page_contents` (8 registros - 57 KB)```jsx# Deploy
+
+- `page_styles` (7 registros - 5 KB)
+
+- `page_history` (17 registros - 93 KB)// Elemento editável no Admin Panel
+
+
+
+---<h1 data-json-key="index.hero.title">{texts.hero.title}</h1>.\scripts\deploy.ps1 "msg"      # Síncronopnpm fix-ids
+
+
+
+### restore-supabase.js - Restauração```
+
+
+
+**O que faz:**.\scripts\deploy.ps1 -b "msg"   # Background
+
+- 🔄 Restaura dados de um backup específico
+
+- ⚠️ Deleta dados atuais antes de restaurar**Como Funciona:**
+
+- 🛡️ Solicita confirmação
+
+- 🔍 Modo dry-run disponível1. Scripts detectam `{texts.xxx}` no código```# Deploy
+
+
+
+**Comandos:**2. Encontram o elemento JSX pai
+
+```bash
+
+# Restaurar último backup3. Validam se path existe no JSON correspondente
+
+pnpm restore:latest
+
+4. Injetam `data-json-key="pageName.section.property"`
+
+# Preview sem alterar
+
+pnpm restore:dry5. Admin Panel usa esse atributo para permitir edição inline---.\scripts\deploy.ps1 "msg"      # Deploy síncrono# Corrigir IDs automaticamente
+
+
+
+# Backup específico
+
+node scripts/restore-supabase.js --backup=2025-11-10T08-49-23
+
+**Resultado**: **96 elementos editáveis** em 6 páginas 🎉
+
+# Sem confirmação
+
+node scripts/restore-supabase.js --latest --force
+
+```
+
+---## 📋 Scripts Ativos.\scripts\deploy.ps1 -b "msg"   # Deploy backgroundpnpm fix-ids:fix
+
+---
+
+
+
+## 📁 Estrutura
+
+### deploy.ps1 - Deploy GitHub Pages
+
+```
+
+scripts/
+
+├── fix-ids.js              ⭐ Script único de IDs
+
+├── deploy.ps1              ⭐ Script único de deploy**Recursos:**| Script | Comando | Descrição | Frequência |```
+
+├── backup-supabase.js      💾 Backup do Supabase
+
+├── restore-supabase.js     🔄 Restauração do Supabase- ✅ Deploy síncrono (padrão) ou background
+
+├── README.md               📖 Este arquivo
+
+├── README-FIX-IDS.md       📖 Documentação detalhada de IDs- ✅ Logs limpos sem códigos ANSI|--------|---------|-----------|------------|
+
+├── README-DEPLOY.md        📖 Documentação detalhada de deploy
+
+└── README-BACKUP.md        📖 Documentação detalhada de backup- ✅ Mantém últimos 10 logs automaticamente
+
+```
+
+- ✅ Alias curto: `-b` para `-Background`| **fix-ids.js** ⭐ | `pnpm fix-ids` | Verificação e correção de IDs | Automático + Manual |# Correção completa de data-json-key
+
+---
+
+
+
+## 🔄 Fluxo de Trabalho
+
+**Processo:**| **deploy.ps1** ⭐ | `.\scripts\deploy.ps1 [-b] "msg"` | Deploy síncrono ou background | Por deploy |
+
+### Desenvolvimento Diário
+
+1. Build (`pnpm build`)
+
+```bash
+
+pnpm dev    # IDs verificados automaticamente2. Git add| **backup-supabase.js** 💾 | `pnpm backup` | Backup completo do Supabase | Manual/Agendado |---pnpm fix-keys
+
+```
+
+3. Git commit
+
+### Após Adicionar Elementos Editáveis
+
+4. Git push| **restore-supabase.js** 🔄 | `pnpm restore:latest` | Restaura backup do Supabase | Manual |
+
+```bash
+
+pnpm fix-ids:fix
+
+```
+
+**Monitorar deploy background:**
+
+### Antes de Mudanças Grandes
+
+```bash
+
+```bash
+
+# Fazer backup antesGet-Content logs\deploy-YYYYMMDD-HHMMSS.log -Tail 20 -Wait---
+
+pnpm backup:verbose
+
+```
+
+# Fazer as mudanças...
+
+## 📋 Scripts Disponíveis# Limpeza de backups antigos
+
+# Se algo der errado, restaurar
+
+pnpm restore:latest---
+
+```
+
+## 🎯 O Que São os Scripts?
+
+### Deploy
+
+### backup-supabase.js - Backup do Banco
+
+```bash
+
+# Modo síncrono (ver progresso)pnpm clean-backups
+
+.\scripts\deploy.ps1 "mensagem do commit"
+
+**O que faz:**
+
+# Modo background (liberar terminal)
+
+.\scripts\deploy.ps1 -b "mensagem do commit"- 📥 Baixa todos os dados de todas as tabelas (3 tabelas)### fix-ids.js - Sistema de IDs Únicos
+
+```
+
+- 💾 Salva em arquivos JSON individuais
+
+---
+
+- 📊 Cria arquivo de metadados### 1. **fix-ids.js** ⭐```
+
+## 📊 Estatísticas
+
+- 🧹 Mantém apenas últimos 10 backups
+
+- **96 elementos editáveis** distribuídos em 6 páginas
+
+- **4 scripts essenciais** (fix-ids.js, deploy.ps1, backup-supabase.js, restore-supabase.js)**Problema:**
+
+- **100% cobertura** - todos elementos têm data-json-key
+
+- **3 tabelas no banco** - 32 registros, 155.53 KB**Comandos:**
+
+- **Admin Panel**: `/436F6E736F6C45`
+
+```bash```jsx
+
+---
+
+# Backup padrão
+
+## 📚 Documentação Completa
+
+pnpm backup// Elemento não-editável (sem data-json-key)
+
+- **[README-FIX-IDS.md](./README-FIX-IDS.md)** - Detalhes do sistema de IDs
+
+- **[README-DEPLOY.md](./README-DEPLOY.md)** - Detalhes do sistema de deploy
+
+- **[README-BACKUP.md](./README-BACKUP.md)** - Detalhes do sistema de backup
+
+# Com log detalhado<h1>{texts.hero.title}</h1>Script único para gerenciar IDs de elementos editáveis.---
+
+---
+
+pnpm backup:verbose
+
+**Última Atualização:** 10/11/2025  
+
+**Status:** ✅ Todos os scripts funcionais e testados  ```
+
+**Complexidade:** Simplificado ao máximo
 
 # Tabela específica
 
