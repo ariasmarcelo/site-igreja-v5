@@ -399,7 +399,7 @@ export default function Purificacao() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
             <Card className="bg-white/10 backdrop-blur-md border-2 border-purple-300/30 shadow-2xl">
-              <CardHeader className="bg-linear-to-br from-purple-600/40 via-fuchsia-500/40 to-indigo-600/40 backdrop-blur-sm text-white pt-8 pb-10 px-8 relative overflow-hidden border-b-2 border-purple-300/30">
+              <CardHeader className="bg-linear-to-br from-purple-600/40 via-fuchsia-500/40 to-indigo-600/40 backdrop-blur-sm text-white pt-6 pb-6 px-8 relative overflow-hidden border-b-2 border-purple-300/30">
                 {/* Padrões geométricos sagrados */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-4 left-4 w-32 h-32 border-2 border-white rounded-full"></div>
@@ -413,10 +413,10 @@ export default function Purificacao() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.25),transparent_50%)]"></div>
                 
                 <div className="text-center relative z-10">
-                  <div className="inline-block mb-4 animate-pulse">
-                    <InfinityIcon className="w-20 h-20 mx-auto drop-shadow-2xl filter brightness-125" />
+                  <div className="inline-block mb-3" style={{ animation: 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite' }}>
+                    <InfinityIcon className="w-24 h-24 mx-auto drop-shadow-2xl filter brightness-125" />
                   </div>
-                  <CardTitle className="text-4xl md:text-5xl font-semibold mb-4 drop-shadow-lg" 
+                  <CardTitle className="text-4xl md:text-5xl font-semibold mb-3 drop-shadow-lg" 
                     style={{ 
                       fontFamily: "'Poppins', sans-serif",
                       letterSpacing: '0.02em',
