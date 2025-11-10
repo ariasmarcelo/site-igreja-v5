@@ -27,38 +27,56 @@ $scriptContent = @"
 Set-Location '$projectRoot'
 `$logFile = '$logFile'
 
-# Funcao para logar
+# Funcao para remover codigos ANSI
+function Remove-AnsiCodes {
+    param([string]`$Text)
+    `$cleaned = `$Text -replace '\x1b\[[0-9;]*m', ''
+    `$cleaned = `$cleaned -replace '\x1b\[[\d;]*[A-Za-z]', ''
+    return `$cleaned
+}
+
+# Funcao para logar sem ANSI
 function Write-Log {
     param([string]`$msg)
     `$timestamp = Get-Date -Format 'HHmmss'
-    "[`$timestamp] `$msg" | Out-File `$logFile -Append
+    "[`$timestamp] `$msg" | Out-File `$logFile -Append -Encoding UTF8
+}
+
+function Write-CleanLog {
+    param([string]`$Content)
+    `$cleaned = Remove-AnsiCodes -Text `$Content
+    `$cleaned | Out-File `$logFile -Append -Encoding UTF8
 }
 
 # Iniciar log
-"========================================" | Out-File `$logFile
+"========================================" | Out-File `$logFile -Encoding UTF8
 Write-Log "DEPLOY INICIADO"
 Write-Log "Mensagem: $Message"
-"========================================" | Out-File `$logFile -Append
+"========================================" | Out-File `$logFile -Append -Encoding UTF8
 
 try {
     Write-Log ""
     Write-Log "[1/4] Build..."
-    pnpm build 2>&1 | Out-File `$logFile -Append
+    `$buildOutput = pnpm build 2>&1 | Out-String
+    Write-CleanLog -Content `$buildOutput
     Write-Log "[OK] Build concluido!"
     
     Write-Log ""
     Write-Log "[2/4] Git add..."
-    git add . 2>&1 | Out-File `$logFile -Append
+    `$gitAddOutput = git add . 2>&1 | Out-String
+    Write-CleanLog -Content `$gitAddOutput
     Write-Log "[OK] Git add concluido!"
     
     Write-Log ""
     Write-Log "[3/4] Git commit..."
-    git commit -m "$Message" 2>&1 | Out-File `$logFile -Append
+    `$gitCommitOutput = git commit -m "$Message" 2>&1 | Out-String
+    Write-CleanLog -Content `$gitCommitOutput
     Write-Log "[OK] Git commit concluido!"
     
     Write-Log ""
     Write-Log "[4/4] Git push..."
-    git push 2>&1 | Out-File `$logFile -Append
+    `$gitPushOutput = git push 2>&1 | Out-String
+    Write-CleanLog -Content `$gitPushOutput
     Write-Log "[OK] Git push concluido!"
     
     Write-Log ""

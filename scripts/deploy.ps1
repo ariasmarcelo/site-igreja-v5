@@ -14,6 +14,23 @@ $logFile = Join-Path $logDir "deploy-$timestamp.log"
 
 Set-Location $projectRoot
 
+# Funcao para remover codigos ANSI do log
+function Remove-AnsiCodes {
+    param([string]$Text)
+    # Remove codigos ANSI [XXm
+    $cleaned = $Text -replace '\x1b\[[0-9;]*m', ''
+    # Remove outros caracteres especiais de controle
+    $cleaned = $cleaned -replace '\x1b\[[\d;]*[A-Za-z]', ''
+    return $cleaned
+}
+
+# Funcao para escrever no log sem codigos ANSI
+function Write-CleanLog {
+    param([string]$Content)
+    $cleaned = Remove-AnsiCodes -Text $Content
+    $cleaned | Out-File $logFile -Append -Encoding UTF8
+}
+
 # Criar diretorio de logs se nao existir
 if (!(Test-Path $logDir)) {
     New-Item -ItemType Directory -Path $logDir -Force | Out-Null
@@ -44,7 +61,8 @@ try {
     $ts = Get-Date -Format 'HHmmss'
     "[$ts]" | Out-File $logFile -Append
     "[$ts] [1/4] Build..." | Out-File $logFile -Append
-    pnpm build 2>&1 | Out-File $logFile -Append
+    $buildOutput = pnpm build 2>&1 | Out-String
+    Write-CleanLog -Content $buildOutput
     $ts = Get-Date -Format 'HHmmss'
     "[$ts] [OK] Build concluido!" | Out-File $logFile -Append
     Write-Host "[OK] Build concluido!" -ForegroundColor Green
@@ -53,7 +71,8 @@ try {
     $ts = Get-Date -Format 'HHmmss'
     "[$ts]" | Out-File $logFile -Append
     "[$ts] [2/4] Git add..." | Out-File $logFile -Append
-    git add . 2>&1 | Out-File $logFile -Append
+    $gitAddOutput = git add . 2>&1 | Out-String
+    Write-CleanLog -Content $gitAddOutput
     $ts = Get-Date -Format 'HHmmss'
     "[$ts] [OK] Git add concluido!" | Out-File $logFile -Append
     Write-Host "[OK] Git add concluido!" -ForegroundColor Green
@@ -62,7 +81,8 @@ try {
     $ts = Get-Date -Format 'HHmmss'
     "[$ts]" | Out-File $logFile -Append
     "[$ts] [3/4] Git commit..." | Out-File $logFile -Append
-    git commit -m $Message 2>&1 | Out-File $logFile -Append
+    $gitCommitOutput = git commit -m $Message 2>&1 | Out-String
+    Write-CleanLog -Content $gitCommitOutput
     $ts = Get-Date -Format 'HHmmss'
     "[$ts] [OK] Git commit concluido!" | Out-File $logFile -Append
     Write-Host "[OK] Git commit concluido!" -ForegroundColor Green
@@ -71,7 +91,8 @@ try {
     $ts = Get-Date -Format 'HHmmss'
     "[$ts]" | Out-File $logFile -Append
     "[$ts] [4/4] Git push..." | Out-File $logFile -Append
-    git push 2>&1 | Out-File $logFile -Append
+    $gitPushOutput = git push 2>&1 | Out-String
+    Write-CleanLog -Content $gitPushOutput
     $ts = Get-Date -Format 'HHmmss'
     "[$ts] [OK] Git push concluido!" | Out-File $logFile -Append
     Write-Host "[OK] Git push concluido!" -ForegroundColor Green
