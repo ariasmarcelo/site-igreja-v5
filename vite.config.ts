@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/site-igreja-v5/' : '/',
+  base: mode === 'production' ? '/site-igreja-v6/' : '/',
   server: {
     host: "::",
     port: 8080,

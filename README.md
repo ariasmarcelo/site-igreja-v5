@@ -10,7 +10,7 @@ Site institucional desenvolvido com React, TypeScript, Tailwind CSS 4 e Supabase
 
 
 
-**Site:** https://ariasmarcelo.github.io/site-igreja-v5/**Site:** https://ariasmarcelo.github.io/site-igreja-v5/
+**Site:** https://ariasmarcelo.github.io/site-igreja-v6/**Site:** https://ariasmarcelo.github.io/site-igreja-v6/
 
 
 
