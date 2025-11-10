@@ -179,7 +179,7 @@ function Start-DeploymentSync {
         "========================================" | Add-Content -Path $logFile -Encoding ASCII
         
         Write-Host "`n[SUCCESS] Deploy concluido com sucesso!" -ForegroundColor Green
-        Write-Host "[INFO] Site disponivel em: https://ariasmarcelo.github.io/site-igreja-v5/" -ForegroundColor Cyan
+        Write-Host "[INFO] Site disponivel em: https://ariasmarcelo.github.io/site-igreja-v6/" -ForegroundColor Cyan
         
     } catch {
         $ts = Get-Date -Format 'HHmmss'
