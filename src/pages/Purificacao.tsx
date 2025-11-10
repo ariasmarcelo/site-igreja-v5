@@ -132,13 +132,6 @@ export default function Purificacao() {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.2),transparent_50%)]"></div>
                         <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-4">
-                            {/* Círculo Numerado Desktop e Mobile */}
-                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
-                              <div className="absolute inset-0 bg-linear-to-r from-red-700 to-red-800"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
-                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">1</span>
-                            </div>
                             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
                               <Sparkles className="w-8 h-8 text-red-700" />
                             </div>
@@ -147,11 +140,20 @@ export default function Purificacao() {
                               <p className="text-base opacity-90 drop-shadow-sm" data-json-key="purificacao.faseInicial.subtitle">{texts.faseInicial.subtitle}</p>
                             </div>
                           </div>
-                          <ChevronDown 
-                            className={`w-8 h-8 transition-transform duration-300 ${
-                              expandedPhase === 1 ? 'rotate-180' : ''
-                            }`}
-                          />
+                          <div className="flex items-center gap-3">
+                            {/* Círculo Numerado */}
+                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
+                              <div className="absolute inset-0 bg-linear-to-r from-red-700 to-red-800"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
+                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">1</span>
+                            </div>
+                            <ChevronDown 
+                              className={`w-8 h-8 transition-transform duration-300 ${
+                                expandedPhase === 1 ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </div>
                         </div>
                       </CardHeader>
                       
@@ -210,13 +212,6 @@ export default function Purificacao() {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.2),transparent_50%)]"></div>
                         <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-4">
-                            {/* Círculo Numerado Desktop e Mobile */}
-                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
-                              <div className="absolute inset-0 bg-linear-to-r from-[#4A90A9] to-[#5EA98D]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
-                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">2</span>
-                            </div>
                             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
                               <LineChart className="w-8 h-8 text-[#4A90A9]" />
                             </div>
@@ -225,11 +220,20 @@ export default function Purificacao() {
                               <p className="text-base opacity-90 drop-shadow-sm" data-json-key="purificacao.faseIntermediaria.subtitle">{texts.faseIntermediaria.subtitle}</p>
                             </div>
                           </div>
-                          <ChevronDown 
-                            className={`w-8 h-8 transition-transform duration-300 ${
-                              expandedPhase === 2 ? 'rotate-180' : ''
-                            }`}
-                          />
+                          <div className="flex items-center gap-3">
+                            {/* Círculo Numerado */}
+                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
+                              <div className="absolute inset-0 bg-linear-to-r from-[#4A90A9] to-[#5EA98D]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
+                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">2</span>
+                            </div>
+                            <ChevronDown 
+                              className={`w-8 h-8 transition-transform duration-300 ${
+                                expandedPhase === 2 ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </div>
                         </div>
                       </CardHeader>
                       
@@ -284,13 +288,6 @@ export default function Purificacao() {
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.2),transparent_50%)]"></div>
                         <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-4">
-                            {/* Círculo Numerado Desktop e Mobile */}
-                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
-                              <div className="absolute inset-0 bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
-                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">3</span>
-                            </div>
                             <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
                               <Crown className="w-8 h-8 text-[#CFAF5A]" />
                             </div>
@@ -299,11 +296,20 @@ export default function Purificacao() {
                               <p className="text-base opacity-90 drop-shadow-sm" data-json-key="purificacao.faseFinal.subtitle">{texts.faseFinal.subtitle}</p>
                             </div>
                           </div>
-                          <ChevronDown 
-                            className={`w-8 h-8 transition-transform duration-300 ${
-                              expandedPhase === 3 ? 'rotate-180' : ''
-                            }`}
-                          />
+                          <div className="flex items-center gap-3">
+                            {/* Círculo Numerado */}
+                            <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white flex items-center justify-center shadow-xl border-2 md:border-4 border-white relative overflow-hidden">
+                              <div className="absolute inset-0 bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
+                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
+                              <span className="text-2xl md:text-3xl font-bold text-white relative z-10 drop-shadow-lg">3</span>
+                            </div>
+                            <ChevronDown 
+                              className={`w-8 h-8 transition-transform duration-300 ${
+                                expandedPhase === 3 ? 'rotate-180' : ''
+                              }`}
+                            />
+                          </div>
                         </div>
                       </CardHeader>
                       
