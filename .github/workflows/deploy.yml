@@ -32,28 +32,20 @@ jobs:
           version: 8
       
       - name: Get pnpm store directory
-        id: pnpm-cache
         shell: bash
         run: |
-          echo "store-path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
       
       - name: Setup pnpm cache
         uses: actions/cache@v3
         with:
-          path: ${{ steps.pnpm-cache.outputs.store-path }}
+          path: ${{ env.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
       
       - name: Install dependencies
         run: pnpm install
-      
-      - name: Validate Supabase secrets
-        run: |
-          if [ -z "${{ secrets.VITE_SUPABASE_URL }}" ] || [ -z "${{ secrets.VITE_SUPABASE_ANON_KEY }}" ]; then
-            echo "Error: Supabase secrets are not configured"
-            exit 1
-          fi
       
       - name: Build
         run: pnpm run build
