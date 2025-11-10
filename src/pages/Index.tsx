@@ -106,7 +106,6 @@ export default function Index() {
                     xmlns="http://www.w3.org/2000/svg"
                     data-icon-name="Sol Branco - Igreja"
                     data-icon-type="section-icon"
-                    data-json-key="index.section_igreja.icon.sun_white"
                   >
                     <circle cx="50" cy="50" r="20" fill="white" />
                     {[...Array(12)].map((_, i) => {
@@ -138,7 +137,7 @@ export default function Index() {
                   <p 
                     key={index} 
                     className="text-lg text-gray-700 mb-6 leading-relaxed"
-                    data-json-key={`index.section_igreja.description[${index}]`}
+                    data-json-key={`index.igreja.description[${index}]`}
                   >
                     {paragraph}
                   </p>
@@ -160,25 +159,25 @@ export default function Index() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-8">
-                    <div className="space-y-4" data-json-key="index.purification.phases.map">
+                    <div className="space-y-4">
                       {safeTexts.purification.phases.map((phase, index) => (
                         <div key={index} className="flex items-start gap-3">
                           <div 
                             className="w-8 h-8 rounded-full bg-[#CFAF5A] bg-opacity-20 flex items-center justify-center shrink-0 mt-1"
-                            data-json-key={`index.purification_card.phase[${index}].number`}
+                            data-json-key={`index.purification.phases[${index}].number`}
                           >
                             <span className="text-[#CFAF5A] font-bold">{index + 1}</span>
                           </div>
                           <div>
                             <h4 
                               className="font-semibold text-lg mb-1"
-                              data-json-key={`index.purification_card.phase[${index}].title`}
+                              data-json-key={`index.purification.phases[${index}].title`}
                             >
                               {phase.title}
                             </h4>
                             <p 
                               className="text-gray-600"
-                              data-json-key={`index.purification_card.phase[${index}].description`}
+                              data-json-key={`index.purification.phases[${index}].description`}
                             >
                               {phase.description}
                             </p>
@@ -209,7 +208,7 @@ export default function Index() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="p-8">
-                      <div className="space-y-3" data-json-key="index.instituto.description.map">
+                      <div className="space-y-3">
                         {safeTexts.instituto.description.map((paragraph: string, idx: number) => (
                           <p 
                             key={idx} 
@@ -219,16 +218,16 @@ export default function Index() {
                             {paragraph}
                           </p>
                         ))}
-                        <div className="space-y-3" data-json-key="index.instituto.treatments.map">
+                        <div className="space-y-3">
                           {safeTexts.instituto.treatments.map((treatment: string, index: number) => (
                             <div key={index} className="flex items-center gap-3">
                               <Heart 
                                 className="w-5 h-5 text-[#5EA98D] shrink-0"
-                                data-json-key={`index.instituto_card.treatment_icon[${index}]`}
+                                data-json-key={`index.instituto.treatments_icon[${index}]`}
                               />
                               <span 
                                 className="text-gray-700"
-                                data-json-key={`index.instituto_card.treatment[${index}]`}
+                                data-json-key={`index.instituto.treatments[${index}]`}
                               >
                                 {treatment}
                               </span>
@@ -249,7 +248,6 @@ export default function Index() {
                     xmlns="http://www.w3.org/2000/svg"
                     data-icon-name="Sol Branco - Instituto"
                     data-icon-type="section-icon"
-                    data-json-key="index.section_instituto.icon.sun_white"
                   >
                     <circle cx="50" cy="50" r="20" fill="white" />
                     {[...Array(12)].map((_, i) => {
@@ -290,13 +288,12 @@ export default function Index() {
                 <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-6">
                   <p 
                     className="text-sm text-amber-800" data-json-key="index.instituto.legalNotice">
-                    <strong data-json-key="index.instituto.legalNotice">Aviso Legal:</strong> {safeTexts.instituto.legalNotice}
+                    <strong>Aviso Legal:</strong> {safeTexts.instituto.legalNotice}
                   </p>
                 </div>
 
                 <Link 
                   to="/tratamentos"
-                  data-json-key="index.section_instituto.link.treatments"
                 >
                   <Button 
                     className="bg-linear-to-r from-[#4A90A9] to-[#5EA98D] text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" data-json-key="index.instituto.ctaButton">
@@ -319,7 +316,7 @@ export default function Index() {
             <p className="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto" data-json-key="index.benefitsSection.subtitle">
               {safeTexts.benefitsSection.subtitle}
             </p>
-            <div className="grid md:grid-cols-3 gap-8" data-json-key="index.instituto.benefits.map">
+            <div className="grid md:grid-cols-3 gap-8">
               {safeTexts.instituto.benefits.map((b: { title: string; description: string }, i: number) => (
                 <Card className="card-hover border-2 border-gray-100" key={i}>
                   <CardHeader className="text-center">
@@ -387,7 +384,7 @@ export default function Index() {
                     {safeTexts.fisicoEspiritual.fisico.description}
                   </p>
                   
-                  <ul className="space-y-2 sm:space-y-3 ml-2" data-json-key="index.fisicoEspiritual.fisico.items.map">
+                  <ul className="space-y-2 sm:space-y-3 ml-2">
                     {safeTexts.fisicoEspiritual.fisico.items.map((item: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-2 sm:gap-3">
                         <span className="text-blue-500 mt-1 text-base sm:text-lg shrink-0">•</span>
@@ -398,7 +395,7 @@ export default function Index() {
 
                   <div className="bg-blue-50 p-4 sm:p-5 rounded-lg border border-blue-200 mt-4 sm:mt-6">
                     <p className="text-xs sm:text-sm font-semibold text-blue-800 mb-2 sm:mb-3" data-json-key="index.fisicoEspiritual.fisico.abordagem.title">{safeTexts.fisicoEspiritual.fisico.abordagem.title}</p>
-                    <p className="text-xs sm:text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: safeTexts.fisicoEspiritual.fisico.abordagem.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}  data-json-key="index.fisicoEspiritual.fisico.abordagem.description.replace"/>
+                    <p className="text-xs sm:text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: safeTexts.fisicoEspiritual.fisico.abordagem.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}  data-json-key="index.fisicoEspiritual.fisico.abordagem.description"/>
                   </div>
                 </div>
               </CardContent>
@@ -418,7 +415,7 @@ export default function Index() {
                     {safeTexts.fisicoEspiritual.espiritual.description}
                   </p>
                   
-                  <ul className="space-y-2 sm:space-y-3 ml-2" data-json-key="index.fisicoEspiritual.espiritual.items.map">
+                  <ul className="space-y-2 sm:space-y-3 ml-2">
                     {safeTexts.fisicoEspiritual.espiritual.items.map((item: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-2 sm:gap-3">
                         <span className="text-amber-500 mt-1 text-base sm:text-lg shrink-0">•</span>
@@ -429,7 +426,7 @@ export default function Index() {
 
                   <div className="bg-amber-50 p-4 sm:p-5 rounded-lg border border-amber-200 mt-4 sm:mt-6">
                     <p className="text-xs sm:text-sm font-semibold text-amber-800 mb-2 sm:mb-3" data-json-key="index.fisicoEspiritual.espiritual.abordagem.title">{safeTexts.fisicoEspiritual.espiritual.abordagem.title}</p>
-                    <p className="text-xs sm:text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: safeTexts.fisicoEspiritual.espiritual.abordagem.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}  data-json-key="index.fisicoEspiritual.espiritual.abordagem.description.replace"/>
+                    <p className="text-xs sm:text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: safeTexts.fisicoEspiritual.espiritual.abordagem.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}  data-json-key="index.fisicoEspiritual.espiritual.abordagem.description"/>
                   </div>
                 </div>
               </CardContent>
@@ -448,12 +445,12 @@ export default function Index() {
                 <h3 className="text-xl sm:text-2xl font-bold text-purple-700 mb-3 sm:mb-4 px-4" data-json-key="index.fisicoEspiritual.integrada.title">{safeTexts.fisicoEspiritual.integrada.title}</h3>
               </div>
               
-              <div className="space-y-4 sm:space-y-6 text-gray-700 max-w-4xl mx-auto" data-json-key="index.fisicoEspiritual.integrada.description.replace">
-                <p className="leading-relaxed text-center text-sm sm:text-base" dangerouslySetInnerHTML={{ __html: safeTexts.fisicoEspiritual.integrada.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}  data-json-key="index.fisicoEspiritual.integrada.description.replace"/>
+              <div className="space-y-4 sm:space-y-6 text-gray-700 max-w-4xl mx-auto" data-json-key="index.fisicoEspiritual.integrada.description">
+                <p className="leading-relaxed text-center text-sm sm:text-base" dangerouslySetInnerHTML={{ __html: safeTexts.fisicoEspiritual.integrada.description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }}  data-json-key="index.fisicoEspiritual.integrada.description"/>
                 
                 <div className="bg-linear-to-r from-blue-50 via-purple-50 to-amber-50 p-6 sm:p-8 rounded-lg border-2 border-purple-300 mt-6 sm:mt-8">
                   <p className="font-semibold text-purple-900 mb-4 sm:mb-5 text-center text-sm sm:text-base" data-json-key="index.fisicoEspiritual.integrada.oferecemos.title">{safeTexts.fisicoEspiritual.integrada.oferecemos.title}</p>
-                  <ul className="space-y-3 sm:space-y-4" data-json-key="index.fisicoEspiritual.integrada.oferecemos.items.map">
+                  <ul className="space-y-3 sm:space-y-4">
                     {safeTexts.fisicoEspiritual.integrada.oferecemos.items.map((item: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-3 sm:gap-4">
                         <Database className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600 shrink-0 mt-0.5" />
@@ -484,7 +481,7 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 sm:gap-10" data-json-key="index.triplaProtecao.items.map">
+          <div className="grid md:grid-cols-3 gap-6 sm:gap-10">
             {safeTexts.triplaProtecao.items.map((item: { title: string; description: string }, idx: number) => {
               const icons = [Compass, Heart, Sun];
               const colors = ['blue', 'pink', 'amber'];
@@ -560,8 +557,8 @@ export default function Index() {
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-bold mb-4 text-[#CFAF5A]" data-json-key="index.footer.links.title">{safeTexts.footer.links.title}</h3>
-              <ul className="space-y-2 text-sm" data-json-key="index.footer.links.items.map">
+              <h3 className="text-xl font-bold mb-4 text-[#CFAF5A]">{safeTexts.footer.links.title}</h3>
+              <ul className="space-y-2 text-sm">
                 {safeTexts.footer.links.items.map((link, index) => (
                   <li key={index}>
                     <Link to={link.url} className="text-gray-400 hover:text-[#CFAF5A] transition-colors">

@@ -54,7 +54,7 @@ export default function Contato() {
                       <Clock className="w-[23px] h-[23px]" />
                       {texts.initialAssessment.whatToExpect.title}
                     </h3>
-                    <ul className="space-y-2" data-json-key="contato.initialAssessment.whatToExpect.items.map">
+                    <ul className="space-y-2">
                       {texts.initialAssessment.whatToExpect.items.map((item: string, idx: number) => (
                         <li key={idx} className="flex items-start gap-2 text-gray-700">
                           <span className="text-amber-600 mt-1">•</span>
@@ -145,7 +145,7 @@ export default function Contato() {
             <h2 className="text-3xl font-bold text-center mb-12 text-[#222222]" data-json-key="contato.faq.title">
               {texts.faq.title}
             </h2>
-            <div className="space-y-6" data-json-key="contato.faq.items.map">
+            <div className="space-y-6">
               {texts.faq.items.map((qa: { question: string; answer: string }, idx: number) => (
                 <Card className="shadow-lg" key={idx}>
                   <CardHeader>

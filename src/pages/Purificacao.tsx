@@ -209,7 +209,7 @@ export default function Purificacao() {
 
                           <div className="bg-white border-l-4 border-red-600 p-5 rounded-r-lg shadow-md">
                             <h4 className="font-bold text-lg mb-3 text-red-700" data-json-key="purificacao.faseInicial.activities.title">{texts.faseInicial.activities.title}</h4>
-                            <ul className="space-y-2 text-gray-700" data-json-key="purificacao.faseInicial.activities.items.map">
+                            <ul className="space-y-2 text-gray-700">
                               {texts.faseInicial.activities.items.map((item, index) => (
                                 <li key={index} className="flex items-start gap-3">
                                   <span className="text-red-600 font-bold mt-1">•</span>
@@ -290,7 +290,7 @@ export default function Purificacao() {
 
                           <div className="bg-white border-l-4 border-[#4A90A9] p-5 rounded-r-lg shadow-md">
                             <h4 className="font-bold text-lg mb-3 text-[#4A90A9]" data-json-key="purificacao.faseIntermediaria.trabalhos.title">{texts.faseIntermediaria.trabalhos.title}</h4>
-                            <div className="space-y-4" data-json-key="purificacao.faseIntermediaria.trabalhos.items.map">
+                            <div className="space-y-4">
                               {texts.faseIntermediaria.trabalhos.items.map((item, index) => (
                                 <div key={index}>
                                   <h5 className="font-semibold text-base mb-2 text-gray-800" data-json-key={`purificacao.faseIntermediaria.trabalhos.items[${index}].title`}>{item.title}</h5>
@@ -381,7 +381,7 @@ export default function Purificacao() {
                           <div>
                             <h4 className="font-bold text-lg mb-3 text-gray-800" data-json-key="purificacao.faseFinal.posIniciacao.title">{texts.faseFinal.posIniciacao.title}</h4>
                             <p className="text-gray-700 leading-relaxed mb-4" data-json-key="purificacao.faseFinal.posIniciacao.content">{texts.faseFinal.posIniciacao.content}</p>
-                            <ul className="space-y-2 text-gray-700" data-json-key="purificacao.faseFinal.posIniciacao.items.map">
+                            <ul className="space-y-2 text-gray-700">
                               {texts.faseFinal.posIniciacao.items.map((it: string, idx: number) => (
                                 <li key={idx} className="flex items-start gap-3">
                                   <span className="text-[#CFAF5A] font-bold mt-1">✦</span>
@@ -498,7 +498,7 @@ export default function Purificacao() {
 
                 <div className="space-y-4 mt-10">
                   <h3 className="font-semibold text-2xl text-purple-900 text-center mb-6" style={{ letterSpacing: '0.02em' }} data-json-key="purificacao.psicodelicos.applications.title">{texts.psicodelicos.applications.title}</h3>
-                  <ul className="space-y-4 max-w-3xl mx-auto" data-json-key="purificacao.psicodelicos.applications.items.map">
+                  <ul className="space-y-4 max-w-3xl mx-auto">
                     {texts.psicodelicos.applications.items.map((item: string, idx: number) => (
                       <li key={idx} className="flex items-start gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-lg border border-purple-200 hover:border-purple-400 transition-all duration-300 hover:shadow-md">
                         <span className="text-purple-600 mt-1 text-xl font-bold flex-shrink-0">✦</span>
@@ -537,7 +537,7 @@ export default function Purificacao() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12 text-[#222222]" data-json-key="purificacao.valores.title">{texts.valores.title}</h2>
-            <div className="grid md:grid-cols-2 gap-8" data-json-key="purificacao.valores.cards.map">
+            <div className="grid md:grid-cols-2 gap-8">
               {texts.valores.cards.map((card: { title: string; content: string }, idx: number) => (
                 <Card key={idx} className="shadow-lg card-hover">
                   <CardHeader>

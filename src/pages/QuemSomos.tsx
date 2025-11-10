@@ -59,7 +59,7 @@ export default function QuemSomos() {
             {/* Timeline Line */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-linear-to-b from-[#4A90A9] via-[#5EA98D] to-[#CFAF5A]"></div>
             
-            <div className="space-y-1" data-json-key="quemsomos.historico.content.map">
+            <div className="space-y-1">
               {texts.historico.content.map((paragraph: string, index: number) => (
                 <div key={index} className={`flex items-center gap-2 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
                   <div className={`flex-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
@@ -85,7 +85,7 @@ export default function QuemSomos() {
             <h2 className="text-4xl font-bold text-gray-900 mb-4" data-json-key="quemsomos.principios.title">{texts.principios.title}</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto" data-json-key="quemsomos.principios.subtitle">{texts.principios.subtitle}</p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-json-key="quemsomos.principios.items.map">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {texts.principios.items.map((item: { title: string; content: string }, index: number) => (
               <Card key={index} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-t-4 border-t-[#5EA98D]">
                 <CardHeader>
@@ -121,7 +121,7 @@ export default function QuemSomos() {
                 </div>
               </div>
             </CardHeader>
-            <CardContent className="space-y-6 relative z-10" data-json-key="quemsomos.magia.paragraphs.map">
+            <CardContent className="space-y-6 relative z-10">
               {texts.magia.paragraphs.map((paragraph: string, index: number) => (
                 <div key={index} className="pl-6 border-l-4 border-white/40">
                   <p className="text-lg leading-relaxed text-white/95" data-json-key={`quemsomos.magia.paragraphs[${index}]`}>{paragraph}</p>
@@ -141,7 +141,7 @@ export default function QuemSomos() {
             </div>
             <p className="text-lg text-gray-600 max-w-4xl mx-auto" data-json-key="quemsomos.hermeticos.subtitle">{texts.hermeticos.subtitle}</p>
           </div>
-          <div className="grid grid-cols-1 gap-6" data-json-key="quemsomos.hermeticos.items.map">
+          <div className="grid grid-cols-1 gap-6">
             {texts.hermeticos.items.map((item: { number: string; title: string; description: string }, index: number) => (
               <div
                 key={item.number}
