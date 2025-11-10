@@ -111,8 +111,10 @@ export default function Purificacao() {
               <p className="text-lg text-gray-600">Clique em cada fase para ver os detalhes</p>
             </div>
 
-            {/* Linha do Tempo Vertical com Conexões */}
-            <div className="relative">
+            {/* Container Visual para as Três Fases */}
+            <div className="bg-linear-to-br from-gray-50 via-white to-gray-50 p-8 rounded-2xl shadow-xl border border-gray-200">
+              {/* Linha do Tempo Vertical com Conexões */}
+              <div className="relative">
               {/* Linha Vertical Flutuando à Direita (fora do container) */}
               <div className="absolute -right-8 top-0 bottom-0 w-2 bg-linear-to-b from-red-500 via-blue-500 to-amber-500 hidden md:block rounded-full shadow-lg"></div>
 
@@ -370,6 +372,8 @@ export default function Purificacao() {
                   </div>
                 </div>
               </div>
+            </div>
+            {/* Fim do Container Visual */}
             </div>
           </div>
         </div>
