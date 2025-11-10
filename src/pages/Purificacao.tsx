@@ -388,89 +388,123 @@ export default function Purificacao() {
       </section>
 
       {/* Trabalhos Espirituais com Psicodélicos */}
-      <section className="py-16 bg-linear-to-br from-[#FAF9F7] to-[#F5F3F0]">
-        <div className="container mx-auto px-4">
+      <section className="py-16 bg-linear-to-br from-purple-900 via-indigo-900 to-purple-950 relative overflow-hidden">
+        {/* Efeitos de fundo místicos */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-fuchsia-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
-            <Card className="border-purple-300 shadow-2xl">
-              <CardHeader className="bg-linear-to-r from-[#7C3AED] to-[#A855F7] text-white pt-4 pb-8 px-8 relative overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.25),transparent_55%)]"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.2),transparent_55%)]"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(100deg,transparent_20%,rgba(255,255,255,0.15)_35%,rgba(255,255,255,0.2)_50%,rgba(255,255,255,0.15)_65%,transparent_85%)]"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(10deg,transparent_25%,rgba(255,255,255,0.1)_38%,rgba(255,255,255,0.15)_50%,rgba(255,255,255,0.1)_62%,transparent_80%)]"></div>
+            <Card className="bg-white/10 backdrop-blur-md border-2 border-purple-300/30 shadow-2xl">
+              <CardHeader className="bg-linear-to-br from-purple-600/40 via-fuchsia-500/40 to-indigo-600/40 backdrop-blur-sm text-white pt-8 pb-10 px-8 relative overflow-hidden border-b-2 border-purple-300/30">
+                {/* Padrões geométricos sagrados */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-4 left-4 w-32 h-32 border-2 border-white rounded-full"></div>
+                  <div className="absolute top-4 left-4 w-32 h-32 border-2 border-white rounded-full transform rotate-45"></div>
+                  <div className="absolute bottom-4 right-4 w-40 h-40 border-2 border-white rounded-full"></div>
+                  <div className="absolute bottom-4 right-4 w-40 h-40 border-2 border-white rounded-full transform rotate-45"></div>
+                </div>
+                
+                {/* Efeitos de luz */}
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.3),transparent_50%)]"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(255,255,255,0.25),transparent_50%)]"></div>
+                
                 <div className="text-center relative z-10">
-                  <div className="inline-block mb-1">
-                    <InfinityIcon className="w-16 h-16 mx-auto drop-shadow-lg" />
+                  <div className="inline-block mb-4 animate-pulse">
+                    <InfinityIcon className="w-20 h-20 mx-auto drop-shadow-2xl filter brightness-125" />
                   </div>
-                  <CardTitle className="text-3xl font-bold mb-4 drop-shadow-md" data-json-key="purificacao.psicodelicos.title">
+                  <CardTitle className="text-4xl md:text-5xl font-semibold mb-4 drop-shadow-lg" 
+                    style={{ 
+                      fontFamily: "'Poppins', sans-serif",
+                      letterSpacing: '0.02em',
+                      textShadow: '0 0 30px rgba(255,255,255,0.5), 0 0 60px rgba(167,139,250,0.4)'
+                    }}
+                    data-json-key="purificacao.psicodelicos.title">
                     {texts.psicodelicos.title}
                   </CardTitle>
-                  <p className="text-lg font-semibold italic opacity-90 drop-shadow-sm" data-json-key="purificacao.psicodelicos.subtitle">
+                  <p className="text-xl font-light italic opacity-95 drop-shadow-md" 
+                    style={{ letterSpacing: '0.05em' }}
+                    data-json-key="purificacao.psicodelicos.subtitle">
                     {texts.psicodelicos.subtitle}
                   </p>
                 </div>
               </CardHeader>
-              <CardContent className="p-8">
+              <CardContent className="p-10 bg-linear-to-br from-white/95 via-purple-50/90 to-white/95 backdrop-blur-sm">
 
-                <div className="space-y-6 text-gray-700 leading-relaxed" data-json-key="purificacao.psicodelicos.intro">
-                  <p className="text-center text-lg" data-json-key="purificacao.psicodelicos.intro" dangerouslySetInnerHTML={{ __html: texts.psicodelicos.intro }} />
+                <div className="space-y-6 leading-relaxed mb-8" data-json-key="purificacao.psicodelicos.intro">
+                  <p className="text-center text-lg text-gray-800 font-light" style={{ letterSpacing: '0.01em' }} data-json-key="purificacao.psicodelicos.intro" dangerouslySetInnerHTML={{ __html: texts.psicodelicos.intro }} />
+                </div>
 
-                <div className="bg-linear-to-r from-purple-50 via-amber-50 to-purple-50 p-6 rounded-lg border-2 border-purple-300">
-                  <h3 className="font-bold text-xl text-purple-900 mb-4 text-center" data-json-key="purificacao.psicodelicos.tripleProtection.title">{texts.psicodelicos.tripleProtection.title}</h3>
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <Compass className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2" data-json-key="purificacao.psicodelicos.tripleProtection.cards[0].title">{texts.psicodelicos.tripleProtection.cards[0].title}</h4>
-                      <p className="text-sm" data-json-key="purificacao.psicodelicos.tripleProtection.cards[0].description">
+                <div className="bg-linear-to-br from-purple-100/80 via-fuchsia-50/70 to-indigo-100/80 p-8 rounded-2xl border-2 border-purple-300/50 shadow-xl backdrop-blur-sm relative overflow-hidden">
+                  {/* Efeito de brilho de fundo */}
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.15),transparent_70%)]"></div>
+                  
+                  <h3 className="font-semibold text-2xl text-purple-900 mb-8 text-center relative z-10" style={{ letterSpacing: '0.03em' }} data-json-key="purificacao.psicodelicos.tripleProtection.title">{texts.psicodelicos.tripleProtection.title}</h3>
+                  
+                  <div className="grid md:grid-cols-3 gap-8 relative z-10">
+                    <div className="text-center bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-blue-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                      <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <Compass className="w-10 h-10 text-blue-600" />
+                      </div>
+                      <h4 className="font-semibold text-lg mb-3 text-blue-900" data-json-key="purificacao.psicodelicos.tripleProtection.cards[0].title">{texts.psicodelicos.tripleProtection.cards[0].title}</h4>
+                      <p className="text-sm text-gray-700 leading-relaxed" data-json-key="purificacao.psicodelicos.tripleProtection.cards[0].description">
                         {texts.psicodelicos.tripleProtection.cards[0].description}
                       </p>
                     </div>
-                    <div className="text-center">
-                      <Heart className="w-10 h-10 text-green-600 mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2" data-json-key="purificacao.psicodelicos.tripleProtection.cards[1].title">{texts.psicodelicos.tripleProtection.cards[1].title}</h4>
-                      <p className="text-sm" data-json-key="purificacao.psicodelicos.tripleProtection.cards[1].description">
+                    <div className="text-center bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-green-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                      <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <Heart className="w-10 h-10 text-green-600" />
+                      </div>
+                      <h4 className="font-semibold text-lg mb-3 text-green-900" data-json-key="purificacao.psicodelicos.tripleProtection.cards[1].title">{texts.psicodelicos.tripleProtection.cards[1].title}</h4>
+                      <p className="text-sm text-gray-700 leading-relaxed" data-json-key="purificacao.psicodelicos.tripleProtection.cards[1].description">
                         {texts.psicodelicos.tripleProtection.cards[1].description}
                       </p>
                     </div>
-                    <div className="text-center">
-                      <Sun className="w-10 h-10 text-amber-500 mx-auto mb-3" />
-                      <h4 className="font-semibold mb-2" data-json-key="purificacao.psicodelicos.tripleProtection.cards[2].title">{texts.psicodelicos.tripleProtection.cards[2].title}</h4>
-                      <p className="text-sm" data-json-key="purificacao.psicodelicos.tripleProtection.cards[2].description">
+                    <div className="text-center bg-white/60 backdrop-blur-sm p-6 rounded-xl border border-amber-200 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                      <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                        <Sun className="w-10 h-10 text-amber-600" />
+                      </div>
+                      <h4 className="font-semibold text-lg mb-3 text-amber-900" data-json-key="purificacao.psicodelicos.tripleProtection.cards[2].title">{texts.psicodelicos.tripleProtection.cards[2].title}</h4>
+                      <p className="text-sm text-gray-700 leading-relaxed" data-json-key="purificacao.psicodelicos.tripleProtection.cards[2].description">
                         {texts.psicodelicos.tripleProtection.cards[2].description}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-4 mt-6">
-                  <h3 className="font-bold text-xl text-gray-800 text-center mb-4" data-json-key="purificacao.psicodelicos.applications.title">{texts.psicodelicos.applications.title}</h3>
-                  <ul className="space-y-3" data-json-key="purificacao.psicodelicos.applications.items.map">
+                <div className="space-y-4 mt-10">
+                  <h3 className="font-semibold text-2xl text-purple-900 text-center mb-6" style={{ letterSpacing: '0.02em' }} data-json-key="purificacao.psicodelicos.applications.title">{texts.psicodelicos.applications.title}</h3>
+                  <ul className="space-y-4 max-w-3xl mx-auto" data-json-key="purificacao.psicodelicos.applications.items.map">
                     {texts.psicodelicos.applications.items.map((item: string, idx: number) => (
-                      <li key={idx} className="flex items-start gap-2">
-                        <span className="text-purple-500 mt-1 text-lg">•</span>
-                        <span data-json-key={`purificacao.psicodelicos.applications.items[${idx}]`} dangerouslySetInnerHTML={{ __html: item }} />
+                      <li key={idx} className="flex items-start gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-lg border border-purple-200 hover:border-purple-400 transition-all duration-300 hover:shadow-md">
+                        <span className="text-purple-600 mt-1 text-xl font-bold flex-shrink-0">✦</span>
+                        <span className="text-gray-800 leading-relaxed" data-json-key={`purificacao.psicodelicos.applications.items[${idx}]`} dangerouslySetInnerHTML={{ __html: item }} />
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="bg-amber-50 p-6 rounded-lg border-2 border-amber-300 mt-6">
-                  <p className="text-center font-bold text-amber-900 mb-3 text-lg" data-json-key="purificacao.psicodelicos.conclusion.title">
+                <div className="bg-linear-to-br from-amber-100/80 via-yellow-50/70 to-amber-100/80 p-8 rounded-2xl border-2 border-amber-300/60 mt-10 shadow-xl backdrop-blur-sm relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,191,36,0.15),transparent_70%)]"></div>
+                  <p className="text-center font-semibold text-amber-900 mb-4 text-xl relative z-10" style={{ letterSpacing: '0.02em' }} data-json-key="purificacao.psicodelicos.conclusion.title">
                     {texts.psicodelicos.conclusion.title}
                   </p>
-                  <p className="text-center text-gray-700" data-json-key="purificacao.psicodelicos.conclusion.content">
+                  <p className="text-center text-gray-800 leading-relaxed relative z-10" data-json-key="purificacao.psicodelicos.conclusion.content">
                     {texts.psicodelicos.conclusion.content}
                   </p>
                 </div>
 
-                <div className="text-center mt-8">
+                <div className="text-center mt-10">
                   <Link to="/contato">
-                    <Button size="lg" className="bg-linear-to-r from-purple-600 via-purple-500 to-amber-600 hover:from-purple-700 hover:to-amber-700 text-white shadow-xl text-lg px-8 py-6" data-json-key="purificacao.psicodelicos.ctaButton">
-                      <Sparkles className="w-6 h-6 mr-3" />
+                    <Button size="lg" className="bg-linear-to-r from-purple-600 via-fuchsia-500 to-indigo-600 hover:from-purple-700 hover:via-fuchsia-600 hover:to-indigo-700 text-white shadow-2xl text-lg px-10 py-7 rounded-xl font-semibold transform hover:scale-105 transition-all duration-300" style={{ letterSpacing: '0.03em' }} data-json-key="purificacao.psicodelicos.ctaButton">
+                      <Sparkles className="w-6 h-6 mr-3 animate-pulse" />
                       {texts.psicodelicos.ctaButton}
                     </Button>
                   </Link>
                 </div>
-              </div>
             </CardContent>
           </Card>
           </div>
