@@ -147,7 +147,7 @@ const Navigation = () => {
 
 const App = () => {
   // Use basename apenas em produção
-  const basename = import.meta.env.MODE === 'production' ? '/site-igreja-v5' : '/';
+  const basename = import.meta.env.MODE === 'production' ? '/site-igreja-v6' : '/';
   
   return (
     <TooltipProvider>
