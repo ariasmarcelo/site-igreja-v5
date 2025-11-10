@@ -28,7 +28,8 @@ function Remove-AnsiCodes {
 function Write-CleanLog {
     param([string]$Content)
     $cleaned = Remove-AnsiCodes -Text $Content
-    $cleaned | Out-File $logFile -Append -Encoding UTF8
+    # Usar ASCII para evitar problemas de encoding
+    [System.IO.File]::AppendAllText($logFile, $cleaned, [System.Text.Encoding]::UTF8)
 }
 
 # Criar diretorio de logs se nao existir
