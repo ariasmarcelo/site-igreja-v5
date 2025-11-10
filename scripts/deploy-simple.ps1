@@ -7,7 +7,6 @@ param(
     [string]$Message = "deploy: atualizacao $(Get-Date -Format 'dd/MM/yyyy HH:mm')"
 )
 
-$ErrorActionPreference = "Stop"
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
 $logDir = Join-Path $projectRoot "logs"
@@ -20,14 +19,6 @@ if (!(Test-Path $logDir)) {
     New-Item -ItemType Directory -Path $logDir -Force | Out-Null
 }
 
-# Funcao para logar E mostrar no terminal
-function Write-DeployLog {
-    param([string]$msg)
-    $ts = Get-Date -Format 'HHmmss'
-    "[$ts] $msg" | Out-File $logFile -Append
-    Write-Host $msg
-}
-
 # Limpar logs antigos - manter apenas os ultimos 10
 $oldLogs = Get-ChildItem "$logDir\deploy-*.log" -ErrorAction SilentlyContinue | 
             Sort-Object LastWriteTime -Descending | 
@@ -38,47 +29,69 @@ if ($oldLogs) {
 }
 
 # Iniciar log
+$ts = Get-Date -Format 'HHmmss'
 "========================================" | Out-File $logFile
-Write-DeployLog "DEPLOY INICIADO"
-Write-DeployLog "Mensagem: $Message"
+"[$ts] DEPLOY INICIADO" | Out-File $logFile -Append
+"[$ts] Mensagem: $Message" | Out-File $logFile -Append
 "========================================" | Out-File $logFile -Append
 
 Write-Host "`n[DEPLOY SINCRONO] Iniciando deploy..." -ForegroundColor Cyan
+Write-Host "[INFO] Mensagem: $Message" -ForegroundColor Gray
 Write-Host "[INFO] Log: $logFile" -ForegroundColor Gray
 
 try {
-    Write-DeployLog ""
-    Write-DeployLog "[1/4] Build..."
+    Write-Host "`n[1/4] Build..." -ForegroundColor Yellow
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts]" | Out-File $logFile -Append
+    "[$ts] [1/4] Build..." | Out-File $logFile -Append
     pnpm build 2>&1 | Out-File $logFile -Append
-    Write-DeployLog "[OK] Build concluido!"
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts] [OK] Build concluido!" | Out-File $logFile -Append
+    Write-Host "[OK] Build concluido!" -ForegroundColor Green
     
-    Write-DeployLog ""
-    Write-DeployLog "[2/4] Git add..."
+    Write-Host "`n[2/4] Git add..." -ForegroundColor Yellow
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts]" | Out-File $logFile -Append
+    "[$ts] [2/4] Git add..." | Out-File $logFile -Append
     git add . 2>&1 | Out-File $logFile -Append
-    Write-DeployLog "[OK] Git add concluido!"
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts] [OK] Git add concluido!" | Out-File $logFile -Append
+    Write-Host "[OK] Git add concluido!" -ForegroundColor Green
     
-    Write-DeployLog ""
-    Write-DeployLog "[3/4] Git commit..."
+    Write-Host "`n[3/4] Git commit..." -ForegroundColor Yellow
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts]" | Out-File $logFile -Append
+    "[$ts] [3/4] Git commit..." | Out-File $logFile -Append
     git commit -m $Message 2>&1 | Out-File $logFile -Append
-    Write-DeployLog "[OK] Git commit concluido!"
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts] [OK] Git commit concluido!" | Out-File $logFile -Append
+    Write-Host "[OK] Git commit concluido!" -ForegroundColor Green
     
-    Write-DeployLog ""
-    Write-DeployLog "[4/4] Git push..."
+    Write-Host "`n[4/4] Git push..." -ForegroundColor Yellow
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts]" | Out-File $logFile -Append
+    "[$ts] [4/4] Git push..." | Out-File $logFile -Append
     git push 2>&1 | Out-File $logFile -Append
-    Write-DeployLog "[OK] Git push concluido!"
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts] [OK] Git push concluido!" | Out-File $logFile -Append
+    Write-Host "[OK] Git push concluido!" -ForegroundColor Green
     
-    Write-DeployLog ""
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts]" | Out-File $logFile -Append
     "========================================" | Out-File $logFile -Append
-    Write-DeployLog "[SUCCESS] Deploy concluido com sucesso!"
-    Write-DeployLog "Finalizado: $(Get-Date -Format 'yyyyMMdd HHmmss')"
+    "[$ts] [SUCCESS] Deploy concluido com sucesso!" | Out-File $logFile -Append
+    "[$ts] Finalizado: $(Get-Date -Format 'yyyyMMdd HHmmss')" | Out-File $logFile -Append
     "========================================" | Out-File $logFile -Append
     
-    Write-Host "`n[INFO] Site disponivel em: https://ariasmarcelo.github.io/site-igreja-v5/" -ForegroundColor Cyan
+    Write-Host "`n[SUCCESS] Deploy concluido com sucesso!" -ForegroundColor Green
+    Write-Host "[INFO] Site disponivel em: https://ariasmarcelo.github.io/site-igreja-v5/" -ForegroundColor Cyan
     
 } catch {
-    Write-DeployLog ""
+    $ts = Get-Date -Format 'HHmmss'
+    "[$ts]" | Out-File $logFile -Append
     "========================================" | Out-File $logFile -Append
-    Write-DeployLog "[ERRO] Deploy falhou: $_"
+    "[$ts] [ERRO] Deploy falhou: $_" | Out-File $logFile -Append
     "========================================" | Out-File $logFile -Append
+    Write-Host "`n[ERRO] Deploy falhou: $_" -ForegroundColor Red
     exit 1
 }
