@@ -44,9 +44,8 @@ const CURRENT_BACKUP_DIR = path.join(BACKUP_DIR, timestamp);
 
 // Tabelas a fazer backup (adicione suas tabelas aqui)
 const TABLES = [
-  'page_texts',
   'page_styles',
-  'version_history',
+  'page_history',
   // Adicione outras tabelas conforme necessário
 ];
 
