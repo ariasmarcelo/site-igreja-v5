@@ -10,7 +10,7 @@
     "lint": "eslint --quiet ./src",
     "preview": "vite preview",
     "deploy": "powershell -File scripts/deploy.ps1",
-    "deploy:bg": "powershell -File scripts/deploy-background.ps1",
+    "deploy:bg": "powershell -File scripts/deploy.ps1 -Background",
     "server": "node server/express-server.js",
     "preserver": "node scripts/fix-all-keys.cjs --silent",
     "assign-ids": "node scripts/ids.js",
