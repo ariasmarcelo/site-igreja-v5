@@ -153,4 +153,6 @@ app.get('/api/styles/:pageId', async (req, res) => {
   }
 });
 
+// Export para Vercel Serverless Functions
 module.exports = app;
+module.exports.default = app;
