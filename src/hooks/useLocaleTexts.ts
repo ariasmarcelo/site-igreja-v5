@@ -45,7 +45,21 @@ export function useLocaleTexts<T = Record<string, unknown>>(
   loading: boolean;
   error: string | null;
 } {
-  const [texts, setTexts] = useState<T | null>(fallbackData || null);
+  // Tentar usar cache primeiro, depois fallback
+  const getCachedContent = () => {
+    try {
+      const cacheKey = `page_cache_${pageId}`;
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) {
+        return JSON.parse(cached) as T;
+      }
+    } catch (err) {
+      console.warn(`⚠️ Failed to load cache for ${pageId}:`, err);
+    }
+    return fallbackData || null;
+  };
+  
+  const [texts, setTexts] = useState<T | null>(getCachedContent);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -99,6 +113,47 @@ export function useLocaleTexts<T = Record<string, unknown>>(
           console.log(`✅ Supabase data received for ${pageId}`);
           setTexts(data.content as T);
           setError(null);
+          
+          // Salvar no localStorage para cache
+          try {
+            const cacheKey = `page_cache_${pageId}`;
+            localStorage.setItem(cacheKey, JSON.stringify(data.content));
+            console.log(`💾 Cache updated in localStorage for ${pageId}`);
+          } catch (err) {
+            console.warn(`⚠️ Failed to update localStorage cache for ${pageId}:`, err);
+          }
+          
+          // Atualizar histórico de fallback JSON (5 versões)
+          try {
+            const historyKey = `page_history_${pageId}`;
+            const historyStr = localStorage.getItem(historyKey);
+            const history: Array<{ timestamp: string; content: T }> = historyStr ? JSON.parse(historyStr) : [];
+            
+            // Verificar se conteúdo mudou
+            const latestContent = history[0]?.content;
+            const newContentStr = JSON.stringify(data.content);
+            const latestContentStr = latestContent ? JSON.stringify(latestContent) : '';
+            
+            if (newContentStr !== latestContentStr) {
+              // Conteúdo diferente - adicionar ao histórico
+              history.unshift({
+                timestamp: new Date().toISOString(),
+                content: data.content as T
+              });
+              
+              // Manter apenas últimas 5 versões
+              if (history.length > 5) {
+                history.splice(5);
+              }
+              
+              localStorage.setItem(historyKey, JSON.stringify(history));
+              console.log(`📝 History updated for ${pageId} (${history.length} versions)`);
+            } else {
+              console.log(`✓ Content unchanged for ${pageId} - history not updated`);
+            }
+          } catch (err) {
+            console.warn(`⚠️ Failed to update history for ${pageId}:`, err);
+          }
         } else {
           const errorMsg = `Nenhum conteúdo encontrado para a página: ${pageId}`;
           console.warn(`⚠️ ${errorMsg}`);
