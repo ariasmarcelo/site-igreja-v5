@@ -1,34 +1,30 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Quote, Star } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import defaultTestimonialsData from '@/locales/pt-BR/Testemunhos.json';
+import { useLocaleTexts } from '@/hooks/useLocaleTexts';
+import '@/styles/testimonials-carousel.css';
+
+interface TestemunhosTexts {
+  testimonials: Array<{
+    name: string;
+    role: string;
+    text: string;
+    rating: number;
+  }>;
+}
 
 export default function TestimonialsCarousel() {
-  // Carregar textos do localStorage se disponível
-  const [testimonialsData] = useState(() => {
-    const savedContent = localStorage.getItem('admin_testemunhos');
-    if (savedContent) {
-      try {
-        return JSON.parse(savedContent);
-      } catch (error) {
-        console.error('Erro ao carregar testemunhos do localStorage:', error);
-      }
-    }
-    return defaultTestimonialsData;
-  });
+  const { texts } = useLocaleTexts<TestemunhosTexts>('testemunhos');
+
+  if (!texts?.testimonials) return null;
 
   // Pegar apenas os primeiros 5 testemunhos para o carrossel
-  const testimonials = testimonialsData.testimonials.slice(0, 5);
+  const testimonials = texts.testimonials.slice(0, 5);
 
   return (
     <section className="py-20 bg-linear-to-br from-amber-900/90 via-yellow-800/85 to-amber-950/90 relative overflow-visible">
       {/* Textura de fundo sutil */}
-      <div className="absolute inset-0 opacity-5" 
-           style={{ 
-             backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.1) 10px, rgba(255, 255, 255, 0.1) 20px)` 
-           }}>
-      </div>
+      <div className="absolute inset-0 opacity-5 testimonials-texture"></div>
       
       {/* Efeitos de luz */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(251,191,36,0.15),transparent_50%)]"></div>
@@ -45,8 +41,7 @@ export default function TestimonialsCarousel() {
                 ))}
               </div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-5 text-amber-50 font-serif tracking-wide" 
-                style={{ textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)' }}>
+            <h2 className="text-4xl md:text-5xl font-bold mb-5 text-amber-50 font-serif tracking-wide testimonials-title">
               Testemunhos de Transformação
             </h2>
             <p className="text-xl text-amber-100/90 max-w-2xl mx-auto leading-relaxed font-light">
@@ -75,9 +70,8 @@ export default function TestimonialsCarousel() {
                       <Card className="h-full bg-linear-to-br from-amber-50 via-yellow-50/95 to-amber-100/90 border-2 border-amber-800/30 shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 hover:-translate-y-1 backdrop-blur-sm">
                         <CardContent className="p-8 pt-10 flex flex-col h-full">
                           {/* Conteúdo do testemunho */}
-                          <div className="mb-6 flex-grow">
-                            <p className="text-gray-800 leading-relaxed text-sm italic"
-                               style={{ textShadow: '0 1px 1px rgba(255, 255, 255, 0.5)' }}>
+                          <div className="mb-6 grow">
+                            <p className="text-gray-800 leading-relaxed text-sm italic testimonial-text">
                               "{testimonial.content.substring(0, 200)}..."
                             </p>
                           </div>
@@ -97,7 +91,7 @@ export default function TestimonialsCarousel() {
                               <div className="inline-flex items-center gap-1 bg-green-100 px-3 py-1.5 rounded-full border border-green-200">
                                 <Star className="w-3 h-3 fill-green-600 text-green-600" />
                                 <span className="text-xs text-green-700 font-medium">
-                                  {testimonialsData.badgeVerified}
+                                  Verificado
                                 </span>
                               </div>
                             )}
@@ -117,8 +111,7 @@ export default function TestimonialsCarousel() {
           <div className="text-center mt-4">
             <a
               href="/testemunhos"
-              className="inline-flex items-center gap-3 bg-amber-100 hover:bg-amber-50 text-amber-950 font-bold text-lg px-10 py-4 rounded-xl shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 hover:scale-105 border-2 border-amber-800/30"
-              style={{ letterSpacing: '0.02em' }}
+              className="inline-flex items-center gap-3 bg-amber-100 hover:bg-amber-50 text-amber-950 font-bold text-lg px-10 py-4 rounded-xl shadow-2xl hover:shadow-amber-900/50 transition-all duration-300 hover:scale-105 border-2 border-amber-800/30 tracking-wide"
             >
               <Star className="w-5 h-5 fill-amber-600 text-amber-600" />
               Ver Todos os Testemunhos
