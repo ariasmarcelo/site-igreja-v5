@@ -12,24 +12,164 @@
     "title": "Categorias",
     "items": [
       {
-        "id": "desenvolvimento",
-        "name": "Desenvolvimento Espiritual",
-        "description": "Artigos sobre crescimento e evolução espiritual"
+        "id": "espiritualidade",
+        "name": "Espiritualidade e Misticismo",
+        "description": "Sabedoria ancestral e práticas espirituais"
       },
       {
-        "id": "cura",
-        "name": "Cura Interior",
-        "description": "Textos sobre processos de cura e libertação"
+        "id": "ciencia",
+        "name": "Ciência e Consciência",
+        "description": "Neurociência, física quântica e pesquisas"
       },
       {
-        "id": "meditacao",
-        "name": "Meditação e Práticas",
-        "description": "Técnicas e práticas para o dia a dia"
+        "id": "praticas",
+        "name": "Práticas Terapêuticas",
+        "description": "Meditação, respiração e técnicas de cura"
       },
       {
-        "id": "conhecimento",
-        "name": "Conhecimento Esotérico",
-        "description": "Ensinamentos sobre sabedoria ancestral"
+        "id": "integracao",
+        "name": "Integração Mente-Corpo",
+        "description": "União entre ciência e espiritualidade"
+      }
+    ]
+  },
+  "articles": {
+    "esoterica": [
+      {
+        "id": "1",
+        "title": "Os Sete Princípios Herméticos e a Transformação Interior",
+        "slug": "sete-principios-hermeticos-transformacao",
+        "excerpt": "Explore como os antigos princípios de Hermes Trismegisto podem iluminar seu caminho de autoconhecimento e despertar espiritual.",
+        "category": "Espiritualidade e Misticismo",
+        "author": "Instituto Metatron",
+        "date": "2025-11-10",
+        "readTime": 8,
+        "type": "esoterica"
+      },
+      {
+        "id": "2",
+        "title": "Xamanismo e Estados Ampliados de Consciência",
+        "slug": "xamanismo-estados-ampliados-consciencia",
+        "excerpt": "Compreenda como as práticas xamânicas milenares proporcionam acesso a dimensões superiores de percepção e cura espiritual.",
+        "category": "Espiritualidade e Misticismo",
+        "author": "Instituto Metatron",
+        "date": "2025-11-02",
+        "readTime": 15,
+        "type": "esoterica"
+      },
+      {
+        "id": "3",
+        "title": "Meditação Vipassana: O Caminho da Observação Pura",
+        "slug": "meditacao-vipassana-observacao-pura",
+        "excerpt": "Descubra a antiga técnica budista de insight que transforma a percepção da realidade através da observação atenta dos processos mentais.",
+        "category": "Práticas Terapêuticas",
+        "author": "Instituto Metatron",
+        "date": "2025-11-08",
+        "readTime": 12,
+        "type": "esoterica"
+      },
+      {
+        "id": "4",
+        "title": "Mantras e Geometria Sagrada: A Ciência do Som Divino",
+        "slug": "mantras-geometria-sagrada-som-divino",
+        "excerpt": "Explore como as vibrações sonoras dos mantras interagem com padrões geométricos universais para harmonizar corpo, mente e espírito.",
+        "category": "Práticas Terapêuticas",
+        "author": "Instituto Metatron",
+        "date": "2025-10-25",
+        "readTime": 10,
+        "type": "esoterica"
+      }
+    ],
+    "cientifica": [
+      {
+        "id": "5",
+        "title": "Neurociência da Meditação: Como o Cérebro se Transforma",
+        "slug": "neurociencia-meditacao-transformacao-cerebral",
+        "excerpt": "Descubra as evidências científicas sobre como a prática meditativa regular altera estruturas cerebrais e promove bem-estar duradouro.",
+        "category": "Ciência e Consciência",
+        "author": "Instituto Metatron",
+        "date": "2025-11-12",
+        "readTime": 10,
+        "type": "cientifica"
+      },
+      {
+        "id": "6",
+        "title": "A Física Quântica e a Consciência: Novas Perspectivas",
+        "slug": "fisica-quantica-consciencia-perspectivas",
+        "excerpt": "Explore as fascinantes conexões entre mecânica quântica e consciência, revelando uma visão revolucionária da realidade.",
+        "category": "Ciência e Consciência",
+        "author": "Instituto Metatron",
+        "date": "2025-11-06",
+        "readTime": 14,
+        "type": "cientifica"
+      },
+      {
+        "id": "7",
+        "title": "Respiração Holotrópica: Base Científica e Aplicações",
+        "slug": "respiracao-holotropica-base-cientifica",
+        "excerpt": "Conheça os fundamentos neurofisiológicos da respiração holotrópica e suas aplicações terapêuticas validadas por pesquisas.",
+        "category": "Práticas Terapêuticas",
+        "author": "Instituto Metatron",
+        "date": "2025-10-30",
+        "readTime": 11,
+        "type": "cientifica"
+      },
+      {
+        "id": "8",
+        "title": "Epigenética e Trauma: A Ciência da Cura Geracional",
+        "slug": "epigenetica-trauma-cura-geracional",
+        "excerpt": "Entenda como traumas podem ser transmitidos através de gerações e como a epigenética oferece caminhos para a cura profunda.",
+        "category": "Ciência e Consciência",
+        "author": "Instituto Metatron",
+        "date": "2025-10-22",
+        "readTime": 13,
+        "type": "cientifica"
+      }
+    ],
+    "unificada": [
+      {
+        "id": "9",
+        "title": "Onde a Ciência Encontra o Espírito: A Natureza da Consciência",
+        "slug": "ciencia-espirito-natureza-consciencia",
+        "excerpt": "Uma exploração profunda sobre como ciência moderna e sabedoria espiritual convergem na compreensão da consciência humana.",
+        "category": "Integração Mente-Corpo",
+        "author": "Instituto Metatron",
+        "date": "2025-11-11",
+        "readTime": 16,
+        "type": "unificada"
+      },
+      {
+        "id": "10",
+        "title": "Chakras e o Sistema Nervoso: Uma Perspectiva Integrativa",
+        "slug": "chakras-sistema-nervoso-perspectiva-integrativa",
+        "excerpt": "Descubra as surpreendentes correlações entre o antigo sistema de chakras e a anatomia do sistema nervoso moderno.",
+        "category": "Integração Mente-Corpo",
+        "author": "Instituto Metatron",
+        "date": "2025-11-04",
+        "readTime": 12,
+        "type": "unificada"
+      },
+      {
+        "id": "11",
+        "title": "Estados de Flow e Samadhi: Neurociência e Meditação",
+        "slug": "estados-flow-samadhi-neurociencia-meditacao",
+        "excerpt": "Explore as conexões entre o estado de flow da psicologia moderna e o samadhi das tradições meditativas orientais.",
+        "category": "Práticas Terapêuticas",
+        "author": "Instituto Metatron",
+        "date": "2025-10-28",
+        "readTime": 11,
+        "type": "unificada"
+      },
+      {
+        "id": "12",
+        "title": "A Glândula Pineal: Ponte entre Matéria e Espírito",
+        "slug": "glandula-pineal-ponte-materia-espirito",
+        "excerpt": "Investigue o papel fascinante da glândula pineal tanto na fisiologia quanto nas tradições espirituais como o terceiro olho.",
+        "category": "Integração Mente-Corpo",
+        "author": "Instituto Metatron",
+        "date": "2025-10-20",
+        "readTime": 14,
+        "type": "unificada"
       }
     ]
   },

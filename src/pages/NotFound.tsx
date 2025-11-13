@@ -7,12 +7,15 @@ type NotFoundTexts = typeof fallbackTexts;
 
 export default function NotFoundPage() {
   const { texts, loading, error } = useLocaleTexts<NotFoundTexts>('notfound', fallbackTexts);
+  
+  if (!texts) return null;
+  
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-linear-to-br from-gray-50 to-blue-50 p-6 text-center">
       <div className="space-y-6 max-w-md">
         <div className="space-y-3">
-          <h1 className="text-8xl font-bold text-blue-600" data-json-key="notfound.error.code">{texts.error.code}</h1>
-          <h2 className="text-2xl font-semibold text-gray-800" data-json-key="notfound.error.title">{texts.error.title}</h2>
+          <h1 data-json-key="notfound.error.code">{texts.error.code}</h1>
+          <h2 data-json-key="notfound.error.title">{texts.error.title}</h2>
           <p className="text-muted-foreground" data-json-key="notfound.error.description">{texts.error.description}</p>
         </div>
 

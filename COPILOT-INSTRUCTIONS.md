@@ -70,6 +70,8 @@ O que buscamos expressar e esclarecer no conteúdo do site é que compreendemos 
 
 > **Para que possamos iniciar e matar o servidor web local de desenvolvimento corretamente, SEMPRE use os scripts de automação existentes. Nunca inicie ou pare o servidor manualmente. Faça com que esses scripts lancem o servidor em background.**
 
+> **NUNCA insira 'emojis' ou caracteres 'especiais' nos scripts e comandos.**
+
 ## FIM Instruções Gerais ##
 
 # FIM DA SEÇÃO PÉTREA #
@@ -80,22 +82,190 @@ O que buscamos expressar e esclarecer no conteúdo do site é que compreendemos 
 
 **⚠️ IMPORTANTE - Scripts essenciais para manutenção do sistema de edição:**
 
-### `scripts/fix-ids.js`
-- **Função:** Revisar e corrigir atribuição de IDs únicos em TODAS as páginas editáveis
-- **Uso:** Garantir que cada elemento tenha um identificador único para o sistema de edição
-- **Quando usar:** Após adicionar novos elementos editáveis ou modificar estrutura de páginas
+### `scripts/fix-ids.js` ⭐ SCRIPT DEFINITIVO
+- **Função:** Validar e corrigir IDs únicos (`data-json-key`) em TODAS as páginas
+- **Uso:** Garantir que cada elemento editável tenha identificador único e correto
+- **Quando usar:** Após adicionar novos elementos ou modificar estrutura de páginas
+- **Comandos:**
+  ```powershell
+  node scripts/fix-ids.js              # Verificar apenas
+  node scripts/fix-ids.js --fix        # Corrigir automaticamente
+  node scripts/fix-ids.js --page=Index # Validar página específica
+  ```
+- **Importante:** Este é o ÚNICO script necessário para validação de IDs. Substitui todos os scripts anteriores de fix-json-keys.
 
-### `scripts/fix-all-json-keys.cjs`
-- **Função:** Revisar e padronizar keys JSON em TODAS as páginas
-- **Uso:** Garantir convenção de nomenclatura consistente nos dados
-- **Importante:** Mantém integridade da estrutura de dados do Supabase
+### `scripts/split-text.js` ✨ NOVO
+- **Função:** Automatizar quebra de campos de texto em múltiplas partes editáveis
+- **Uso:** Dividir textos longos em campos menores (ex.: `intro` → `intro1`, `intro2`, `intro3`)
+- **Benefícios:** Backup automático, validação, geração de diff, preview mode
+- **Exemplo:**
+  ```powershell
+  node scripts/split-text.js --page=Purificacao --path=psicodelicos.intro --parts=2
+  node scripts/split-text.js --page=Index --path=hero.subtitle --custom="Linha 1|Linha 2|Linha 3"
+  ```
+- **IMPORTANTE:** Após usar este script:
+  1. Atualizar componente React (`src/pages/*.tsx`) com novos campos
+  2. Adicionar `data-json-key` únicos para cada nova parte
+  3. Limpar cache Vite: `Remove-Item -Recurse -Force node_modules\.vite`
+  4. Reiniciar servidor: `pnpm stop` → `pnpm start`
+  5. Limpar localStorage: `localStorage.clear(); location.reload();`
+  6. Validar IDs: `node scripts/fix-ids.js --check`
+  7. Sincronizar Supabase quando rede disponível
 
-### `scripts/fix-index-json-keys.cjs`
-- **Função:** Revisar e corrigir keys JSON especificamente da página index
-- **Uso:** Validação e correção focada na página principal
-- **Importante:** Página index é a mais complexa e requer verificação dedicada
+**📖 Documentação completa:** Ver `docs/SPLIT_TEXTS.md` para processo passo-a-passo detalhado.
 
-**📝 NOTA:** Estes scripts são ferramentas de manutenção essenciais. Sem IDs únicos e consistentes, o Admin Console não consegue mapear edições corretamente para o banco de dados. **NUNCA remover estes arquivos.**
+---
+
+## 🔐 SISTEMA DE IDs ÚNICOS (`data-json-key`)
+
+### Como Funcionam os IDs Únicos
+
+Cada elemento editável no site **DEVE** ter um atributo `data-json-key` único que mapeia o elemento HTML para um campo específico no JSON. Este sistema é a ponte entre o Admin Console (interface visual) e o Supabase (banco de dados).
+
+**Formato padrão:**
+```typescript
+data-json-key="pagina.secao.campo"
+// Exemplos:
+data-json-key="purificacao.psicodelicos.intro1"
+data-json-key="index.hero.title"
+data-json-key="tratamentos.benefits.description"
+```
+
+**Para elementos em arrays/loops:**
+```tsx
+{items.map((item, index) => (
+  <p data-json-key={`pagina.items[${index}].title`}>
+    {item.title}
+  </p>
+))}
+```
+
+### Como o Sistema Valida IDs Únicos
+
+1. **Script `fix-ids.js`** escaneia todos os arquivos `.tsx` em `src/pages/`
+2. Encontra elementos que usam `{texts.xxx}` (elementos editáveis)
+3. Verifica se cada um tem `data-json-key`
+4. Detecta contexto de arrays (`.map()`) automaticamente
+5. Gera IDs únicos baseados em: `página + caminho JSON + índice (se array)`
+6. Modo `--check`: apenas relata problemas
+7. Modo `--fix`: corrige automaticamente adicionando IDs faltantes
+
+**Executar validação:**
+```powershell
+# Verificar apenas
+node scripts/fix-ids.js
+
+# Corrigir automaticamente
+node scripts/fix-ids.js --fix
+
+# Preview das correções
+node scripts/fix-ids.js --fix --dry-run
+
+# Página específica
+node scripts/fix-ids.js --page=Purificacao --fix
+```
+
+### Garantindo Unicidade Global Automática
+
+**✅ SISTEMA AUTO-RESOLVIDO:** IDs são únicos globalmente por design.
+
+O sistema usa **prefixo obrigatório com nome da página**, garantindo unicidade automática:
+
+- ✅ `purificacao.intro1` e `index.intro1` - **Diferentes** (páginas diferentes)
+- ✅ `purificacao.intro1` e `purificacao.intro2` - **Diferentes** (campos diferentes)
+- ❌ `purificacao.intro1` usado 2x na **MESMA página** - **ERRO** (detectado por `fix-ids.js`)
+
+**Impossível ter duplicação entre páginas:** O prefixo `pageName.` garante separação total.
+
+**Convenção de nomenclatura (padrão do sistema):**
+1. **Obrigatório:** Sempre começar com o nome da página em minúsculas
+2. Seguir hierarquia do JSON: `pagina.objeto.propriedade`
+3. Para múltiplas partes do mesmo texto: usar sufixos numéricos (`intro1`, `intro2`, `intro3`)
+4. Para arrays: usar notação de índice `[${index}]` (template literal em JSX)
+
+**Exemplos corretos:**
+```typescript
+// Página Index.tsx
+data-json-key="index.hero.title"
+data-json-key="index.hero.buttons.purification"
+data-json-key={`index.purification.phases[${index}].title`}
+
+// Página Purificacao.tsx
+data-json-key="purificacao.psicodelicos.intro1"
+data-json-key="purificacao.psicodelicos.intro2"
+data-json-key={`purificacao.fases[${index}].description`}
+```
+
+**Validação:** `fix-ids.js` detecta apenas duplicatas **dentro da mesma página**, que é o único cenário possível de erro.
+
+### Workflow Completo de Validação de IDs
+
+Sempre que adicionar novos elementos editáveis ou modificar estrutura:
+
+```powershell
+# 1. Validar IDs em todas as páginas
+node scripts/fix-ids.js --check
+
+# 2. Se houver problemas, corrigir automaticamente
+node scripts/fix-ids.js --fix
+
+# 3. Revisar mudanças no Git
+git diff src/pages/
+
+# 4. Testar localmente
+pnpm stop
+Remove-Item -Recurse -Force node_modules\.vite
+pnpm start
+
+# 5. Abrir Admin Console e testar edição
+# http://localhost:8080/436F6E736F6C45
+
+# 6. Commit se tudo OK
+git add .
+git commit -m "fix: validar e corrigir data-json-key únicos"
+```
+
+### Troubleshooting: "Objetos Não Aparecem na Página"
+
+Se após modificar JSON os elementos não renderizam:
+
+1. **Problema de cache TypeScript:**
+   - TypeScript infere tipos do JSON importado (`type PageTexts = typeof fallbackTexts`)
+   - Se JSON mudou mas tipo não atualizou, campos novos ficam `undefined`
+   - **Solução:** Limpar cache Vite + reiniciar servidor
+
+2. **Problema de cache Supabase:**
+   - Hook `useLocaleTexts` carrega do Supabase primeiro, depois fallback local
+   - Se Supabase tem estrutura antiga, sobrescreve JSON local
+   - **Solução:** Sincronizar JSON local → Supabase OU limpar localStorage
+
+3. **Problema de localStorage:**
+   - App cacheia conteúdo do Supabase em `localStorage` (chaves `page_cache_*`)
+   - Cache antigo pode persistir mesmo após atualizar JSON/DB
+   - **Solução:** `localStorage.clear(); location.reload();`
+
+**Sequência de troubleshooting:**
+```powershell
+# 1. Limpar cache Vite
+Remove-Item -Recurse -Force node_modules\.vite -ErrorAction SilentlyContinue
+
+# 2. Parar servidor
+pnpm stop
+
+# 3. Reiniciar servidor
+pnpm start
+
+# 4. No browser DevTools (F12 → Console):
+localStorage.clear();
+location.reload();
+
+# 5. Se ainda não funcionar, verificar erro no console
+# 6. Sincronizar com Supabase (se rede OK):
+node scripts/sync-purificacao-to-db.js
+```
+
+**Fallback local modificado (2025-11-12):**
+O hook `useLocaleTexts.ts` foi atualizado para usar `fallbackData` quando Supabase falha. Isso garante que desenvolvimento local funcione mesmo sem conexão com o banco de dados.
 
 ---
 
@@ -236,4 +406,84 @@ pnpm deploy    # Deploy para Vercel produção
 - ✅ Persistência confirmada via GET API
 - ✅ Tempo real verificado com timestamps
 
+---
+
+## 🎨 Redesign das Páginas Principais - Novembro 2025
+
+**OBJETIVO:** Atualizar design das páginas com temas premium e estrutura moderna
+
+### ✅ Purificacao.tsx (Completo)
+- **Tema**: Dourado/Âmbar (pureza, transformação espiritual)
+- **Estrutura**: Hero → Introdução → 3 Etapas → Depoimentos → CTA
+- **Ícones**: Sparkles, Flower, Sun
+- **Status**: ✅ Completo e funcional
+
+### ✅ QuemSomos.tsx (Completo)
+- **Tema**: Roxo/Violeta (espiritualidade, sabedoria)
+- **Estrutura**: Hero → Missão → Magia Divina (expandido) → Accordion Hermético → Valores → Equipe
+- **Princípios Herméticos**: Accordion com 7 princípios detalhados
+- **Status**: ✅ Completo e funcional
+
+### ✅ Tratamentos.tsx (Completo)
+- **Tema**: Azul/Ciano (cura, serenidade)
+- **Estrutura**: Hero → 6 Cards Premium → Depoimentos → CTA
+- **Tratamentos**: Reiki, Florais de Bach, Tarot Terapêutico, Aromaterapia, Cristaloterapia, Meditação Guiada
+- **Status**: ✅ Completo e funcional
+
+### ✅ Artigos.tsx (Completo - Sistema Completo)
+- **Tema**: Amarelo/Âmbar (conhecimento, sabedoria, estudo)
+- **Estrutura**: Hero → 3 Abas (Esotérica, Científica, Unificada) → Categorias → Artigos
+
+#### Sistema de Categorização (4 Categorias Temáticas):
+1. **Espiritualidade e Misticismo** (ícone: Sparkles)
+2. **Ciência e Consciência** (ícone: Lightbulb)
+3. **Práticas Terapêuticas** (ícone: Infinity)
+4. **Integração Mente-Corpo** (ícone: Heart)
+
+#### Organização por Literaturas (12 Artigos Total):
+
+**Literatura Esotérica (4 artigos):**
+- Mostra 2 categorias: Espiritualidade + Práticas
+- Artigos: Princípios Herméticos, Xamanismo, Meditação Vipassana, Mantras
+
+**Literatura Científica (4 artigos):**
+- Mostra 2 categorias: Ciência + Práticas
+- Artigos: Neurociência da Meditação, Física Quântica, Respiração Holotrópica, Epigenética e Trauma
+
+**Literatura Unificada (4 artigos):**
+- Mostra TODAS as 4 categorias
+- Artigos: Ciência e Espírito, Chakras e Sistema Nervoso, Flow e Samadhi, Glândula Pineal
+
+#### Rotas Implementadas:
+- `/artigos` - Página principal com 3 abas
+- `/artigos/:slug` - Detalhes do artigo (ex: `/artigos/sete-principios-hermeticos-transformacao`)
+- `/artigos/categoria/:categoria` - Listagem por categoria (ex: `/artigos/categoria/espiritualidade`)
+
+#### Páginas Relacionadas:
+- `ArtigoDetalhes.tsx` - Visualização completa de artigo individual
+- `ArtigosCategoria.tsx` - Listagem filtrada por categoria
+
+#### Sincronização:
+- Script PowerShell `scripts/sync-artigos.ps1` para sincronizar `Artigos.json` → API/Supabase
+- Comando: `.\scripts\sync-artigos.ps1`
+
+**Status**: ✅ Completo (redesign, categorização, rotas, sincronização)
+
+### 📋 Testemunhos.tsx (Pendente)
+- **Tema Planejado**: Rosa/Metálico
+- **Status**: 🔄 Aguardando redesign
+
+### 📋 Contato.tsx (Pendente)
+- **Status**: 🔄 Aguardando redesign
+
+---
+
+## 📚 Documentação Atualizada
+
+- **docs/ARTIGOS.md**: Documentação completa do sistema de artigos (estrutura, categorias, rotas)
+- **docs/SPLIT_TEXTS.md**: Guia de quebra de textos longos
+- **OPTIMIZATION-SUMMARY.md**: Métricas de otimização de performance
+- **DEPLOY-VERCEL.md**: Guia de deploy na Vercel
+
 # FIM STATUS INTERNO #
+

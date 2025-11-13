@@ -43,49 +43,82 @@
   },
   "magia": {
     "title": "A Magia Divina",
-    "paragraphs": [
-      "A Magia Divina, trazida aos humanos encarnados por Rubens Saraceni (☆ 18/10/1951 – ✝ 9/03/2015), é um sistema de magia, chaves e práticas iniciáticas secretas que se desenvolve estritamente sob a Égide da Lei Maior para uma função específica em nossos tempos.",
+    "introducao": [
+      "A Magia Divina, que foi trazida aos humanos encarnados por Rubens Saraceni (✰ 18/10/1951 – ✞ 9/03/2015). É um sistema de magia, chaves e práticas iniciáticas secretas que se desenvolve estritamente sob a Égide da Lei Maior para uma função específica em nossos tempos.",
+      "Envolve a manipulação consciente de uma variedade de Mistérios Divinos para promover cura, reequilíbrio, desobsessão e proteção de indivíduos e ambientes. Isso inclui a dissipação de energias negativas, a dissolução e debandagem de domínios em desequilíbrio, entre muitas outras ações.",
       "A Magia Divina não pertence a nenhuma religião específica nem estabelece dogmas, exceto o respeito estrito a todos os seres sencientes. Ela pode ser utilizada por membros de qualquer religião sem infringir seus próprios princípios, desde que estes estejam alinhados à Lei Maior."
-    ]
+    ],
+    "caracteristicas": {
+      "title": "Principais Características e Funções da Magia Divina",
+      "items": [
+        {
+          "title": "Rituais e Cerimônias",
+          "content": "Com a utilização dos Mistérios Divinos dos Tronos de Deus, são realizadas preparações, ativações e atuações específicas direcionadas e programadas para atingir os objetivos definidos em questão. Embora elementos físicos, ritualísticos e cerimoniais sejam comumente utilizados, são considerados secundários."
+        },
+        {
+          "title": "Manipulação de Energia",
+          "content": "Os limites da atuação do Mago de Lei são traçados pela égide dos Tronos de Deus, especialmente do Trono da Lei Maior. Afora isso, o Mago Outorgado tem grande liberdade na utilização das Forças dos Mistérios Divinos em suas práticas para canalizar e direcionar potentes e elevadas energias para propósitos os mais diversos."
+        },
+        {
+          "title": "Os Graus, os Tronos de Deus e Seus Mistérios",
+          "content": "Todos os mais de 30 graus da Magia Divina utilizam-se de práticas específicas para ativar, canalizar, programar e direcionar matéria e força para propósitos diversos. Todos os seus graus são baseados na utilização direta de Mistérios regidos pelos Tronos Divinos de Deus, e todas as atuações possíveis em seu escopo são realizadas sob a Égide dos Tronos da Lei Maior e Da Justiça Divina. Disso decorre que toda sua prática é prática segura e alinhada com os propósitos divinos para a Terra e para os seres que a habitam."
+        },
+        {
+          "title": "Foco na Transformação Pessoal",
+          "content": "Uma das funções da Magia Divina é a de promover o saudável avanço das condições mentais e pessoais de seus praticantes, estudantes e consulentes, ajudando-os a avançar a estados progressivos de purificação, alinhamento, clareza, potência e harmonia interiores. A cada grau completado pelo neófito em suas progressivas instruções e iniciações, ele dá um passo adiante na expansão de sua consciência e de seu poder sobre sua realidade interna e externa, mesmo que ainda não tenha clara consciência disso. Normalmente estes avanços se tornam mais perceptíveis pelo próprio sujeito em momentos em que, depois de avançar bastante, olha para trás e pode comparar claramente os diferentes estágios passados de seu crescimento. Progressivamente, a cada passo, vai se formando um agente mais bem preparado e um melhor ser humano."
+        },
+        {
+          "title": "Limpeza de Campo, Desobsessões e Exorcismos",
+          "content": "Existem muitas classes de influências negativas e obsessões que acometem os seres vivos, a mais séria delas sendo a possessão por espectros, entidades espirituais e até por demônios de ordens revoltosas. Para cada um destas classes há formas eficazes de liberação. Com a Magia Divina, sob outorgas superiores das Hierarquias da Lei Maior e da Justiça Divina e procedimentos adequados a cada caso, todas as classes de influência indesejáveis sobre os seres vivos têm resoluções rápidas e seguras. Com alguns anos de experiência supervisionada, qualquer Mago ou Sacerdote devidamente iniciado e instruído, pode desenvolver as condições adequadas para as atuações de liberação destes laços de dominação e má influência."
+        }
+      ]
+    }
   },
   "hermeticos": {
     "title": "Os Princípios Herméticos",
-    "subtitle": "Fundamentos universais que descrevem os mecanismos da manifestação da natureza e movimento dinâmico da matéria, dos campos, fluxos e de todo o movimento do universo.",
+    "subtitle": "Os Princípios Herméticos, também conhecidos como Leis Herméticas, são um conjunto de conceitos fundamentais que descrevem os mecanismos da manifestação da natureza e movimento dinâmico da matéria, dos campos, fluxos e de todos os movimentos do universo. A listagem e descrição destes princípios são atribuídos a Hermes Trismegistus e cada um destes princípios oferece uma visão complementar sobre a natureza dos fundamentos da existência manifesta.",
     "items": [
       {
         "number": "1",
         "title": "Princípio do Mentalismo",
-        "description": "\"O todo é mente em seu fundamento; o universo é mental.\" Este princípio afirma que tudo no universo é uma manifestação da mente original, indicando que o Pensamento do Criador é a criação manifesta e a formação da própria matéria."
+        "quote": "O todo é mente em seu fundamento; o universo é mental.",
+        "description": "Este princípio afirma que tudo no universo é uma manifestação da mente original, indicando que o Pensamento do Criador precede a criação manifesta e a formação da própria matéria. Mas, ainda além disso, afirma que o próprio tecido da realidade é de natureza mental. Isso fundamenta o fato de que nossas mentes e volições têm o poder de influenciar a própria realidade dita espiritual. A compreensão profunda deste princípio nos leva a perceber que o universo inteiro é uma construção mental do Todo, e que cada pensamento, cada ideia, cada manifestação de consciência é uma participação nesta grande mente universal. Ao entendermos que a realidade é mental em sua essência, compreendemos também que temos o poder de moldar nossa experiência através do cultivo consciente de nossos pensamentos, intenções e estados mentais. A mente não é apenas um receptor passivo da realidade, mas um agente ativo na sua criação e transformação contínua."
       },
       {
         "number": "2",
         "title": "Princípio da Correspondência",
-        "description": "\"O que está em cima é como o que está embaixo. O que está dentro é como o que está fora.\" Este princípio sugere que há uma correspondência entre os diferentes planos e escalas da existência."
+        "quote": "O que está em cima é como o que está embaixo. O que está dentro é como o que está fora.",
+        "description": "Este princípio sugere que há uma correspondência entre os diferentes planos e escalas da existência, manifestando-se de forma autossimilar com extensão escalar considerada infinita. Por exemplo, o microcosmo do corpo humano reflete o macrocosmo do planeta Terra, e o microcosmo do planeta Terra reflete o macrocosmo do Sistema Solar e vice-versa. Este princípio afirma que os mesmos mecanismos e forças que operam nas escalas subatômicas também se aplicam às escalas biológicas e às escalas cósmicas, embora a física e a cosmologia atuais ainda não tenham maturidade para reconhecer ou explicar isso. Esta lei de correspondência nos permite compreender os mistérios dos planos superiores através do estudo dos planos inferiores, e vice-versa. Como padrões fractais que se repetem infinitamente, cada nível de existência contém as chaves para compreender todos os outros. Ao observarmos a estrutura de um átomo, podemos vislumbrar a estrutura do cosmos; ao compreendermos nossa própria psique, podemos entender a natureza da consciência universal. Este princípio é a base de todas as práticas de analogia e simbolismo espiritual."
       },
       {
         "number": "3",
         "title": "Princípio da Vibração",
-        "description": "\"Nada está parado, nada é estático, tudo vibra.\" Tudo no universo está em constante movimento vibratório, o que é intrínseco à própria natureza da manifestação da matéria."
+        "quote": "Nada está parado, nada é estático, tudo vibra.",
+        "description": "Tudo no universo está em constante movimento vibratório, o que é intrínseco à própria natureza da manifestação da matéria desde as escalas subplankianas. A diferença entre as várias manifestações dos diferentes tipos de matéria está nas suas qualidades de informação e energia vibratória. A interação dinâmica dessas qualidades é o que produz as diferentes variáveis e características em escalas superiores. Dessa dinâmica fundamental nasce a auto-organização geométrica das diversas estruturas de vibração harmônica de um corpo ou de um conglomerado de corpos em todas as escalas. Não se deve confundir este princípio com o Princípio do Ritmo, que fala da variância cíclica entre diferentes estados de polarização e movimento. Este princípio nos revela que a diferença entre estados físicos, mentais, emocionais e espirituais é essencialmente uma diferença de frequência vibratória. Pensamentos de alta vibração manifestam realidades elevadas, enquanto pensamentos de baixa vibração atraem experiências densas. Ao compreendermos e dominarmos nossas próprias vibrações através de práticas espirituais, meditação e trabalho interno, podemos elevar conscientemente nossa frequência e, consequentemente, transformar nossa realidade manifesta."
       },
       {
         "number": "4",
         "title": "Princípio da Polaridade",
-        "description": "\"Tudo é duplo, tudo tem dois polos, tudo tem seu oposto.\" Este princípio nos leva a observar que todos os sistemas dinâmicos são polarizados e que todo polo tem um oposto."
+        "quote": "Tudo é duplo, tudo tem dois polos, tudo tem seu oposto.",
+        "description": "Este princípio nos leva a observar que todos os sistemas dinâmicos são polarizados e que todo polo tem um oposto que, nos extremos, se tocam, se complementam e não podem existir ou funcionar um sem o outro. Os opostos são apenas diferentes graus de uma mesma essência. Todas as divindades, por exemplo, possuem dois pólos, um positivo e outro negativo, não em termos de bondade e maldade, mas como características complementares de expansão/contração, irradiação/absorção, produção/destruição e etc., sempre simultaneamente ativos. Quando se fala do Braço Direito ou do Braço Esquerdo de Deus, fala-se de que todo o universo manifesto tem uma contraparte polar inerentemente necessária para o grande equilíbrio da manifestação. Compreender a polaridade nos permite transmutar estados indesejados em seus opostos desejados, pois ambos são da mesma natureza, diferindo apenas em grau. O medo pode ser transmutado em coragem, o ódio em amor, a ignorância em sabedoria. Esta é a arte da alquimia mental: reconhecer que dentro de cada polo está a semente de seu oposto, e que podemos conscientemente mover nossa consciência ao longo do espectro entre os extremos."
       },
       {
         "number": "5",
         "title": "Princípio do Ritmo",
-        "description": "\"Tudo tem fluxo e refluxo, tudo sobe e desce, tudo tem suas marés.\" O ritmo é a compensação harmônica cíclica, a respiração dos diferentes sistemas."
+        "quote": "Tudo tem fluxo e refluxo, tudo sobe e desce, tudo tem suas marés.",
+        "description": "O ritmo é a compensação harmônica cíclica, a respiração dos diferentes sistemas. Este princípio nos leva a observar que há uma oscilação natural em todos os fenômenos da natureza manifesta e indica que os fenômenos pulsantes e oscilatórios são naturais e emergentes em todos os sistemas, sendo fenômenos emergentes fundamentalmente naturais aos mecanismos da manifestação. As flutuações cíclicas descritas por este princípio são variações nas posições dos pólos dos sistemas, mas não se referem à sua vibração intrínseca. Na vida humana, observamos este princípio nos ciclos de dia e noite, nas estações do ano, nos ciclos de atividade e repouso, nos períodos de expansão e contração em todos os aspectos da existência. Compreender o ritmo nos permite fluir com os ciclos naturais ao invés de resistir a eles. Quando reconhecemos que após cada baixa vem uma alta, e vice-versa, podemos manter equanimidade diante das inevitáveis oscilações da vida. Os mestres espirituais aprendem a se elevar acima das marés do ritmo através da polarização consciente em um centro superior de consciência."
       },
       {
         "number": "6",
         "title": "Princípio do Gênero",
-        "description": "\"O gênero está em tudo: Tudo tem seus princípios masculino e feminino.\" Este princípio ensina que todos os planos e escalas da criação por regra produzem sistemas masculinos e femininos."
+        "quote": "O gênero está em tudo: Tudo tem seus princípios masculino e feminino.",
+        "description": "Este princípio ensina que todos os planos e escalas da criação por regra produzem sistemas masculinos e femininos. Embora frequentemente associado ao princípio da polaridade, a estrutura das naturezas dos gêneros é mais complexa que a estrutura polar e, embora tenha natureza emergente, é fundamental em toda a manifestação. Assim, mesmo se reconhecendo a relação polarizada entre os gêneros, gêneros e pólos diferem bastante em estrutura e essência. O princípio masculino está associado à energia projetiva, ativa, irradiante e seminal, enquanto o princípio feminino está relacionado à energia receptiva, gestativa, nutriente e formativa. Toda criação requer a união harmoniosa destes dois princípios. Em nosso ser interior, cultivamos tanto o aspecto masculino de nossa vontade e ação quanto o aspecto feminino de nossa intuição e receptividade. O equilíbrio saudável entre estes princípios internos é essencial para a realização espiritual completa e para a manifestação consciente de nossa divindade interior."
       },
       {
         "number": "7",
         "title": "Princípio da Causa e Efeito",
-        "description": "\"Toda causa tem seu efeito, todo efeito tem sua causa.\" Este princípio afirma que todas as coisas foram criadas ou transformadas por uma ação anterior e que todas as ações têm consequências."
+        "quote": "Toda causa tem seu efeito, todo efeito tem sua causa.",
+        "description": "Este princípio afirma que todas as coisas foram criadas ou transformadas por uma ação anterior e que todas as ações têm consequências e geram movimentos. Desta forma, este princípio descreve que é possível aprender a gerar as causas necessárias para obtenção dos efeitos desejados, assim como é possível analisar os efeitos e consequências de algo para inferência de suas possíveis causas. Nada acontece por acaso no universo; tudo segue leis precisas de causa e efeito. O que chamamos de acaso é simplesmente um efeito cuja causa não reconhecemos. Ao compreendermos profundamente este princípio, deixamos de ser vítimas das circunstâncias e nos tornamos causadores conscientes. Através da escolha deliberada de nossos pensamentos, emoções e ações, podemos semear as causas que produzirão os efeitos desejados em nossas vidas. Este é o fundamento de toda magia verdadeira: a arte de ser causa ao invés de efeito, de moldar conscientemente o destino através da compreensão e aplicação das leis universais."
       }
     ]
   }

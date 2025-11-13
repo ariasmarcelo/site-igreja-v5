@@ -95,29 +95,62 @@
   },
   "valores": {
     "title": "Valores e Princípios",
+    "intro": "O ser humano é uma síntese harmoniosa de corpo, mente e espírito. Nossa jornada de cura e transformação reconhece que o equilíbrio físico, emocional e espiritual são indissociáveis. Quando compreendemos nossa natureza multidimensional e a interconexão entre nossos sistemas nervoso, emocional e energético, abrimos caminho para uma vida de maior plenitude, autorregulação e consciência expandida.",
     "cards": [
       {
-        "title": "Respeito ao Ritmo Individual",
-        "content": "Cada associado avança em seu próprio ritmo. Não há pressão ou prazos rígidos. O importante é a genuinidade do processo e a profundidade da transformação."
+        "title": "1. Reverência ao Sagrado",
+        "content": "Reconhecemos a dimensão sagrada de toda existência. Cada trabalho é conduzido como um ato de reverência à divindade presente em todos os seres."
       },
       {
-        "title": "Acompanhamento Compassivo",
-        "content": "Todos os trabalhos são conduzidos com profundo respeito, compaixão e compreensão das dificuldades e desafios de cada jornada individual."
+        "title": "2. Não-Discriminação Universal",
+        "content": "Acolhemos todos os seres humanos, independentemente de origem, raça, gênero, orientação sexual, condição social ou crenças anteriores. O amor divino não faz distinções."
       },
       {
-        "title": "Segurança Espiritual",
+        "title": "3. Dignidade e Confidencialidade",
+        "content": "Toda informação compartilhada nos trabalhos é tratada com absoluta confidencialidade e respeito. A dignidade humana é inviolável em todos os momentos."
+      },
+      {
+        "title": "4. Respeito à Autonomia Espiritual",
+        "content": "Cada indivíduo é soberano em sua jornada espiritual. Oferecemos orientação e amparo, mas a autoridade final sobre as escolhas e caminhos pertence ao próprio praticante."
+      },
+      {
+        "title": "5. Segurança Espiritual",
         "content": "Todos os procedimentos são realizados sob proteção e orientação da Hierarquia Celestial, garantindo segurança e integridade em todos os momentos."
       },
       {
-        "title": "Liberdade de Escolha",
+        "title": "6. Compromisso com a Verdade",
+        "content": "Mantemos transparência total sobre métodos, processos e limitações. A honestidade é o alicerce de toda relação de confiança e transformação genuína."
+      },
+      {
+        "title": "7. Integração Corpo-Mente-Espírito",
+        "content": "Reconhecemos que a cura verdadeira acontece quando integramos os aspectos físico, mental, emocional e espiritual, honrando a unidade indivisível do ser humano."
+      },
+      {
+        "title": "8. Acompanhamento Compassivo",
+        "content": "Todos os trabalhos são conduzidos com profundo respeito, compaixão e compreensão das dificuldades e desafios de cada jornada individual."
+      },
+      {
+        "title": "9. Respeito ao Ritmo Individual",
+        "content": "Cada associado avança em seu próprio ritmo. Não há pressão ou prazos rígidos. O importante é a genuinidade do processo e a profundidade da transformação."
+      },
+      {
+        "title": "10. Liberdade de Escolha",
         "content": "O associado tem total liberdade para pausar, retomar ou encerrar sua participação nos trabalhos a qualquer momento, sem julgamento ou cobrança."
+      },
+      {
+        "title": "11. Responsabilidade Compartilhada",
+        "content": "A transformação é um trabalho conjunto entre praticante e facilitadores. Cada um assume responsabilidade por sua parte no processo de cura e evolução."
+      },
+      {
+        "title": "12. Continuidade do Cuidado",
+        "content": "O acompanhamento não termina ao final de cada sessão. Oferecemos suporte contínuo para integração das experiências e sustentação das transformações alcançadas."
       }
     ]
   },
   "psicodelicos": {
-    "title": "Trabalhos Espirituais com Psicodélicos 333",
+    "title": "Trabalhos Espirituais com Psicodélicos",
     "subtitle": "Experiências Sagradas",
-    "intro": "A Igreja de Metatron oferece trabalhos espirituais profundos utilizando substâncias sagradas, conduzidos com técnica precisa, amparo compassivo e proteção integral.",
+    "intro": "A Igreja de Metatron oferece trabalhos espirituais profundos utilizando substâncias sagradas.<br/><br/>Conduzidos com técnica precisa, amparo compassivo e proteção integral.",
     "tripleProtection": {
       "title": "Tripla Proteção",
       "cards": [

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Limpar Cache - Purificação</title>
+    <script>
+        // Limpar todo o localStorage
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        // Redirecionar para a página Purificação
+        setTimeout(() => {
+            window.location.href = '/purificacao';
+        }, 100);
+    </script>
+</head>
+<body>
+    <h1>Limpando cache...</h1>
+    <p>Redirecionando para /purificacao em instantes...</p>
+</body>
+</html>

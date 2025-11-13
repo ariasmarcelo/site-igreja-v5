@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Supabase - Purificação</title>
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+        
+        const supabaseUrl = 'https://etpvspttppzklzhnwmij.supabase.co';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0cHZzcHR0cHB6a2x6aG53bWlqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzEyNDc1NjYsImV4cCI6MjA0NjgyMzU2Nn0.A88rYi0mDJywJNR-rnPJCrb4oiDr_RyqN7j8H-iKpEk';
+        
+        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+        
+        window.updateSupabase = async function() {
+            const output = document.getElementById('output');
+            output.innerHTML = '📡 Carregando JSON local...<br>';
+            
+            try {
+                const response = await fetch('/src/locales/pt-BR/Purificacao.json');
+                const purificacaoData = await response.json();
+                
+                output.innerHTML += '✅ JSON carregado<br>';
+                output.innerHTML += `📋 intro1: ${purificacaoData.psicodelicos.intro1}<br>`;
+                output.innerHTML += `📋 intro2: ${purificacaoData.psicodelicos.intro2}<br><br>`;
+                output.innerHTML += '📤 Atualizando Supabase...<br>';
+                
+                const { data, error } = await supabase
+                    .from('page_contents')
+                    .update({
+                        content: purificacaoData,
+                        updated_at: new Date().toISOString()
+                    })
+                    .eq('page_id', 'purificacao')
+                    .select();
+                
+                if (error) {
+                    output.innerHTML += `❌ Erro: ${error.message}<br>`;
+                } else {
+                    output.innerHTML += `✅ Supabase atualizado! (${data.length} registro)<br>`;
+                    output.innerHTML += '<br>🔄 <a href="/purificacao">Ir para página Purificação</a>';
+                }
+            } catch (err) {
+                output.innerHTML += `❌ Erro: ${err.message}<br>`;
+            }
+        }
+    </script>
+</head>
+<body style="font-family: monospace; padding: 20px; background: #1a1a1a; color: #0f0;">
+    <h1>🔧 Atualizar Supabase com intro1/intro2</h1>
+    <button onclick="updateSupabase()" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+        ▶️ EXECUTAR ATUALIZAÇÃO
+    </button>
+    <pre id="output" style="margin-top: 20px; background: #000; padding: 10px; border: 1px solid #0f0;"></pre>
+</body>
+</html>

@@ -1,0 +1,375 @@
+﻿*[data-json-key="index.purification.title"][data-json-key] {
+  font-size: 1.5rem;
+}
+
+*[data-json-key="index.instituto.title"][data-json-key] {
+  font-size: 1.5rem;
+}
+
+*[data-json-key="index.instituto.legalNotice"][data-json-key] {
+  color: #92400e;
+  font-size: 0.875rem;
+}
+
+*[data-json-key="index.benefitsSection.title"][data-json-key] {
+  color: #222222;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  *[data-json-key="index.benefitsSection.title"][data-json-key] {
+    font-size: 3rem;
+  }
+}
+
+*[data-json-key="index.instituto.ctaButton"][data-json-key] {
+  font-weight: 600;
+}
+
+*[data-json-key="index.hero.title"][data-json-key] {
+  font-size: 48px;
+}
+
+@media (min-width: 768px) {
+  *[data-json-key="index.hero.title"][data-json-key] {
+    font-size: 4.5rem;
+  }
+}
+
+*[data-json-key="index.hero.subtitle"][data-json-key] {
+  color: #CFAF5A;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  *[data-json-key="index.hero.subtitle"][data-json-key] {
+    font-size: 1.875rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.espiritual.title"][data-json-key] {
+  color: #b45309;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.espiritual.title"][data-json-key] {
+    font-size: 1.5rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.fisico.subtitle"][data-json-key] {
+  color: #2563eb;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.fisico.subtitle"][data-json-key] {
+    font-size: 1.125rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.espiritual.description"][data-json-key] {
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.espiritual.description"][data-json-key] {
+    font-size: 1rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.integrada.title"][data-json-key] {
+  color: #7c3aed;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.integrada.title"][data-json-key] {
+    font-size: 1.5rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.integrada.description"][data-json-key] {
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.integrada.description"][data-json-key] {
+    font-size: 1rem;
+  }
+}
+
+*[data-json-key="index.triplaProtecao.title"][data-json-key] {
+  color: #1f2937;
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.triplaProtecao.title"][data-json-key] {
+    font-size: 2.25rem;
+  }
+}
+
+*[data-json-key="index.triplaProtecao.subtitle"][data-json-key] {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.triplaProtecao.subtitle"][data-json-key] {
+    font-size: 1.25rem;
+  }
+}
+
+*[data-json-key="index.cta.subtitle"][data-json-key] {
+  font-size: 1.25rem;
+}
+
+*[data-json-key="index.fisicoEspiritual.fisico.title"][data-json-key] {
+  color: #1d4ed8;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.fisico.title"][data-json-key] {
+    font-size: 1.5rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.subtitle"][data-json-key] {
+  color: #374151;
+  font-size: 1.125rem;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.subtitle"][data-json-key] {
+    font-size: 1.25rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.fisico.description"][data-json-key] {
+  font-size: 0.875rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.fisico.description"][data-json-key] {
+    font-size: 1rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.espiritual.subtitle"][data-json-key] {
+  color: #d97706;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.espiritual.subtitle"][data-json-key] {
+    font-size: 1.125rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.integrada.oferecemos.title"][data-json-key] {
+  color: #6b21a8;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.integrada.oferecemos.title"][data-json-key] {
+    font-size: 1rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.integrada.conclusao"][data-json-key] {
+  color: #7c3aed;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.integrada.conclusao"][data-json-key] {
+    font-size: 1rem;
+  }
+}
+
+*[data-json-key="index.cta.buttonText"][data-json-key] {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+*[data-json-key="index.igreja.description[1]"][data-json-key] {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+*[data-json-key="index.igreja.description[2]"][data-json-key] {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+*[data-json-key="index.igreja.description[0]"][data-json-key] {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+*[data-json-key="index.footer.copyright"][data-json-key] {
+  font-size: 0.875rem;
+}
+
+*[data-json-key="index.instituto.benefits[0].title"][data-json-key] {
+  font-size: 1.5rem;
+}
+
+*[data-json-key="index.instituto.benefits[1].description"][data-json-key] {
+  color: #374151;
+  font-size: 1rem;
+}
+
+*[data-json-key="index.instituto.description[0]"][data-json-key] {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+*[data-json-key="index.fisicoEspiritual.title"][data-json-key] {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.title"][data-json-key] {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  *[data-json-key="index.fisicoEspiritual.title"][data-json-key] {
+    font-size: 2.25rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.fisico.abordagem.description"][data-json-key] {
+  font-size: 0.75rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.fisico.abordagem.description"][data-json-key] {
+    font-size: 0.875rem;
+  }
+}
+
+*[data-json-key="index.cta.title"][data-json-key] {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  *[data-json-key="index.cta.title"][data-json-key] {
+    font-size: 3rem;
+  }
+}
+
+*[data-json-key="index.footer.trademark"][data-json-key] {
+  font-size: 0.75rem;
+}
+
+*[data-json-key="index.instituto.benefits[0].description"][data-json-key] {
+  color: #374151;
+  font-size: 1rem;
+}
+
+*[data-json-key="index.instituto.benefits[2].title"][data-json-key] {
+  font-size: 1.5rem;
+}
+
+*[data-json-key="index.instituto.description[1]"][data-json-key] {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+*[data-json-key="index.fisicoEspiritual.espiritual.abordagem.title"][data-json-key] {
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.espiritual.abordagem.title"][data-json-key] {
+    font-size: 0.875rem;
+  }
+}
+
+*[data-json-key="index.igreja.title"][data-json-key] {
+  color: #222222;
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  *[data-json-key="index.igreja.title"][data-json-key] {
+    font-size: 3rem;
+  }
+}
+
+*[data-json-key="index.benefitsSection.subtitle"][data-json-key] {
+  color: #4b5563;
+  font-size: 1.25rem;
+}
+
+*[data-json-key="index.instituto.benefits[1].title"][data-json-key] {
+  font-size: 1.5rem;
+}
+
+*[data-json-key="index.instituto.benefits[2].description"][data-json-key] {
+  color: #374151;
+  font-size: 1rem;
+}
+
+*[data-json-key="index.fisicoEspiritual.fisico.abordagem.title"][data-json-key] {
+  color: #1e40af;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.fisico.abordagem.title"][data-json-key] {
+    font-size: 0.875rem;
+  }
+}
+
+*[data-json-key="index.fisicoEspiritual.espiritual.abordagem.description"][data-json-key] {
+  font-size: 0.75rem;
+  line-height: 1.625;
+}
+
+@media (min-width: 640px) {
+  *[data-json-key="index.fisicoEspiritual.espiritual.abordagem.description"][data-json-key] {
+    font-size: 0.875rem;
+  }
+}
+
+*[data-json-key="index.instituto.description[2]"][data-json-key] {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.625;
+}
+
+

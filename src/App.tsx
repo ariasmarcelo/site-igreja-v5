@@ -8,8 +8,11 @@ import QuemSomos from './pages/QuemSomos';
 import Tratamentos from './pages/Tratamentos';
 import Purificacao from './pages/Purificacao';
 import Artigos from './pages/Artigos';
+import ArtigoDetalhes from './pages/ArtigoDetalhes';
+import ArtigosCategoria from './pages/ArtigosCategoria';
 import Contato from './pages/Contato';
 import Testemunhos from './pages/Testemunhos';
+import IconGallery from './pages/IconGallery';
 import WhatsAppButton from './components/WhatsAppButton';
 import NotFound from './pages/NotFound';
 
@@ -184,8 +187,11 @@ const App = () => {
           <Route path="/tratamentos" element={<Tratamentos />} />
           <Route path="/purificacao" element={<Purificacao />} />
           <Route path="/artigos" element={<Artigos />} />
+          <Route path="/artigos/categoria/:categoria" element={<ArtigosCategoria />} />
+          <Route path="/artigos/:slug" element={<ArtigoDetalhes />} />
           <Route path="/contato" element={<Contato />} />
           <Route path="/testemunhos" element={<Testemunhos />} />
+          <Route path="/icones" element={<IconGallery />} />
           <Route 
             path="/436F6E736F6C45" 
             element={

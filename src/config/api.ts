@@ -37,10 +37,10 @@ export const API_ENDPOINTS = {
 
 // Log da configuração em desenvolvimento
 if (isDevelopment) {
-  console.log('🔧 API Configuration:', {
-    environment: 'development',
-    baseUrl: API_BASE_URL,
-  });
+  // console.log('🔧 API Configuration:', {
+  //   environment: 'development',
+  //   baseUrl: API_BASE_URL,
+  // });
 }
 
 export default API_ENDPOINTS;

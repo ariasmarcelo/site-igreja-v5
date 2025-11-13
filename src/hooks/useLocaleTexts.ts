@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
 
 // Event emitter global para sincronização de dados entre componentes
 const refreshEvents = new Map<string, Set<() => void>>();
@@ -10,18 +9,13 @@ const editLocks = new Map<string, boolean>();
 export const triggerRefresh = (pageId: string) => {
   const normalizedPageId = pageId.toLowerCase();
   const listeners = refreshEvents.get(normalizedPageId);
-  // console.log(`🔄 triggerRefresh(${pageId}) - listeners: ${listeners?.size || 0}`);
   if (listeners) {
-    listeners.forEach(callback => {
-      // console.log(`  → Calling refresh callback for ${pageId}`);
-      callback();
-    });
+    listeners.forEach(callback => callback());
   }
 };
 
 export const setEditLock = (pageId: string, locked: boolean) => {
   editLocks.set(pageId.toLowerCase(), locked);
-  // console.log(`🔒 Edit lock for ${pageId}: ${locked}`);
 };
 
 export const isEditLocked = (pageId: string): boolean => {
@@ -29,12 +23,12 @@ export const isEditLocked = (pageId: string): boolean => {
 };
 
 /**
- * Hook personalizado para carregar textos EXCLUSIVAMENTE do Supabase
- * Busca dados diretamente do banco de dados PostgreSQL
- * Suporta refresh automático quando triggerRefresh() é chamado
+ * Hook para carregar textos via API local (estrutura granular)
+ * A API reconstrói o objeto a partir de text_entries do Supabase
+ * Usa fallback APENAS durante loading inicial (para evitar página em branco)
  * 
  * @param pageId - ID da página (index, quemsomos, contato, etc)
- * @param fallbackData - Dados de fallback (opcional, para tipagem TypeScript)
+ * @param fallbackData - Usado APENAS durante loading (opcional)
  * @returns { texts, loading, error } - Dados da página, estado de loading e erro
  */
 export function useLocaleTexts<T = Record<string, unknown>>(
@@ -45,21 +39,8 @@ export function useLocaleTexts<T = Record<string, unknown>>(
   loading: boolean;
   error: string | null;
 } {
-  // Tentar usar cache primeiro, depois fallback
-  const getCachedContent = () => {
-    try {
-      const cacheKey = `page_cache_${pageId}`;
-      const cached = localStorage.getItem(cacheKey);
-      if (cached) {
-        return JSON.parse(cached) as T;
-      }
-    } catch (err) {
-      console.warn(`⚠️ Failed to load cache for ${pageId}:`, err);
-    }
-    return fallbackData || null;
-  };
-  
-  const [texts, setTexts] = useState<T | null>(getCachedContent);
+  // Usar fallback APENAS como estado inicial para evitar página em branco
+  const [texts, setTexts] = useState<T | null>(fallbackData || null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -80,13 +61,12 @@ export function useLocaleTexts<T = Record<string, unknown>>(
   }, [pageId]);
 
   useEffect(() => {
-    const loadFromSupabase = async () => {
+    const loadFromAPI = async () => {
       const locked = isEditLocked(pageId);
-      // console.log(`🔍 useLocaleTexts.loadFromSupabase(${pageId}) - locked: ${locked}, refreshTrigger: ${refreshTrigger}`);
       
       // NÃO atualizar se há edições pendentes (lock ativo)
       if (locked) {
-        // console.log(`⏸️ Skipping Supabase load for ${pageId} (edit lock active)`);
+        console.log(`🔒 Skipping load for ${pageId} - edit lock active`);
         return;
       }
       
@@ -94,81 +74,44 @@ export function useLocaleTexts<T = Record<string, unknown>>(
       setError(null);
       
       try {
-        // console.log(`📡 Fetching from Supabase for ${pageId}...`);
-        const { data, error: supabaseError } = await supabase
-          .from('page_contents')
-          .select('content')
-          .eq('page_id', pageId.toLowerCase())
-          .single();
+        // console.log(`📥 Loading ${pageId} from API (GRANULAR)`);
         
-        if (supabaseError) {
-          const errorMsg = `Erro ao carregar conteúdo: ${supabaseError.message}`;
-          console.warn(`⚠️ Supabase error for ${pageId}:`, supabaseError);
-          setError(errorMsg);
-          setLoading(false);
-          return;
+        // Buscar via API local (que reconstrói o objeto a partir de entries granulares)
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+        const response = await fetch(`${apiUrl}/api/content/${pageId.toLowerCase()}`);
+        
+        if (!response.ok) {
+          throw new Error(`API returned status ${response.status}`);
         }
+        
+        const data = await response.json();
         
         if (data && data.content) {
-          // console.log(`✅ Supabase data received for ${pageId}`);
           setTexts(data.content as T);
           setError(null);
-          
-          // Salvar no localStorage para cache
-          try {
-            const cacheKey = `page_cache_${pageId}`;
-            localStorage.setItem(cacheKey, JSON.stringify(data.content));
-            // console.log(`💾 Cache updated in localStorage for ${pageId}`);
-          } catch (err) {
-            console.warn(`⚠️ Failed to update localStorage cache for ${pageId}:`, err);
-          }
-          
-          // Atualizar histórico de fallback JSON (5 versões)
-          try {
-            const historyKey = `page_history_${pageId}`;
-            const historyStr = localStorage.getItem(historyKey);
-            const history: Array<{ timestamp: string; content: T }> = historyStr ? JSON.parse(historyStr) : [];
-            
-            // Verificar se conteúdo mudou
-            const latestContent = history[0]?.content;
-            const newContentStr = JSON.stringify(data.content);
-            const latestContentStr = latestContent ? JSON.stringify(latestContent) : '';
-            
-            if (newContentStr !== latestContentStr) {
-              // Conteúdo diferente - adicionar ao histórico
-              history.unshift({
-                timestamp: new Date().toISOString(),
-                content: data.content as T
-              });
-              
-              // Manter apenas últimas 5 versões
-              if (history.length > 5) {
-                history.splice(5);
-              }
-              
-              localStorage.setItem(historyKey, JSON.stringify(history));
-              // console.log(`📝 History updated for ${pageId} (${history.length} versions)`);
-            } else {
-              // console.log(`✓ Content unchanged for ${pageId} - history not updated`);
-            }
-          } catch (err) {
-            console.warn(`⚠️ Failed to update history for ${pageId}:`, err);
-          }
+          console.log(`✅ Loaded ${pageId} from API (${Object.keys(data.content).length} keys)`);
+          // console.log(`✅ Loaded ${pageId} from API (GRANULAR):`, {
+          //   keys: Object.keys(data.content).length,
+          //   hasPsicodelicos: 'psicodelicos' in data.content
+          // });
         } else {
-          const errorMsg = `Nenhum conteúdo encontrado para a página: ${pageId}`;
-          console.warn(`⚠️ ${errorMsg}`);
-          setError(errorMsg);
+          throw new Error(`No content found for page: ${pageId}`);
         }
       } catch (error) {
-        const errorMsg = `Erro inesperado: ${error instanceof Error ? error.message : 'Desconhecido'}`;
-        console.error(`❌ Error loading from Supabase for ${pageId}:`, error);
+        const errorMsg = error instanceof Error ? error.message : 'Unknown error';
+        console.error(`❌ Error loading ${pageId}:`, errorMsg);
         setError(errorMsg);
+        // Manter fallback se disponível, em vez de setar null
+        if (!texts && fallbackData) {
+          setTexts(fallbackData);
+          console.log(`⚠️  Using fallback data for ${pageId}`);
+        }
       } finally {
         setLoading(false);
       }
     };
 
-    loadFromSupabase();
+    loadFromAPI();
   }, [pageId, refreshTrigger]);
 
   return { texts, loading, error };

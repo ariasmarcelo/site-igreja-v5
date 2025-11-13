@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync Purificação → Supabase</title>
+</head>
+<body style="font-family: monospace; padding: 20px; background: #1a1a1a; color: #0f0;">
+    <h1>🔄 Sincronizar Purificacao.json → Supabase (via API Produção)</h1>
+    <button id="syncBtn" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+        ▶️ SINCRONIZAR AGORA
+    </button>
+    <pre id="output" style="margin-top: 20px; background: #000; padding: 10px; border: 1px solid #0f0;"></pre>
+
+    <script type="module">
+        const API_URL = 'https://shadcn-ui-seven-olive.vercel.app';
+        
+        document.getElementById('syncBtn').onclick = async () => {
+            const output = document.getElementById('output');
+            output.textContent = '📡 Carregando JSON local...\n';
+            
+            try {
+                const response = await fetch('/src/locales/pt-BR/Purificacao.json');
+                const purificacaoData = await response.json();
+                
+                output.textContent += '✅ JSON carregado\n';
+                output.textContent += `📋 intro1: ${purificacaoData.psicodelicos.intro1}\n`;
+                output.textContent += `📋 intro2: ${purificacaoData.psicodelicos.intro2}\n\n`;
+                output.textContent += `📤 Enviando para ${API_URL}/api/save-json...\n`;
+                
+                const apiResponse = await fetch(`${API_URL}/api/save-json`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        pageId: 'purificacao',
+                        content: purificacaoData
+                    })
+                });
+                
+                const result = await apiResponse.json();
+                
+                if (apiResponse.ok) {
+                    output.textContent += `✅ ${result.message}\n`;
+                    output.textContent += '\n🔄 Recarregue a página: http://localhost:8080/purificacao\n';
+                } else {
+                    output.textContent += `❌ Erro: ${result.message}\n`;
+                }
+            } catch (err) {
+                output.textContent += `❌ Erro: ${err.message}\n`;
+                console.error(err);
+            }
+        };
+    </script>
+</body>
+</html>

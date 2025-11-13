@@ -93,28 +93,28 @@ export default function Contato() {
                 </CardHeader>
                 <CardContent className="pt-6">
                   <div className="space-y-3">
-                    <div className="flex items-center gap-3 text-[16px]">
+                    <div className="flex items-center gap-3">
                       <MessageCircle className="w-5 h-5 text-[#25D366] shrink-0" />
-                      <span className="text-gray-700 font-semibold" data-json-key="contato.contactCard.whatsapp.label">{texts.contactCard.whatsapp.label}</span>
-                      <span className="text-gray-700 font-semibold" data-json-key="contato.contactCard.whatsapp.number">{texts.contactCard.whatsapp.number}</span>
+                      <span data-json-key="contato.contactCard.whatsapp.label">{texts.contactCard.whatsapp.label}</span>
+                      <span data-json-key="contato.contactCard.whatsapp.number">{texts.contactCard.whatsapp.number}</span>
                     </div>
-                    <div className="flex items-center gap-3 text-[16px]">
+                    <div className="flex items-center gap-3">
                       <Mail className="w-5 h-5 text-[#4A90A9] shrink-0" />
-                      <span className="text-gray-700" data-json-key="contato.contactCard.email.address">{texts.contactCard.email.address}</span>
+                      <span data-json-key="contato.contactCard.email.address">{texts.contactCard.email.address}</span>
                     </div>
                   </div>
 
                   <div className="pt-4">
                     <Button
                       onClick={handleWhatsAppClick}
-                      className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-[21px] py-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
+                      className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white py-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       <MessageCircle className="w-6 h-6" />
                       <span data-json-key="contato.contactCard.whatsappButton.text">{texts.contactCard.whatsappButton.text}</span>
                     </Button>
                   </div>
 
-                  <p className="text-xs text-gray-600 text-center pt-3" data-json-key="contato.contactCard.whatsappButton.description">{texts.contactCard.whatsappButton.description}</p>
+                  <p className="text-center pt-3" data-json-key="contato.contactCard.whatsappButton.description">{texts.contactCard.whatsappButton.description}</p>
                 </CardContent>
               </Card>
 
@@ -146,17 +146,17 @@ export default function Contato() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-[#222222]" data-json-key="contato.faq.title">
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" data-json-key="contato.faq.title">
               {texts.faq.title}
             </h2>
             <div className="space-y-6">
               {texts.faq.items.map((qa: { question: string; answer: string }, idx: number) => (
                 <Card className="shadow-lg" key={idx}>
                   <CardHeader>
-                    <CardTitle className="text-xl text-[#CFAF5A]" data-json-key={`contato.faq.items[${idx}].question`}>{qa.question}</CardTitle>
+                    <CardTitle data-json-key={`contato.faq.items[${idx}].question`}>{qa.question}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-700" data-json-key={`contato.faq.items[${idx}].answer`}>{qa.answer}</p>
+                    <p data-json-key={`contato.faq.items[${idx}].answer`}>{qa.answer}</p>
                   </CardContent>
                 </Card>
               ))}

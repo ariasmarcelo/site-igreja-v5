@@ -1,59 +1,30 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase';
+
+// Sistema de refresh para estilos (similar ao useLocaleTexts)
+const refreshTriggers: Record<string, number> = {};
+
+export function triggerStylesRefresh(pageId: string) {
+  refreshTriggers[pageId] = (refreshTriggers[pageId] || 0) + 1;
+  window.dispatchEvent(new CustomEvent('styles-refresh', { detail: { pageId } }));
+}
 
 /**
- * Hook para carregar estilos CSS customizados de uma página do Supabase
- * Os estilos são editados através do Editor Visual e salvos no banco de dados
+ * Hook para carregar estilos CSS customizados de uma página
+ * 
+ * ⚠️ TEMPORARIAMENTE DESABILITADO:
+ * Os estilos do DB estavam com !important em todas as propriedades,
+ * quebrando os layouts flex e grid do Tailwind CSS.
+ * 
+ * Agora os estilos vêm APENAS do Tailwind CSS inline nos componentes TSX.
+ * 
+ * @returns {boolean} stylesLoaded - sempre retorna true (compatibilidade)
  */
-export function usePageStyles(pageId: string) {
-  const [stylesLoaded, setStylesLoaded] = useState(false);
+export function usePageStyles(pageId: string): boolean {
+  const [stylesLoaded, setStylesLoaded] = useState(true); // Sempre true agora
 
   useEffect(() => {
-    const loadStylesFromSupabase = async () => {
-      try {
-        const { data, error } = await supabase
-          .from('page_styles')
-          .select('css')
-          .eq('page_id', pageId.toLowerCase())
-          .single();
-        
-        if (error) {
-          console.warn(`⚠️ No custom styles in Supabase for: ${pageId}`);
-          return;
-        }
-        
-        if (data && data.css) {
-          // Criar elemento <style> e injetar CSS
-          const styleId = `page-styles-${pageId}`;
-          let styleElement = document.getElementById(styleId) as HTMLStyleElement;
-          
-          if (!styleElement) {
-            styleElement = document.createElement('style');
-            styleElement.id = styleId;
-            document.head.appendChild(styleElement);
-          }
-          
-          styleElement.textContent = data.css;
-          if (import.meta.env.DEV) {
-            console.log(`✅ Loaded custom styles from Supabase: ${pageId}`);
-          }
-        }
-      } catch (error) {
-        console.warn(`⚠️ Error loading styles from Supabase for ${pageId}:`, error);
-      } finally {
-        setStylesLoaded(true);
-      }
-    };
-
-    loadStylesFromSupabase();
-    
-    // Cleanup ao desmontar o componente
-    return () => {
-      const styleElement = document.getElementById(`page-styles-${pageId}`);
-      if (styleElement) {
-        styleElement.remove();
-      }
-    };
+    // Apenas log informativo
+    console.log(`🎨 [usePageStyles] DESABILITADO para ${pageId} - usando apenas Tailwind CSS`);
   }, [pageId]);
 
   return stylesLoaded;

@@ -1,36 +1,40 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Sun, Star, Crown, Compass, Heart, Infinity as InfinityIcon, LineChart, ChevronDown } from 'lucide-react';
+import { Sparkles, Sun, Star, Crown, Compass, Heart, Infinity as InfinityIcon, LineChart, ChevronDown, Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
-import fallbackTexts from '@/locales/pt-BR/Purificacao.json';
 import { useLocaleTexts } from '@/hooks/useLocaleTexts';
 import { usePageStyles } from '@/hooks/usePageStyles';
 
-type PurificacaoTexts = typeof fallbackTexts;
+interface PurificacaoTexts {
+  header: { title: string; subtitle: string };
+  intro: { mainText: string; description: string };
+  valores: { title: string; intro?: string; cards: any[] };
+  [key: string]: any;
+}
 
 export default function Purificacao() {
   usePageStyles('purificacao');
-  const { texts } = useLocaleTexts<PurificacaoTexts>('purificacao', fallbackTexts);
+  const { texts, loading } = useLocaleTexts<PurificacaoTexts>('purificacao');
   const [expandedPhase, setExpandedPhase] = useState<number | null>(null);
 
   const togglePhase = (phase: number) => {
     setExpandedPhase(expandedPhase === phase ? null : phase);
   };
 
-  if (!texts) return null;
+  if (loading || !texts) return <div className="flex items-center justify-center min-h-screen">Carregando...</div>;
   
   return (
     <div className="min-h-screen bg-linear-to-br from-[#FAF9F7] to-[#F5F3F0]">
       {/* Header */}
-      <section className="py-16 bg-linear-to-r from-[#B8860B] via-[#7A5608] to-[#B8860B] text-white relative overflow-hidden">
+      <section className="py-16 bg-linear-to-r from-[#D4AF37] via-[#C5A028] to-[#D4AF37] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
         <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_20%,rgba(255,255,255,0.12)_40%,rgba(255,255,255,0.18)_50%,rgba(255,255,255,0.12)_60%,transparent_80%)]"></div>
         <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_25%,rgba(255,255,255,0.1)_43%,rgba(255,255,255,0.15)_50%,rgba(255,255,255,0.1)_57%,transparent_75%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_30%,transparent_65%)]"></div>
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-20">
           <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="50" r="20" fill="white" />
             {[...Array(12)].map((_, i) => {
@@ -59,7 +63,8 @@ export default function Purificacao() {
             <div className="flex justify-center mb-6">
               <svg
                 viewBox="0 0 100 100"
-                className="w-16 h-16 animate-spin-slow"
+                className="w-24 h-24 animate-spin-slow"
+                style={{ filter: 'drop-shadow(0 4px 8px rgba(139, 90, 0, 0.7))' }}
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -85,17 +90,17 @@ export default function Purificacao() {
                 })}
               </svg>
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-lg" data-json-key="purificacao.header.title">{texts.header.title}</h1>
-            <p className="text-xl opacity-90 drop-shadow-md" data-json-key="purificacao.header.subtitle">{texts.header.subtitle}</p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 drop-shadow-[0_4px_12px_rgba(139,90,0,0.8)]" data-json-key="purificacao.header.title">{texts.header.title}</h1>
+            <p className="text-xl opacity-90 drop-shadow-[0_2px_8px_rgba(139,90,0,0.7)]" data-json-key="purificacao.header.subtitle">{texts.header.subtitle}</p>
           </div>
         </div>
       </section>
 
       {/* Introdução */}
-      <section className="py-16">
+      <section className="py-8">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto text-center">
-            <p className="text-xl text-gray-700 leading-relaxed mb-8" data-json-key="purificacao.intro.mainText">
+            <p className="text-xl text-gray-700 leading-relaxed mb-6" data-json-key="purificacao.intro.mainText">
               {texts.intro.mainText}
             </p>
             <p className="text-lg text-gray-600 leading-relaxed" data-json-key="purificacao.intro.description">
@@ -105,310 +110,245 @@ export default function Purificacao() {
         </div>
       </section>
 
-      {/* Fluxo das Três Fases - Design Interativo */}
-      <section className="py-16 bg-linear-to-br from-slate-900 via-indigo-950 to-slate-900 relative overflow-hidden">
-        {/* Efeitos de fundo místicos */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-80 h-80 bg-red-500 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 right-20 w-80 h-80 bg-cyan-500 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 left-1/3 w-96 h-96 bg-amber-500 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Fluxo das Três Fases - Design Moderno e Leve */}
+      <section className="py-10 bg-linear-to-br from-slate-50 via-white to-slate-50">
+        <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             
-            {/* Container Visual para as Três Fases - Elevado */}
-            <div className="bg-linear-to-br from-white/90 via-amber-50/85 to-white/90 backdrop-blur-2xl p-8 pr-16 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] border-2 border-white/30 relative transform hover:scale-[1.01] transition-transform duration-500 [box-shadow:0_20px_60px_rgba(0,0,0,0.5),0_0_80px_rgba(251,191,36,0.15),inset_0_1px_0_rgba(255,255,255,0.8)]">
-              
-              {/* Título da Seção - Elevado e Luminoso */}
-              <div className="text-center mb-10 relative">
-                {/* Glow de fundo sutil */}
-                <div className="absolute inset-0 flex items-center justify-center -z-10">
-                  <div className="w-[500px] h-40 bg-linear-to-r from-transparent via-amber-400/10 to-transparent blur-3xl"></div>
-                </div>
-                
-                <h2 className="text-4xl md:text-5xl font-light bg-linear-to-r from-amber-700 via-amber-500 to-amber-700 bg-clip-text text-transparent relative z-10 font-['Poppins',sans-serif] tracking-[0.08em] [text-shadow:0_2px_4px_rgba(180,83,9,0.2)] filter-[drop-shadow(0_2px_3px_rgba(0,0,0,0.15))_drop-shadow(0_4px_6px_rgba(251,191,36,0.2))]">
-                  AS TRÊS FASES DO PROCESSO
-                </h2>
-                
-                {/* Linha decorativa elegante */}
-                <div className="flex items-center justify-center gap-3 mt-5">
-                  <div className="h-px w-20 bg-linear-to-r from-transparent via-amber-400 to-amber-500"></div>
-                  <div className="w-2 h-2 rounded-full bg-amber-500 shadow-md shadow-amber-500/40"></div>
-                  <div className="h-px w-20 bg-linear-to-l from-transparent via-amber-400 to-amber-500"></div>
-                </div>
-              </div>
-              
-              {/* Linha do Tempo Vertical com Conexões */}
-              <div className="relative pr-8">
-              
-              {/* Linha Vertical bem à Direita */}
-              <div className="absolute right-2 top-0 bottom-0 w-2 bg-linear-to-b from-red-500 via-cyan-500 to-amber-500 hidden md:block rounded-full shadow-lg"></div>
-
-              {/* FASE 1 - INICIAL */}
-              <div className="mb-8 relative">
-                <div className="md:flex md:items-center gap-8">
-                  
-                  {/* Card da Fase */}
-                  <div className="md:w-full">
-                    <Card 
-                      className={`shadow-xl border-2 border-red-400 cursor-pointer transition-all duration-300 hover:shadow-2xl ${
-                        expandedPhase === 1 ? 'ring-4 ring-red-300' : ''
-                      }`}
-                      onClick={() => togglePhase(1)}
-                    >
-                      <CardHeader className="bg-linear-to-r from-red-700 to-red-800 text-white py-4 px-4 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(255,255,255,0.35),transparent_55%)]"></div>
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_60%,rgba(255,255,255,0.25),transparent_65%)]"></div>
-                        <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent_40%,rgba(255,255,255,0.15)_60%,transparent_80%)]"></div>
-                        <div className="flex items-center justify-between relative z-10">
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
-                              <Sparkles className="w-8 h-8 text-red-700" />
-                            </div>
-                            <div>
-                              <CardTitle className="text-2xl md:text-3xl mb-1 drop-shadow-md" data-json-key="purificacao.faseInicial.title">{texts.faseInicial.title}</CardTitle>
-                              <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseInicial.subtitle">{texts.faseInicial.subtitle}</p>
-                            </div>
-                          </div>
-                          <div className="flex items-start gap-3 mt-1">
-                            {/* Círculo Numerado com Elevação */}
-                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
-                              <div className="absolute inset-0 bg-linear-to-r from-red-700 to-red-800"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
-                                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(255,255,255,0.5)_0%,transparent_50%)]"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.2)_50%,transparent_100%)]"></div>
-                {/* Number */}
-                <span className="text-xl md:text-2xl font-bold text-white relative z-10 drop-shadow-lg">1</span>
-                            </div>
-                            <ChevronDown 
-                              className={`w-8 h-8 transition-transform duration-300 ${
-                                expandedPhase === 1 ? 'rotate-180' : ''
-                              }`}
-                            />
-                          </div>
-                        </div>
-                      </CardHeader>
-                      
-                      {/* Conteúdo Expansível */}
-                      <div 
-                        className={`overflow-hidden transition-all duration-500 ${
-                          expandedPhase === 1 ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-                        }`}
-                      >
-                        <CardContent className="p-6 space-y-6 bg-red-50">
-                          <div>
-                            <h3 className="text-xl font-bold mb-3 text-gray-800" data-json-key="purificacao.faseInicial.objetivo.title">{texts.faseInicial.objetivo.title}</h3>
-                            <p className="text-base text-gray-700 leading-relaxed" data-json-key="purificacao.faseInicial.objetivo.content">
-                              {texts.faseInicial.objetivo.content}
-                            </p>
-                          </div>
-
-                          <div className="bg-white border-l-4 border-red-600 p-5 rounded-r-lg shadow-md">
-                            <h4 className="font-bold text-lg mb-3 text-red-700" data-json-key="purificacao.faseInicial.activities.title">{texts.faseInicial.activities.title}</h4>
-                            <ul className="space-y-2 text-gray-700">
-                              {texts.faseInicial.activities.items.map((item, index) => (
-                                <li key={index} className="flex items-start gap-3">
-                                  <span className="text-red-600 font-bold mt-1">•</span>
-                                  <span data-json-key={`purificacao.faseInicial.activities.items[${index}]`}>{item}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          <div>
-                            <h4 className="font-bold text-lg mb-3 text-gray-800" data-json-key="purificacao.faseInicial.duration.title">{texts.faseInicial.duration.title}</h4>
-                            <p className="text-gray-700 leading-relaxed" data-json-key="purificacao.faseInicial.duration.content">
-                              {texts.faseInicial.duration.content}
-                            </p>
-                          </div>
-                        </CardContent>
-                      </div>
-                    </Card>
-                  </div>
-                </div>
-              </div>
-
-              {/* FASE 2 - INTERMEDIÁRIA */}
-              <div className="mb-8 relative">
-                <div className="md:flex md:items-center gap-8">
-                  
-                  {/* Card da Fase */}
-                  <div className="md:w-full">
-                    <Card 
-                      className={`shadow-xl border-2 border-blue-400 cursor-pointer transition-all duration-300 hover:shadow-2xl ${
-                        expandedPhase === 2 ? 'ring-4 ring-blue-300' : ''
-                      }`}
-                      onClick={() => togglePhase(2)}
-                    >
-                      <CardHeader className="bg-linear-to-r from-[#0891b2] via-[#06b6d4] to-[#0284c7] text-white py-4 px-4 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(255,255,255,0.35),transparent_55%)]"></div>
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_60%,rgba(255,255,255,0.25),transparent_65%)]"></div>
-                        <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent_40%,rgba(255,255,255,0.15)_60%,transparent_80%)]"></div>
-                        <div className="flex items-center justify-between relative z-10">
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
-                              <LineChart className="w-8 h-8 text-cyan-600" />
-                            </div>
-                            <div>
-                              <CardTitle className="text-2xl md:text-3xl mb-1 drop-shadow-md" data-json-key="purificacao.faseIntermediaria.title">{texts.faseIntermediaria.title}</CardTitle>
-                              <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseIntermediaria.subtitle">{texts.faseIntermediaria.subtitle}</p>
-                            </div>
-                          </div>
-                          <div className="flex items-start gap-3 mt-1">
-                            {/* Círculo Numerado com Elevação */}
-                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
-                              <div className="absolute inset-0 bg-linear-to-r from-[#0891b2] via-[#06b6d4] to-[#0284c7]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.4),transparent_50%)]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.3),transparent_50%)]"></div>
-                              <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_30%,rgba(255,255,255,0.2)_50%,transparent_70%)]"></div>
-                              <span className="text-xl md:text-2xl font-bold text-white relative z-10 drop-shadow-lg">2</span>
-                            </div>
-                            <ChevronDown 
-                              className={`w-8 h-8 transition-transform duration-300 ${
-                                expandedPhase === 2 ? 'rotate-180' : ''
-                              }`}
-                            />
-                          </div>
-                        </div>
-                      </CardHeader>
-                      
-                      {/* Conteúdo Expansível */}
-                      <div 
-                        className={`overflow-hidden transition-all duration-500 ${
-                          expandedPhase === 2 ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
-                        }`}
-                      >
-                        <CardContent className="p-6 space-y-6 bg-blue-50">
-                          <div>
-                            <h3 className="text-xl font-bold mb-3 text-gray-800" data-json-key="purificacao.faseIntermediaria.requisito.title">{texts.faseIntermediaria.requisito.title}</h3>
-                            <p className="text-base text-gray-700 leading-relaxed" data-json-key="purificacao.faseIntermediaria.requisito.content">{texts.faseIntermediaria.requisito.content}</p>
-                          </div>
-
-                          <div className="bg-white border-l-4 border-[#4A90A9] p-5 rounded-r-lg shadow-md">
-                            <h4 className="font-bold text-lg mb-3 text-[#4A90A9]" data-json-key="purificacao.faseIntermediaria.trabalhos.title">{texts.faseIntermediaria.trabalhos.title}</h4>
-                            <div className="space-y-4">
-                              {texts.faseIntermediaria.trabalhos.items.map((item, index) => (
-                                <div key={index}>
-                                  <h5 className="font-semibold text-base mb-2 text-gray-800" data-json-key={`purificacao.faseIntermediaria.trabalhos.items[${index}].title`}>{item.title}</h5>
-                                  <p className="text-gray-700 text-sm" data-json-key={`purificacao.faseIntermediaria.trabalhos.items[${index}].content`}>{item.content}</p>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          <div>
-                            <h4 className="font-bold text-lg mb-3 text-gray-800" data-json-key="purificacao.faseIntermediaria.integracao.title">{texts.faseIntermediaria.integracao.title}</h4>
-                            <p className="text-gray-700 leading-relaxed" data-json-key="purificacao.faseIntermediaria.integracao.content">{texts.faseIntermediaria.integracao.content}</p>
-                          </div>
-                        </CardContent>
-                      </div>
-                    </Card>
-                  </div>
-                </div>
-              </div>
-
-              {/* FASE 3 - FINAL */}
-              <div className="relative">
-                <div className="md:flex md:items-center gap-8">
-                  
-                  {/* Card da Fase */}
-                  <div className="md:w-full">
-                    <Card 
-                      className={`shadow-xl border-2 border-amber-400 cursor-pointer transition-all duration-300 hover:shadow-2xl ${
-                        expandedPhase === 3 ? 'ring-4 ring-amber-300' : ''
-                      }`}
-                      onClick={() => togglePhase(3)}
-                    >
-                      <CardHeader className="bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A] text-white py-4 px-4 relative overflow-hidden">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_40%,rgba(255,255,255,0.35),transparent_55%)]"></div>
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_60%,rgba(255,255,255,0.25),transparent_65%)]"></div>
-                        <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent_40%,rgba(255,255,255,0.15)_60%,transparent_80%)]"></div>
-                        <div className="flex items-center justify-between relative z-10">
-                          <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-lg">
-                              <Crown className="w-8 h-8 text-[#CFAF5A]" />
-                            </div>
-                            <div>
-                              <CardTitle className="text-2xl md:text-3xl mb-1 drop-shadow-md" data-json-key="purificacao.faseFinal.title">{texts.faseFinal.title}</CardTitle>
-                              <p className="text-base md:text-lg opacity-90 drop-shadow-sm" data-json-key="purificacao.faseFinal.subtitle">{texts.faseFinal.subtitle}</p>
-                            </div>
-                          </div>
-                          <div className="flex items-start gap-3 mt-1">
-                            {/* Círculo Numerado com Elevação */}
-                            <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-white flex items-center justify-center shadow-[0_8px_16px_rgba(0,0,0,0.3),0_4px_8px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_24px_rgba(0,0,0,0.35),0_6px_12px_rgba(0,0,0,0.25)] border-2 md:border-4 border-white relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
-                              <div className="absolute inset-0 bg-linear-to-r from-[#CFAF5A] via-[#B38938] to-[#CFAF5A]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_40%,rgba(255,255,255,0.3),transparent_50%)]"></div>
-                              <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_60%,rgba(255,255,255,0.25),transparent_50%)]"></div>
-                              <span className="text-xl md:text-2xl font-bold text-white relative z-10 drop-shadow-lg">3</span>
-                            </div>
-                            <ChevronDown 
-                              className={`w-8 h-8 transition-transform duration-300 ${
-                                expandedPhase === 3 ? 'rotate-180' : ''
-                              }`}
-                            />
-                          </div>
-                        </div>
-                      </CardHeader>
-                      
-                      {/* Conteúdo Expansível */}
-                      <div 
-                        className={`overflow-hidden transition-all duration-500 ${
-                          expandedPhase === 3 ? 'max-h-[2500px] opacity-100' : 'max-h-0 opacity-0'
-                        }`}
-                      >
-                        <CardContent className="p-6 space-y-6 bg-amber-50">
-                          <div>
-                            <h3 className="text-xl font-bold mb-3 text-gray-800" data-json-key="purificacao.faseFinal.iniciacao.title">{texts.faseFinal.iniciacao.title}</h3>
-                            <p className="text-base text-gray-700 leading-relaxed" data-json-key="purificacao.faseFinal.iniciacao.content">{texts.faseFinal.iniciacao.content}</p>
-                          </div>
-
-                          <div className="bg-linear-to-r from-amber-100 to-yellow-100 border-2 border-[#CFAF5A] rounded-lg p-6 shadow-md">
-                            <div className="flex items-center gap-4 mb-4">
-                              <Sun className="w-10 h-10 text-[#CFAF5A]" />
-                              <h4 className="font-bold text-xl text-[#CFAF5A]" data-json-key="purificacao.faseFinal.evento.title">{texts.faseFinal.evento.title ?? 'O Evento Iniciático'}</h4>
-                            </div>
-                            {texts.faseFinal.evento.content.map((para: string, i: number) => (
-                              <p key={i} className={`text-gray-700 leading-relaxed ${i === 0 ? 'text-base mb-3' : 'text-sm'}`}>
-                                {para}
-                              </p>
-                            ))}
-                          </div>
-
-                          <div>
-                            <h4 className="font-bold text-lg mb-3 text-gray-800" data-json-key="purificacao.faseFinal.posIniciacao.title">{texts.faseFinal.posIniciacao.title}</h4>
-                            <p className="text-gray-700 leading-relaxed mb-4" data-json-key="purificacao.faseFinal.posIniciacao.content">{texts.faseFinal.posIniciacao.content}</p>
-                            <ul className="space-y-2 text-gray-700">
-                              {texts.faseFinal.posIniciacao.items.map((it: string, idx: number) => (
-                                <li key={idx} className="flex items-start gap-3">
-                                  <span className="text-[#CFAF5A] font-bold mt-1">✦</span>
-                                  <span className="text-sm">{it}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          <div className="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-lg shadow-md">
-                            <h4 className="font-bold text-lg mb-3 text-blue-800" data-json-key="purificacao.faseFinal.adepto.title">{texts.faseFinal.adepto.title}</h4>
-                            <p className="text-blue-900 leading-relaxed text-sm" data-json-key="purificacao.faseFinal.adepto.content">{texts.faseFinal.adepto.content}</p>
-                          </div>
-                        </CardContent>
-                      </div>
-                    </Card>
-                  </div>
-                </div>
+            {/* Título da Seção */}
+            <div className="text-center mb-8">
+              <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-2 tracking-wide">
+                AS TRÊS FASES DO PROCESSO
+              </h2>
+              <div className="flex items-center justify-center gap-3 mt-2">
+                <div className="h-px w-20 bg-linear-to-r from-transparent via-amber-400 to-amber-500"></div>
+                <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                <div className="h-px w-20 bg-linear-to-l from-transparent via-amber-400 to-amber-500"></div>
               </div>
             </div>
-            {/* Fim do Container Visual */}
+
+            {/* FASE 1 - INICIAL */}
+            <div className="mb-6">
+              <Card 
+                className={`border-l-4 border-red-500 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
+                  expandedPhase === 1 ? 'ring-2 ring-red-300' : ''
+                }`}
+                onClick={() => togglePhase(1)}
+              >
+                <CardHeader className="bg-linear-to-r from-red-50 to-white py-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(239,68,68,0.15),transparent_70%)]"></div>
+                  <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent_40%,rgba(255,255,255,0.4)_50%,transparent_60%)]"></div>
+                  <div className="flex items-center justify-between relative z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-full bg-linear-to-br from-red-400 via-red-500 to-red-700 flex items-center justify-center shadow-md relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_60%)]"></div>
+                        <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_30%,rgba(255,255,255,0.2)_50%,transparent_70%)]"></div>
+                        <Sparkles className="w-6 h-6 text-white relative z-10" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="text-xs font-semibold text-red-600 bg-red-100 px-2 py-0.5 rounded-full">FASE 1</span>
+                        </div>
+                        <CardTitle className="text-xl md:text-2xl text-gray-800" data-json-key="purificacao.faseInicial.title">{texts.faseInicial.title}</CardTitle>
+                        <p className="text-sm text-gray-600" data-json-key="purificacao.faseInicial.subtitle">{texts.faseInicial.subtitle}</p>
+                      </div>
+                    </div>
+                    <ChevronDown 
+                      className={`w-6 h-6 text-red-500 transition-transform duration-300 ${
+                        expandedPhase === 1 ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </div>
+                </CardHeader>
+                
+                <div 
+                  className={`overflow-hidden transition-all duration-500 ${
+                    expandedPhase === 1 ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <CardContent className="p-8 space-y-6">
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3 text-gray-800" data-json-key="purificacao.faseInicial.objetivo.title">{texts.faseInicial.objetivo.title}</h3>
+                      <p className="text-gray-700 leading-relaxed" data-json-key="purificacao.faseInicial.objetivo.content">
+                        {texts.faseInicial.objetivo.content}
+                      </p>
+                    </div>
+
+                    <div className="bg-red-50 border border-red-200 p-6 rounded-lg">
+                      <h4 className="font-semibold text-lg mb-4 text-red-700" data-json-key="purificacao.faseInicial.activities.title">{texts.faseInicial.activities.title}</h4>
+                      <ul className="space-y-3 text-gray-700">
+                        {texts.faseInicial.activities.items.map((item, index) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <span className="text-red-500 font-bold mt-1">•</span>
+                            <span data-json-key={`purificacao.faseInicial.activities.items[${index}]`}>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3 text-gray-800" data-json-key="purificacao.faseInicial.duration.title">{texts.faseInicial.duration.title}</h4>
+                      <p className="text-gray-700 leading-relaxed" data-json-key="purificacao.faseInicial.duration.content">
+                        {texts.faseInicial.duration.content}
+                      </p>
+                    </div>
+                  </CardContent>
+                </div>
+              </Card>
             </div>
+
+            {/* FASE 2 - INTERMEDIÁRIA */}
+            <div className="mb-6">
+              <Card 
+                className={`border-l-4 border-cyan-500 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
+                  expandedPhase === 2 ? 'ring-2 ring-cyan-300' : ''
+                }`}
+                onClick={() => togglePhase(2)}
+              >
+                <CardHeader className="bg-linear-to-r from-cyan-50 to-white py-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(6,182,212,0.15),transparent_70%)]"></div>
+                  <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent_40%,rgba(255,255,255,0.4)_50%,transparent_60%)]"></div>
+                  <div className="flex items-center justify-between relative z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-full bg-linear-to-br from-cyan-400 via-cyan-500 to-cyan-700 flex items-center justify-center shadow-md relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_60%)]"></div>
+                        <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_30%,rgba(255,255,255,0.2)_50%,transparent_70%)]"></div>
+                        <LineChart className="w-6 h-6 text-white relative z-10" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="text-xs font-semibold text-cyan-600 bg-cyan-100 px-2 py-0.5 rounded-full">FASE 2</span>
+                        </div>
+                        <CardTitle className="text-xl md:text-2xl text-gray-800" data-json-key="purificacao.faseIntermediaria.title">{texts.faseIntermediaria.title}</CardTitle>
+                        <p className="text-sm text-gray-600" data-json-key="purificacao.faseIntermediaria.subtitle">{texts.faseIntermediaria.subtitle}</p>
+                      </div>
+                    </div>
+                    <ChevronDown 
+                      className={`w-6 h-6 text-cyan-500 transition-transform duration-300 ${
+                        expandedPhase === 2 ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </div>
+                </CardHeader>
+                
+                <div 
+                  className={`overflow-hidden transition-all duration-500 ${
+                    expandedPhase === 2 ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <CardContent className="p-8 space-y-6">
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3 text-gray-800" data-json-key="purificacao.faseIntermediaria.requisito.title">{texts.faseIntermediaria.requisito.title}</h3>
+                      <p className="text-gray-700 leading-relaxed" data-json-key="purificacao.faseIntermediaria.requisito.content">{texts.faseIntermediaria.requisito.content}</p>
+                    </div>
+
+                    <div className="bg-cyan-50 border border-cyan-200 p-6 rounded-lg">
+                      <h4 className="font-semibold text-lg mb-4 text-cyan-700" data-json-key="purificacao.faseIntermediaria.trabalhos.title">{texts.faseIntermediaria.trabalhos.title}</h4>
+                      <div className="space-y-4">
+                        {texts.faseIntermediaria.trabalhos.items.map((item, index) => (
+                          <div key={index}>
+                            <h5 className="font-semibold text-base mb-2 text-gray-800" data-json-key={`purificacao.faseIntermediaria.trabalhos.items[${index}].title`}>{item.title}</h5>
+                            <p className="text-gray-700" data-json-key={`purificacao.faseIntermediaria.trabalhos.items[${index}].content`}>{item.content}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3 text-gray-800" data-json-key="purificacao.faseIntermediaria.integracao.title">{texts.faseIntermediaria.integracao.title}</h4>
+                      <p className="text-gray-700 leading-relaxed" data-json-key="purificacao.faseIntermediaria.integracao.content">{texts.faseIntermediaria.integracao.content}</p>
+                    </div>
+                  </CardContent>
+                </div>
+              </Card>
+            </div>
+
+            {/* FASE 3 - FINAL */}
+            <div className="mb-6">
+              <Card 
+                className={`border-l-4 border-amber-500 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
+                  expandedPhase === 3 ? 'ring-2 ring-amber-300' : ''
+                }`}
+                onClick={() => togglePhase(3)}
+              >
+                <CardHeader className="bg-linear-to-r from-amber-50 to-white py-3 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(245,158,11,0.15),transparent_70%)]"></div>
+                  <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent_40%,rgba(255,255,255,0.4)_50%,transparent_60%)]"></div>
+                  <div className="flex items-center justify-between relative z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-11 h-11 rounded-full bg-linear-to-br from-amber-400 via-amber-500 to-amber-700 flex items-center justify-center shadow-md relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.4),transparent_60%)]"></div>
+                        <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_30%,rgba(255,255,255,0.2)_50%,transparent_70%)]"></div>
+                        <Crown className="w-6 h-6 text-white relative z-10" />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-0.5">
+                          <span className="text-xs font-semibold text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full">FASE 3</span>
+                        </div>
+                        <CardTitle className="text-xl md:text-2xl text-gray-800" data-json-key="purificacao.faseFinal.title">{texts.faseFinal.title}</CardTitle>
+                        <p className="text-sm text-gray-600" data-json-key="purificacao.faseFinal.subtitle">{texts.faseFinal.subtitle}</p>
+                      </div>
+                    </div>
+                    <ChevronDown 
+                      className={`w-6 h-6 text-amber-500 transition-transform duration-300 ${
+                        expandedPhase === 3 ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </div>
+                </CardHeader>
+                
+                <div 
+                  className={`overflow-hidden transition-all duration-500 ${
+                    expandedPhase === 3 ? 'max-h-[2500px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <CardContent className="p-8 space-y-6">
+                    <div>
+                      <h3 className="text-xl font-semibold mb-3 text-gray-800" data-json-key="purificacao.faseFinal.iniciacao.title">{texts.faseFinal.iniciacao.title}</h3>
+                      <p className="text-gray-700 leading-relaxed" data-json-key="purificacao.faseFinal.iniciacao.content">{texts.faseFinal.iniciacao.content}</p>
+                    </div>
+
+                    <div className="bg-linear-to-r from-amber-100 to-yellow-100 border-2 border-amber-400 rounded-lg p-6">
+                      <div className="flex items-center gap-4 mb-4">
+                        <Sun className="w-10 h-10 text-amber-600" />
+                        <h4 className="font-semibold text-xl text-amber-700" data-json-key="purificacao.faseFinal.evento.title">{texts.faseFinal.evento.title ?? 'O Evento Iniciático'}</h4>
+                      </div>
+                      {texts.faseFinal.evento.content.map((para: string, i: number) => (
+                        <p key={i} className={`text-gray-700 leading-relaxed ${i > 0 ? 'mt-3' : ''}`}>
+                          {para}
+                        </p>
+                      ))}
+                    </div>
+
+                    <div>
+                      <h4 className="font-semibold text-lg mb-3 text-gray-800" data-json-key="purificacao.faseFinal.posIniciacao.title">{texts.faseFinal.posIniciacao.title}</h4>
+                      <p className="text-gray-700 leading-relaxed mb-4" data-json-key="purificacao.faseFinal.posIniciacao.content">{texts.faseFinal.posIniciacao.content}</p>
+                      <ul className="space-y-3 text-gray-700">
+                        {texts.faseFinal.posIniciacao.items.map((it: string, idx: number) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <span className="text-amber-500 font-bold mt-1">✦</span>
+                            <span>{it}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="bg-blue-50 border border-blue-200 p-6 rounded-lg">
+                      <h4 className="font-semibold text-lg mb-3 text-blue-800" data-json-key="purificacao.faseFinal.adepto.title">{texts.faseFinal.adepto.title}</h4>
+                      <p className="text-blue-900 leading-relaxed" data-json-key="purificacao.faseFinal.adepto.content">{texts.faseFinal.adepto.content}</p>
+                    </div>
+                  </CardContent>
+                </div>
+              </Card>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* Trabalhos Espirituais com Psicodélicos */}
+      {/* Trabalhos Espirituais com Psicod├®licos */}
       <section className="py-16 bg-linear-to-br from-purple-900 via-indigo-900 to-purple-950 relative overflow-hidden">
-        {/* Efeitos de fundo místicos */}
+        {/* Efeitos de fundo m├¡sticos */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 right-10 w-96 h-96 bg-indigo-500 rounded-full blur-3xl"></div>
@@ -418,8 +358,8 @@ export default function Purificacao() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-5xl mx-auto">
             <Card className="bg-white/10 backdrop-blur-md border-2 border-purple-300/30 shadow-2xl">
-              <CardHeader className="bg-linear-to-br from-purple-600/40 via-fuchsia-500/40 to-indigo-600/40 backdrop-blur-sm text-white pt-6 pb-6 px-8 relative overflow-hidden border-b-2 border-purple-300/30">
-                {/* Padrões geométricos sagrados */}
+              <CardHeader className="bg-linear-to-br from-purple-600/40 via-fuchsia-500/40 to-indigo-600/40 backdrop-blur-sm text-white pt-6 pb-3 px-8 relative overflow-hidden border-b-2 border-purple-300/30">
+                {/* Padr├Áes geom├®tricos sagrados */}
                 <div className="absolute inset-0 opacity-10">
                   <div className="absolute top-4 left-4 w-32 h-32 border-2 border-white rounded-full"></div>
                   <div className="absolute top-4 left-4 w-32 h-32 border-2 border-white rounded-full transform rotate-45"></div>
@@ -445,15 +385,73 @@ export default function Purificacao() {
                   </p>
                 </div>
               </CardHeader>
-              <CardContent className="p-10 bg-linear-to-br from-white/95 via-purple-50/90 to-white/95 backdrop-blur-sm">
+              <CardContent className="p-8 pt-8 bg-linear-to-br from-white/95 via-purple-50/90 to-white/95 backdrop-blur-sm">
 
-                <div className="space-y-6 leading-relaxed mb-8" data-json-key="purificacao.psicodelicos.intro">
-                  <p className="text-center text-lg text-gray-800 font-light tracking-[0.01em]" data-json-key="purificacao.psicodelicos.intro" dangerouslySetInnerHTML={{ __html: texts.psicodelicos.intro }} />
+                {/* Caixa Estilo Papiro Antigo - Texto Introdutório */}
+                <div className="max-w-4xl mx-auto mb-12">
+                  <div className="relative bg-linear-to-br from-amber-50 via-yellow-50/95 to-amber-100/90 p-8 rounded-lg border-4 border-amber-900/20 shadow-2xl" 
+                       style={{ 
+                         backgroundImage: `linear-gradient(to bottom right, rgba(254, 243, 199, 0.95), rgba(254, 249, 195, 0.98), rgba(251, 191, 36, 0.15))`,
+                         boxShadow: 'inset 0 2px 4px rgba(217, 119, 6, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)'
+                       }}>
+                    
+                    {/* Textura de papiro */}
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                         style={{ 
+                           backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(120, 53, 15, 0.4) 2px, rgba(120, 53, 15, 0.4) 3px)`,
+                           mixBlendMode: 'multiply'
+                         }}>
+                    </div>
+                    
+                    {/* Bordas decorativas do papiro */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-amber-800/30 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-amber-800/30 to-transparent"></div>
+                    <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-transparent via-amber-800/30 to-transparent"></div>
+                    <div className="absolute top-0 right-0 w-1 h-full bg-linear-to-b from-transparent via-amber-800/30 to-transparent"></div>
+                    
+                    {/* Ornamentos nos cantos */}
+                    <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-amber-800/40 rounded-tl-lg"></div>
+                    <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-amber-800/40 rounded-tr-lg"></div>
+                    <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-amber-800/40 rounded-bl-lg"></div>
+                    <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-amber-800/40 rounded-br-lg"></div>
+                    
+                    {/* Texto em estilo manuscrito antigo */}
+                    <div className="relative z-10 text-center space-y-6">
+                      <p className="text-xl md:text-2xl text-amber-950 leading-relaxed font-serif italic" 
+                         data-json-key="purificacao.psicodelicos.intro"
+                         style={{ 
+                           textShadow: '0 1px 2px rgba(217, 119, 6, 0.1)',
+                           letterSpacing: '0.02em'
+                         }}
+                         dangerouslySetInnerHTML={{ __html: texts.psicodelicos.intro }} 
+                      />
+                    </div>
+                  </div>
                 </div>
 
-                <div className="bg-linear-to-br from-purple-100/80 via-fuchsia-50/70 to-indigo-100/80 p-8 rounded-2xl border-2 border-purple-300/50 shadow-xl backdrop-blur-sm relative overflow-hidden">
+                {/* Tripla Proteção - MANTIDO INTACTO */}
+                <div className="bg-linear-to-br from-purple-100/80 via-fuchsia-50/70 to-indigo-100/80 p-6 pt-4 rounded-2xl border-2 border-purple-300/50 shadow-xl backdrop-blur-sm relative overflow-hidden mb-12">
                   {/* Efeito de brilho de fundo */}
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(167,139,250,0.15),transparent_70%)]"></div>
+                  
+                  {/* Ícone de Escudo Dourado Metálico */}
+                  <div className="flex justify-center mb-2">
+                    <div className="relative w-16 h-16">
+                      <Shield className="w-16 h-16 text-amber-500 relative z-10" style={{ 
+                        filter: 'drop-shadow(0 4px 12px rgba(217, 119, 6, 0.5))',
+                        fill: 'url(#goldGradient)'
+                      }} />
+                      <svg width="0" height="0">
+                        <defs>
+                          <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#fcd34d" />
+                            <stop offset="50%" stopColor="#f59e0b" />
+                            <stop offset="100%" stopColor="#b45309" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                  </div>
                   
                   <h3 className="font-semibold text-2xl text-purple-900 mb-8 text-center relative z-10 tracking-[0.03em]" data-json-key="purificacao.psicodelicos.tripleProtection.title">{texts.psicodelicos.tripleProtection.title}</h3>
                   
@@ -488,29 +486,77 @@ export default function Purificacao() {
                   </div>
                 </div>
 
-                <div className="space-y-4 mt-10">
-                  <h3 className="font-semibold text-2xl text-purple-900 text-center mb-6 tracking-[0.02em]" data-json-key="purificacao.psicodelicos.applications.title">{texts.psicodelicos.applications.title}</h3>
-                  <ul className="space-y-4 max-w-3xl mx-auto">
+                {/* Aplicações Espirituais e Terapêuticas */}
+                <div className="mt-16 mb-16">
+                  <h3 className="font-semibold text-3xl text-purple-900 text-center mb-10 tracking-wide" 
+                      data-json-key="purificacao.psicodelicos.applications.title">
+                    {texts.psicodelicos.applications.title}
+                  </h3>
+                  <ul className="space-y-5 max-w-4xl mx-auto">
                     {texts.psicodelicos.applications.items.map((item: string, idx: number) => (
-                      <li key={idx} className="flex items-start gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-lg border border-purple-200 hover:border-purple-400 transition-all duration-300 hover:shadow-md">
-                        <span className="text-purple-600 mt-1 text-xl font-bold shrink-0">✦</span>
-                        <span className="text-gray-800 leading-relaxed" data-json-key={`purificacao.psicodelicos.applications.items[${idx}]`} dangerouslySetInnerHTML={{ __html: item }} />
+                      <li key={idx} className="flex items-start gap-4 bg-white/70 backdrop-blur-sm p-5 rounded-xl border border-purple-200/60 hover:border-purple-400 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+                        <span className="text-purple-600 mt-0.5 text-2xl font-bold shrink-0">✦</span>
+                        <span className="text-gray-800 leading-relaxed text-base" 
+                              data-json-key={`purificacao.psicodelicos.applications.items[${idx}]`} 
+                              dangerouslySetInnerHTML={{ __html: item }} 
+                        />
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="bg-linear-to-br from-amber-100/80 via-yellow-50/70 to-amber-100/80 p-8 rounded-2xl border-2 border-amber-300/60 mt-10 shadow-xl backdrop-blur-sm relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,191,36,0.15),transparent_70%)]"></div>
-                  <p className="text-center font-semibold text-amber-900 mb-4 text-xl relative z-10 tracking-[0.02em]" data-json-key="purificacao.psicodelicos.conclusion.title">
-                    {texts.psicodelicos.conclusion.title}
-                  </p>
-                  <p className="text-center text-gray-800 leading-relaxed relative z-10" data-json-key="purificacao.psicodelicos.conclusion.content">
-                    {texts.psicodelicos.conclusion.content}
-                  </p>
+                {/* Caixa Estilo Papiro - Conclusão */}
+                <div className="max-w-4xl mx-auto mb-16">
+                  <div className="relative bg-linear-to-br from-amber-50 via-yellow-50/95 to-amber-100/90 p-10 rounded-lg border-4 border-amber-900/20 shadow-2xl" 
+                       style={{ 
+                         backgroundImage: `linear-gradient(to bottom right, rgba(254, 243, 199, 0.95), rgba(254, 249, 195, 0.98), rgba(251, 191, 36, 0.15))`,
+                         boxShadow: 'inset 0 2px 4px rgba(217, 119, 6, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)'
+                       }}>
+                    
+                    {/* Textura de papiro */}
+                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                         style={{ 
+                           backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(120, 53, 15, 0.4) 2px, rgba(120, 53, 15, 0.4) 3px)`,
+                           mixBlendMode: 'multiply'
+                         }}>
+                    </div>
+                    
+                    {/* Bordas decorativas do papiro */}
+                    <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-amber-800/30 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-amber-800/30 to-transparent"></div>
+                    <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-transparent via-amber-800/30 to-transparent"></div>
+                    <div className="absolute top-0 right-0 w-1 h-full bg-linear-to-b from-transparent via-amber-800/30 to-transparent"></div>
+                    
+                    {/* Ornamentos nos cantos */}
+                    <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-amber-800/40 rounded-tl-lg"></div>
+                    <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-amber-800/40 rounded-tr-lg"></div>
+                    <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-amber-800/40 rounded-bl-lg"></div>
+                    <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-amber-800/40 rounded-br-lg"></div>
+                    
+                    {/* Conteúdo */}
+                    <div className="relative z-10 text-center space-y-6">
+                      <h4 className="font-bold text-2xl md:text-3xl text-amber-950 tracking-wide font-serif" 
+                          data-json-key="purificacao.psicodelicos.conclusion.title"
+                          style={{ 
+                            textShadow: '0 1px 2px rgba(217, 119, 6, 0.1)',
+                            letterSpacing: '0.03em'
+                          }}>
+                        {texts.psicodelicos.conclusion.title}
+                      </h4>
+                      <p className="text-lg md:text-xl text-amber-950 leading-relaxed font-serif italic" 
+                         data-json-key="purificacao.psicodelicos.conclusion.content"
+                         style={{ 
+                           textShadow: '0 1px 2px rgba(217, 119, 6, 0.1)',
+                           letterSpacing: '0.02em'
+                         }}>
+                        {texts.psicodelicos.conclusion.content}
+                      </p>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="text-center mt-10">
+                {/* Botão CTA */}
+                <div className="text-center mt-12">
                   <Link to="/contato">
                     <Button size="lg" className="bg-linear-to-r from-purple-600 via-fuchsia-500 to-indigo-600 hover:from-purple-700 hover:via-fuchsia-600 hover:to-indigo-700 text-white shadow-2xl text-lg px-10 py-7 rounded-xl font-semibold transform hover:scale-105 transition-all duration-300" style={{ letterSpacing: '0.03em' }} data-json-key="purificacao.psicodelicos.ctaButton">
                       <Sparkles className="w-6 h-6 mr-3 animate-pulse" />
@@ -524,22 +570,63 @@ export default function Purificacao() {
         </div>
       </section>
 
-      {/* Critérios e Valores */}
+      {/* Crit├®rios e Valores */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12 text-[#222222]" data-json-key="purificacao.valores.title">{texts.valores.title}</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {texts.valores.cards.map((card: { title: string; content: string }, idx: number) => (
-                <Card key={idx} className="shadow-lg card-hover">
-                  <CardHeader>
-                    <CardTitle className="text-xl text-[#CFAF5A]">{card.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-700">{card.content}</p>
-                  </CardContent>
-                </Card>
-              ))}
+          {/* Caixa Estilo Papiro - Valores e Princípios */}
+          <div className="max-w-4xl mx-auto">
+            <div className="relative bg-linear-to-br from-amber-50 via-yellow-50/95 to-amber-100/90 p-12 rounded-lg border-4 border-amber-900/20 shadow-2xl" 
+                 style={{ 
+                   backgroundImage: `linear-gradient(to bottom right, rgba(254, 243, 199, 0.95), rgba(254, 249, 195, 0.98), rgba(251, 191, 36, 0.15))`,
+                   boxShadow: 'inset 0 2px 4px rgba(217, 119, 6, 0.1), 0 8px 24px rgba(0, 0, 0, 0.15)'
+                 }}>
+              
+              {/* Textura de papiro */}
+              <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+                   style={{ 
+                     backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(120, 53, 15, 0.4) 2px, rgba(120, 53, 15, 0.4) 3px)`,
+                     mixBlendMode: 'multiply'
+                   }}>
+              </div>
+              
+              {/* Bordas decorativas do papiro */}
+              <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-amber-800/30 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-amber-800/30 to-transparent"></div>
+              <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-transparent via-amber-800/30 to-transparent"></div>
+              <div className="absolute top-0 right-0 w-1 h-full bg-linear-to-b from-transparent via-amber-800/30 to-transparent"></div>
+              
+              {/* Ornamentos nos cantos */}
+              <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-amber-800/40 rounded-tl-lg"></div>
+              <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-amber-800/40 rounded-tr-lg"></div>
+              <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-amber-800/40 rounded-bl-lg"></div>
+              <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-amber-800/40 rounded-br-lg"></div>
+              
+              {/* Conteúdo interno */}
+              <div className="relative z-10">
+                <h2 className="text-4xl font-bold text-center mb-8 text-amber-950 font-serif" data-json-key="purificacao.valores.title">{texts.valores.title}</h2>
+                
+                {/* Parágrafo introdutório */}
+                {texts.valores.intro && (
+                  <div className="mb-12 max-w-4xl mx-auto">
+                    <p className="text-lg text-amber-900 leading-relaxed text-center font-serif italic" data-json-key="purificacao.valores.intro">
+                      {texts.valores.intro}
+                    </p>
+                  </div>
+                )}
+                
+                <div className="grid md:grid-cols-2 gap-8">
+                  {texts.valores.cards.map((card: { title: string; content: string }, idx: number) => (
+                    <Card key={idx} className="shadow-lg card-hover bg-white/80 backdrop-blur-sm border border-amber-200/40">
+                      <CardHeader>
+                        <CardTitle className="text-xl text-[#CFAF5A]">{card.title}</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <p className="text-gray-700">{card.content}</p>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -551,10 +638,10 @@ export default function Purificacao() {
       {/* Footer com horizonte terrestre */}
       <section className="relative overflow-hidden bg-slate-900">
         {/* Horizonte terrestre: céu acima, terra abaixo */}
-        <div className="absolute inset-0 opacity-50">
+        <div className="absolute inset-0 opacity-100">
           <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 400">
             <defs>
-              {/* Gradiente do céu - AZUL vibrante */}
+              {/* Gradiente do c├®u - AZUL vibrante */}
               <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#0ea5e9"/>
                 <stop offset="50%" stopColor="#38bdf8"/>
@@ -568,13 +655,13 @@ export default function Purificacao() {
               </linearGradient>
             </defs>
             
-            {/* CÉU AZUL - com curvatura positiva na parte inferior */}
+            {/* C├ëU AZUL - com curvatura positiva na parte inferior */}
             <path 
               d="M0,0 L1200,0 L1200,260 Q600,180 0,260 Z" 
               fill="url(#skyGradient)"
             />
             
-            {/* Efeitos metálicos difusos distribuídos pelo céu */}
+            {/* Efeitos met├ílicos difusos distribu├¡dos pelo c├®u */}
             <defs>
               <radialGradient id="glow1">
                 <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6"/>
@@ -590,7 +677,7 @@ export default function Purificacao() {
               </radialGradient>
             </defs>
             
-            {/* Círculos de luz metálica difusa espalhados */}
+            {/* C├¡rculos de luz met├ílica difusa espalhados */}
             <circle cx="150" cy="30" r="80" fill="url(#glow1)" opacity="0.4"/>
             <circle cx="280" cy="50" r="60" fill="url(#glow3)" opacity="0.35"/>
             <circle cx="420" cy="25" r="90" fill="url(#glow2)" opacity="0.45"/>
@@ -632,7 +719,7 @@ export default function Purificacao() {
               opacity="0.6"
             />
             
-            {/* ÁGUA - camadas animadas verde-água com curvatura acentuada */}
+            {/* ├üGUA - camadas animadas verde-├ígua com curvatura acentuada */}
             <path 
               className="animate-[wave_3s_ease-in-out_infinite]" 
               d="M0,340 Q600,280 1200,340 L1200,400 L0,400 Z" 
@@ -703,7 +790,7 @@ export default function Purificacao() {
           </svg>
         </div>
 
-        {/* CTA Content - posicionado no céu */}
+        {/* CTA Content - posicionado no c├®u */}
         <div className="container mx-auto px-4 relative z-10 pt-12 pb-8">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg" data-json-key="purificacao.cta.title">
@@ -724,7 +811,7 @@ export default function Purificacao() {
         <div className="relative z-10 pt-8 pb-4 text-white">
           <div className="container mx-auto px-4">
             <div className="border-t border-emerald-700/50 mt-32 pt-4 pb-1 text-center text-emerald-100/70 text-sm max-w-4xl mx-auto">
-              <p>© 2025 Igreja de Metatron. Todos os direitos reservados.</p>
+              <p>┬® 2025 Igreja de Metatron. Todos os direitos reservados.</p>
               <p className="mt-2">Marcas registradas protegidas por lei.</p>
             </div>
           </div>
