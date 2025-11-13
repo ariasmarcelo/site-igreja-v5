@@ -123,7 +123,15 @@ export function useLocaleTexts<T = Record<string, unknown>>(
         
         // STEP 1: Tentar buscar do Supabase via API (conteúdo da página + compartilhado)
         const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
-        const response = await fetch(`${apiUrl}/api/content-v2/${pageId.toLowerCase()}`);
+        
+        // Tentar content-v2 primeiro (produção), fallback para content (local)
+        let response = await fetch(`${apiUrl}/api/content-v2/${pageId.toLowerCase()}`);
+        
+        // Se content-v2 não existir (404), tentar API antiga
+        if (!response.ok && response.status === 404) {
+          console.log(`⚠️ content-v2 não encontrado, tentando API antiga...`);
+          response = await fetch(`${apiUrl}/api/content/${pageId.toLowerCase()}`);
+        }
         
         if (!response.ok) {
           throw new Error(`API returned status ${response.status}`);
