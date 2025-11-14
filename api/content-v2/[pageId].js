@@ -8,6 +8,9 @@ const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABAS
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
+// Lock para evitar criação simultânea de cache para mesma página
+const cacheLocks = new Map();
+
 // Helper: Carregar conteúdo do cache local (fallback JSONs)
 async function loadFromCache(pageId) {
   const fallbacksDir = path.join(process.cwd(), 'src', 'locales', 'pt-BR');
@@ -121,14 +124,19 @@ async function loadFromDBAndCache(pageId) {
   });
 
   // Criar cache em background (não bloquear resposta)
-  createCacheFiles(pageId, pageContent).catch(err => 
-    console.warn(`⚠️  Erro ao criar cache: ${err.message}`)
-  );
+  // LOCK: evitar múltiplas escritas simultâneas para mesma página
+  if (!cacheLocks.has(pageId)) {
+    const lockPromise = createCacheFiles(pageId, pageContent)
+      .catch(err => console.warn(`⚠️  Erro ao criar cache: ${err.message}`))
+      .finally(() => cacheLocks.delete(pageId));
+    
+    cacheLocks.set(pageId, lockPromise);
+  }
 
   return pageContent;
 }
 
-// Helper: Criar arquivos de cache
+// Helper: Criar arquivos de cache com controle de concorrência
 async function createCacheFiles(pageId, content) {
   const fallbacksDir = path.join(process.cwd(), 'src', 'locales', 'pt-BR');
   await fs.mkdir(fallbacksDir, { recursive: true });
@@ -155,12 +163,26 @@ async function createCacheFiles(pageId, content) {
   };
 
   const flat = flatten(content);
+  const entries = Object.entries(flat);
   
-  for (const [key, value] of Object.entries(flat)) {
-    const fileName = `${pageId}.${key}.json`;
-    const filePath = path.join(fallbacksDir, fileName);
-    await fs.writeFile(filePath, JSON.stringify(value, null, 2), 'utf-8');
+  // CORREÇÃO: Escrever em batches de 50 para evitar UV_HANDLE_CLOSING
+  const BATCH_SIZE = 50;
+  for (let i = 0; i < entries.length; i += BATCH_SIZE) {
+    const batch = entries.slice(i, i + BATCH_SIZE);
+    await Promise.all(
+      batch.map(async ([key, value]) => {
+        const fileName = `${pageId}.${key}.json`;
+        const filePath = path.join(fallbacksDir, fileName);
+        try {
+          await fs.writeFile(filePath, JSON.stringify(value, null, 2), 'utf-8');
+        } catch (err) {
+          console.warn(`⚠️  Falha ao escrever ${fileName}: ${err.message}`);
+        }
+      })
+    );
   }
+  
+  console.log(`📝 Cache criado: ${entries.length} arquivos para ${pageId}`);
 }
 
 module.exports = async (req, res) => {
