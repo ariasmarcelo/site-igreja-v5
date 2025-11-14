@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock, User } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useLocaleTexts } from '@/hooks/useLocaleTexts';
+import PageLoader from '@/components/PageLoader';
 
 interface ArtigosTexts {
   articles: { esoterica?: Array<Record<string, string>>; cientifica?: Array<Record<string, string>>; unificada?: Array<Record<string, string>> };
@@ -27,6 +28,12 @@ export default function ArtigoDetalhes() {
 
   const article = allArticles.find(a => a.slug === slug);
 
+  // Mostrar loading enquanto carrega
+  if (textsLoading) {
+    return <PageLoader />;
+  }
+
+  // Se terminou de carregar e não encontrou, redireciona
   if (!article) {
     return <Navigate to="/artigos" replace />;
   }

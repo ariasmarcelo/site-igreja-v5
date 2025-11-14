@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useLocaleTexts } from '@/hooks/useLocaleTexts';
+import PageLoader from '@/components/PageLoader';
 
 interface ArtigosTexts {
   articles: { [key: string]: Array<Record<string, string>> };
@@ -27,6 +28,11 @@ export default function ArtigosCategoria() {
   };
 
   const categoryName = categoryMap[categoria || ''];
+
+  // Mostrar loading enquanto carrega
+  if (textsLoading) {
+    return <PageLoader />;
+  }
 
   if (!categoryName) {
     return <Navigate to="/artigos" replace />;
