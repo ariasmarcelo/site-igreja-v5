@@ -1,5 +1,22 @@
 # Convenção de Nomenclatura para data-json-key
 
+> **ℹ️ CONTEXTO ATUALIZADO (2025)**
+> 
+> Este documento descreve as convenções de nomenclatura para `data-json-key` que **ainda são válidas e utilizadas**.
+> 
+> **Importante:** O fluxo de dados mudou:
+> - ❌ **Antigo:** JSONs locais eram fonte primária → Supabase
+> - ✅ **Atual:** Supabase é fonte única → JSONs locais são fallback auto-sincronizado
+> 
+> **As convenções de nomenclatura permanecem as mesmas**, mas entenda que:
+> 1. Dados são salvos no Supabase (`text_entries` table)
+> 2. JSONs locais são gerados automaticamente em background
+> 3. Sistema de fallback granular: um arquivo JSON por campo
+> 
+> Veja **docs/GRANULAR-FALLBACK-SYSTEM-V2.md** para detalhes do sistema atual.
+
+---
+
 ## Estrutura Geral
 
 ```

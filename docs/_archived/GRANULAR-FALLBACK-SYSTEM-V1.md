@@ -1,12 +1,16 @@
 # Sistema de Fallback Granular
 
+> **Status:** ✅ IMPLEMENTADO e TESTADO (Janeiro 2025)
+
 ## Visão Geral
 
-Sistema completo de carregamento de conteúdo com **cascata de fallbacks** em 3 níveis:
+Sistema completo de carregamento de conteúdo com **auto-sincronização** e **cascata de fallbacks** em 3 níveis:
 
-1. **Supabase (DB)** - Fonte primária
-2. **JSONs Granulares Locais** - Fallback automático
-3. **Fallback Estático** - Último recurso (opcional)
+1. **Supabase (DB)** - Fonte primária sempre consultada primeiro
+2. **JSONs Granulares Locais** - Backup/cache automático sincronizado em background
+3. **Props Defaults** - Último recurso (valores hardcoded nos componentes)
+
+**Diferencial:** Cada leitura do banco dispara sincronização automática em background, mantendo JSONs locais sempre atualizados sem intervenção manual.
 
 ---
 
@@ -14,51 +18,81 @@ Sistema completo de carregamento de conteúdo com **cascata de fallbacks** em 3 
 
 ### 1. Estrutura de Dados no Supabase
 
-**Tabela**: `page_contents`
+**Tabela**: `text_entries` (estrutura granular individual)
+
 ```sql
-CREATE TABLE page_contents (
-  page_id TEXT PRIMARY KEY,
+CREATE TABLE text_entries (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  page_id TEXT NOT NULL,
+  json_key TEXT UNIQUE NOT NULL,
   content JSONB NOT NULL,
-  updated_at TIMESTAMP
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Índices para performance
+CREATE INDEX idx_text_entries_page_id ON text_entries(page_id);
+CREATE UNIQUE INDEX idx_text_entries_json_key ON text_entries(json_key);
 ```
 
-**Exemplo de conteúdo**:
-```json
-{
-  "hero": {
-    "title": "Igreja de Metatron",
-    "subtitle": "Transformação Espiritual"
-  },
-  "cards": [
-    { "title": "Card 1", "text": "Descrição" },
-    { "title": "Card 2", "text": "Descrição" }
-  ]
-}
+**Exemplo de entradas**:
+```sql
+-- Conteúdo específico de página
+INSERT INTO text_entries (page_id, json_key, content) VALUES
+  ('Index', 'Index.hero.title', '{"pt-BR": "Igreja de Metatron"}'),
+  ('Index', 'Index.hero.subtitle', '{"pt-BR": "Transformação Espiritual"}'),
+  ('Index', 'Index.cards[0].title', '{"pt-BR": "Card 1"}');
+
+-- Conteúdo compartilhado (presente em todas as páginas)
+INSERT INTO text_entries (page_id, json_key, content) VALUES
+  ('__shared__', 'footer.copyright', '{"pt-BR": "© 2025 Igreja de Metatron"}'),
+  ('__shared__', 'footer.trademark', '{"pt-BR": "Todos os direitos reservados"}');
 ```
+
+**Conceitos Importantes:**
+- `page_id = "__shared__"` → Conteúdo compartilhado entre todas as páginas (ex: footer)
+- `json_key` com prefixo de página → Conteúdo específico (ex: `Index.hero.title`)
+- `json_key` sem prefixo → Conteúdo compartilhado (ex: `footer.copyright`)
+- `content` é JSONB multi-idioma (suporta `pt-BR`, `en-US`, etc.)
 
 ---
 
-### 2. JSONs Granulares (Auto-Sincronizados)
+### 2. JSONs Granulares (Auto-Sincronizados em Background)
 
 **Localização**: `src/locales/pt-BR/`
 
 **Padrão de Nome**: `{PageNamePascalCase}.{path.to.element}.json`
 
-**Exemplos**:
+**Estrutura:**
 ```
-Index.hero.title.json              → "Igreja de Metatron"
-Index.hero.subtitle.json           → "Transformação Espiritual"
-Index.cards[0].title.json          → "Card 1"
-Index.cards[0].text.json           → "Descrição"
-QuemSomos.mission.description.json → "Nossa missão..."
-NotFound.message.json              → "Página não encontrada"
+src/locales/pt-BR/
+  Index.hero.title.json                    → "Igreja de Metatron"
+  Index.hero.subtitle.json                 → "Transformação Espiritual"
+  Index.cards[0].title.json                → "Card 1"
+  Index.cards[0].text.json                 → "Descrição"
+  Purificacao.psicodelicos.title.json      → "Psicodélicos"
+  Purificacao.sections[0].content.json     → "Conteúdo da seção"
+  QuemSomos.mission.description.json       → "Nossa missão..."
+  Footer.copyright.json                    → "© 2025 Igreja de Metatron"
+  Footer.trademark.json                    → "Todos os direitos reservados"
 ```
 
-**Conversão de `pageId` para `PageName`**:
+**Conversão de `pageId` (kebab-case) para `PageName` (PascalCase)**:
 - `index` → `Index`
+- `purificacao` → `Purificacao`
 - `quem-somos` → `QuemSomos`
 - `not-found` → `NotFound`
+- `__shared__` → `Footer` (caso especial para conteúdo compartilhado)
+
+**Formato do Conteúdo:**
+Cada arquivo JSON contém apenas o valor final:
+```json
+"Igreja de Metatron"
+```
+Ou objeto/array se o campo for complexo:
+```json
+{ "text": "Conteúdo", "link": "/saiba-mais" }
+```
 
 ---
 

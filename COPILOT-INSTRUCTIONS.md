@@ -111,24 +111,155 @@ O que buscamos expressar e esclarecer no conteúdo do site é que compreendemos 
 - Node v24.11.0 (desenvolvimento local)
 - PowerShell (scripts de automação)
 
+---
+
+### Sistema de Fallback Granular JSON ###
+
+**Propósito:**
+Criar resiliência e cache automático mantendo três camadas de dados:
+1. **Supabase (fonte primária)** - Database cloud sempre consultado primeiro
+2. **JSONs granulares locais (fallback ativo)** - Um arquivo por campo em `src/locales/pt-BR/`
+3. **Props defaults (último recurso)** - Valores hardcoded nos componentes React
+
+**Fluxo de Auto-Sincronização:**
+
+```
+PASSO 1: Usuário acessa página (ex: /purificacao)
+    ↓
+PASSO 2: Hook useLocaleTexts executa
+    ↓
+PASSO 3: Chama GET /api/content-v2/Purificacao
+    ↓
+PASSO 4: API consulta Supabase
+         SELECT * FROM text_entries 
+         WHERE page_id IN ('Purificacao', '__shared__')
+    ↓
+PASSO 5: API reconstrói objeto JSON a partir das entradas granulares
+         Exemplo: { hero: { title: "Purificação", subtitle: "..." }, footer: { ... } }
+    ↓
+PASSO 6: API retorna objeto completo para frontend
+    ↓
+PASSO 7: Frontend renderiza página COM DADOS DO DB (estado loading → loaded)
+    ↓
+PASSO 8: Em BACKGROUND (async, não bloqueia UI):
+         useLocaleTexts chama POST /api/sync-fallbacks
+         Envia objeto completo da página
+    ↓
+PASSO 9: API sync-fallbacks percorre objeto recursivamente
+         Para cada campo cria/atualiza arquivo JSON individual
+    ↓
+PASSO 10: Comparação inteligente antes de escrever:
+          - Lê arquivo existente (se houver)
+          - Compara JSON.stringify(novo) === JSON.stringify(existente)
+          - Se diferente: atualiza arquivo
+          - Se igual: ignora (evita writes desnecessários)
+```
+
+**Nomenclatura de Arquivos:**
+
+| Tipo de Dado | Chave JSON | Nome do Arquivo |
+|--------------|------------|-----------------|
+| Campo simples | `hero.title` | `PageName.hero.title.json` |
+| Campo aninhado | `hero.cta.text` | `PageName.hero.cta.text.json` |
+| Item de array | `testimonials[0].name` | `PageName.testimonials[0].name.json` |
+| Objeto complexo | `sections[1].content.text` | `PageName.sections[1].content.text.json` |
+| Conteúdo compartilhado | `footer.copyright` | `Footer.copyright.json` |
+
+**Exemplo Prático:**
+
+Database retorna:
+```json
+{
+  "hero": {
+    "title": "Purificação",
+    "subtitle": "Ritual sagrado de limpeza"
+  },
+  "testimonials": [
+    { "name": "Maria", "text": "Transformador!" },
+    { "name": "João", "text": "Incrível!" }
+  ]
+}
+```
+
+API sync-fallbacks cria:
+```
+src/locales/pt-BR/
+  Purificacao.hero.title.json          → "Purificação"
+  Purificacao.hero.subtitle.json       → "Ritual sagrado de limpeza"
+  Purificacao.testimonials[0].name.json → "Maria"
+  Purificacao.testimonials[0].text.json → "Transformador!"
+  Purificacao.testimonials[1].name.json → "João"
+  Purificacao.testimonials[1].text.json → "Incrível!"
+```
+
+**Diretório de Fallbacks:**
+- Caminho absoluto: `c:\temp\Site_Igreja_Meta\site-igreja-v6\workspace\shadcn-ui\src\locales\pt-BR\`
+- Caminho relativo (workspace): `src/locales/pt-BR/`
+- Todos os arquivos commitados no git para histórico completo
+
+**Benefícios:**
+- ✅ **Cache automático** - Sem configuração, funciona out-of-the-box
+- ✅ **Desenvolvimento offline** - Se DB cair, carregar dos JSONs locais (fallback)
+- ✅ **Backup incremental** - Cada edição gera arquivo versionado no git
+- ✅ **Histórico granular** - Git diff mostra exatamente qual campo mudou
+- ✅ **Performance** - Só escreve quando conteúdo realmente muda (comparação inteligente)
+- ✅ **Debugging facilitado** - Ver valor de campo específico sem consultar DB
+- ✅ **Resiliência** - Três camadas de dados (DB → JSON → defaults)
+
+**Arquivos do Sistema:**
+- `/api/sync-fallbacks.js` - Serverless function que cria/atualiza JSONs
+- `src/hooks/useLocaleTexts.ts` - Hook que dispara sincronização após leitura DB
+- `src/locales/pt-BR/*.json` - Arquivos de fallback (gerados automaticamente)
+
+**Documentação Completa:**
+- 📄 `docs/GRANULAR-FALLBACK-SYSTEM-V2.md` - Documentação detalhada com fluxogramas, exemplos práticos, troubleshooting e changelog completo
+
+---
+
 ### Arquitetura do Sistema ###
 
-**Fluxo de Dados:**
-1. Frontend carrega página → hook `useLocaleTexts` busca dados via `/api/content-v2/[pageId]`
-2. API busca `text_entries` com `page_id IN (pageId, '__shared__')` do Supabase
-3. API reconstrói objeto JSON a partir das entradas granulares
-4. Frontend renderiza componente com dados
+**Fluxo de Dados com Fallback Granular:**
+1. **Frontend carrega página** → hook `useLocaleTexts` busca dados via `/api/content-v2/[pageId]`
+2. **API busca Supabase** → `text_entries` com `page_id IN (pageId, '__shared__')`
+3. **API reconstrói objeto** → a partir das entradas granulares
+4. **Frontend renderiza** → componente com dados do DB
+5. **Sincronização automática** → API `/api/sync-fallbacks` salva JSONs granulares locais em background
+
+**Sistema de Fallback Granular:**
+
+Cada campo editável do site é armazenado em três locais:
+1. **Supabase (fonte primária)** - Database PostgreSQL cloud
+2. **JSONs granulares locais (fallback)** - Um arquivo JSON por campo em `src/locales/pt-BR/`
+3. **Props defaults hardcoded (último recurso)** - Valores padrão nos componentes
+
+**Comportamento:**
+- Sempre tenta carregar do Supabase primeiro
+- Se DB retorna dados, dispara sincronização em background dos JSONs granulares
+- Sincronização compara valor do DB com JSON local: se igual ignora, se diferente atualiza
+- JSONs granulares servem como cache offline e backup
+- Estrutura: `PageName.caminho.do.campo.json` (ex: `Index.hero.title.json`)
+
+**Exemplo de Sincronização:**
+```
+Supabase retorna: { hero: { title: "Igreja de Metatron", subtitle: "..." } }
+↓
+API sync-fallbacks cria/atualiza:
+- src/locales/pt-BR/Index.hero.title.json → "Igreja de Metatron"
+- src/locales/pt-BR/Index.hero.subtitle.json → "..."
+```
 
 **Editor Visual:**
 - Modo de edição ativado via Admin Console
 - Detecta elementos com `data-json-key` atributo
 - Edições enviadas via `/api/save-visual-edits` (POST)
-- Salva individualmente cada campo modificado como entrada granular
+- Salva individualmente cada campo modificado como entrada granular no Supabase
+- Após salvar, sincronização automática atualiza JSONs locais correspondentes
 
 **Conteúdo Compartilhado:**
-- Footer presente em todas as páginas
-- Salvo com `page_id = "__shared__"` e `json_key = "footer.copyright"` / `"footer.trademark"`
-- API de leitura mescla automaticamente conteúdo compartilhado com conteúdo da página
+- Footer e outros elementos comuns presentes em todas as páginas
+- Salvo com `page_id = "__shared__"` e `json_key` sem prefixo de página (ex: `"footer.copyright"`)
+- API de leitura mescla automaticamente conteúdo compartilhado com conteúdo específico da página
+- JSONs de fallback seguem mesmo padrão: `Footer.copyright.json`, `Footer.trademark.json`
 
 ### Estrutura de Pastas Relevante ###
 
@@ -239,12 +370,19 @@ VITE_API_URL=
 - ✅ Sistema de navegação SPA com React Router
 
 **Últimas Mudanças:**
+- **Sistema de fallback granular implementado:** Auto-sincronização de DB para JSONs individuais por campo
+  - Cada leitura do DB dispara sincronização em background via `/api/sync-fallbacks`
+  - JSONs salvos em `src/locales/pt-BR/` com nomenclatura `PageName.field.subfield.json`
+  - Comparação inteligente: só atualiza se conteúdo mudou
+  - Suporta arrays com notação `[index]` no nome do arquivo
 - Implementado sistema de conteúdo compartilhado (`page_id = "__shared__"`)
+  - API detecta campos `footer.*` e roteia para `page_id = "__shared__"`
+  - API de leitura mescla conteúdo compartilhado com página específica
 - Footer agora é compartilhado entre todas as páginas e editável pelo editor visual
-- Removidos backups antigos e arquivos obsoletos
-- Adicionada sombra projetada no botão WhatsApp flutuante
+- Removidos backups antigos e arquivos obsoletos (13 arquivos, 7.737 linhas)
+- Adicionada sombra projetada no botão WhatsApp flutuante com animação dinâmica
 - Corrigida mensagem do botão WhatsApp na página Contato
-- Logs de debug reduzidos nas APIs
+- Logs de debug reduzidos nas APIs para melhor legibilidade
 
 **Problemas Conhecidos:**
 - Node v24.11.0 gera warning `UV_HANDLE_CLOSING` no Windows (bug do Node, não afeta funcionalidade)

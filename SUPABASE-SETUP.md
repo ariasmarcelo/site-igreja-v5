@@ -1,5 +1,19 @@
 # 🗄️ Configuração do Supabase
 
+> **⚠️ DOCUMENTO PARCIALMENTE DESATUALIZADO**
+> 
+> Este documento refere-se ao sistema antigo que usava tabelas `page_contents` e `page_styles`.
+> 
+> **Sistema atual (2025):** Usa tabela `text_entries` com estrutura granular (um registro por campo).
+> 
+> Para informações atualizadas sobre a arquitetura, veja:
+> - **COPILOT-INSTRUCTIONS.md** - Seção "Arquitetura do Sistema"
+> - **docs/GRANULAR-FALLBACK-SYSTEM-V2.md** - Sistema completo de dados
+> 
+> Manter este documento apenas como referência histórica para a estrutura SQL básica.
+
+---
+
 ## 1. Criar Conta no Supabase
 
 1. Acesse: https://supabase.com

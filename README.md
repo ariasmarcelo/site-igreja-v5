@@ -1,991 +1,355 @@
-# Site Igreja Metatron# Site Igreja Metatron# Site Igreja Meta# Site Igreja Meta
-
-
+# Site Igreja de Metatron
 
 > **Portal de Purificação e Ascensão Espiritual**
 
-
-
-Site institucional com React 19, TypeScript, Tailwind CSS 4 e Supabase.> **Portal de Purificação e Ascensão Espiritual**
-
-
+Site institucional desenvolvido com React 19, TypeScript 5.7, Tailwind CSS 4 e Supabase PostgreSQL.
 
 **🌐 Produção:** https://ariasmarcelo.github.io/site-igreja-v6/
 
+---
 
+## 🚀 Stack Tecnológica
 
----Site institucional desenvolvido com React, TypeScript, Tailwind CSS 4 e Supabase.Site institucional desenvolvido com React, TypeScript, Tailwind CSS 4 e Supabase.Site institucional desenvolvido com React, TypeScript, Tailwind CSS 4 e Supabase.
+### Frontend
+- **Vite 7.2** - Build tool e dev server ultrarrápido
+- **React 19** - Framework UI moderno
+- **TypeScript 5.7** - Tipagem estática forte
+- **Tailwind CSS 4** - Framework de estilização moderno
+- **Shadcn/UI** - Componentes acessíveis e customizáveis
+- **React Router 7** - Navegação SPA (basename: `/site-igreja-v6`)
+- **TipTap** - Editor de texto rico para blog
 
+### Backend
+- **Vercel Serverless Functions** - APIs em Node.js
+- **Supabase PostgreSQL** - Database cloud (única fonte da verdade)
+- **Sistema de Fallback Granular** - Auto-sincronização DB → JSONs locais
 
-
-## 🚀 Tecnologias
-
-
-
-**Frontend:****Última atualização:** 10 de novembro de 2025 - Refatoração arquitetural completa
-
-- Vite 7.2 - Build ultrarrápido
-
-- React 19 - UI framework
-
-- TypeScript 5.7 - Tipagem estática
-
-- Tailwind CSS 4 - Estilização moderna## 🌐 Demo## 🌐 Demo## 🌐 Demo
-
-- Shadcn/UI - Componentes acessíveis
-
-- React Router 7 - Navegação
-
-
-
-**Backend:****Site em Produção:** https://ariasmarcelo.github.io/site-igreja-v6/
-
-- Supabase - PostgreSQL (única fonte da verdade)
-
-- Express 4.21 - API local (porta 3001)
-
-
-
----## 🚀 Stack Tecnológica**Site:** https://ariasmarcelo.github.io/site-igreja-v6/**Site:** https://ariasmarcelo.github.io/site-igreja-v6/
-
-
-
-## 📦 Instalação
-
-
-
-```bash### Frontend
-
-# Clone
-
-git clone https://github.com/ariasmarcelo/site-igreja-v6.git- **Vite 7.2** - Build tool e dev server
-
-cd site-igreja-v6/workspace/shadcn-ui
-
-- **React 19** - Framework UI## 🚀 Tecnologias## 🚀 Tecnologias
-
-# Instale
-
-pnpm install- **TypeScript 5.7** - Tipagem estática
-
-
-
-# Configure ambiente- **Tailwind CSS 4** - Estilização moderna
-
-cp .env.example .env.local
-
-# Edite .env.local com credenciais Supabase- **Shadcn/UI** - Componentes acessíveis
-
-```
-
-- **Lucide React** - Ícones- **Vite 7.2** - Build tool ultrarrápido- **Vite 7.2** - Build tool ultrarrápido
-
-### Variáveis de Ambiente
-
-- **React Router 7** - Navegação (basename: `/site-igreja-v6`)
-
-Crie `.env.local`:
-
-- **Tiptap** - Editor de texto rico- **React 19** - Framework UI- **React 19** - Framework UI
-
-```env
-
-# Supabase (OBRIGATÓRIO)
-
-VITE_SUPABASE_URL=https://seu-projeto.supabase.co
-
-VITE_SUPABASE_ANON_KEY=sua_chave_anon### Backend- **TypeScript 5** - Tipagem estática- **TypeScript 5** - Tipagem estática
-
-
-
-# Backend (scripts admin)- **Express.js 4.21** - API Server (porta 3001)
-
-SUPABASE_SERVICE_KEY=sua_service_key
-
-- **Supabase** - Database PostgreSQL - **ÚNICA FONTE DA VERDADE**- **Tailwind CSS 4** - Estilização moderna- **Tailwind CSS 4** - Estilização moderna
-
-# API local
-
-VITE_API_URL=http://localhost:3001
-
-```
-
-## 📦 Instalação- **Shadcn/UI** - Componentes acessíveis- **Shadcn/UI** - Componentes acessíveis
+### Ferramentas
+- **pnpm** - Package manager rápido
+- **Node.js v24.11.0** - Runtime
+- **PowerShell** - Scripts de automação
 
 ---
 
+## 📦 Instalação
 
+```bash
+# Clone o repositório
+git clone https://github.com/ariasmarcelo/site-igreja-v6.git
+cd site-igreja-v6/workspace/shadcn-ui
+
+# Instale dependências
+pnpm install
+
+# Configure variáveis de ambiente
+cp .env.example .env.local
+# Edite .env.local com suas credenciais Supabase
+```
+
+### Variáveis de Ambiente
+
+Crie `.env.local` na raiz do projeto:
+
+```env
+# Supabase (OBRIGATÓRIO)
+VITE_SUPABASE_URL=https://seu-projeto.supabase.co
+VITE_SUPABASE_ANON_KEY=sua_chave_anon
+
+# Supabase Service Role (para scripts admin)
+SUPABASE_SERVICE_KEY=sua_service_key
+
+# Base URL (produção)
+VITE_BASE_URL=/site-igreja-v6/
+```
+
+**⚠️ Não commite `.env.local`!** Use `.env.example` como template.
+
+---
 
 ## 🛠️ Desenvolvimento Local
 
-### Servidor Único com Vercel Dev
+### Iniciar Servidor
 
-O projeto usa **Vercel Dev** que serve frontend E APIs em **uma única porta (8080)**, simulando o ambiente de produção localmente.
-
-### Iniciar Ambiente
+O projeto usa **Vercel Dev** que serve frontend E APIs em **uma única porta (3000)**, simulando o ambiente de produção.
 
 ```bash
 # Método 1: Script automatizado (recomendado)
-pnpm start
+.\start-dev.ps1
 
 # Método 2: Direto
 vercel dev
 ```
 
 **URLs disponíveis:**
-- 🌐 Frontend: http://localhost:8080/
-- 🔌 APIs: http://localhost:8080/api/*
-- 🛠️ Admin Console: http://localhost:8080/436F6E736F6C45
+- 🌐 Frontend: http://localhost:3000/
+- 🔌 APIs: http://localhost:3000/api/*
+- 🛠️ Admin Console: http://localhost:3000/436F6E736F6C45
 
-### Parar Ambiente
+### Parar Servidor
 
 ```bash
-# Parar servidor
-pnpm stop
-
-# Reiniciar servidor
-pnpm restart
+.\stop-dev.ps1
 ```
-
-### Verificar Status
-
-```powershell
-# Windows PowerShell
-netstat -ano | findstr :8080
-
-# Linux/Mac
-lsof -i :8080
-```
-
-
 
 ### Scripts Disponíveis
 
-### Variáveis de Ambiente Obrigatórias
-
 ```bash
+# Desenvolvimento
+pnpm dev              # Alias para vercel dev
 
-# Build```bash```bash
+# Build
+pnpm build            # Gera dist/ para produção
+pnpm preview          # Preview do build local
 
-pnpm build            # Gera dist/
-
-pnpm preview          # Preview do buildCrie um arquivo `.env.local` na raiz do projeto (`workspace/shadcn-ui/`):
-
-
-
-# Deploypnpm installpnpm install
-
+# Deploy
 pnpm deploy           # Deploy para GitHub Pages
 
-pnpm deploy:bg        # Deploy em background```env
-
-
-
-# Supabase# Supabase - Banco de dados (OBRIGATÓRIO)``````
-
-pnpm backup           # Backup completo
-
-pnpm list-backups     # Listar backupsVITE_SUPABASE_URL=https://seu-projeto.supabase.co
-
+# Manutenção
+pnpm backup           # Backup completo do Supabase
+pnpm list-backups     # Listar backups disponíveis
 pnpm restore:latest   # Restaurar último backup
+```
 
-VITE_SUPABASE_ANON_KEY=sua_chave_anon_aqui
-
-# Sincronização (JSON → Supabase)
-
-node scripts/update-purificacao-db.js
-
-node scripts/check-purificacao-db.js
-
-```# Supabase Service Role (para scripts admin)## 🛠️ Desenvolvimento## 🛠️ Desenvolvimento
-
-
-
----SUPABASE_SERVICE_KEY=sua_service_key_aqui
-
-
+---
 
 ## 🏗️ Arquitetura
 
+### Fonte Única: Supabase PostgreSQL
 
+Todo conteúdo do site é carregado **exclusivamente do Supabase**. Estrutura granular:
 
-### Fonte Única: Supabase# API Backend (desenvolvimento)
-
-
-
-Todo conteúdo do site é carregado **exclusivamente do Supabase**:VITE_API_URL=http://localhost:3001```bash```bash
-
-
-
-```typescript
-
-// Hook refatorado (10/11/2025)
-
-const { texts, loading, error } = useLocaleTexts<PageTexts>('index');# Base URL (produção - já configurado)# Servidor de desenvolvimento (frontend)# Servidor de desenvolvimento (frontend)
-
-
-
-// Uso com PageLoaderVITE_BASE_URL=/site-igreja-v6/
-
-<PageLoader loading={loading} error={error}>
-
-  {!texts ? null : (```pnpm devpnpm dev
-
-    /* Conteúdo da página */
-
-  )}
-
-</PageLoader>
-
-```## 🛠️ Desenvolvimento# Acesse: http://localhost:8080# Acesse: http://localhost:8080
-
-
-
-### Arquivos JSON Locais
-
-
-
-**Propósito:** APENAS tipagem TypeScript### Iniciar Servidores
-
-
-
-```typescript
-
-import fallbackTexts from '@/locales/pt-BR/Index.json';
-
-type IndexTexts = typeof fallbackTexts;  // ✅ Extração de tipos⚠️ **IMPORTANTE:** O projeto requer DOIS servidores rodando simultaneamente:# Backend API (opcional)# Backend API (opcional)
-
+**Tabela:** `text_entries`
+```sql
+CREATE TABLE text_entries (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  page_id TEXT NOT NULL,           -- 'Index', 'Purificacao', ou '__shared__'
+  json_key TEXT UNIQUE NOT NULL,   -- 'Index.hero.title' ou 'footer.copyright'
+  content JSONB NOT NULL,          -- {"pt-BR": "texto"}
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
 ```
 
+**Conceitos importantes:**
+- `page_id = "__shared__"` → Conteúdo compartilhado (ex: footer em todas as páginas)
+- `json_key` com prefixo → Conteúdo específico da página (ex: `Index.hero.title`)
+- `json_key` sem prefixo → Conteúdo compartilhado (ex: `footer.copyright`)
 
+### Sistema de Fallback Granular
 
-**⚠️ NÃO são carregados em runtime!** Site busca 100% do Supabase.
+Sistema de três camadas com **auto-sincronização transparente**:
 
-```bashpnpm serverpnpm server
+1. **Supabase** - Fonte primária sempre consultada primeiro
+2. **JSONs Granulares** - Backup/cache em `src/locales/pt-BR/` (um arquivo por campo)
+3. **Props Defaults** - Valores hardcoded nos componentes (último recurso)
+
+**Fluxo:**
+```
+Usuário acessa página
+    ↓
+API busca Supabase (text_entries)
+    ↓
+Frontend renderiza com dados do DB
+    ↓
+BACKGROUND: POST /api/sync-fallbacks
+    ↓
+Cria/atualiza JSONs individuais
+    (ex: Index.hero.title.json)
+```
+
+**Benefícios:**
+- ✅ Cache automático zero-config
+- ✅ Desenvolvimento offline possível
+- ✅ Histórico granular no git (diff por campo)
+- ✅ Performance (comparação inteligente, só escreve se mudou)
+
+**Documentação completa:** [docs/GRANULAR-FALLBACK-SYSTEM-V2.md](./docs/GRANULAR-FALLBACK-SYSTEM-V2.md)
+
+### APIs Serverless
+
+**Localização:** `/api` folder
+
+| API | Método | Propósito |
+|-----|--------|-----------|
+| `/api/content-v2/[pageId]` | GET | Buscar conteúdo de página + shared |
+| `/api/save-visual-edits` | POST | Salvar edições do editor visual |
+| `/api/sync-fallbacks` | POST | Sincronizar JSONs granulares |
 
 ### Estrutura de Pastas
 
-# Terminal 1: Frontend (Vite dev server)
-
 ```
-
-src/pnpm dev# Acesse: http://localhost:3001# Acesse: http://localhost:3001
-
+src/
 ├── components/
-
-│   ├── ui/              # Shadcn/UI# Acesse: http://localhost:8080
-
+│   ├── ui/              # Shadcn/UI components
 │   ├── PageLoader.tsx   # Loading/error states
+│   ├── SharedFooter.tsx # Footer compartilhado
+│   └── ...
+├── pages/               # 10 páginas React
+│   ├── Index.tsx
+│   ├── Purificacao.tsx
+│   ├── QuemSomos.tsx
+│   └── ...
+├── hooks/
+│   ├── useLocaleTexts.ts   # Hook para carregar conteúdo
+│   └── ...
+├── lib/
+│   └── supabase.ts      # Cliente Supabase
+└── locales/pt-BR/       # JSONs granulares (auto-gerados)
+    ├── Index.hero.title.json
+    ├── Purificacao.psicodelicos.title.json
+    └── ...
 
-│   └── [outros]``````
-
-├── pages/               # 8 páginas React
-
-├── hooks/# Terminal 2: Backend (Express API - OBRIGATÓRIO para Admin Console)
-
-│   ├── useLocaleTexts.ts   # Busca Supabase
-
-│   └── usePageStyles.tspnpm server
-
-├── lib/supabase.ts
-
-└── locales/pt-BR/       # APENAS tipagem# Acesse: http://localhost:3001
-
-    ├── backups/         # 25 backups
-
-    └── [8 JSONs ativos]```## 🏗️ Build## 🏗️ Build
-
-
-
-server/
-
-├── express-server.js    # API porta 3001
-
-└── supabase-routes.js### Admin Console
-
-
+api/
+├── content-v2/[pageId].js    # GET conteúdo
+├── save-visual-edits.js      # POST edições
+└── sync-fallbacks.js         # POST fallbacks
 
 scripts/
-
+├── start-dev.ps1        # Iniciar servidor
+├── stop-dev.ps1         # Parar servidor
 ├── deploy.ps1           # Deploy GitHub Pages
-
-├── backup-supabase.js   # Backup/restorePara editar conteúdo visualmente:```bash```bash
-
-└── [outros]
-
+└── ...
 ```
 
-
-
----1. **Inicie AMBOS os servidores** (frontend + backend)pnpm buildpnpm build
-
-
-
-## 🌐 Deploy2. Acesse: http://localhost:8080/436F6E736F6C45
-
-
-
-### GitHub Pages (Automático)3. Edite o conteúdo no editor visual``````
-
-
-
-**Síncrono (bloqueia terminal):**4. Salve (atualiza diretamente no Supabase)
-
-```bash
-
-pnpm deploy "feat: nova funcionalidade"
-
-```
-
-### Scripts Disponíveis
-
-**Background (libera terminal):**
-
-```bashOs arquivos de produção serão gerados na pasta `dist/`Os arquivos de produção serão gerados na pasta `dist/`
-
-pnpm deploy:bg "fix: correção"
-
-``````bash
-
-
-
-**Processo:**# Desenvolvimento
-
-1. Build (`pnpm build`)
-
-2. Copia `dist/` → `build/v2/`pnpm dev              # Frontend (Vite) - porta 8080
-
-3. Commit + push para `main`
-
-4. GitHub Actions publica automaticamente (~2-5min)pnpm server           # Backend (Express) - porta 3001## 🌐 Deploy## 🌐 Deploy
-
-
-
-**⚠️ Após deploy:** CTRL+F5 para limpar cache do navegador!
-
-
-
-### Vercel (Backend API - Opcional)# Build
-
-
-
-Veja instruções em: [DEPLOY-VERCEL.md](./DEPLOY-VERCEL.md)pnpm build            # Gera build de produção (pasta dist/)
-
-
-
----pnpm preview          # Preview do build local### GitHub Pages (Automático)### GitHub Pages (Recomendado)
-
-
+---
 
 ## 🎨 Admin Console
 
+**URL:** http://localhost:3000/436F6E736F6C45
 
+Editor visual de conteúdo que permite editar todos os textos do site diretamente no navegador.
 
-**URL:** http://localhost:8080/436F6E736F6C45# Deploy
+**Como usar:**
+1. Inicie servidor: `.\start-dev.ps1`
+2. Acesse Admin Console
+3. Ative modo de edição
+4. Clique nos textos para editar
+5. Salve (atualiza Supabase automaticamente)
+6. Página recarrega com novo conteúdo
 
-
-
-**Requisitos:**pnpm run deploy       # Build + Deploy para GitHub Pages
-
-- ✅ Frontend rodando (`pnpm dev`)
-
-- ✅ Backend rodando (`pnpm server`)**Opção 1: Deploy em background (recomendado)**Veja instruções completas no arquivo [DEPLOY.md](./DEPLOY.md)
-
-
-
-**Uso:**# Backup/Restore Supabase
-
-1. Selecione página (ex: "index")
-
-2. Edite conteúdo no editor visualpnpm backup           # Backup completo do Supabase```bash
-
-3. Clique "Salvar" (atualiza Supabase)
-
-4. Página recarrega com novos dadospnpm list-backups     # Listar backups disponíveis
-
-
-
----pnpm restore:latest   # Restaurar último backuppnpm deploy:bg
-
-
-
-## 🔧 Troubleshooting
-
-
-
-| Problema | Solução |# Sincronização (JSON local → Supabase)```
-
-|----------|---------|
-
-| Conteúdo antigo após deploy | **CTRL+F5** (hard refresh) |node scripts/update-purificacao-db.js
-
-| "API não está rodando" | `pnpm server` (porta 3001) |
-
-| Página em branco | Verificar `basename` = `base` URL |node scripts/check-purificacao-db.jsDeploy roda em segundo plano, você pode continuar trabalhando.```bash**Resumo:**
-
-| JSON editado não aparece | Sincronizar: `node scripts/update-*-db.js` |
-
-| Servidor travado | `taskkill /PID [número] /F` + reiniciar |```
-
-| Porta ocupada | `netstat -ano | findstr :8080` → matar PID |
-
-
-
-**Detalhes completos:** Ver [TECHNICAL-NOTES.md](./TECHNICAL-NOTES.md)
-
-## 🏗️ Arquitetura de Dados (Atualizada 10/11/2025)
+**Requisitos:**
+- ✅ Servidor rodando (`vercel dev`)
+- ✅ Variáveis de ambiente configuradas
+- ✅ Conexão com Supabase
 
 ---
-
-**Opção 2: Deploy síncrono**pnpm build1. Crie um repositório no GitHub
-
-## 📚 Documentação
-
-### Fonte Única da Verdade: Supabase
-
-- **README.md** (este) - Setup e comandos
-
-- **COPILOT-INSTRUCTIONS.md** - AI memory```bash
-
-- **TECHNICAL-NOTES.md** - Soluções técnicas, histórico
-
-- **DEPLOY-VERCEL.md** - Deploy VercelO site carrega TODO o conteúdo **exclusivamente do Supabase**:
-
-- **SUPABASE-SETUP.md** - Configuração Supabase
-
-pnpm deploy```2. Configure o Git e faça push
-
----
-
-```typescript
-
-## 🌟 Conceito Espiritual
-
-// Hook useLocaleTexts (refatorado)```
-
-**Igreja de Metatron** - Portal de transformação espiritual através de 3 fases:
-
-const { texts, loading, error } = useLocaleTexts<PageTexts>('index', fallbackTexts);
-
-1. **Purificação** - Limpeza energética, traumas, padrões limitantes
-
-2. **Aprofundamento** - Intensificação, expansão de consciênciaAguarda conclusão do deploy e mostra progresso no terminal.3. Execute `pnpm run deploy`
-
-3. **Iniciação Final** - Ativação do Antahkarana (ponte de luz)
-
-// Retorna:
-
-**Antahkarana (अन्तःकरण):**  
-
-Canal espiritual entre personalidade e Eu Superior. Construído através da meditação e evolução consciente.// - texts: conteúdo do Supabase (ou null se falhar)
-
-
-
----// - loading: true durante fetch
-
-
-
-## 📝 Variáveis de Ambiente (.env.local)// - error: mensagem de erro (se houver)**Deploy manual:**Os arquivos de produção serão gerados na pasta `dist/`4. Ative GitHub Pages nas configurações do repositório
-
-
-
-```env```
-
-# Supabase
-
-VITE_SUPABASE_URL=https://[projeto].supabase.co```bash
-
-VITE_SUPABASE_ANON_KEY=eyJhbGci...
-
-SUPABASE_SERVICE_KEY=eyJhbGci...### Arquivos JSON Locais
-
-
-
-# APIpnpm build
-
-VITE_API_URL=http://localhost:3001
-
-**Função:** APENAS tipagem TypeScript
-
-# Produção
-
-VITE_BASE_URL=/site-igreja-v6/git add .
-
-```
-
-```typescript
-
-**⚠️ Não commitar `.env.local`!** Use `.env.example` como template.
-
-// src/locales/pt-BR/Index.json (exemplo)git commit -m "feat: nova funcionalidade"## 🌐 Deploy## 📁 Estrutura
-
----
-
-import fallbackTexts from '@/locales/pt-BR/Index.json';
-
-## 🤝 Contribuindo
-
-type IndexTexts = typeof fallbackTexts;  // ✅ Extração de tiposgit push
-
-1. Fork do projeto
-
-2. Crie branch: `git checkout -b feature/nova-funcionalidade````
-
-3. Commit: `git commit -m 'feat: adicionar funcionalidade'`
-
-4. Push: `git push origin feature/nova-funcionalidade````
-
-5. Abra Pull Request
-
-**NÃO são carregados em runtime** - site busca 100% do Supabase!
-
-**Padrão de commits:**
-
-- `feat:` nova funcionalidade
-
-- `fix:` correção de bug
-
-- `docs:` atualização de documentação### Estrutura de Pastas
-
-- `refactor:` refatoração de código
-
-- `chore:` tarefas de manutençãoO GitHub Actions faz deploy automaticamente após o push!### GitHub Pages (Frontend)```
-
-
-
----```
-
-
-
-## 📄 Licençasrc/
-
-
-
-Este projeto é proprietário. Todos os direitos reservados.├── components/
-
-
-
----│   ├── ui/              # Componentes Shadcn/UIVeja instruções completas em [DEPLOY.md](./DEPLOY.md)src/
-
-
-
-## 🔗 Links│   ├── PageLoader.tsx   # Loading/error states (novo)
-
-
-
-- **Site:** https://ariasmarcelo.github.io/site-igreja-v6/│   ├── BlogEditor.tsx
-
-- **Repositório:** https://github.com/ariasmarcelo/site-igreja-v6
-
-- **Supabase:** Configurado via `.env.local`│   ├── TiptapEditor.tsx
-
-
-
----│   └── ...### Vercel (Backend API - Opcional)Veja instruções completas em: [DEPLOY_GITHUB_PAGES.md](./DEPLOY_GITHUB_PAGES.md)├── components/     # Componentes React
-
-
-
-**Última atualização:** 10 de novembro de 2025├── pages/               # Páginas da aplicação
-
-
-│   ├── Index.tsx
-
-│   ├── Purificacao.tsx
-
-│   ├── Contato.tsx```bash│   ├── ui/        # Componentes shadcn/ui
-
-│   └── ...
-
-├── hooks/               # Custom hooksvercel --prod
-
-│   ├── useLocaleTexts.ts   # Hook de conteúdo (refatorado)
-
-│   ├── usePageStyles.ts```**Resumo:**│   └── ...
-
-│   └── ...
-
-├── lib/                 # Utilitários
-
-│   └── supabase.ts
-
-├── locales/pt-BR/       # JSON para tipagem apenas## 📁 Estrutura```bash├── pages/         # Páginas da aplicação
-
-│   ├── backups/         # 25 backups antigos (organizados)
-
-│   ├── Index.json
-
-│   ├── Purificacao.json
-
-│   └── ...```git add .├── locales/       # Arquivos de tradução
-
-└── config/
-
-    └── api.tssrc/
-
-
-
-server/├── components/        # Componentes Reactgit commit -m "Deploy"├── hooks/         # React hooks customizados
-
-├── express-server.js    # API Express
-
-└── supabase-routes.js   # Rotas Supabase│   ├── ui/           # Componentes Shadcn/UI
-
-
-
-scripts/│   ├── BlogEditor.tsxgit push└── lib/           # Utilitários
-
-├── deploy.ps1           # Deploy GitHub Pages
-
-├── backup-supabase.js   # Backup do DB│   ├── TestimonialsCarousel.tsx
-
-├── update-purificacao-db.js  # Sync JSON → Supabase
-
-└── ...│   └── ...``````
-
-```
-
-├── pages/            # Páginas da aplicação
 
 ## 🌐 Deploy
 
-│   ├── Index.tsx
+### GitHub Pages (Automático)
 
-### GitHub Pages (Frontend) - Automático
+O projeto possui GitHub Actions que faz deploy automaticamente após push para `main`.
 
-│   ├── QuemSomos.tsx
-
+**Deploy manual:**
 ```bash
+# Build + commit + push
+pnpm deploy
 
-# Deploy completo (build + push)│   ├── Tratamentos.tsxO GitHub Actions faz deploy automaticamente!## 🎨 Personalização
-
-pnpm run deploy
-
-│   └── ...
-
-# Ou manualmente:
-
-pnpm build├── hooks/            # Custom hooks
-
+# Ou passo a passo:
+pnpm build
 git add dist/
-
-git commit -m "Deploy: nova versão"│   ├── useEditableContent.ts
-
+git commit -m "Deploy: nova versão"
 git push origin main
-
-```│   ├── useJsonMapping.ts### Vercel (Backend API)- Estilos globais: `src/index.css`
-
-
-
-O GitHub Actions publica automaticamente após o push!│   └── ...
-
-
-
-**URL de Produção:** https://ariasmarcelo.github.io/site-igreja-v6/├── lib/              # Utilitários- Configuração Tailwind: `tailwind.config.ts`
-
-
-
-### Vercel (Backend API) - Opcional│   ├── supabase.ts
-
-
-
-Veja instruções em [DEPLOY-VERCEL.md](./DEPLOY-VERCEL.md)│   └── utils.ts```bash- Temas: Componentes shadcn/ui são totalmente customizáveisshell
-
-
-
-## 🔧 Modificar Conteúdo├── locales/          # Traduções (i18n)
-
-
-
-### Opção 1: Admin Console (Recomendado)│   └── pt-BR/pnpm deploy:vercelpnpm add some_new_dependency
-
-
-
-1. Inicie ambos os servidores: `pnpm dev` + `pnpm server`├── config/           # Configurações
-
-2. Acesse: http://localhost:8080/436F6E736F6C45
-
-3. Edite visualmente│   └── api.ts```
-
-4. Salve (atualiza Supabase diretamente)
-
-└── styles/           # Estilos CSS
-
-### Opção 2: Scripts de Sincronização
-
-**Start Preview**
-
-Para atualizações em massa ou mudanças estruturais:
-
-server/
-
-```bash
-
-# 1. Editar JSON local├── express-server.js      # Servidor Express## 📁 Estrutura
-
-# Edite: src/locales/pt-BR/Purificacao.json
-
-└── supabase-routes.js     # Rotas API Supabase
-
-# 2. Sincronizar com Supabase
-
-node scripts/update-purificacao-db.js```shell
-
-
-
-# 3. Verificarscripts/
-
-node scripts/check-purificacao-db.js
-
-```├── deploy.ps1             # Deploy síncrono (PowerShell)```pnpm run dev
-
-
-
-## 🎨 Personalização├── deploy-background.ps1  # Deploy em background (PowerShell)
-
-
-
-- **Estilos globais:** `src/index.css`├── ids.js                 # Gerenciamento de IDs únicossrc/```
-
-- **Tailwind config:** `tailwind.config.ts`
-
-- **Cores do tema:** Definidas inline nos componentes (padrão dourado/esmeralda)├── fix-all-keys.cjs       # Correção de data-json-key
-
-- **Roteamento:** `src/Navigation.tsx` (basename: `/site-igreja-v6`)
-
-└── ...├── components/      # Componentes React
-
-## 📚 Documentação Adicional
-
-
-
-- **[COPILOT-INSTRUCTIONS.md](./COPILOT-INSTRUCTIONS.md)** - Instruções completas para IA (LEIA PRIMEIRO!)
-
-- **[SOLUTION_SUMMARY.md](./SOLUTION_SUMMARY.md)** - Resumo da solução técnicasupabase/│   ├── ui/         # Componentes Shadcn**To build**
-
-- **[SUPABASE_INTEGRATION.md](./SUPABASE_INTEGRATION.md)** - Integração com Supabase
-
-- **[DEPLOY-VERCEL.md](./DEPLOY-VERCEL.md)** - Deploy do backend└── migrations/            # Migrações SQL
-
-- **[DATA_JSON_KEY_NAMING_CONVENTION.md](./DATA_JSON_KEY_NAMING_CONVENTION.md)** - Convenções
-
-    └── create_version_history.sql│   └── ...
-
-### Scripts
-
-- **[scripts/README.md](./scripts/README.md)** - Documentação dos scripts
-
-- **[scripts/README-BACKUP.md](./scripts/README-BACKUP.md)** - Sistema de backup
-
-- **[scripts/README-DEPLOY.md](./scripts/README-DEPLOY.md)** - Deploy detalhadologs/├── pages/          # Páginas da aplicação```shell
-
-
-
-## ⚙️ Troubleshooting└── deploy-*.log          # Logs de deploy (últimos 10)
-
-
-
-### Página em branco após deploy```├── hooks/          # Custom hookspnpm run build
-
-**Solução:** CTRL+F5 (hard refresh) para limpar cache do navegador
-
-
-
-### "API não está rodando" no Admin Console
-
-**Solução:** Execute `pnpm server` para iniciar o backend Express## ✨ Recursos├── lib/            # Utilitários```
-
-
-
-### JSON local modificado mas não aparece no site
-
-**Solução:** JSON local NÃO é carregado! Execute `node scripts/update-purificacao-db.js` para sincronizar com Supabase
-
-- ✅ **Editor visual de conteúdo** - Edite textos diretamente no site├── locales/        # Traduções (i18n)
-
-### Erro 'texts' is possibly 'null'
-
-**Solução:** Envolver conteúdo com `<PageLoader>` component:- ✅ **Sistema de versionamento** - 5 versões mantidas automaticamente├── config/         # Configurações
-
-```tsx
-
-<PageLoader loading={loading} error={error}>- ✅ **Blog integrado** - Sistema completo de artigos└── styles/         # Estilos CSS
-
-  {!texts ? null : (
-
-    // seu conteúdo aqui- ✅ **Modo escuro** - Tema claro/escuro automático
-
-  )}
-
-</PageLoader>- ✅ **Responsivo** - Mobile-first designserver/
-
 ```
 
-- ✅ **SEO otimizado** - Meta tags e robots.txt├── express-server.js      # Servidor Express
+**⚠️ Após deploy:** CTRL+F5 (hard refresh) para limpar cache do navegador!
+
+**URL de Produção:** https://ariasmarcelo.github.io/site-igreja-v6/
+
+### Vercel (Backend API - Opcional)
+
+Veja instruções detalhadas em: [DEPLOY-VERCEL.md](./DEPLOY-VERCEL.md)
+
+```bash
+vercel --prod
+```
+
+---
+
+## 🔧 Troubleshooting
+
+| Problema | Solução |
+|----------|---------|
+| Conteúdo antigo após deploy | **CTRL+F5** (hard refresh) |
+| Página em branco | Verificar `basename` no Router = `/site-igreja-v6` |
+| JSONs não sincronizam | Verificar logs do console, API `/api/sync-fallbacks` |
+| Servidor não inicia | Verificar porta 3000 livre: `netstat -ano \| findstr :3000` |
+| Warnings `UV_HANDLE_CLOSING` | **Ignorar** (bug conhecido do Node v24 no Windows) |
+
+---
+
+## 📚 Documentação
+
+- **[COPILOT-INSTRUCTIONS.md](./COPILOT-INSTRUCTIONS.md)** - Instruções completas do projeto (LEIA PRIMEIRO!)
+- **[docs/GRANULAR-FALLBACK-SYSTEM-V2.md](./docs/GRANULAR-FALLBACK-SYSTEM-V2.md)** - Sistema de fallback detalhado
+- **[DEPLOY-VERCEL.md](./DEPLOY-VERCEL.md)** - Deploy do backend na Vercel
+- **[SUPABASE-SETUP.md](./SUPABASE-SETUP.md)** - Configuração do Supabase
+- **[DATA_JSON_KEY_NAMING_CONVENTION.md](./DATA_JSON_KEY_NAMING_CONVENTION.md)** - Convenções
+
+---
+
+## 🌟 Recursos
+
+- ✅ **Editor visual de conteúdo** - Edite textos diretamente no site
+- ✅ **Sistema de fallback granular** - Auto-sincronização DB → JSONs
+- ✅ **Conteúdo compartilhado** - Footer e elementos comuns (sistema `__shared__`)
+- ✅ **Blog integrado** - Sistema completo de artigos com TipTap
+- ✅ **Responsivo** - Design mobile-first
+- ✅ **SEO otimizado** - Meta tags e robots.txt
+- ✅ **Deploy automático** - CI/CD com GitHub Actions
+- ✅ **TypeScript strict** - Tipagem forte em todo o projeto
+- ✅ **Zero inline styles** - 100% CSS externo (Tailwind)
+
+---
+
+## 🌟 Conceito Espiritual
+
+**Igreja de Metatron** - Portal de transformação espiritual através de 3 fases:
+
+1. **Purificação** - Limpeza energética, traumas, padrões limitantes
+2. **Aprofundamento** - Intensificação, expansão de consciência
+3. **Iniciação Final** - Ativação do Antahkarana (ponte de luz)
+
+**Antahkarana (अन्तःकरण):**  
+Canal espiritual entre personalidade e Eu Superior. Construído através da meditação, purificação e evolução consciente. Regulação do sistema nervoso autônomo é pré-requisito para avanço espiritual verdadeiro.
+
+---
 
 ## 🤝 Contribuindo
 
-- ✅ **PWA ready** - Funciona offline└── supabase-routes.js     # Rotas API
-
 1. Fork o projeto
-
-2. Crie uma branch: `git checkout -b feature/nova-funcionalidade`- ✅ **Deploy automático** - CI/CD com GitHub Actions
-
-3. Commit: `git commit -m 'feat: adiciona nova funcionalidade'`
-
-4. Push: `git push origin feature/nova-funcionalidade`scripts/
-
-5. Abra um Pull Request
-
-## 🔧 Configuração├── deploy.js              # Script de deploy
-
-## 📝 Convenções de Commit
-
-└── ...
-
-- `feat:` - Nova funcionalidade
-
-- `fix:` - Correção de bug### Variáveis de Ambiente
-
-- `docs:` - Documentação
-
-- `refactor:` - Refatoraçãosupabase/
-
-- `style:` - Formatação
-
-- `chore:` - ManutençãoCrie um arquivo `.env.local`:└── migrations/            # Migrações SQL
-
-
-
-## 📄 Licença```
-
-
-
-© 2025 Igreja de Metatron. Todos os direitos reservados.```env
-
-
-
----VITE_SUPABASE_URL=https://seu-projeto.supabase.co## ✨ Recursos
-
-
-
-**Desenvolvido com ❤️ para a Igreja de Metatron 🕉️**VITE_SUPABASE_ANON_KEY=sua-chave-anon
-
-
-
-**Repositório:** https://github.com/ariasmarcelo/site-igreja-v6SUPABASE_SERVICE_KEY=sua-service-key- ✅ Editor visual de conteúdo
-
-
-```- ✅ Sistema de versionamento (5 versões)
-
-- ✅ Blog integrado
-
-### Supabase (Opcional)- ✅ Modo escuro
-
-- ✅ Responsivo
-
-1. Execute as migrações SQL em `supabase/migrations/`- ✅ SEO otimizado
-
-2. Configure as variáveis de ambiente- ✅ PWA ready
-
-3. Inicie o servidor: `pnpm server`
-
-## 🔧 Configuração
-
-## 📜 Scripts Disponíveis
-
-### Variáveis de Ambiente
-
-```bash
-
-# DesenvolvimentoCrie um arquivo `.env.local`:
-
-pnpm dev              # Inicia servidor de desenvolvimento
-
-pnpm build            # Build de produção```env
-
-pnpm preview          # Preview do buildVITE_SUPABASE_URL=https://seu-projeto.supabase.co
-
-VITE_SUPABASE_ANON_KEY=sua-chave-anon
-
-# DeploySUPABASE_SERVICE_KEY=sua-service-key
-
-pnpm deploy           # Deploy síncrono```
-
-pnpm deploy:bg        # Deploy em background
-
-### Supabase
-
-# Backend
-
-pnpm server           # Inicia servidor Express/Supabase1. Execute as migrações SQL em `supabase/migrations/`
-
-2. Configure as variáveis de ambiente
-
-# Manutenção3. Inicie o servidor: `pnpm server`
-
-pnpm assign-ids       # Verifica IDs únicos
-
-pnpm assign-ids:fix   # Corrige IDs automaticamente## 📚 Documentação
-
-pnpm fix-keys         # Corrige data-json-key
-
-pnpm clean-backups    # Remove backups antigos- [Deploy GitHub Pages](./DEPLOY_GITHUB_PAGES.md) - Guia completo de deploy
-
-- [Sistema de Versionamento](./SISTEMA_VERSIONAMENTO.md) - Backup e restauração
-
-# Qualidade- [Integração Supabase](./SUPABASE_INTEGRATION.md) - Configuração do backend
-
-pnpm lint             # ESLint
-
-```## 🤝 Contribuindo
-
-
-
-## 📚 Documentação1. Fork o projeto
-
-2. Crie uma branch: `git checkout -b feature/nova-funcionalidade`
-
-- **[DEPLOY.md](./DEPLOY.md)** - Guia completo de deploy no GitHub Pages3. Commit: `git commit -m 'Adiciona nova funcionalidade'`
-
-- **[DEPLOY_GITHUB_PAGES.md](./DEPLOY_GITHUB_PAGES.md)** - Configuração detalhada do GitHub Pages4. Push: `git push origin feature/nova-funcionalidade`
-
-- **[DEPLOY-VERCEL.md](./DEPLOY-VERCEL.md)** - Deploy do backend na Vercel5. Abra um Pull Request
-
-- **[scripts/README.md](./scripts/README.md)** - Documentação dos scripts de automação
-
-- **[scripts/README-IDS.md](./scripts/README-IDS.md)** - Sistema de IDs únicos (ids.js)## 📄 Licença
-
-- **[SISTEMA_VERSIONAMENTO.md](./SISTEMA_VERSIONAMENTO.md)** - Sistema de backup e restauração
-
-- **[SUPABASE_INTEGRATION.md](./SUPABASE_INTEGRATION.md)** - Integração com SupabaseEste projeto está sob a licença MIT.
-
-- **[SUPABASE-SETUP.md](./SUPABASE-SETUP.md)** - Configuração do Supabase
-
-- **[DATA_JSON_KEY_NAMING_CONVENTION.md](./DATA_JSON_KEY_NAMING_CONVENTION.md)** - Convenções de nomenclatura---
-
-
-
-## 🤝 Contribuindo⭐ Se este projeto te ajudou, considere dar uma estrela!
-
-
-1. Fork o projeto
-2. Crie uma branch: `git checkout -b feature/nova-funcionalidade`
-3. Commit: `git commit -m 'feat: adiciona nova funcionalidade'`
+2. Crie branch: `git checkout -b feature/nova-funcionalidade`
+3. Commit: `git commit -m 'feat: adicionar funcionalidade'`
 4. Push: `git push origin feature/nova-funcionalidade`
-5. Abra um Pull Request
+5. Abra Pull Request
 
-## 📊 Estatísticas
+**Padrão de commits:**
+- `feat:` nova funcionalidade
+- `fix:` correção de bug
+- `docs:` atualização de documentação
+- `refactor:` refatoração de código
+- `chore:` tarefas de manutenção
 
-- **8 páginas** editáveis
-- **141+ elementos** com data-json-key
-- **96 elementos** atualmente em uso
-- **5 versões** mantidas por página
-- **10 logs** de deploy mantidos
+---
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT.
+Este projeto é proprietário. Todos os direitos reservados.
+
+© 2025 Igreja de Metatron. Todos os direitos reservados.
 
 ---
+
+## 🔗 Links
+
+- **Site:** https://ariasmarcelo.github.io/site-igreja-v6/
+- **Repositório:** https://github.com/ariasmarcelo/site-igreja-v6
+- **Supabase:** https://laikwxajpcahfatiybnb.supabase.co
+
+---
+
+**Última atualização:** 14 de novembro de 2025
+
+**Desenvolvido com ❤️ para a Igreja de Metatron 🕉️**
 
 ⭐ Se este projeto te ajudou, considere dar uma estrela no GitHub!

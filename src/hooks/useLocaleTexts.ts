@@ -6,6 +6,28 @@ const refreshEvents = new Map<string, Set<() => void>>();
 // Flag global para bloquear atualizações enquanto há edições pendentes
 const editLocks = new Map<string, boolean>();
 
+/**
+ * Sincroniza JSONs granulares de fallback com dados do DB
+ * Envia dados para API que salva cada campo como arquivo JSON separado
+ */
+async function syncGranularFallbacks(pageId: string, content: Record<string, unknown>): Promise<void> {
+  try {
+    const apiBaseUrl = import.meta.env.VITE_API_URL || '';
+    const response = await fetch(`${apiBaseUrl}/api/sync-fallbacks`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pageId, content })
+    });
+    
+    if (response.ok) {
+      console.log(`📝 Fallbacks sincronizados: ${pageId}`);
+    }
+  } catch (error) {
+    // Silencioso - sincronização de fallback não é crítica
+    console.warn(`⚠️ Falha ao sincronizar fallbacks: ${pageId}`);
+  }
+}
+
 export const triggerRefresh = (pageId: string) => {
   const normalizedPageId = pageId.toLowerCase();
   const listeners = refreshEvents.get(normalizedPageId);
@@ -56,10 +78,9 @@ export function useLocaleTexts<T = Record<string, unknown>>(
   }, [pageId]);
 
   useEffect(() => {
-    const loadFromAPI = async () => {
+    const loadWithFallback = async () => {
       const locked = isEditLocked(pageId);
       
-      // NÃO atualizar se há edições pendentes (lock ativo)
       if (locked) {
         console.log(`🔒 Skipping load for ${pageId} - edit lock active`);
         return;
@@ -68,14 +89,11 @@ export function useLocaleTexts<T = Record<string, unknown>>(
       setLoading(true);
       setError(null);
       
+      // STEP 1: Buscar do DB (sempre tenta primeiro)
+      const apiBaseUrl = import.meta.env.VITE_API_URL || '';
+      const url = `${apiBaseUrl}/api/content-v2/${pageId.toLowerCase()}`;
+      
       try {
-        console.log(`📥 Carregando ${pageId} do Supabase...`);
-        
-        // Usar configuração centralizada de API (api.ts)
-        const apiBaseUrl = import.meta.env.VITE_API_URL || '';
-        const url = `${apiBaseUrl}/api/content-v2/${pageId.toLowerCase()}`;
-        
-        console.log(`🌐 API URL: ${url}`);
         const response = await fetch(url);
         
         if (!response.ok) {
@@ -87,7 +105,12 @@ export function useLocaleTexts<T = Record<string, unknown>>(
         if (data && data.content) {
           setTexts(data.content as T);
           setError(null);
-          console.log(`✅ Carregado do Supabase: ${pageId} (${Object.keys(data.content).length} keys)`);
+          console.log(`✅ Carregado do Supabase: ${pageId}`);
+          
+          // STEP 2: Sincronizar JSONs granulares em background (não bloqueia)
+          syncGranularFallbacks(pageId, data.content).catch(err => 
+            console.warn('Erro ao sincronizar fallbacks:', err)
+          );
         } else {
           throw new Error(`No content found in API response`);
         }
@@ -100,7 +123,7 @@ export function useLocaleTexts<T = Record<string, unknown>>(
       }
     };
 
-    loadFromAPI();
+    loadWithFallback();
   }, [pageId, refreshTrigger]);
 
   return { texts, loading, error };
