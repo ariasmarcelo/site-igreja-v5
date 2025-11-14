@@ -77,3 +77,187 @@ O que buscamos expressar e esclarecer no conteúdo do site é que compreendemos 
 # FIM DA SEÇÃO PÉTREA #
 
 ---
+
+## DADOS BÁSICOS GERAIS ##
+
+### Stack Tecnológica ###
+
+**Frontend:**
+- React 19 + TypeScript 5.7
+- Vite 7.2 (build tool e dev server)
+- Tailwind CSS 4 (styling framework)
+- React Router 7 (navegação SPA)
+- TipTap (rich text editor para blog)
+
+**Backend/APIs:**
+- Vercel Serverless Functions (Node.js, CommonJS)
+- APIs em `/api` folder servidas pelo Vercel Dev local e Vercel Cloud em produção
+
+**Database:**
+- Supabase (PostgreSQL)
+- Tabela `text_entries` com estrutura granular:
+  - `id` (UUID)
+  - `page_id` (TEXT) - nome da página ou "__shared__" para conteúdo compartilhado
+  - `json_key` (TEXT UNIQUE) - chave completa tipo "pagina.secao.campo" ou "footer.copyright"
+  - `content` (JSONB) - objeto multi-idioma `{"pt-BR": "texto"}`
+
+**Hospedagem:**
+- Vercel (frontend + serverless APIs)
+- GitHub (repositório: ariasmarcelo/site-igreja-v6)
+- Branch principal: `main`
+
+**Ferramentas:**
+- pnpm (package manager)
+- Node v24.11.0 (desenvolvimento local)
+- PowerShell (scripts de automação)
+
+### Arquitetura do Sistema ###
+
+**Fluxo de Dados:**
+1. Frontend carrega página → hook `useLocaleTexts` busca dados via `/api/content-v2/[pageId]`
+2. API busca `text_entries` com `page_id IN (pageId, '__shared__')` do Supabase
+3. API reconstrói objeto JSON a partir das entradas granulares
+4. Frontend renderiza componente com dados
+
+**Editor Visual:**
+- Modo de edição ativado via Admin Console
+- Detecta elementos com `data-json-key` atributo
+- Edições enviadas via `/api/save-visual-edits` (POST)
+- Salva individualmente cada campo modificado como entrada granular
+
+**Conteúdo Compartilhado:**
+- Footer presente em todas as páginas
+- Salvo com `page_id = "__shared__"` e `json_key = "footer.copyright"` / `"footer.trademark"`
+- API de leitura mescla automaticamente conteúdo compartilhado com conteúdo da página
+
+### Estrutura de Pastas Relevante ###
+
+```
+workspace/shadcn-ui/
+├── api/                          # Serverless Functions (Vercel)
+│   ├── content-v2/[pageId].js   # GET endpoint para conteúdo de página
+│   ├── save-visual-edits.js     # POST endpoint para salvar edições
+│   └── test.js                  # Test endpoint
+├── src/
+│   ├── components/              # Componentes React
+│   │   ├── SharedFooter.tsx    # Footer compartilhado
+│   │   ├── WhatsAppButton.tsx  # Botão flutuante WhatsApp
+│   │   ├── VisualPageEditor.tsx # Editor visual de conteúdo
+│   │   └── ui/                 # Componentes Shadcn UI
+│   ├── pages/                   # Páginas do site
+│   │   ├── Index.tsx           # Página inicial
+│   │   ├── Purificacao.tsx     # Página Purificação e Ascensão
+│   │   ├── QuemSomos.tsx       # Página Quem Somos
+│   │   ├── Tratamentos.tsx     # Página Tratamentos
+│   │   ├── Testemunhos.tsx     # Página Testemunhos
+│   │   ├── Contato.tsx         # Página Contato
+│   │   └── AdminConsole.tsx    # Painel administrativo
+│   ├── hooks/
+│   │   └── useLocaleTexts.ts   # Hook para carregar textos do DB
+│   ├── config/
+│   │   └── api.ts              # Configuração de endpoints da API
+│   ├── styles/                  # CSS files
+│   │   ├── purificacao-page.css
+│   │   ├── quemsomos-page.css
+│   │   ├── tratamentos-page.css
+│   │   └── design-tokens.css
+│   ├── Navigation.tsx           # Navegação principal
+│   └── main.tsx                 # Entry point
+├── scripts/                     # Scripts de automação e migração
+├── docs/                        # Documentação técnica
+│   └── API-SERVERLESS-CONFIG.md
+├── .env                         # Variáveis de ambiente (Vercel Dev)
+├── .env.local                   # Variáveis de ambiente (Vite)
+├── start-dev.ps1               # Script para iniciar servidor local
+└── stop-dev.ps1                # Script para parar servidor local
+```
+
+### Variáveis de Ambiente ###
+
+**Arquivo `.env` (para Vercel Dev - APIs serverless):**
+```
+VITE_SUPABASE_URL=https://laikwxajpcahfatiybnb.supabase.co
+VITE_SUPABASE_ANON_KEY=<chave_anonima>
+SUPABASE_SERVICE_KEY=<chave_service_role>
+```
+
+**Arquivo `.env.local` (para Vite - Frontend):**
+```
+VITE_SUPABASE_URL=https://laikwxajpcahfatiybnb.supabase.co
+VITE_SUPABASE_ANON_KEY=<chave_anonima>
+VITE_API_URL=
+```
+
+**Importante:** `VITE_API_URL` deve estar **vazio** (`''`) para usar caminhos relativos, permitindo que APIs funcionem tanto local quanto em produção sem mudanças.
+
+### Scripts de Automação ###
+
+**`start-dev.ps1`** - Inicia servidor de desenvolvimento:
+- Limpa processos Node antigos
+- Inicia Vercel Dev (porta 3000 por padrão)
+- Serve frontend + APIs serverless no mesmo origin
+
+**`stop-dev.ps1`** - Para servidor de desenvolvimento:
+- Mata processos Vercel Dev e Node relacionados
+
+**Uso:**
+```powershell
+.\start-dev.ps1
+.\stop-dev.ps1
+```
+
+### Padrões e Convenções ###
+
+**Naming de JSON Keys:**
+- Páginas: `pagina.secao.campo` (ex: `purificacao.hero.title`)
+- Compartilhado: `secao.campo` (ex: `footer.copyright`)
+- Arrays: `pagina.items[0].campo` (ex: `tratamentos.items[0].title`)
+
+**Componentes de Página:**
+- Sempre importar `useLocaleTexts` para carregar dados
+- Sempre usar `data-json-key` para campos editáveis
+- CSS externo em arquivos `*-page.css` (nunca inline styles)
+
+**APIs Serverless:**
+- CommonJS (`require/module.exports`)
+- CORS habilitado
+- Error handling completo
+- Logs informativos (mas não excessivos)
+
+### Estado Atual do Desenvolvimento ###
+
+**Última Atualização: 14/11/2025**
+
+**Funcionalidades Implementadas:**
+- ✅ Sistema de conteúdo granular com Supabase
+- ✅ Editor visual de conteúdo inline
+- ✅ Footer compartilhado entre páginas (`__shared__`)
+- ✅ APIs serverless funcionando local e produção
+- ✅ Todas as páginas principais criadas e estilizadas
+- ✅ Botão flutuante WhatsApp com animação e sombra
+- ✅ Remoção completa de inline styles (CSS externo)
+- ✅ Sistema de navegação SPA com React Router
+
+**Últimas Mudanças:**
+- Implementado sistema de conteúdo compartilhado (`page_id = "__shared__"`)
+- Footer agora é compartilhado entre todas as páginas e editável pelo editor visual
+- Removidos backups antigos e arquivos obsoletos
+- Adicionada sombra projetada no botão WhatsApp flutuante
+- Corrigida mensagem do botão WhatsApp na página Contato
+- Logs de debug reduzidos nas APIs
+
+**Problemas Conhecidos:**
+- Node v24.11.0 gera warning `UV_HANDLE_CLOSING` no Windows (bug do Node, não afeta funcionalidade)
+- Warning pode ser ignorado com segurança
+
+**Próximos Passos Sugeridos:**
+- Implementar autenticação para Admin Console
+- Adicionar sistema de versionamento de conteúdo
+- Criar mais páginas de conteúdo (Artigos, Blog)
+- Implementar SEO tags dinâmicas
+- Adicionar analytics
+
+## FIM DADOS BÁSICOS GERAIS ##
+
+---
+

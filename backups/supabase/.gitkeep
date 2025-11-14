@@ -1,7 +1,0 @@
-# Diretório de Backups
-
-Backups do Supabase são salvos aqui automaticamente.
-
-- Sistema mantém apenas os 10 backups mais recentes
-- Cada backup é uma pasta timestamped com JSONs das tabelas
-- Não commitar backups no Git (exceto este .gitkeep)
