@@ -55,10 +55,16 @@ module.exports = async (req, res) => {
       console.log(`✅ DB: Encontradas ${entries.length} entradas granulares`);
 
       // STEP 2: Reconstruir objeto da página a partir das entradas granulares
+      // Remove o primeiro nível (pageId) para retornar estrutura direta
       const pageContent = {};
       
       entries.forEach(entry => {
-        const keys = entry.json_key.split('.');
+        // Remover pageId do início (ex: "index.hero.title" → "hero.title")
+        const jsonKey = entry.json_key;
+        const keys = jsonKey.includes('.') ? jsonKey.split('.').slice(1) : [jsonKey];
+        
+        if (keys.length === 0) return; // Skip se não houver keys após remover pageId
+        
         let current = pageContent;
         
         // Navegar/criar estrutura aninhada
