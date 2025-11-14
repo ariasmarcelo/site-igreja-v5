@@ -11,7 +11,7 @@ export default function WhatsAppButton() {
   return (
     <Link
       to="/contato"
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-110 animate-float"
+      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl hover:shadow-[0_20px_50px_rgba(37,211,102,0.5)] transition-all duration-300 hover:scale-110 animate-float"
       aria-label="Faça Contato"
     >
       {/* Ícone oficial do WhatsApp */}

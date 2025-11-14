@@ -38,10 +38,11 @@ module.exports = async (req, res) => {
 
     try {
       // STEP 1: Buscar entradas granulares da página (text_entries - onde os dados REALMENTE estão)
+      // Buscar tanto conteúdo da página quanto conteúdo compartilhado (__shared__)
       const { data: entries, error: entriesError } = await supabase
         .from('text_entries')
         .select('json_key, content')
-        .eq('page_id', pageId);
+        .in('page_id', [pageId, '__shared__']);
 
       if (entriesError) throw entriesError;
 
@@ -52,18 +53,20 @@ module.exports = async (req, res) => {
         });
       }
 
-      console.log(`✅ DB: Encontradas ${entries.length} entradas granulares`);
-
       // STEP 2: Reconstruir objeto da página a partir das entradas granulares
-      // Remove o primeiro nível (pageId) para retornar estrutura direta
+      // Conteúdo compartilhado (__shared__) é mesclado com conteúdo da página
       const pageContent = {};
       
       entries.forEach(entry => {
-        // Remover pageId do início (ex: "index.hero.title" → "hero.title")
         const jsonKey = entry.json_key;
-        const keys = jsonKey.includes('.') ? jsonKey.split('.').slice(1) : [jsonKey];
         
-        if (keys.length === 0) return; // Skip se não houver keys após remover pageId
+        // Conteúdo compartilhado: "footer.copyright" → "footer.copyright"
+        // Conteúdo da página: "pagina.secao.campo" → "secao.campo"
+        const keys = jsonKey.startsWith(pageId + '.') 
+          ? jsonKey.split('.').slice(1)  // Remove prefixo da página
+          : jsonKey.split('.');           // Mantém keys compartilhadas como estão
+        
+        if (keys.length === 0) return; // Skip se não houver keys
         
         let current = pageContent;
         
@@ -110,27 +113,10 @@ module.exports = async (req, res) => {
         }
       });
 
-      // STEP 3: Buscar footer compartilhado (page_contents com page_id NULL)
-      const { data: sharedData, error: sharedError } = await supabase
-        .from('page_contents')
-        .select('content')
-        .is('page_id', null)
-        .single();
-
-      // STEP 4: Merge footer compartilhado (se existir)
-      const mergedContent = { ...pageContent };
-      
-      if (!sharedError && sharedData?.content?.footer) {
-        mergedContent.footer = sharedData.content.footer;
-        console.log(`✅ Footer compartilhado adicionado`);
-      }
-
-      console.log(`🔀 Conteúdo final: ${Object.keys(mergedContent).length} keys`);
-
       return res.status(200).json({ 
         success: true, 
-        content: mergedContent,
-        source: 'text_entries + shared_footer'
+        content: pageContent,
+        source: 'text_entries (granular + shared)'
       });
 
     } catch (dbError) {

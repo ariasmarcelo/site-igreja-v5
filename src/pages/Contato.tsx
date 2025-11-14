@@ -15,7 +15,7 @@ export default function Contato() {
   const { texts } = useLocaleTexts<ContatoTexts>('contato');
   const handleWhatsAppClick = () => {
     const phoneNumber = '5511949555555';
-    const message = encodeURIComponent('Olá! Quero saber mais sobre **O Trabalho de Resgate!**');
+    const message = encodeURIComponent('Olá! Quero saber mais sobre *O Trabalho de Resgate*!');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 

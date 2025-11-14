@@ -29,15 +29,7 @@ module.exports = async (req, res) => {
   try {
     const { pageId, edits } = req.body;
     
-    console.log('═══════════════════════════════════════════');
-    console.log('📥 REQUISIÇÃO RECEBIDA (GRANULAR)');
-    console.log('   pageId:', pageId);
-    console.log('   editsCount:', Object.keys(edits || {}).length);
-    console.log('   edits:', JSON.stringify(edits, null, 2));
-    console.log('═══════════════════════════════════════════');
-    
     if (!edits || typeof edits !== 'object') {
-      console.error('❌ Edits inválidas!');
       return res.status(400).json({ success: false, message: 'Edits inválidas' });
     }
     
@@ -45,13 +37,8 @@ module.exports = async (req, res) => {
     let appliedCount = 0;
     const updates = [];
     
-    console.log('\n🔄 PROCESSANDO EDIÇÕES GRANULARES...\n');
-    
     for (const [elementId, edit] of Object.entries(edits)) {
-      console.log(`\n━━━ Processando: ${elementId} ━━━`);
-      
       if (edit.newText === undefined) {
-        console.log('   ❌ newText não definido, ignorando');
         continue;
       }
       
@@ -59,15 +46,15 @@ module.exports = async (req, res) => {
       let cleanElementId = elementId;
       if (elementId.startsWith(`${pageId}.`)) {
         cleanElementId = elementId.substring(pageId.length + 1);
-        console.log(`   🔧 Removido prefixo: "${elementId}" → "${cleanElementId}"`);
       }
       
-      const jsonKey = `${pageId}.${cleanElementId}`;
-      
-      console.log(`   📝 json_key: ${jsonKey}`);
-      console.log(`   ✏️  newText: "${edit.newText.substring(0, 50)}..."`);
+      // CONTEÚDO COMPARTILHADO: footer.* não deve ter prefixo de página
+      const isSharedContent = cleanElementId.startsWith('footer.');
+      const jsonKey = isSharedContent ? cleanElementId : `${pageId}.${cleanElementId}`;
+      const targetPageId = isSharedContent ? '__shared__' : pageId;
       
       updates.push({
+        page_id: targetPageId,
         json_key: jsonKey,
         newText: edit.newText
       });
@@ -75,14 +62,12 @@ module.exports = async (req, res) => {
       appliedCount++;
     }
     
-    console.log(`\n📊 Total de updates a aplicar: ${updates.length}`);
-    
     // Aplicar updates individuais (upsert granular)
     for (const update of updates) {
       const { error } = await supabase
         .from('text_entries')
         .upsert({
-          page_id: pageId,
+          page_id: update.page_id,
           json_key: update.json_key,
           content: { 'pt-BR': update.newText },
           updated_at: new Date().toISOString()
@@ -91,14 +76,9 @@ module.exports = async (req, res) => {
         });
       
       if (error) {
-        console.error(`❌ Erro ao atualizar ${update.json_key}:`, error);
         throw error;
       }
-      
-      console.log(`✅ Atualizado: ${update.json_key}`);
     }
-    
-    console.log(`\n✅ Todas as ${appliedCount} edições aplicadas com sucesso!`);
     
     // NÃO sincronizar JSONs locais - isso é responsabilidade do sistema de leitura
     // Os JSONs serão atualizados automaticamente quando a página buscar dados da API
