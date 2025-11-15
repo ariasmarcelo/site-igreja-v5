@@ -95,6 +95,7 @@ function loadPageFromCache(pageId) {
 async function saveToCache(entries) {
   try {
     const db = getDB();
+    log(`[CACHE] Saving ${entries.length} entries to cache...`);
     
     for (const entry of entries) {
       const cacheKey = entry.json_key; // Already includes pageId
@@ -104,13 +105,22 @@ async function saveToCache(entries) {
       };
       
       db.put(cacheKey, cacheEntry);
+      log(`[CACHE] Saved key: ${cacheKey}`);
     }
     
     // Wait for flush to complete before continuing
     await db.flushed;
-    log(`[CACHE] Saved ${entries.length} entries`);
+    log(`[CACHE] ✅ Successfully saved ${entries.length} entries to LMDB`);
+    
+    // Verify save
+    const testKey = entries[0]?.json_key;
+    if (testKey) {
+      const verify = db.get(testKey);
+      log(`[CACHE] Verification: key=${testKey} exists=${!!verify}`);
+    }
   } catch (err) {
-    log(`[CACHE] ERROR saving: ${err.message}`);
+    log(`[CACHE] ❌ ERROR saving: ${err.message}`);
+    log(`[CACHE] Stack: ${err.stack}`);
   }
 }
 
@@ -306,17 +316,30 @@ module.exports = async (req, res) => {
       
       // Load shared content first (footer, etc.)
       let sharedEntries = loadPageFromCache('__shared__');
-      let sharedSource = 'cache';
       
-      if (!sharedEntries) {
-        sharedEntries = await loadPageFromDB('__shared__');
-        sharedSource = 'db';
-      }
-      
-      if (sharedEntries && Object.keys(sharedEntries).length > 0) {
+      if (sharedEntries) {
+        // Cache HIT: return and revalidate in background
+        log(`[CACHE-HIT] __shared__ - returning cached data and revalidating in background`);
         results['__shared__'] = reconstructObject(sharedEntries, '__shared__');
-        sources['__shared__'] = sharedSource;
-        log(`[SHARED] Loaded ${Object.keys(sharedEntries).length} shared entries from ${sharedSource}`);
+        sources['__shared__'] = 'cache';
+        
+        // Trigger background revalidation
+        fetch(`${process.env.VERCEL_URL || 'http://localhost:3000'}/api/update-cache`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pageId: '__shared__' })
+        }).catch(err => log(`[BACKGROUND] Revalidation failed for __shared__: ${err.message}`));
+        
+      } else {
+        // Cache MISS: load from DB
+        log(`[CACHE-MISS] __shared__ - loading from DB`);
+        sharedEntries = await loadPageFromDB('__shared__');
+        
+        if (sharedEntries && Object.keys(sharedEntries).length > 0) {
+          results['__shared__'] = reconstructObject(sharedEntries, '__shared__');
+          sources['__shared__'] = 'db';
+          log(`[SHARED] Loaded ${Object.keys(sharedEntries).length} shared entries from DB`);
+        }
       }
       
       for (const pageId of pageIds) {
@@ -324,19 +347,32 @@ module.exports = async (req, res) => {
         let flatEntries = loadPageFromCache(pageId);
         let source = 'cache';
         
-        // If cache miss, load from DB
-        if (!flatEntries) {
+        if (flatEntries) {
+          // Cache HIT: return immediately and revalidate in background
+          log(`[CACHE-HIT] ${pageId} - returning cached data and revalidating in background`);
+          results[pageId] = reconstructObject(flatEntries, pageId);
+          sources[pageId] = 'cache';
+          
+          // Trigger background revalidation (fire-and-forget)
+          fetch(`${process.env.VERCEL_URL || 'http://localhost:3000'}/api/update-cache`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pageId })
+          }).catch(err => log(`[BACKGROUND] Revalidation failed for ${pageId}: ${err.message}`));
+          
+        } else {
+          // Cache MISS: load from DB and save to cache
+          log(`[CACHE-MISS] ${pageId} - loading from DB`);
           flatEntries = await loadPageFromDB(pageId);
           source = 'db';
-        }
-        
-        if (flatEntries && Object.keys(flatEntries).length > 0) {
-          // Reconstruct nested object
-          results[pageId] = reconstructObject(flatEntries, pageId);
-          sources[pageId] = source;
-        } else {
-          results[pageId] = null;
-          sources[pageId] = 'not-found';
+          
+          if (flatEntries && Object.keys(flatEntries).length > 0) {
+            results[pageId] = reconstructObject(flatEntries, pageId);
+            sources[pageId] = source;
+          } else {
+            results[pageId] = null;
+            sources[pageId] = 'not-found';
+          }
         }
       }
       
