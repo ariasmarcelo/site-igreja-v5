@@ -2,7 +2,8 @@
 // Limpa e pré-aquece o cache LMDB com todos os dados do Supabase
 // USO INTERNO: Chamado por save-visual-edits após atualização do DB
 const { createClient } = require('@supabase/supabase-js');
-const { acquire, release, getStats } = require('./lib/lmdb-pool');
+const { open } = require('lmdb');
+const path = require('path');
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
@@ -10,6 +11,21 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 function log(msg) {
   console.log(`[${new Date().toISOString()}] [CACHE-REFRESH] ${msg}`);
+}
+
+// Singleton DB instance
+function getDB() {
+  if (!global.__lmdbCache) {
+    const dbPath = path.join(process.cwd(), '.cache', 'content-lmdb');
+    global.__lmdbCache = open({ 
+      path: dbPath, 
+      compression: true,
+      noSubdir: false,
+      maxReaders: 126
+    });
+    log(`✅ LMDB cache initialized: ${dbPath}`);
+  }
+  return global.__lmdbCache;
 }
 
 // Reconstruir objeto a partir das entradas do DB
@@ -112,11 +128,8 @@ async function loadPageDataFromDB(pageId) {
 
 // PRIVATE: Save Supabase entries to cache (granular)
 async function _saveSupabaseEntriesToCache(entries) {
-  let connection = null;
-  
   try {
-    connection = await acquire();
-    const db = connection.db;
+    const db = getDB();
     
     for (const entry of entries) {
       const cacheKey = entry.json_key;
@@ -133,20 +146,13 @@ async function _saveSupabaseEntriesToCache(entries) {
   } catch (error) {
     log(`❌ Error saving to cache: ${error.message}`);
     return false;
-  } finally {
-    if (connection) {
-      release(connection.releaseToken);
-    }
   }
 }
 
 // Limpar todo o cache
 async function clearAllCache() {
-  let connection = null;
-  
   try {
-    connection = await acquire();
-    const db = connection.db;
+    const db = getDB();
     const allKeys = Array.from(db.getKeys());
     
     log(`🗑️ Clearing cache: ${allKeys.length} entries`);
@@ -160,10 +166,6 @@ async function clearAllCache() {
   } catch (error) {
     log(`⚠️ Error clearing cache: ${error.message}`);
     throw error;
-  } finally {
-    if (connection) {
-      release(connection.releaseToken);
-    }
   }
 }
 
