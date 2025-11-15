@@ -2,6 +2,7 @@
 const { createClient } = require('@supabase/supabase-js');
 const { open } = require('lmdb');
 const path = require('path');
+const { refreshCache } = require('./cache-refresh');
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY;
@@ -24,26 +25,6 @@ function getDB() {
     });
   }
   return global.__lmdbInstance;
-}
-
-// 🗑️ INVALIDAR TODO O CACHE após salvamento
-// Isso garante que qualquer requisição posterior pegue dados frescos do banco
-function invalidateAllCache() {
-  try {
-    const db = getDB();
-    const allKeys = Array.from(db.getKeys());
-    
-    log(`🗑️ Clearing entire cache: ${allKeys.length} entries`);
-    
-    for (const key of allKeys) {
-      db.remove(key);
-    }
-    
-    log(`✅ Cache completely cleared: ${allKeys.length} entries removed`);
-  } catch (error) {
-    log(`⚠️ Error clearing cache: ${error.message}`);
-    // Non-critical error - don't fail the request
-  }
 }
 
 module.exports = async (req, res) => {
@@ -141,16 +122,22 @@ module.exports = async (req, res) => {
     
     log(`Database save successful: pageId=${pageId}, applied=${appliedCount}/${Object.keys(edits).length}`);
     
-    // 🗑️ APAGAR TODO O CACHE após salvamento bem-sucedido
-    // Garante que todas as próximas requisições busquem dados frescos do banco
-    invalidateAllCache();
+    // 🔄 REFRESH CACHE: Limpar e pré-aquecer com dados frescos do banco
+    // Operação encapsulada - editor não precisa saber disso
+    log(`🔄 Triggering cache refresh...`);
+    const cacheRefreshResult = await refreshCache();
+    log(`✨ Cache refresh complete: cleared=${cacheRefreshResult.cleared}, cached=${cacheRefreshResult.cached}/${cacheRefreshResult.total}`);
     
     res.status(200).json({ 
       success: true, 
       message: 'Edições salvas com sucesso!',
       appliedCount,
       totalEdits: Object.keys(edits).length,
-      updates: updates.map(u => ({ page_id: u.page_id, json_key: u.json_key }))
+      updates: updates.map(u => ({ page_id: u.page_id, json_key: u.json_key })),
+      cacheRefreshed: {
+        cleared: cacheRefreshResult.cleared,
+        cached: cacheRefreshResult.cached
+      }
     });
   } catch (error) {
     log(`Error saving edits: ${error.message}`);
