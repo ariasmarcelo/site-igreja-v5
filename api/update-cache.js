@@ -1,7 +1,6 @@
 // API para atualizar cache em background
 const { createClient } = require('@supabase/supabase-js');
-const { open } = require('lmdb');
-const path = require('path');
+const { acquire, release, getStats } = require('./lib/lmdb-pool');
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
@@ -11,22 +10,10 @@ function log(msg) {
   console.log(`[${new Date().toISOString()}] [CACHE-UPDATE] ${msg}`);
 }
 
-function getDB() {
-  if (!global.__lmdbInstance) {
-    const dbPath = path.join(process.cwd(), '.cache', 'content-lmdb');
-    global.__lmdbInstance = open({ 
-      path: dbPath, 
-      compression: true,
-      noSubdir: false,
-      maxReaders: 126
-    });
-    log(`LMDB initialized: ${dbPath}`);
-  }
-  return global.__lmdbInstance;
-}
-
 async function updateCacheFromDB(pageId) {
   const startTime = Date.now();
+  let connection = null;
+  
   try {
     log(`\n[BACKGROUND-UPDATE] ━━━ START for ${pageId} ━━━`);
     log(`[BACKGROUND-UPDATE] 🗄️  Fetching from DB...`);
@@ -44,7 +31,8 @@ async function updateCacheFromDB(pageId) {
     log(`[BACKGROUND-UPDATE] ✅ Fetched ${entries.length} entries from DB (${Date.now() - startTime}ms)`);
     log(`[BACKGROUND-UPDATE] 💾 Writing to cache...`);
     
-    const db = getDB();
+    connection = await acquire();
+    const db = connection.db;
     
     for (const entry of entries) {
       const cacheKey = entry.json_key;
@@ -63,6 +51,10 @@ async function updateCacheFromDB(pageId) {
   } catch (err) {
     log(`[BACKGROUND-UPDATE] ❌ ERROR: ${err.message} (${Date.now() - startTime}ms)`);
     return { success: false, error: err.message };
+  } finally {
+    if (connection) {
+      release(connection.releaseToken);
+    }
   }
 }
 

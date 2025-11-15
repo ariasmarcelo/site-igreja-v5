@@ -1,6 +1,5 @@
 const { createClient } = require('@supabase/supabase-js');
-const { open } = require('lmdb');
-const path = require('path');
+const { acquire, release, getStats } = require('../lib/lmdb-pool');
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
@@ -8,21 +7,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 function log(msg) {
   console.log(`[${new Date().toISOString()}] ${msg}`);
-}
-
-// Singleton LMDB
-function getDB() {
-  if (!global.__lmdbInstance) {
-    const dbPath = path.join(process.cwd(), '.cache', 'content-lmdb');
-    global.__lmdbInstance = open({ 
-      path: dbPath, 
-      compression: true,
-      noSubdir: false,
-      maxReaders: 126
-    });
-    log(`[LMDB] Initialized: ${dbPath}`);
-  }
-  return global.__lmdbInstance;
 }
 
 // ==================== CACHE GRANULAR ====================
@@ -56,12 +40,45 @@ function loadPathsFromCache(paths) {
 
 // Load all paths for a page from cache
 // Input: "purificacao"
-// Output: { "purificacao.header": "text", "purificacao.intro.title": "text", ... }
-function loadPageFromCache(pageId) {
+// Save to cache
+// Input: {"purificacao.header": "text", "purificacao.intro.title": "text", ...}
+async function saveToCache(entries) {
   const startTime = Date.now();
+  let connection = null;
+  
+  try {
+    log(`[CACHE-WRITE] 💾 START saving ${Object.keys(entries).length} entries to cache`);
+    
+    connection = await acquire();
+    const db = connection.db;
+    
+    for (const [fullKey, content] of Object.entries(entries)) {
+      db.put(fullKey, {
+        data: content,
+        cachedAt: Date.now(),
+        invalidatedAt: null
+      });
+    }
+    
+    log(`[CACHE-WRITE] ✅ SUCCESS - Saved ${Object.keys(entries).length} entries (${Date.now() - startTime}ms)`);
+  } catch (err) {
+    log(`[CACHE-WRITE] ❌ ERROR: ${err.message} (${Date.now() - startTime}ms)`);
+  } finally {
+    if (connection) {
+      release(connection.releaseToken);
+    }
+  }
+}
+async function loadPageFromCache(pageId) {
+  const startTime = Date.now();
+  let connection = null;
+  
   try {
     log(`[CACHE-READ] 🔍 START loading from cache: pageId=${pageId}`);
-    const db = getDB();
+    
+    connection = await acquire();
+    const db = connection.db;
+    
     const allKeys = Array.from(db.getKeys());
     const pagePrefix = `${pageId}.`;
     const pageKeys = allKeys.filter(key => typeof key === 'string' && key.startsWith(pagePrefix));
@@ -89,16 +106,24 @@ function loadPageFromCache(pageId) {
   } catch (err) {
     log(`[CACHE-READ] ❌ ERROR: ${err.message} (${Date.now() - startTime}ms)`);
     return null;
+  } finally {
+    if (connection) {
+      release(connection.releaseToken);
+    }
   }
 }
 
-// Save entries to cache (granular)
+// Save DB entries to cache (from Supabase format)
 // Input: [{ json_key: "purificacao.header", content: { "pt-BR": "text" } }, ...]
-async function saveToCache(entries) {
+async function saveDBEntriesToCache(entries) {
   const startTime = Date.now();
+  let connection = null;
+  
   try {
-    const db = getDB();
-    log(`[CACHE-WRITE] 💾 START saving ${entries.length} entries to cache...`);
+    log(`[CACHE-WRITE] 💾 START saving ${entries.length} DB entries to cache...`);
+    
+    connection = await acquire();
+    const db = connection.db;
     
     for (const entry of entries) {
       const cacheKey = entry.json_key; // Already includes pageId
@@ -123,6 +148,10 @@ async function saveToCache(entries) {
   } catch (err) {
     log(`[CACHE-WRITE] ❌ ERROR saving: ${err.message} (${Date.now() - startTime}ms)`);
     log(`[CACHE-WRITE] Stack: ${err.stack}`);
+  } finally {
+    if (connection) {
+      release(connection.releaseToken);
+    }
   }
 }
 
@@ -148,7 +177,7 @@ async function loadPathsFromDB(paths) {
     log(`[DB] Found ${entries.length} entries`);
     
     // Save to cache
-    await saveToCache(entries);
+    await saveDBEntriesToCache(entries);
     
     // Build results
     const results = {};
@@ -185,7 +214,7 @@ async function loadPageFromDB(pageId) {
     
     // Save to cache
     log(`[DB-READ] 💾 Saving to cache...`);
-    await saveToCache(entries);
+    await saveDBEntriesToCache(entries);
     
     // Build results
     const results = {};
@@ -321,7 +350,7 @@ module.exports = async (req, res) => {
       
       // Load __shared__ ONCE for all requests
       log(`\n[REQUEST] ━━━ Processing __shared__ (footer) ━━━`);
-      let sharedEntries = loadPageFromCache('__shared__');
+      let sharedEntries = await loadPageFromCache('__shared__');
       
       if (sharedEntries) {
         log(`[STRATEGY] ✅ Cache HIT for __shared__`);
@@ -350,7 +379,7 @@ module.exports = async (req, res) => {
         log(`\n[REQUEST] ━━━ Processing page: ${pageId} ━━━`);
         
         // Try cache first
-        let flatEntries = loadPageFromCache(pageId);
+        let flatEntries = await loadPageFromCache(pageId);
         
         if (flatEntries) {
           // Cache HIT: return immediately and revalidate in background

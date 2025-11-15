@@ -2,8 +2,7 @@
 // Limpa e pré-aquece o cache LMDB com todos os dados do Supabase
 // USO INTERNO: Chamado por save-visual-edits após atualização do DB
 const { createClient } = require('@supabase/supabase-js');
-const { open } = require('lmdb');
-const path = require('path');
+const { acquire, release, getStats } = require('./lib/lmdb-pool');
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
@@ -11,20 +10,6 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 function log(msg) {
   console.log(`[${new Date().toISOString()}] [CACHE-REFRESH] ${msg}`);
-}
-
-function getDB() {
-  if (!global.__lmdbInstance) {
-    const dbPath = path.join(process.cwd(), '.cache', 'content-lmdb');
-    log(`Initializing LMDB at ${dbPath}`);
-    global.__lmdbInstance = open({
-      path: dbPath,
-      compression: true,
-      noSubdir: false,
-      maxReaders: 126
-    });
-  }
-  return global.__lmdbInstance;
 }
 
 // Reconstruir objeto a partir das entradas do DB
@@ -126,9 +111,12 @@ async function loadPageDataFromDB(pageId) {
 }
 
 // Salvar no cache LMDB
-function saveToCache(pageId, content) {
+async function saveToCache(pageId, content) {
+  let connection = null;
+  
   try {
-    const db = getDB();
+    connection = await acquire();
+    const db = connection.db;
     const cacheEntry = {
       data: content,
       invalidatedAt: null
@@ -141,13 +129,20 @@ function saveToCache(pageId, content) {
   } catch (error) {
     log(`Error saving to cache: ${error.message}`);
     return false;
+  } finally {
+    if (connection) {
+      release(connection.releaseToken);
+    }
   }
 }
 
 // Limpar todo o cache
-function clearAllCache() {
+async function clearAllCache() {
+  let connection = null;
+  
   try {
-    const db = getDB();
+    connection = await acquire();
+    const db = connection.db;
     const allKeys = Array.from(db.getKeys());
     
     log(`🗑️ Clearing cache: ${allKeys.length} entries`);
@@ -161,6 +156,10 @@ function clearAllCache() {
   } catch (error) {
     log(`⚠️ Error clearing cache: ${error.message}`);
     throw error;
+  } finally {
+    if (connection) {
+      release(connection.releaseToken);
+    }
   }
 }
 
@@ -179,7 +178,7 @@ async function warmupAllCache() {
     for (const pageId of pageIds) {
       try {
         const pageData = await loadPageDataFromDB(pageId);
-        const saved = saveToCache(pageId, pageData);
+        const saved = await saveToCache(pageId, pageData);
         
         results.push({
           pageId,
@@ -198,10 +197,6 @@ async function warmupAllCache() {
       }
     }
     
-    // 3. Flush para garantir persistência
-    const db = getDB();
-    await db.flushed;
-    
     log(`🎉 Cache warm-up complete! Cached ${results.filter(r => r.success).length}/${pageIds.length} pages`);
     
     return results;
@@ -217,7 +212,7 @@ async function refreshCache() {
     log(`🔄 Starting full cache refresh...`);
     
     // 1. Limpar cache existente
-    const clearedCount = clearAllCache();
+    const clearedCount = await clearAllCache();
     
     // 2. Pré-aquecer com dados frescos do DB
     const warmupResults = await warmupAllCache();
