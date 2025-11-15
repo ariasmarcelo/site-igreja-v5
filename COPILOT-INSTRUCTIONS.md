@@ -347,7 +347,87 @@ VITE_API_URL=
 **Componentes de Página:**
 - Sempre importar `useLocaleTexts` para carregar dados
 - Sempre usar `data-json-key` para campos editáveis
-- CSS externo em arquivos `*-page.css` (nunca inline styles)
+- CSS externo seguindo estrutura ITCSS (nunca inline styles)
+
+**⚠️ REGRA PÉTREA - ARQUITETURA CSS ITCSS ⚠️**
+
+**NUNCA VIOLE ESTAS REGRAS:**
+
+1. **Proibido estilos inline:** JAMAIS use `style={{...}}` em componentes React
+2. **Estrutura ITCSS obrigatória:** Todos os CSS devem seguir a organização abaixo
+3. **Ponto de entrada único:** `src/styles.css` (importado em `main.tsx`)
+
+**Estrutura de Diretórios (IMUTÁVEL):**
+```
+src/styles/
+├── settings/       # 1️⃣ Variáveis CSS e design tokens
+│   └── design-tokens.css
+├── base/          # 2️⃣ Estilos HTML base (body, h1-h6, etc)
+│   └── elements.css
+├── components/    # 3️⃣ Componentes reutilizáveis
+│   ├── visual-editor.css
+│   └── testimonials-carousel.css
+├── layouts/       # 4️⃣ Layouts e páginas
+│   ├── admin-console.css
+│   └── pages/
+│       ├── index.css
+│       ├── quemsomos.css
+│       ├── contato.css
+│       ├── purificacao.css
+│       ├── tratamentos.css
+│       ├── testemunhos.css
+│       └── artigos.css
+└── utilities/     # 5️⃣ Classes utilitárias
+    └── helpers.css
+```
+
+**Ordem de Especificidade (Cascata):**
+Settings → Base → Components → Layouts → Utilities (genérico → específico)
+
+**Como Importar CSS em Componentes:**
+```tsx
+// ✅ CORRETO - Páginas
+import '@/styles/layouts/pages/nome-da-pagina.css'
+
+// ✅ CORRETO - Componentes
+import '@/styles/components/nome-do-componente.css'
+
+// ❌ ERRADO - Caminhos antigos
+import '@/styles/nome-page.css'
+```
+
+**Caminhos dos Imports no styles.css:**
+```css
+/* ✅ CORRETO */
+@import "./styles/settings/design-tokens.css";
+@import "./styles/base/elements.css";
+
+/* ❌ ERRADO */
+@import "./settings/design-tokens.css";
+```
+
+**Nomenclatura:**
+- Páginas: `layouts/pages/{nome-pagina}.css`
+- Componentes: `components/{nome-componente}.css`
+- Classes: Use BEM ou utility classes (`.card-elevated`, `.btn-gold`)
+
+**Documentação CSS Completa:**
+- `src/styles/README.md` - Arquitetura ITCSS completa
+- `src/styles/QUICK-GUIDE.md` - Guia rápido de uso
+- `src/styles/SUMMARY.md` - Resumo executivo
+
+**CHECKLIST ao Adicionar CSS:**
+- [ ] Arquivo criado no diretório correto da estrutura ITCSS?
+- [ ] Importado em `styles.css` na ordem correta?
+- [ ] Usa variáveis CSS (`var(--gold-500)`)?
+- [ ] Import correto no componente React?
+- [ ] Sem estilos inline (`style={{...}}`)?
+- [ ] Nome de classe descritivo (BEM)?
+
+**EM CASO DE DÚVIDA:**
+1. Consulte `src/styles/QUICK-GUIDE.md`
+2. Veja fluxograma de decisão no guia
+3. Nunca quebre a estrutura ITCSS
 
 **APIs Serverless:**
 - CommonJS (`require/module.exports`)
