@@ -1,0 +1,149 @@
+/**
+ * BASE ELEMENTS - Estilos de elementos HTML base
+ * Sem classes, apenas elementos
+ */
+
+@layer base {
+  :root {
+    /* Paleta Metálica Legacy (mantida para compatibilidade) */
+    --gold-500: #CFAF5A;
+    --gold-700: #B38938;
+    --silver-500: #C0C4C7;
+    --silver-700: #9EA2A5;
+    --green-metal-500: #5EA98D;
+    --blue-metal-500: #4A90A9;
+    --bg-light: #FAF9F7;
+    --text-dark: #222222;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+  }
+}
+
+/* ProseMirror Base Styles (Editor de texto rico) */
+.ProseMirror {
+  outline: none;
+  padding: 1rem;
+  min-height: 200px;
+}
+
+.ProseMirror p {
+  margin: 0.5em 0;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+  font-weight: 700;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  margin: 0.75em 0;
+  font-weight: 700;
+}
+
+.ProseMirror h3 {
+  font-size: 1.17em;
+  margin: 0.83em 0;
+  font-weight: 700;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.ProseMirror li {
+  margin: 0.25em 0;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #CFAF5A;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  color: #4A4845;
+}
+
+.ProseMirror code {
+  background-color: #F5F3F0;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+.ProseMirror pre {
+  background-color: #F5F3F0;
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.ProseMirror pre code {
+  background: none;
+  padding: 0;
+}
+
+.ProseMirror a {
+  color: #4A90A9;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror a:hover {
+  color: #357A8F;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1em auto;
+}
+
+.ProseMirror mark {
+  background-color: #FFF59D;
+  padding: 0.1em 0.2em;
+  border-radius: 2px;
+}
+
+/* Accordion animations */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}

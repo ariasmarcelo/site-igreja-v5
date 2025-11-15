@@ -13,7 +13,6 @@ import Purificacao from './Purificacao';
 import Artigos from './Artigos';
 import Testemunhos from './Testemunhos';
 import Tratamentos from './Tratamentos';
-import '@/styles/admin-console.css';
 
 export default function AdminConsole() {
   const pages = [

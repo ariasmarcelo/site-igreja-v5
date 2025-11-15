@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
-import '@/styles/visual-page-editor.css';
 
 interface VisualPageEditorProps {
   pageId: string;

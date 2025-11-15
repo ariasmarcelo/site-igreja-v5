@@ -1,0 +1,50 @@
+/**
+ * ARQUITETURA CSS - Igreja de Metatron
+ * 
+ * Estrutura baseada em ITCSS (Inverted Triangle CSS)
+ * Organização por especificidade crescente
+ */
+
+/* ==========================================================================
+   1. SETTINGS - Variáveis e tokens (mais genérico)
+   ========================================================================== */
+@import "./settings/design-tokens.css";
+
+/* ==========================================================================
+   2. TOOLS - Mixins e funções (não geram CSS diretamente)
+   ========================================================================== */
+/* Futuro: utilities, mixins se necessário */
+
+/* ==========================================================================
+   3. GENERIC - Reset, normalize, box-sizing
+   ========================================================================== */
+@import "./tailwind.css";
+@import "./fonts.css";
+
+/* ==========================================================================
+   4. ELEMENTS - Estilos de elementos HTML base (sem classes)
+   ========================================================================== */
+@import "./base/elements.css";
+
+/* ==========================================================================
+   5. COMPONENTS - Componentes reutilizáveis
+   ========================================================================== */
+@import "./components/visual-editor.css";
+@import "./components/testimonials-carousel.css";
+
+/* ==========================================================================
+   6. LAYOUTS - Layouts e páginas específicas
+   ========================================================================== */
+@import "./layouts/admin-console.css";
+@import "./layouts/pages/index.css";
+@import "./layouts/pages/quemsomos.css";
+@import "./layouts/pages/contato.css";
+@import "./layouts/pages/purificacao.css";
+@import "./layouts/pages/tratamentos.css";
+@import "./layouts/pages/testemunhos.css";
+@import "./layouts/pages/artigos.css";
+
+/* ==========================================================================
+   7. UTILITIES - Classes utilitárias (mais específico)
+   ========================================================================== */
+@import "./utilities/helpers.css";
