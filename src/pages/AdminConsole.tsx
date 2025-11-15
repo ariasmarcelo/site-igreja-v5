@@ -79,23 +79,34 @@ export default function AdminConsole() {
               </TabsList>
 
               <TabsContent value="pages">
-                <Tabs value={pageTab} onValueChange={setPageTab}>
-                  <TabsList className="flex-wrap">
-                    {pages.map(page => (
-                      <TabsTrigger key={page.id} value={page.id} className="min-w-[140px] px-5 py-2">{page.name}</TabsTrigger>
-                    ))}
-                  </TabsList>
+                <div className="mb-6 p-4 bg-gradient-to-r from-gold-500/10 to-gold-700/10 border-2 border-gold-500 rounded-lg">
+                  <h2 className="text-lg font-bold mb-3 text-gold-700 flex items-center gap-2">
+                    📄 Selecione uma Página para Editar
+                  </h2>
+                  <Tabs value={pageTab} onValueChange={setPageTab}>
+                    <TabsList className="flex-wrap gap-2 bg-white/50 p-2">
+                      {pages.map(page => (
+                        <TabsTrigger 
+                          key={page.id} 
+                          value={page.id} 
+                          className="min-w-[160px] px-6 py-3 font-semibold text-base data-[state=active]:bg-gold-500 data-[state=active]:text-white data-[state=active]:shadow-lg transition-all"
+                        >
+                          {page.name}
+                        </TabsTrigger>
+                      ))}
+                    </TabsList>
 
-                  {pages.map(page => (
-                    <TabsContent key={page.id} value={page.id}>
-                      <VisualPageEditor
-                        pageId={page.id}
-                        pageName={page.name}
-                        pageComponent={page.component}
-                      />
-                    </TabsContent>
-                  ))}
-                </Tabs>
+                    {pages.map(page => (
+                      <TabsContent key={page.id} value={page.id} className="mt-6">
+                        <VisualPageEditor
+                          pageId={page.id}
+                          pageName={page.name}
+                          pageComponent={page.component}
+                        />
+                      </TabsContent>
+                    ))}
+                  </Tabs>
+                </div>
               </TabsContent>
 
               <TabsContent value="blog">

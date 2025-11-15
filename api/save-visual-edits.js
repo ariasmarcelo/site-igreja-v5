@@ -26,20 +26,22 @@ function getDB() {
   return global.__lmdbInstance;
 }
 
-// Invalidate specific cache entries (granular)
-// Input: ["purificacao.header.title", "purificacao.intro.mainText"]
-function invalidateCachePaths(paths) {
+// 🗑️ INVALIDAR TODO O CACHE após salvamento
+// Isso garante que qualquer requisição posterior pegue dados frescos do banco
+function invalidateAllCache() {
   try {
     const db = getDB();
-    log(`Invalidating ${paths.length} cache entries`);
+    const allKeys = Array.from(db.getKeys());
     
-    for (const fullPath of paths) {
-      db.remove(fullPath); // Remove granular cache entry
+    log(`🗑️ Clearing entire cache: ${allKeys.length} entries`);
+    
+    for (const key of allKeys) {
+      db.remove(key);
     }
     
-    log(`Cache invalidated: ${paths.length} entries`);
+    log(`✅ Cache completely cleared: ${allKeys.length} entries removed`);
   } catch (error) {
-    log(`Error invalidating cache: ${error.message}`);
+    log(`⚠️ Error clearing cache: ${error.message}`);
     // Non-critical error - don't fail the request
   }
 }
@@ -78,34 +80,30 @@ module.exports = async (req, res) => {
     let appliedCount = 0;
     const updates = [];
     
-    for (const [elementId, edit] of Object.entries(edits)) {
-      log(`Processing edit - elementId: ${elementId}, hasNewText: ${edit.newText !== undefined}, isShared: ${edit.isShared}, targetPage: ${edit.targetPage}`);
+    for (const [jsonKey, edit] of Object.entries(edits)) {
+      log(`Processing edit - jsonKey: ${jsonKey}, hasNewText: ${edit.newText !== undefined}, isShared: ${edit.isShared}, targetPage: ${edit.targetPage}`);
       
       if (edit.newText === undefined) {
-        log(`Skipping ${elementId} - no newText`);
+        log(`Skipping ${jsonKey} - no newText`);
         continue;
       }
       
-      // Remover prefixo pageId se presente
-      let cleanElementId = elementId;
-      if (elementId.startsWith(`${pageId}.`)) {
-        cleanElementId = elementId.substring(pageId.length + 1);
-        log(`Removed pageId prefix from ${elementId} -> ${cleanElementId}`);
-      }
+      // 🌐 CONTEÚDO COMPARTILHADO: Detectar se é conteúdo compartilhado
+      // Compartilhado = NÃO tem prefixo pageId (footer.*, header.*, etc.)
+      const hasPagePrefix = jsonKey.startsWith(`${pageId}.`);
+      const isSharedContent = !hasPagePrefix || edit.isShared === true;
       
-      // 🌐 CONTEÚDO COMPARTILHADO: Usar flag isShared do editor
-      // Fallback: auto-detectar footer.* e header.* como compartilhado (compatibilidade)
-      const isSharedContent = edit.isShared === true || 
-                              cleanElementId.startsWith('footer.') || 
-                              cleanElementId.startsWith('header.');
+      // 📄 PÁGINA DE DESTINO: 
+      // - Se compartilhado: page_id = '__shared__'
+      // - Se não compartilhado: page_id = pageId (ou targetPage se fornecido)
+      const targetPageId = isSharedContent ? '__shared__' : (edit.targetPage || pageId);
       
-      // 📄 PÁGINA DE DESTINO: Usar targetPage se fornecido, senão usar pageId global
-      const finalPageId = edit.targetPage || pageId;
+      // ✅ NUNCA MODIFICAR json_key - usar exatamente como recebido
+      // Banco armazena:
+      // - Compartilhado: "footer.copyright" (SEM prefixo)
+      // - Página: "tratamentos.treatments[0].details" (COM prefixo)
       
-      const jsonKey = isSharedContent ? cleanElementId : `${finalPageId}.${cleanElementId}`;
-      const targetPageId = isSharedContent ? '__shared__' : finalPageId;
-      
-      log(`Prepared update - page_id: ${targetPageId}, json_key: ${jsonKey}, isShared: ${isSharedContent}, finalPage: ${finalPageId}`);
+      log(`Prepared update - page_id: ${targetPageId}, json_key: ${jsonKey}, isShared: ${isSharedContent}`);
       
       updates.push({
         page_id: targetPageId,
@@ -143,10 +141,9 @@ module.exports = async (req, res) => {
     
     log(`Database save successful: pageId=${pageId}, applied=${appliedCount}/${Object.keys(edits).length}`);
     
-    // Invalidate cache for modified paths (granular)
-    // json_key already includes pageId prefix
-    const modifiedPaths = updates.map(u => u.json_key);
-    invalidateCachePaths(modifiedPaths);
+    // 🗑️ APAGAR TODO O CACHE após salvamento bem-sucedido
+    // Garante que todas as próximas requisições busquem dados frescos do banco
+    invalidateAllCache();
     
     res.status(200).json({ 
       success: true, 
