@@ -100,3 +100,9 @@
   transform: translateY(-6px) scale(1.08);
   box-shadow: 0 12px 40px rgba(239, 68, 68, 0.6);
 }
+
+/* Suporte para quebras de linha em todos os elementos editáveis */
+[data-json-key] {
+  white-space: pre-line;
+}
+

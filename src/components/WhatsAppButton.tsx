@@ -11,12 +11,26 @@ export default function WhatsAppButton() {
   return (
     <Link
       to="/contato"
-      className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-16 h-16 bg-[#25D366] text-white rounded-full shadow-2xl hover:shadow-[0_20px_50px_rgba(37,211,102,0.5)] transition-all duration-300 hover:scale-110 animate-float"
+      className="whatsapp-button"
+      style={{
+        position: 'fixed',
+        bottom: '1.5rem',
+        right: '1.5rem',
+        zIndex: 50,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '3.5rem',
+        height: '3.5rem',
+        backgroundColor: '#25D366',
+        color: 'white',
+        borderRadius: '9999px',
+      }}
       aria-label="Faça Contato"
     >
       {/* Ícone oficial do WhatsApp */}
       <svg
-        className="w-9 h-9"
+        className="w-8 h-8"
         viewBox="0 0 24 24"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"

@@ -6,13 +6,19 @@ import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import { usePageContent } from '@/hooks/useContent';
 import { SharedFooter } from '@/components/SharedFooter';
+import { FooterBackground } from '@/components/FooterBackground';
 import { usePageStyles } from '@/hooks/usePageStyles';
 import { PageLoading } from '@/components/PageLoading';
 import '@/styles/layouts/pages/tratamentos.css';
+import '@/styles/waves.css';
 
 
 interface TratamentosTexts {
   header: { title: string; subtitle: string };
+  sections: {
+    intro_title: string;
+    treatments_title: string;
+  };
   intro: { p1: string; p2: string };
   legal: { title: string; notice: string };
   treatments: Array<Record<string, string>>;
@@ -114,8 +120,8 @@ export default function Tratamentos() {
           <div className="absolute inset-0 opacity-[0.03] tratamentos-pattern"></div>
           
           {/* Título */}
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 relative z-10 drop-shadow-sm">
-            Introdução
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 relative z-10 drop-shadow-sm" data-json-key="tratamentos.sections.intro_title">
+            {texts.sections?.intro_title || 'Introdução'}
           </h2>
           
           <div className="max-w-4xl mx-auto space-y-5 relative z-10">
@@ -152,7 +158,7 @@ export default function Tratamentos() {
 
         {/* Tratamentos - Accordion em Box Agrupado */}
         <div className="bg-white rounded-2xl shadow-2xl p-6 md:p-8 border border-slate-200">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 drop-shadow-sm">Modalidades Terapêuticas</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 drop-shadow-sm" data-json-key="tratamentos.sections.treatments_title">{texts.sections?.treatments_title || 'Modalidades Terapêuticas'}</h2>
           
           <Accordion type="multiple" className="max-w-5xl mx-auto space-y-4">
             {treatments.map((treatment, index) => (
@@ -254,134 +260,30 @@ export default function Tratamentos() {
 
       {/* Footer CTA Section com fundo céu, terra e água */}
       <section className="relative overflow-hidden mt-16">
-        {/* Fundo com transição céu-terra-água */}
-        <div className="absolute inset-0 z-0">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 1200 400"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              {/* Gradiente do céu - AZUL vibrante */}
-              <linearGradient id="skyGradientTratamentos" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#0ea5e9"/>
-                <stop offset="50%" stopColor="#38bdf8"/>
-                <stop offset="100%" stopColor="#7dd3fc"/>
-              </linearGradient>
-              
-              {/* Gradiente da terra - marrom escuro */}
-              <linearGradient id="earthGradientTratamentos" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#78716c"/>
-                <stop offset="100%" stopColor="#44403c"/>
-              </linearGradient>
-              
-              {/* Efeitos metálicos difusos */}
-              <radialGradient id="glow1Tratamentos">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6"/>
-                <stop offset="100%" stopColor="#fef3c7" stopOpacity="0"/>
-              </radialGradient>
-              <radialGradient id="glow2Tratamentos">
-                <stop offset="0%" stopColor="#fde68a" stopOpacity="0.5"/>
-                <stop offset="100%" stopColor="#fbbf24" stopOpacity="0"/>
-              </radialGradient>
-              <radialGradient id="glow3Tratamentos">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.4"/>
-                <stop offset="100%" stopColor="#fef3c7" stopOpacity="0"/>
-              </radialGradient>
-            </defs>
-            
-            {/* CÉU AZUL - com curvatura positiva na parte inferior */}
-            <path 
-              d="M0,0 L1200,0 L1200,260 Q600,180 0,260 Z" 
-              fill="url(#skyGradientTratamentos)"
-            />
-            
-            {/* Círculos de luz metálica difusa espalhados */}
-            <circle cx="150" cy="30" r="80" fill="url(#glow1Tratamentos)" opacity="0.4"/>
-            <circle cx="280" cy="50" r="60" fill="url(#glow3Tratamentos)" opacity="0.35"/>
-            <circle cx="420" cy="25" r="90" fill="url(#glow2Tratamentos)" opacity="0.45"/>
-            <circle cx="550" cy="45" r="70" fill="url(#glow1Tratamentos)" opacity="0.4"/>
-            <circle cx="680" cy="35" r="85" fill="url(#glow3Tratamentos)" opacity="0.38"/>
-            <circle cx="820" cy="55" r="65" fill="url(#glow2Tratamentos)" opacity="0.42"/>
-            <circle cx="950" cy="40" r="75" fill="url(#glow1Tratamentos)" opacity="0.37"/>
-            <circle cx="1080" cy="30" r="70" fill="url(#glow3Tratamentos)" opacity="0.4"/>
-            
-            {/* Segunda camada de brilhos menores */}
-            <circle cx="200" cy="70" r="50" fill="url(#glow2Tratamentos)" opacity="0.3"/>
-            <circle cx="360" cy="80" r="45" fill="url(#glow1Tratamentos)" opacity="0.28"/>
-            <circle cx="500" cy="90" r="55" fill="url(#glow3Tratamentos)" opacity="0.32"/>
-            <circle cx="640" cy="75" r="48" fill="url(#glow2Tratamentos)" opacity="0.3"/>
-            <circle cx="780" cy="85" r="52" fill="url(#glow1Tratamentos)" opacity="0.29"/>
-            <circle cx="920" cy="95" r="47" fill="url(#glow3Tratamentos)" opacity="0.31"/>
-            <circle cx="1060" cy="80" r="50" fill="url(#glow2Tratamentos)" opacity="0.28"/>
-            
-            {/* Terceira camada - brilhos muito sutis */}
-            <circle cx="100" cy="60" r="35" fill="url(#glow3Tratamentos)" opacity="0.25"/>
-            <circle cx="320" cy="110" r="40" fill="url(#glow1Tratamentos)" opacity="0.22"/>
-            <circle cx="480" cy="65" r="38" fill="url(#glow2Tratamentos)" opacity="0.24"/>
-            <circle cx="720" cy="105" r="42" fill="url(#glow3Tratamentos)" opacity="0.23"/>
-            <circle cx="880" cy="70" r="36" fill="url(#glow1Tratamentos)" opacity="0.25"/>
-            <circle cx="1020" cy="100" r="39" fill="url(#glow2Tratamentos)" opacity="0.22"/>
-            
-            {/* TERRA - com curvatura positiva na parte superior */}
-            <path 
-              d="M0,260 Q600,180 1200,260 L1200,400 L0,400 Z" 
-              fill="url(#earthGradientTratamentos)"
-            />
-            
-            {/* LINHA DO HORIZONTE - curvatura mais pronunciada */}
-            <path 
-              d="M0,260 Q600,180 1200,260" 
-              stroke="#d6d3d1" 
-              strokeWidth="2" 
-              fill="none" 
-              opacity="0.6"
-            />
-            
-            {/* ÁGUA - camadas animadas verde-água mais escuras com curvatura acentuada */}
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite]" 
-              d="M0,340 Q600,280 1200,340 L1200,400 L0,400 Z" 
-              fill="#0d9488" 
-              opacity="0.4"
-            />
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite_0.5s]" 
-              d="M0,360 Q600,300 1200,360 L1200,400 L0,400 Z" 
-              fill="#0f766e" 
-              opacity="0.35"
-            />
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite_1s]" 
-              d="M0,380 Q600,320 1200,380 L1200,400 L0,400 Z" 
-              fill="#115e59" 
-              opacity="0.3"
-            />
-          </svg>
-        </div>
+        {/* Fundo com transição céu-água */}
+        <FooterBackground gradientId="skyGradientTratamentos" />
 
         {/* Activity Icon - posicionado absolutamente no canto superior esquerdo */}
-        <div className="absolute top-8 left-8 z-10">
-          <Activity className="w-32 h-32 text-[#CFAF5A] stroke-[1.5]" />
+        <div className="absolute top-4 left-8 w-14 h-14 z-10 drop-shadow-lg">
+          <Activity className="w-full h-full text-[#CFAF5A] stroke-[2.5]" />
         </div>
 
         {/* Waves Icon - posicionado no canto superior direito */}
-        <div className="absolute top-8 right-8 z-20">
-          <Waves className="w-32 h-32 text-[#CFAF5A] stroke-[1.5]" />
+        <div className="absolute top-4 right-8 z-20">
+          <Waves className="w-14 h-14 text-[#CFAF5A] stroke-[2.5] drop-shadow-lg" />
         </div>
 
         {/* CTA Content - posicionado no céu */}
-        <div className="container mx-auto px-4 relative z-10 pt-12 pb-8">
+        <div className="container mx-auto px-4 relative z-50 pt-6 pb-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg" data-json-key="tratamentos.cta.title">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white text-shadow-strong" data-json-key="tratamentos.cta.title">
               {texts.cta.title}
             </h2>
-            <p className="text-xl mb-8 text-white drop-shadow-md" data-json-key="tratamentos.cta.subtitle">
+            <p className="text-lg mb-5 text-white text-shadow-medium" data-json-key="tratamentos.cta.subtitle">
               {texts.cta.subtitle}
             </p>
             <Link to="/contato">
-              <Button className="bg-[#CFAF5A] text-white font-semibold px-8 py-6 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" data-json-key="tratamentos.cta.buttonText">
+              <Button className="bg-[#CFAF5A] text-white font-semibold px-6 py-4 text-base rounded-lg shadow-[0_6px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-105" data-json-key="tratamentos.cta.buttonText">
                 {texts.cta.buttonText}
               </Button>
             </Link>

@@ -135,10 +135,10 @@ Três camadas de dados (Supabase → JSONs locais → defaults hardcoded).
 📄 **Documentação completa:** `docs/GRANULAR-FALLBACK-SYSTEM-V2.md`
 
 **Fluxo de Dados:**  
-Página carrega → `useLocaleTexts` busca `/api/content-v2/[pageId]` → Supabase retorna dados → Renderiza → Sincronização automática em background salva JSONs granulares em `src/locales/pt-BR/`
+Página carrega → `usePageContent` busca `GET /api/content/:pageId` → Supabase retorna dados → Renderiza → Sincronização automática em background salva JSONs granulares em `src/locales/pt-BR/`
 
 **Editor Visual:**  
-Ativado via Admin Console. Detecta `data-json-key` atributo. Edições salvam via `/api/save-visual-edits`.
+Ativado via Admin Console. Detecta `data-json-key` atributo. Edições salvam via `PUT /api/content/:pageId`.
 
 **Conteúdo Compartilhado:**  
 `page_id = "__shared__"` (ex: footer). API mescla automaticamente com conteúdo específico.
@@ -149,18 +149,20 @@ api/                    # Serverless Functions (Vercel)
 src/
   components/           # Componentes React
   pages/                # Páginas do site
-  hooks/useLocaleTexts.ts
+  hooks/useContent.ts      # Hook usePageContent para páginas
   styles/               # ITCSS (ver regras pétreas)
 scripts/                # Automação
 docs/                   # Documentação técnica
 ```
 
 ### Scripts de Automação ###
-**Uso:** `(caminhoRelativo)\start-dev.ps1` (inicia Vercel Dev) | `(caminhoRelativo)\stop-dev.ps1` (para servidor)
+**Desenvolvimento:** `pnpm dev` (inicia Vite Dev Server em http://localhost:3000)  
+**Deploy:** `vercel --prod` (deploy para produção no Vercel)  
+**Backup:** `node scripts/backup-supabase.js` (backup do banco de dados)
 
 ### Convenções de Código ###
 **JSON Keys:** `pagina.secao.campo` ou `secao.campo` (compartilhado)  
-**Componentes:** Sempre usar `useLocaleTexts` e `data-json-key` para conteúdo editável
+**Componentes:** Sempre usar `usePageContent` e `data-json-key` para conteúdo editável
 
 ---
 

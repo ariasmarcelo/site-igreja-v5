@@ -1,0 +1,48 @@
+/* WhatsApp Button Component Styles */
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 3.5rem;
+  height: 3.5rem;
+  
+  background-color: #25D366;
+  color: white;
+  border-radius: 9999px;
+  
+  transition: all 0.3s ease;
+  
+  /* Sombra base permanente */
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+  
+  /* Animação de flutuação */
+  animation: whatsapp-float 3s ease-in-out infinite;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.1);
+  box-shadow: 
+    0 20px 50px rgba(37, 211, 102, 0.5),
+    0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes whatsapp-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+    box-shadow: 
+      0 14px 20px rgba(0, 0, 0, 0.4),
+      0 7px 10px rgba(0, 0, 0, 0.3);
+  }
+}

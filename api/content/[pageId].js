@@ -13,9 +13,20 @@ function reconstructObjectFromEntries(entries, pageId) {
   const pageContent = {};
   
   entries.forEach(entry => {
-    const jsonKey = entry.json_key;
+    let jsonKey = entry.json_key;
     
-    // Remove o prefixo do pageId se existir (ex: "index.header.title" -> "header.title")
+    // Adicionar prefixo __shared__. se a entrada vem de page_id='__shared__'
+    if (entry.page_id === '__shared__') {
+      jsonKey = `__shared__.${jsonKey}`;
+    }
+    // Para página específica, adicionar prefixo do pageId se não tiver
+    else if (!jsonKey.startsWith(pageId + '.')) {
+      jsonKey = `${pageId}.${jsonKey}`;
+    }
+    
+    // Agora remover o prefixo para construir o objeto nested
+    // "__shared__.footer.copyright" -> ["__shared__", "footer", "copyright"]
+    // "index.header.title" -> ["header", "title"] (remove "index")
     const keys = jsonKey.startsWith(pageId + '.') 
       ? jsonKey.split('.').slice(1)
       : jsonKey.split('.');
@@ -66,7 +77,7 @@ async function handleGet(pageId) {
   // Busca entradas da página específica + __shared__
   const { data: entries, error } = await supabase
     .from('text_entries')
-    .select('json_key, content')
+    .select('page_id, json_key, content')
     .in('page_id', [pageId, '__shared__']);
 
   if (error) {
@@ -99,21 +110,36 @@ async function handlePut(pageId, edits) {
   for (const [jsonKey, edit] of Object.entries(edits)) {
     if (edit.newText === undefined) continue;
     
-    // Detectar se é conteúdo compartilhado
-    const hasPagePrefix = jsonKey.startsWith(`${pageId}.`);
-    const isSharedContent = !hasPagePrefix || edit.isShared === true;
-    const targetPageId = isSharedContent ? '__shared__' : (edit.targetPage || pageId);
+    // Detectar se é conteúdo compartilhado pelo prefixo __shared__.
+    const isSharedKey = jsonKey.startsWith('__shared__.');
+    
+    // Determinar page_id e json_key para salvar
+    let targetPageId;
+    let finalJsonKey;
+    
+    if (isSharedKey) {
+      // Conteúdo compartilhado: page_id='__shared__', json_key='footer.copyright'
+      targetPageId = '__shared__';
+      finalJsonKey = jsonKey.replace('__shared__.', ''); // Remove prefixo
+    } else {
+      // Conteúdo de página específica: page_id='index', json_key='header.title' (sem prefixo)
+      targetPageId = pageId;
+      const hasPagePrefix = jsonKey.startsWith(`${pageId}.`);
+      finalJsonKey = hasPagePrefix ? jsonKey.substring(pageId.length + 1) : jsonKey;
+    }
     
     updates.push({
       page_id: targetPageId,
-      json_key: jsonKey,
+      json_key: finalJsonKey,
       newText: edit.newText
     });
   }
   
   // Aplicar updates
   for (const update of updates) {
-    const { error } = await supabase
+    log(`UPSERTING: page_id="${update.page_id}" json_key="${update.json_key}" text="${update.newText.substring(0, 50)}..."`);
+    
+    const { data, error } = await supabase
       .from('text_entries')
       .upsert({
         page_id: update.page_id,
@@ -122,12 +148,15 @@ async function handlePut(pageId, edits) {
         updated_at: new Date().toISOString()
       }, {
         onConflict: 'json_key'
-      });
+      })
+      .select();
     
     if (error) {
       log(`ERROR upserting ${update.json_key}: ${error.message}`);
       throw error;
     }
+    
+    log(`SUCCESS: Updated ${data?.length || 0} row(s)`);
   }
   
   log(`SUCCESS: ${updates.length} entries updated (${Date.now() - startTime}ms)`);

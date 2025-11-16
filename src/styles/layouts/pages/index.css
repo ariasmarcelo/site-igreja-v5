@@ -5,3 +5,12 @@
   background-image: radial-gradient(circle at 2px 2px, #78716c 1px, transparent 0);
   background-size: 40px 40px;
 }
+
+/* Footer CTA text shadows */
+.index-cta-title {
+  text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+}
+
+.index-cta-subtitle {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7), 0 1px 6px rgba(0, 0, 0, 0.5) !important;
+}

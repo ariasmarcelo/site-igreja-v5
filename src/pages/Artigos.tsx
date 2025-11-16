@@ -14,11 +14,25 @@ import PageLoader from '@/components/PageLoader';
 interface ArtigosTexts {
   header: { title: string; subtitle: string };
   tabs: { esoterica: string; cientifica: string; all: string };
+  sections: {
+    esoterica_wisdom_title: string;
+    esoterica_wisdom_subtitle: string;
+    esoterica_categories_title: string;
+    esoterica_articles_title: string;
+    cientifica_wisdom_title: string;
+    cientifica_wisdom_subtitle: string;
+    cientifica_categories_title: string;
+    cientifica_articles_title: string;
+    unificada_wisdom_title: string;
+    unificada_wisdom_subtitle: string;
+    unificada_categories_title: string;
+    unificada_articles_title: string;
+  };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
-interface BlogPost {
+interface ArtigoPost {
   id: string;
   title: string;
   slug: string;
@@ -28,8 +42,8 @@ interface BlogPost {
   category: string;
   tags: string[];
   cover_image: string;
-  published: boolean;
-  published_at: string;
+  published_at: string | null;
+  archived_at: string | null;
   created_at: string;
   views: number;
 }
@@ -37,7 +51,7 @@ interface BlogPost {
 export default function Artigos() {
   usePageStyles('artigos');
   const { data: texts, loading: textsLoading, error: textsError } = usePageContent<ArtigosTexts>('artigos');
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [posts, setPosts] = useState<ArtigoPost[]>([]);
   const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('esoterica');
 
@@ -130,18 +144,18 @@ export default function Artigos() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-amber-300 rounded-full blur-3xl"></div>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 relative z-10 drop-shadow-sm">
-                Sabedoria Ancestral
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 relative z-10 drop-shadow-sm" data-json-key="artigos.sections.esoterica_wisdom_title">
+                {texts.sections?.esoterica_wisdom_title || 'Sabedoria Ancestral'}
               </h2>
-              <p className="text-lg md:text-xl text-center text-slate-700 max-w-3xl mx-auto relative z-10 leading-relaxed">
-                Explore ensinamentos milenares, práticas espirituais e conhecimentos sagrados que transcendem o tempo.
+              <p className="text-lg md:text-xl text-center text-slate-700 max-w-3xl mx-auto relative z-10 leading-relaxed" data-json-key="artigos.sections.esoterica_wisdom_subtitle">
+                {texts.sections?.esoterica_wisdom_subtitle || 'Explore ensinamentos milenares, práticas espirituais e conhecimentos sagrados que transcendem o tempo.'}
               </p>
             </div>
 
             {/* Categories Section - Esotérica */}
             <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 border-2 border-yellow-200/40">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm">
-                Categorias Esotéricas
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm" data-json-key="artigos.sections.esoterica_categories_title">
+                {texts.sections?.esoterica_categories_title || 'Categorias Esotéricas'}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {texts.categories.items.filter((cat: { id: string }) => ['espiritualidade', 'praticas'].includes(cat.id)).map((category: { id: string; name: string; description: string }, index: number) => (
@@ -169,8 +183,8 @@ export default function Artigos() {
             {/* Featured Articles - Esotérica */}
             {currentArticles.length > 0 && (
               <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 border-2 border-yellow-200/40">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm">
-                  Artigos Esotéricos
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm" data-json-key="artigos.sections.esoterica_articles_title">
+                  {texts.sections?.esoterica_articles_title || 'Artigos Esotéricos'}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {currentArticles.map((post: { id: string; title: string; slug: string; excerpt: string; category: string; author: string; date: string; readTime: number }) => (
@@ -216,18 +230,18 @@ export default function Artigos() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-amber-300 rounded-full blur-3xl"></div>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 relative z-10 drop-shadow-sm">
-                Conhecimento Científico
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 relative z-10 drop-shadow-sm" data-json-key="artigos.sections.cientifica_wisdom_title">
+                {texts.sections?.cientifica_wisdom_title || 'Conhecimento Científico'}
               </h2>
-              <p className="text-lg md:text-xl text-center text-slate-700 max-w-3xl mx-auto relative z-10 leading-relaxed">
-                Descubra pesquisas, estudos e evidências científicas sobre consciência, cura e transformação humana.
+              <p className="text-lg md:text-xl text-center text-slate-700 max-w-3xl mx-auto relative z-10 leading-relaxed" data-json-key="artigos.sections.cientifica_wisdom_subtitle">
+                {texts.sections?.cientifica_wisdom_subtitle || 'Descubra pesquisas, estudos e evidências científicas sobre consciência, cura e transformação humana.'}
               </p>
             </div>
 
             {/* Categories Section - Científica */}
             <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 border-2 border-yellow-200/40">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm">
-                Categorias Científicas
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm" data-json-key="artigos.sections.cientifica_categories_title">
+                {texts.sections?.cientifica_categories_title || 'Categorias Científicas'}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {texts.categories.items.filter((cat: { id: string }) => ['ciencia', 'praticas'].includes(cat.id)).map((category: { id: string; name: string; description: string }, index: number) => (
@@ -255,8 +269,8 @@ export default function Artigos() {
             {/* Featured Articles - Científica */}
             {currentArticles.length > 0 && (
               <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 border-2 border-yellow-200/40">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm">
-                  Artigos Científicos
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm" data-json-key="artigos.sections.cientifica_articles_title">
+                  {texts.sections?.cientifica_articles_title || 'Artigos Científicos'}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {currentArticles.map((post: { id: string; title: string; slug: string; excerpt: string; category: string; author: string; date: string; readTime: number }) => (
@@ -302,18 +316,18 @@ export default function Artigos() {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-amber-300 rounded-full blur-3xl"></div>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 relative z-10 drop-shadow-sm">
-                Ponte entre Ciência e Espírito
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 text-slate-800 relative z-10 drop-shadow-sm" data-json-key="artigos.sections.unificada_wisdom_title">
+                {texts.sections?.unificada_wisdom_title || 'Ponte entre Ciência e Espírito'}
               </h2>
-              <p className="text-lg md:text-xl text-center text-slate-700 max-w-3xl mx-auto relative z-10 leading-relaxed">
-                Explore a integração entre conhecimento científico e sabedoria espiritual, compreendendo como corpo e consciência se conectam em uma dança harmoniosa de transformação.
+              <p className="text-lg md:text-xl text-center text-slate-700 max-w-3xl mx-auto relative z-10 leading-relaxed" data-json-key="artigos.sections.unificada_wisdom_subtitle">
+                {texts.sections?.unificada_wisdom_subtitle || 'Explore a integração entre conhecimento científico e sabedoria espiritual, compreendendo como corpo e consciência se conectam em uma dança harmoniosa de transformação.'}
               </p>
             </div>
 
             {/* Categories Section - Unificada */}
             <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 border-2 border-yellow-200/40">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm">
-                Categorias Integradas
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm" data-json-key="artigos.sections.unificada_categories_title">
+                {texts.sections?.unificada_categories_title || 'Categorias Integradas'}
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {texts.categories.items.map((category: { id: string; name: string; description: string }, index: number) => (
@@ -341,8 +355,8 @@ export default function Artigos() {
             {/* Featured Articles - Unificada */}
             {currentArticles.length > 0 && (
               <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 border-2 border-yellow-200/40">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm">
-                  Artigos Unificados
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-slate-800 drop-shadow-sm" data-json-key="artigos.sections.unificada_articles_title">
+                  {texts.sections?.unificada_articles_title || 'Artigos Unificados'}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {currentArticles.map((post: { id: string; title: string; slug: string; excerpt: string; category: string; author: string; date: string; readTime: number }) => (

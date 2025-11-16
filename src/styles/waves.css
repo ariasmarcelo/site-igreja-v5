@@ -1,0 +1,53 @@
+/* Animações de ondas para footers */
+@keyframes wave-1 {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-40px) translateY(-12px);
+  }
+  75% {
+    transform: translateX(0) translateY(20px);
+  }
+}
+
+@keyframes wave-2 {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(40px) translateY(-16px);
+  }
+  75% {
+    transform: translateX(0) translateY(24px);
+  }
+}
+
+@keyframes wave-3 {
+  0%, 100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-30px) translateY(-14px);
+  }
+  75% {
+    transform: translateX(0) translateY(22px);
+  }
+}
+
+.animate-wave-1 {
+  animation: wave-1 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-wave-2 {
+  animation: wave-2 7s ease-in-out infinite;
+  animation-delay: 0.5s;
+  will-change: transform;
+}
+
+.animate-wave-3 {
+  animation: wave-3 8s ease-in-out infinite;
+  animation-delay: 1s;
+  will-change: transform;
+}

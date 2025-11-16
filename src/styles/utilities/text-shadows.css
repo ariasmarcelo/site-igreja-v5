@@ -1,0 +1,18 @@
+/**
+ * TEXT SHADOWS UTILITIES
+ * 
+ * Classes utilitárias para sombras de texto
+ * Usadas principalmente em CTAs de footer para destaque sobre fundos claros
+ */
+
+.text-shadow-strong {
+  text-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.8),
+    0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.text-shadow-medium {
+  text-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.7),
+    0 1px 6px rgba(0, 0, 0, 0.5);
+}

@@ -27,10 +27,11 @@
 @import "./styles/base/elements.css";
 
 /* ==========================================================================
-   5. COMPONENTS - Componentes reutilizáveis
+   3. COMPONENTS - Componentes reutilizáveis
    ========================================================================== */
 @import "./styles/components/visual-editor.css";
 @import "./styles/components/testimonials-carousel.css";
+@import "./styles/components/whatsapp-button.css";
 
 /* ==========================================================================
    6. LAYOUTS - Layouts e páginas específicas
@@ -48,3 +49,4 @@
    7. UTILITIES - Classes utilitárias (mais específico)
    ========================================================================== */
 @import "./styles/utilities/helpers.css";
+@import "./styles/utilities/text-shadows.css";

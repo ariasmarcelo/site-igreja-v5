@@ -8,7 +8,18 @@ import { PageLoading } from '@/components/PageLoading';
 
 const TestimonialsCarousel = lazy(() => import('@/components/TestimonialsCarousel'));
 import { SharedFooter } from '@/components/SharedFooter';
+import { FooterBackground } from '@/components/FooterBackground';
 import '@/styles/layouts/pages/purificacao.css';
+
+interface PurificacaoTexts {
+  header: { title: string; subtitle: string };
+  sections?: {
+    intro_title?: string;
+    process_title?: string;
+  };
+  intro: { mainText: string; description: string };
+  [key: string]: any;
+}
 
 export default function Purificacao() {
   console.log(`[${new Date().toISOString()}] [PURIFICACAO] Component rendering started`);
@@ -16,7 +27,7 @@ export default function Purificacao() {
   const [expandedPhase, setExpandedPhase] = useState<number | null>(null);
   
   // usePageContent carrega apenas a página purificacao
-  const { data: texts, loading } = usePageContent('purificacao');
+  const { data: texts, loading } = usePageContent<PurificacaoTexts>('purificacao');
 
   const togglePhase = (phase: number) => {
     setExpandedPhase(expandedPhase === phase ? null : phase);
@@ -151,8 +162,8 @@ export default function Purificacao() {
             
             {/* Título da Seção */}
             <div className="text-center mb-8">
-              <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-2 tracking-wide">
-                AS TRÊS FASES DO PROCESSO
+              <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-2 tracking-wide" data-json-key="purificacao.sections.process_title">
+                {texts.sections?.process_title || 'AS TRÊS FASES DO PROCESSO'}
               </h2>
               <div className="flex items-center justify-center gap-3 mt-2">
                 <div className="h-px w-20 bg-linear-to-r from-transparent via-amber-400 to-amber-500"></div>
@@ -646,111 +657,10 @@ export default function Purificacao() {
       {/* Footer com horizonte terrestre */}
       <section className="relative overflow-hidden bg-slate-900">
         {/* Horizonte terrestre: céu acima, terra abaixo */}
-        <div className="absolute inset-0 opacity-100">
-          <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 400">
-            <defs>
-              {/* Gradiente do c├®u - AZUL vibrante */}
-              <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#0ea5e9"/>
-                <stop offset="50%" stopColor="#38bdf8"/>
-                <stop offset="100%" stopColor="#7dd3fc"/>
-              </linearGradient>
-              
-              {/* Gradiente da terra - marrom escuro */}
-              <linearGradient id="earthGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#78716c"/>
-                <stop offset="100%" stopColor="#44403c"/>
-              </linearGradient>
-            </defs>
-            
-            {/* C├ëU AZUL - com curvatura positiva na parte inferior */}
-            <path 
-              d="M0,0 L1200,0 L1200,260 Q600,180 0,260 Z" 
-              fill="url(#skyGradient)"
-            />
-            
-            {/* Efeitos met├ílicos difusos distribu├¡dos pelo c├®u */}
-            <defs>
-              <radialGradient id="glow1">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6"/>
-                <stop offset="100%" stopColor="#fef3c7" stopOpacity="0"/>
-              </radialGradient>
-              <radialGradient id="glow2">
-                <stop offset="0%" stopColor="#fde68a" stopOpacity="0.5"/>
-                <stop offset="100%" stopColor="#fbbf24" stopOpacity="0"/>
-              </radialGradient>
-              <radialGradient id="glow3">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.4"/>
-                <stop offset="100%" stopColor="#fef3c7" stopOpacity="0"/>
-              </radialGradient>
-            </defs>
-            
-            {/* C├¡rculos de luz met├ílica difusa espalhados */}
-            <circle cx="150" cy="30" r="80" fill="url(#glow1)" opacity="0.4"/>
-            <circle cx="280" cy="50" r="60" fill="url(#glow3)" opacity="0.35"/>
-            <circle cx="420" cy="25" r="90" fill="url(#glow2)" opacity="0.45"/>
-            <circle cx="550" cy="45" r="70" fill="url(#glow1)" opacity="0.4"/>
-            <circle cx="680" cy="35" r="85" fill="url(#glow3)" opacity="0.38"/>
-            <circle cx="820" cy="55" r="65" fill="url(#glow2)" opacity="0.42"/>
-            <circle cx="950" cy="40" r="75" fill="url(#glow1)" opacity="0.37"/>
-            <circle cx="1080" cy="30" r="70" fill="url(#glow3)" opacity="0.4"/>
-            
-            {/* Segunda camada de brilhos menores */}
-            <circle cx="200" cy="70" r="50" fill="url(#glow2)" opacity="0.3"/>
-            <circle cx="360" cy="80" r="45" fill="url(#glow1)" opacity="0.28"/>
-            <circle cx="500" cy="90" r="55" fill="url(#glow3)" opacity="0.32"/>
-            <circle cx="640" cy="75" r="48" fill="url(#glow2)" opacity="0.3"/>
-            <circle cx="780" cy="85" r="52" fill="url(#glow1)" opacity="0.29"/>
-            <circle cx="920" cy="95" r="47" fill="url(#glow3)" opacity="0.31"/>
-            <circle cx="1060" cy="80" r="50" fill="url(#glow2)" opacity="0.28"/>
-            
-            {/* Terceira camada - brilhos muito sutis */}
-            <circle cx="100" cy="60" r="35" fill="url(#glow3)" opacity="0.25"/>
-            <circle cx="320" cy="110" r="40" fill="url(#glow1)" opacity="0.22"/>
-            <circle cx="480" cy="65" r="38" fill="url(#glow2)" opacity="0.24"/>
-            <circle cx="720" cy="105" r="42" fill="url(#glow3)" opacity="0.23"/>
-            <circle cx="880" cy="70" r="36" fill="url(#glow1)" opacity="0.25"/>
-            <circle cx="1020" cy="100" r="39" fill="url(#glow2)" opacity="0.22"/>
-            
-            {/* TERRA - com curvatura positiva na parte superior */}
-            <path 
-              d="M0,260 Q600,180 1200,260 L1200,400 L0,400 Z" 
-              fill="url(#earthGradient)"
-            />
-            
-            {/* LINHA DO HORIZONTE - curvatura mais pronunciada */}
-            <path 
-              d="M0,260 Q600,180 1200,260" 
-              stroke="#d6d3d1" 
-              strokeWidth="2" 
-              fill="none" 
-              opacity="0.6"
-            />
-            
-            {/* ├üGUA - camadas animadas verde-├ígua com curvatura acentuada */}
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite]" 
-              d="M0,340 Q600,280 1200,340 L1200,400 L0,400 Z" 
-              fill="#2dd4bf" 
-              opacity="0.4"
-            />
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite_0.5s]" 
-              d="M0,360 Q600,300 1200,360 L1200,400 L0,400 Z" 
-              fill="#14b8a6" 
-              opacity="0.35"
-            />
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite_1s]" 
-              d="M0,380 Q600,320 1200,380 L1200,400 L0,400 Z" 
-              fill="#0d9488" 
-              opacity="0.3"
-            />
-          </svg>
-        </div>
+        <FooterBackground gradientId="skyGradientPurificacao" />
 
         {/* Sol Dourado - posicionado absolutamente, independente do fundo */}
-        <div className="absolute top-8 left-8 w-32 h-32 z-10">
+        <div className="absolute top-4 left-8 w-20 h-20 z-10 drop-shadow-lg">
           <svg
             viewBox="0 0 100 100"
             className="w-full h-full"
@@ -781,7 +691,7 @@ export default function Purificacao() {
         </div>
 
         {/* Lua Crescente - posicionada no canto superior direito */}
-        <div className="absolute top-8 right-8 w-32 h-32 z-20">
+        <div className="absolute top-4 right-8 w-20 h-20 z-20">
           <svg
             viewBox="0 0 100 100"
             className="w-full h-full"
@@ -799,16 +709,16 @@ export default function Purificacao() {
         </div>
 
         {/* CTA Content - posicionado no céu */}
-        <div className="container mx-auto px-4 relative z-10 pt-12 pb-8">
+        <div className="container mx-auto px-4 relative z-50 pt-6 pb-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white drop-shadow-lg" data-json-key="purificacao.cta.title">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white text-shadow-strong" data-json-key="purificacao.cta.title">
               {cta.title}
             </h2>
-            <p className="text-xl mb-8 text-white drop-shadow-md" data-json-key="purificacao.cta.subtitle">
+            <p className="text-lg mb-5 text-white text-shadow-medium" data-json-key="purificacao.cta.subtitle">
               {cta.subtitle}
             </p>
             <Link to="/contato">
-              <Button className="bg-[#CFAF5A] text-white font-semibold px-8 py-6 text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" data-json-key="purificacao.cta.buttonText">
+              <Button className="bg-[#CFAF5A] text-white font-semibold px-6 py-4 text-base rounded-lg shadow-[0_6px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-105" data-json-key="purificacao.cta.buttonText">
                 {cta.buttonText}
               </Button>
             </Link>

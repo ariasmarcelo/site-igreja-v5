@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import VisualPageEditor from '@/components/VisualPageEditor';
-import BlogEditor from '@/components/BlogEditor';
+import ArtigosEditor from '@/components/ArtigosEditor';
 import Index from './Index';
 import { API_ENDPOINTS } from '@/config/api';
 import QuemSomos from './QuemSomos';
@@ -75,7 +75,7 @@ export default function AdminConsole() {
             <Tabs value={activeTab} onValueChange={setActiveTab}>
               <TabsList>
                 <TabsTrigger value="pages" className="admin-console-main-tab">Pages</TabsTrigger>
-                <TabsTrigger value="blog" className="admin-console-main-tab">Blog</TabsTrigger>
+                <TabsTrigger value="artigos" className="admin-console-main-tab">Artigos</TabsTrigger>
               </TabsList>
 
               <TabsContent value="pages">
@@ -109,8 +109,8 @@ export default function AdminConsole() {
                 </div>
               </TabsContent>
 
-              <TabsContent value="blog">
-                <BlogEditor />
+              <TabsContent value="artigos">
+                <ArtigosEditor />
               </TabsContent>
             </Tabs>
           </CardContent>

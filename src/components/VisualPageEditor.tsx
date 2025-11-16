@@ -1,4 +1,13 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 
 interface VisualPageEditorProps {
   pageId: string;
@@ -29,6 +38,12 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
   const [isEditMode, setIsEditMode] = useState(false);
   const [fields, setFields] = useState<EditField[]>([]);
   const [isSaving, setIsSaving] = useState(false);
+  const [dialogState, setDialogState] = useState<{
+    open: boolean;
+    type: 'success' | 'confirm' | null;
+    message: string;
+    onConfirm?: () => void;
+  }>({ open: false, type: null, message: '', onConfirm: undefined });
   const activeEditorRef = useRef<HTMLDivElement | null>(null);
   const isEditModeRef = useRef(false);
   const idCounterRef = useRef(0);
@@ -547,7 +562,16 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
         if (e.key === 'Escape') {
           cleanup();
         } else if (e.key === 'Enter' && e.ctrlKey) {
+          e.preventDefault();
           saveEdit();
+        } else if (e.key === 'Enter' && e.shiftKey) {
+          // Shift+Enter insere quebra de linha
+          e.preventDefault();
+          const start = textarea.selectionStart;
+          const end = textarea.selectionEnd;
+          const value = textarea.value;
+          textarea.value = value.substring(0, start) + '\n' + value.substring(end);
+          textarea.selectionStart = textarea.selectionEnd = start + 1;
         }
       };
 
@@ -646,7 +670,11 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
     const modifiedFields = fields.filter(f => f.isModified);
     
     if (modifiedFields.length === 0) {
-      alert('Nenhuma mudança para salvar');
+      setDialogState({
+        open: true,
+        type: 'success',
+        message: 'Nenhuma mudança para salvar',
+      });
       return;
     }
 
@@ -697,13 +725,21 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
           f.isModified ? { ...f, originalValue: f.currentValue, isModified: false } : f
         ));
         
-        alert(`✅ ${modifiedFields.length} mudanças salvas com sucesso!`);
+        setDialogState({
+          open: true,
+          type: 'success',
+          message: `✅ ${modifiedFields.length} mudanças salvas com sucesso!`,
+        });
       } else {
         throw new Error(result.error || 'Failed to save');
       }
     } catch (error) {
       console.error('❌ Error saving changes:', error);
-      alert('❌ Erro ao salvar mudanças. Verifique o console.');
+      setDialogState({
+        open: true,
+        type: 'success',
+        message: '❌ Erro ao salvar mudanças. Verifique o console.',
+      });
     } finally {
       setIsSaving(false);
     }
@@ -714,13 +750,19 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
     const modifiedFields = fields.filter(f => f.isModified);
     
     if (modifiedFields.length === 0) {
-      alert('Nenhuma mudança para cancelar');
+      setDialogState({
+        open: true,
+        type: 'success',
+        message: 'Nenhuma mudança para cancelar',
+      });
       return;
     }
     
-    const confirmed = window.confirm(`Descartar ${modifiedFields.length} modificações não salvas?`);
-    
-    if (!confirmed) return;
+    setDialogState({
+      open: true,
+      type: 'confirm',
+      message: `Descartar ${modifiedFields.length} modificações não salvas?`,
+      onConfirm: async () => {
     
     console.log(`🚫 Cancelando ${modifiedFields.length} mudanças...`);
     console.log('🔄 Recarregando dados frescos do banco de dados...');
@@ -734,11 +776,21 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
       
       console.log('✅ DOM recarregado do banco de dados');
       console.log('✅ Todas as mudanças foram descartadas');
-      alert('✅ Mudanças descartadas e dados recarregados do banco!');
+      setDialogState({
+        open: true,
+        type: 'success',
+        message: '✅ Mudanças descartadas e dados recarregados do banco!',
+      });
     } catch (error) {
       console.error('❌ Erro ao recarregar do banco:', error);
-      alert('❌ Erro ao recarregar dados. Verifique o console.');
+      setDialogState({
+        open: true,
+        type: 'success',
+        message: '❌ Erro ao recarregar dados. Verifique o console.',
+      });
     }
+      },
+    });
   };
 
   // Cleanup on unmount
@@ -779,10 +831,49 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
             disabled={isSaving}
             className={`visual-editor-cancel-btn ${isSaving ? 'disabled' : 'active'}`}
           >
-            🗑️ CANCELAR TUDO
+            🚫 CANCELAR {modifiedCount} MUDANÇA{modifiedCount !== 1 ? 'S' : ''}
           </button>
         </>
       )}
+
+      {/* Dialog centralizado para confirmações e mensagens */}
+      <Dialog open={dialogState.open} onOpenChange={(open) => setDialogState(prev => ({ ...prev, open }))}>
+        <DialogContent className="sm:max-w-[425px] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]">
+          <DialogHeader>
+            <DialogTitle>
+              {dialogState.type === 'success' ? 'Sucesso' : 'Confirmação'}
+            </DialogTitle>
+            <DialogDescription className="text-base pt-4">
+              {dialogState.message}
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            {dialogState.type === 'confirm' ? (
+              <>
+                <Button
+                  variant="outline"
+                  onClick={() => setDialogState(prev => ({ ...prev, open: false }))}
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  variant="destructive"
+                  onClick={() => {
+                    setDialogState(prev => ({ ...prev, open: false }));
+                    dialogState.onConfirm?.();
+                  }}
+                >
+                  Confirmar
+                </Button>
+              </>
+            ) : (
+              <Button onClick={() => setDialogState(prev => ({ ...prev, open: false }))}>
+                OK
+              </Button>
+            )}
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

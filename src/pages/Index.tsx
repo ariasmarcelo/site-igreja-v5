@@ -6,6 +6,8 @@ import { lazy, Suspense } from 'react';
 import { usePageContent } from '@/hooks/useContent';
 import { usePageStyles } from '@/hooks/usePageStyles';
 import { PageLoading } from '@/components/PageLoading';
+import { FooterBackground } from '@/components/FooterBackground';
+import { SharedFooter } from '@/components/SharedFooter';
 
 const TestimonialsCarousel = lazy(() => import('@/components/TestimonialsCarousel'));
 
@@ -434,64 +436,64 @@ export default function Index() {
 
       {/* CTA Final */}
       <section className="relative overflow-hidden bg-stone-800">
-        <div className="absolute inset-0 opacity-30">
-          <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1200 400">
-            <defs>
-              <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#0ea5e9"/>
-                <stop offset="100%" stopColor="#7dd3fc"/>
-              </linearGradient>
-              <linearGradient id="earthGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#78716c"/>
-                <stop offset="100%" stopColor="#44403c"/>
-              </linearGradient>
-            </defs>
-            <path d="M0,0 L1200,0 L1200,260 Q600,180 0,260 Z" fill="url(#skyGrad)"/>
-            <path d="M0,260 Q600,180 1200,260 L1200,400 L0,400 Z" fill="url(#earthGrad)"/>
-            <path d="M0,340 Q600,280 1200,340 L1200,400 L0,400 Z" fill="#14b8a6" opacity="0.4"/>
-            <path d="M0,360 Q600,300 1200,360 L1200,400 L0,400 Z" fill="#0d9488" opacity="0.35"/>
-          </svg>
+        <div className="absolute inset-0 opacity-30 z-0">
+          <FooterBackground gradientId="skyGradIndex" />
         </div>
 
-        <div className="absolute top-8 left-8 w-24 h-24 z-10">
+        <div className="absolute top-4 left-8 w-20 h-20 z-10 drop-shadow-lg">
           <svg viewBox="0 0 100 100" className="w-full h-full">
-            <circle cx="50" cy="50" r="18" fill="#CFAF5A" />
+            <circle cx="50" cy="50" r="20" fill="#CFAF5A" />
             {[...Array(12)].map((_, i) => {
               const angle = (i * 30 * Math.PI) / 180;
+              const x1 = 50 + Math.cos(angle) * 25;
+              const y1 = 50 + Math.sin(angle) * 25;
+              const x2 = 50 + Math.cos(angle) * 40;
+              const y2 = 50 + Math.sin(angle) * 40;
               return (
                 <line key={i}
-                  x1={50 + Math.cos(angle) * 24} y1={50 + Math.sin(angle) * 24}
-                  x2={50 + Math.cos(angle) * 38} y2={50 + Math.sin(angle) * 38}
-                  stroke="#CFAF5A" strokeWidth="2.5" strokeLinecap="round" />
+                  x1={x1} y1={y1}
+                  x2={x2} y2={y2}
+                  stroke="#CFAF5A" strokeWidth="3" strokeLinecap="round" />
               );
             })}
           </svg>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 py-16">
+        {/* Lua Crescente - posicionada no canto superior direito */}
+        <div className="absolute top-4 right-8 w-20 h-20 z-20">
+          <svg
+            viewBox="0 0 100 100"
+            className="w-full h-full"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <mask id="crescentMaskIndex">
+                <circle cx="50" cy="50" r="25" fill="white" />
+                <circle cx="58" cy="50" r="22" fill="black" />
+              </mask>
+            </defs>
+            <circle cx="50" cy="50" r="25" fill="#F3F4F6" mask="url(#crescentMaskIndex)" />
+          </svg>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-50 pt-6 pb-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold mb-6 text-white drop-shadow-lg" data-json-key="index.cta.title">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white index-cta-title" data-json-key="index.cta.title">
               {texts.cta.title}
             </h2>
-            <p className="text-xl mb-8 text-white/90 drop-shadow-md" data-json-key="index.cta.subtitle">
+            <p className="text-lg mb-5 text-white/90 index-cta-subtitle whitespace-pre-line" data-json-key="index.cta.subtitle">
               {texts.cta.subtitle}
             </p>
             <Link to="/contato">
-              <Button className="bg-[#CFAF5A] hover:bg-[#B38938] text-white px-8 py-6 text-lg rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-105" data-json-key="index.cta.buttonText">
+              <Button className="bg-[#CFAF5A] hover:bg-[#B38938] text-white px-6 py-4 text-base rounded-lg shadow-[0_6px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all hover:scale-105" data-json-key="index.cta.buttonText">
                 {texts.cta.buttonText}
               </Button>
             </Link>
           </div>
         </div>
 
-        <div className="relative z-10 pt-8 pb-4 text-white/70">
-          <div className="container mx-auto px-4">
-            <div className="border-t border-white/10 pt-4 text-center text-sm">
-              <p data-json-key="index.footer.copyright">{texts.footer.copyright}</p>
-              <p className="mt-2" data-json-key="index.footer.trademark">{texts.footer.trademark}</p>
-            </div>
-          </div>
-        </div>
+        <SharedFooter />
       </section>
     </div>
   );

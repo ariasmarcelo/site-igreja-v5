@@ -6,11 +6,18 @@ import { Sparkles, Microscope, Heart, HandHelping, ShieldCheck, BookOpen, FileTe
 import { usePageContent } from '@/hooks/useContent';
 import { usePageStyles } from '@/hooks/usePageStyles';
 import { SharedFooter } from '@/components/SharedFooter';
+import { FooterBackground } from '@/components/FooterBackground';
 import { PageLoading, PageError } from '@/components/PageLoading';
 import '@/styles/layouts/pages/quemsomos.css';
+import '@/styles/waves.css';
 
 interface QuemSomosTexts {
   header: { title: string; subtitle: string };
+  sections: {
+    historico_title: string;
+    principios_title: string;
+    hermeticos_title: string;
+  };
   mission: { title: string; text: string };
   footer?: { copyright: string; trademark: string };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -266,44 +273,7 @@ export default function QuemSomos() {
       {/* Footer CTA Section com fundo céu, água, sol e lua */}
       <section className="relative overflow-hidden mt-16">
         {/* Fundo com transição céu-água */}
-        <div className="absolute inset-0 z-0">
-          <svg
-            className="w-full h-full"
-            viewBox="0 0 1200 400"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* GRADIENTE CÉU: azul-escuro (noite) -> azul-claro (horizonte) */}
-            <defs>
-              <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#1e3a5f" />
-                <stop offset="50%" stopColor="#2563eb" />
-                <stop offset="100%" stopColor="#38bdf8" />
-              </linearGradient>
-            </defs>
-            <rect width="1200" height="400" fill="url(#skyGradient)" />
-            
-            {/* ÁGUA - camadas animadas verde-água com curvatura acentuada */}
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite]" 
-              d="M0,340 Q600,280 1200,340 L1200,400 L0,400 Z" 
-              fill="#2dd4bf" 
-              opacity="0.4"
-            />
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite_0.5s]" 
-              d="M0,360 Q600,300 1200,360 L1200,400 L0,400 Z" 
-              fill="#14b8a6" 
-              opacity="0.35"
-            />
-            <path 
-              className="animate-[wave_3s_ease-in-out_infinite_1s]" 
-              d="M0,380 Q600,320 1200,380 L1200,400 L0,400 Z" 
-              fill="#0d9488" 
-              opacity="0.3"
-            />
-          </svg>
-        </div>
+        <FooterBackground gradientId="skyGradient" />
 
         {/* Sol Dourado - posicionado absolutamente, independente do fundo */}
         <div className="absolute top-4 left-8 w-20 h-20 z-10">
@@ -355,16 +325,16 @@ export default function QuemSomos() {
         </div>
 
         {/* CTA Content - posicionado no céu */}
-        <div className="container mx-auto px-4 relative z-10 pt-6 pb-4">
+        <div className="container mx-auto px-4 relative z-50 pt-6 pb-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white drop-shadow-lg" data-json-key="quemsomos.cta.title">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white text-shadow-strong whitespace-pre-line" data-json-key="quemsomos.cta.title">
               {texts.cta.title}
             </h2>
-            <p className="text-lg mb-5 text-white drop-shadow-md" data-json-key="quemsomos.cta.subtitle">
+            <p className="text-lg mb-5 text-white text-shadow-medium whitespace-pre-line" data-json-key="quemsomos.cta.subtitle">
               {texts.cta.subtitle}
             </p>
             <Link to="/contato">
-              <Button className="bg-[#CFAF5A] text-white font-semibold px-6 py-4 text-base rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" data-json-key="quemsomos.cta.buttonText">
+              <Button className="bg-[#CFAF5A] text-white font-semibold px-6 py-4 text-base rounded-lg shadow-[0_6px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-105" data-json-key="quemsomos.cta.buttonText">
                 {texts.cta.buttonText}
               </Button>
             </Link>

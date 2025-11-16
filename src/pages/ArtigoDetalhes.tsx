@@ -6,11 +6,19 @@ import PageLoader from '@/components/PageLoader';
 
 interface ArtigosTexts {
   articles: { esoterica?: Array<Record<string, string>>; cientifica?: Array<Record<string, string>>; unificada?: Array<Record<string, string>> };
+  sections?: {
+    intro_title?: string;
+    development_title?: string;
+    applications_title?: string;
+    conclusion_title?: string;
+    related_title?: string;
+  };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
 export default function ArtigoDetalhes() {
+  const { data: pageLabels } = usePageContent<ArtigoLabels>('artigo-template');
   const { slug } = useParams<{ slug: string }>();
   const { data: texts, loading: textsLoading } = usePageContent<ArtigosTexts>('artigos');
 
@@ -93,7 +101,7 @@ export default function ArtigoDetalhes() {
 
                 {/* Conteúdo do artigo - Aqui você pode expandir com campos adicionais no JSON */}
                 <div className="mt-8 space-y-6">
-                  <h2 className="text-3xl font-bold text-slate-800 mt-12 mb-4">Introdução</h2>
+                  <h2 className="text-3xl font-bold text-slate-800 mt-12 mb-4" data-json-key="artigo-template.sections.intro_title">{pageLabels?.sections?.intro_title || 'Introdução'}</h2>
                   <p>
                     Este artigo explora {article.title.toLowerCase()}, apresentando uma perspectiva 
                     {article.type === 'esoterica' ? ' espiritual e tradicional' : 
@@ -101,7 +109,7 @@ export default function ArtigoDetalhes() {
                      ' integrativa que une ciência e espiritualidade'} sobre o tema.
                   </p>
 
-                  <h2 className="text-3xl font-bold text-slate-800 mt-12 mb-4">Desenvolvimento</h2>
+                  <h2 className="text-3xl font-bold text-slate-800 mt-12 mb-4" data-json-key="artigo-template.sections.development_title">{pageLabels?.sections?.development_title || 'Desenvolvimento'}</h2>
                   <p>
                     {article.type === 'esoterica' && 
                       'A sabedoria ancestral nos ensina que o conhecimento verdadeiro transcende a mera compreensão intelectual. Através das práticas espirituais milenares, podemos acessar dimensões mais profundas da consciência e da realidade.'
@@ -114,14 +122,14 @@ export default function ArtigoDetalhes() {
                     }
                   </p>
 
-                  <h2 className="text-3xl font-bold text-slate-800 mt-12 mb-4">Aplicações Práticas</h2>
+                  <h2 className="text-3xl font-bold text-slate-800 mt-12 mb-4" data-json-key="artigo-template.sections.applications_title">{pageLabels?.sections?.applications_title || 'Aplicações Práticas'}</h2>
                   <p>
                     O conhecimento apresentado neste artigo pode ser aplicado de diversas formas no dia a dia, 
                     contribuindo para o desenvolvimento pessoal, a cura e a transformação interior. 
                     É importante abordar estas práticas com respeito, disciplina e orientação adequada.
                   </p>
 
-                  <h2 className="text-3xl font-bold text-slate-800 mt-12 mb-4">Conclusão</h2>
+                  <h2 className="text-3xl font-bold text-slate-800 mt-12 mb-4" data-json-key="artigo-template.sections.conclusion_title">{pageLabels?.sections?.conclusion_title || 'Conclusão'}</h2>
                   <p>
                     Ao explorar {article.title.toLowerCase()}, abrimos portas para uma compreensão mais 
                     profunda de nós mesmos e do universo. Este conhecimento, quando integrado adequadamente, 
@@ -159,7 +167,7 @@ export default function ArtigoDetalhes() {
 
           {/* Related Articles */}
           <div className="mt-16">
-            <h2 className="text-3xl font-bold text-slate-800 mb-8">Artigos Relacionados</h2>
+            <h2 className="text-3xl font-bold text-slate-800 mb-8" data-json-key="artigo-template.sections.related_title">{pageLabels?.sections?.related_title || 'Artigos Relacionados'}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {allArticles
                 .filter(a => a.type === article.type && a.id !== article.id)
