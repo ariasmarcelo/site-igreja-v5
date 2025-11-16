@@ -8,6 +8,7 @@
     "check": "powershell -File check-servers.ps1",
     "restart": "powershell -Command \"& .\\stop-dev.ps1; & .\\start-dev.ps1\"",
     "build": "vite build",
+    "build-vercel": "vite build",
     "vercel-build": "vite build",
     "lint": "eslint --quiet ./src",
     "preview": "vite preview",
