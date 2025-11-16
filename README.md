@@ -104,10 +104,15 @@ pnpm preview          # Preview do build local
 # Deploy
 pnpm deploy           # Deploy para GitHub Pages
 
-# Manutenção
-pnpm backup           # Backup completo do Supabase
-pnpm list-backups     # Listar backups disponíveis
-pnpm restore:latest   # Restaurar último backup
+# Backup e Recuperação
+pnpm backup              # Backup local simples
+pnpm backup:commit       # Backup versionado no Git + GitHub
+pnpm backup:email        # Backup via email (Gmail)
+pnpm backup:list         # Listar backups disponíveis
+pnpm restore:latest      # Restaurar último backup
+
+# 📖 Ver documentação completa: docs/BACKUP-SYSTEM.md
+# ⚡ Guia rápido: docs/BACKUP-QUICK-GUIDE.md
 ```
 
 ---
