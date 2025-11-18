@@ -1,7 +1,6 @@
 {
   "outputDirectory": "dist",
   "devCommand": "vite --port 3000",
-  "cleanUrls": true,
   "buildCommand": "pnpm run build && cd api && pnpm install",
   "installCommand": "pnpm install && cd api && pnpm install",
   "functions": {
