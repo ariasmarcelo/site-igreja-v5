@@ -480,14 +480,14 @@ export default function Index() {
         <div className="container mx-auto px-4 relative z-50 pt-6 pb-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white index-cta-title" data-json-key="index.cta.title">
-              {texts.cta.title}
+              {(texts.cta || texts.testimonialsCta)?.title || 'Comece Sua Jornada'}
             </h2>
             <p className="text-lg mb-5 text-white/90 index-cta-subtitle whitespace-pre-line" data-json-key="index.cta.subtitle">
-              {texts.cta.subtitle}
+              {(texts.cta || texts.testimonialsCta)?.subtitle || 'Entre em contato conosco'}
             </p>
             <Link to="/contato">
               <Button className="bg-[#CFAF5A] hover:bg-[#B38938] text-white px-6 py-4 text-base rounded-lg shadow-[0_6px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.6)] transition-all hover:scale-105" data-json-key="index.cta.buttonText">
-                {texts.cta.buttonText}
+                {(texts.cta || texts.testimonialsCta)?.buttonText || 'Fale Conosco'}
               </Button>
             </Link>
           </div>

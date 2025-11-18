@@ -5,31 +5,67 @@ const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.VITE_SUPABAS
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function log(msg) {
-  console.log(`[${new Date().toISOString()}] [CONTENT-API] ${msg}`);
+  const logMsg = `[${new Date().toISOString()}] [CONTENT-API] ${msg}`;
+  console.log(logMsg);
 }
 
 // Reconstruir objeto a partir das entradas do DB
 function reconstructObjectFromEntries(entries, pageId) {
   const pageContent = {};
   
-  entries.forEach(entry => {
-    let jsonKey = entry.json_key;
+  log(`🔧 Reconstruindo ${entries.length} entradas para pageId="${pageId}"`);
+  
+  // Primeiro, filtrar para priorizar chaves sem prefixo duplicado
+  // Se existir 'valores.cards[7].content' E 'quemsomos.valores.cards[7].content',
+  // usar apenas a primeira (sem duplicação)
+  const cleanedEntries = new Map();
+  
+  entries.forEach((entry) => {
+    let cleanKey = entry.json_key;
+    const hasDuplicatePrefix = cleanKey.startsWith(entry.page_id + '.');
     
-    // Adicionar prefixo __shared__. se a entrada vem de page_id='__shared__'
-    if (entry.page_id === '__shared__') {
-      jsonKey = `__shared__.${jsonKey}`;
-    }
-    // Para página específica, adicionar prefixo do pageId se não tiver
-    else if (!jsonKey.startsWith(pageId + '.')) {
-      jsonKey = `${pageId}.${jsonKey}`;
+    if (hasDuplicatePrefix) {
+      cleanKey = cleanKey.substring(entry.page_id.length + 1);
     }
     
-    // Agora remover o prefixo para construir o objeto nested
+    const fullKey = `${entry.page_id}.${cleanKey}`;
+    
+    // Se já existe uma entrada para essa chave, priorizar a SEM prefixo duplicado
+    if (cleanedEntries.has(fullKey)) {
+      const existing = cleanedEntries.get(fullKey);
+      // Se a entrada atual NÃO tem prefixo duplicado, ela substitui a anterior
+      if (!hasDuplicatePrefix) {
+        log(`✨ Priorizando chave sem prefixo: "${entry.json_key}" sobre "${existing.original_key}"`);
+        cleanedEntries.set(fullKey, {
+          ...entry,
+          cleanKey,
+          fullKey,
+          original_key: entry.json_key,
+          hasDuplicatePrefix
+        });
+      }
+    } else {
+      cleanedEntries.set(fullKey, {
+        ...entry,
+        cleanKey,
+        fullKey,
+        original_key: entry.json_key,
+        hasDuplicatePrefix
+      });
+    }
+  });
+  
+  log(`📊 Processadas ${entries.length} entradas → ${cleanedEntries.size} únicas`);
+  
+  // Agora reconstruir o objeto com as entradas priorizadas
+  cleanedEntries.forEach((entry) => {
+    
+    // Remover prefixo do pageId para construir objeto nested
+    // "index.hero.title" -> ["hero", "title"]
     // "__shared__.footer.copyright" -> ["__shared__", "footer", "copyright"]
-    // "index.header.title" -> ["header", "title"] (remove "index")
-    const keys = jsonKey.startsWith(pageId + '.') 
-      ? jsonKey.split('.').slice(1)
-      : jsonKey.split('.');
+    const keys = entry.fullKey.startsWith(pageId + '.') 
+      ? entry.fullKey.split('.').slice(1)  // Remove pageId, mantém o resto
+      : entry.fullKey.split('.');  // __shared__ ou outros, mantém tudo
     
     if (keys.length === 0) return;
     
@@ -66,6 +102,7 @@ function reconstructObjectFromEntries(entries, pageId) {
     }
   });
   
+  log(`✅ Objeto reconstruído com chaves: ${Object.keys(pageContent).join(', ')}`);
   return pageContent;
 }
 
@@ -99,7 +136,8 @@ async function handleGet(pageId) {
 // PUT - Atualizar conteúdo de uma página
 async function handlePut(pageId, edits) {
   const startTime = Date.now();
-  log(`PUT pageId=${pageId}, edits=${Object.keys(edits).length}`);
+  log(`PUT pageId=${pageId}, edits=${Object.keys(edits || {}).length}`);
+  log(`EDITS RECEIVED: ${JSON.stringify(edits)}`);
   
   if (!edits || typeof edits !== 'object') {
     throw new Error('Invalid edits object');
@@ -139,6 +177,7 @@ async function handlePut(pageId, edits) {
   for (const update of updates) {
     log(`UPSERTING: page_id="${update.page_id}" json_key="${update.json_key}" text="${update.newText.substring(0, 50)}..."`);
     
+    // Salvar na chave correta
     const { data, error } = await supabase
       .from('text_entries')
       .upsert({
@@ -147,7 +186,7 @@ async function handlePut(pageId, edits) {
         content: { 'pt-BR': update.newText },
         updated_at: new Date().toISOString()
       }, {
-        onConflict: 'json_key'
+        onConflict: 'page_id,json_key'
       })
       .select();
     
@@ -157,6 +196,20 @@ async function handlePut(pageId, edits) {
     }
     
     log(`SUCCESS: Updated ${data?.length || 0} row(s)`);
+    
+    // Deletar chave legada com prefixo duplicado se existir
+    const legacyKey = `${update.page_id}.${update.json_key}`;
+    if (legacyKey !== update.json_key) {
+      const { error: delError } = await supabase
+        .from('text_entries')
+        .delete()
+        .eq('page_id', update.page_id)
+        .eq('json_key', legacyKey);
+      
+      if (!delError) {
+        log(`🧹 DELETED legacy key: ${legacyKey}`);
+      }
+    }
   }
   
   log(`SUCCESS: ${updates.length} entries updated (${Date.now() - startTime}ms)`);

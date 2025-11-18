@@ -10,7 +10,8 @@ interface NotFoundTexts {
 export default function NotFoundPage() {
   const { data: texts, loading, error } = usePageContent<NotFoundTexts>('notfound');
   
-  if (!texts) return null;
+  if (loading) return <PageLoader />;
+  if (!texts || !texts.error) return null;
   
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-linear-to-br from-gray-50 to-blue-50 p-6 text-center">

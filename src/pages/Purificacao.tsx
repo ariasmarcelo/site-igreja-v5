@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Sparkles, Sun, Star, Crown, Compass, Heart, Infinity as InfinityIcon, LineChart, ChevronDown, Shield } from 'lucide-react';
+import { Sparkles, Sun, Star, Crown, Compass, Heart, Infinity as InfinityIcon, LineChart, ChevronDown, Shield, Waves, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, lazy, Suspense } from 'react';
 import { usePageContent } from '@/hooks/useContent';
@@ -28,6 +28,9 @@ export default function Purificacao() {
   
   // usePageContent carrega apenas a página purificacao
   const { data: texts, loading } = usePageContent<PurificacaoTexts>('purificacao');
+  
+  // Carregar dados de quemsomos para A Magia Divina
+  const { data: quemSomosData } = usePageContent('quemsomos');
 
   const togglePhase = (phase: number) => {
     setExpandedPhase(expandedPhase === phase ? null : phase);
@@ -50,7 +53,6 @@ export default function Purificacao() {
   const textsTyped = texts as Record<string, Record<string, unknown>>;
   const header = textsTyped.header as { title: string; subtitle: string };
   const intro = textsTyped.intro as { mainText: string; description: string };
-  const valores = textsTyped.valores as { title: string; intro?: string; cards: { title: string; content: string }[] };
   const fases = textsTyped.fases as { title: string; items: { phase: string; title: string; description: string }[] };
   const beneficios = textsTyped.beneficios as { title: string; items: { title: string; description: string }[] };
   const testimonials = textsTyped.testimonials as { title: string };
@@ -391,7 +393,58 @@ export default function Purificacao() {
         </div>
       </section>
 
-      {/* Trabalhos Espirituais com Psicod├®licos */}
+      {/* A Magia Divina */}
+      {quemSomosData?.magia && (
+        <section className="bg-linear-to-br from-amber-50/50 via-yellow-50/50 to-orange-50/50 rounded-2xl shadow-2xl p-8 md:p-12 border border-amber-200 max-w-6xl mx-auto my-16">
+          <Card className="bg-linear-to-br from-amber-50 to-yellow-50 border-2 border-amber-300 shadow-xl overflow-hidden relative">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(251,191,36,0.1),transparent_70%)]"></div>
+            <CardHeader className="relative z-10">
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <div className="relative w-16 h-16">
+                  <Waves className="w-16 h-16 text-amber-600 waves-amber-icon" />
+                </div>
+                <CardTitle className="text-3xl text-amber-800" data-json-key="purificacao.magia.title">{quemSomosData.magia.title}</CardTitle>
+                <div className="relative w-16 h-16">
+                  <Target className="w-16 h-16 text-amber-600 target-amber-icon" />
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-6 relative z-10">
+              {/* Introdução */}
+              <div className="space-y-4">
+                {quemSomosData.magia.introducao && quemSomosData.magia.introducao.map((paragraph: string, index: number) => (
+                  <div key={index} className="bg-white/60 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p className="text-gray-800 leading-relaxed" data-json-key={`quemsomos.magia.introducao[${index}]`}>{paragraph}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Características e Funções */}
+              {quemSomosData.magia.caracteristicas && (
+                <div className="mt-8">
+                  <h3 className="text-2xl font-bold text-amber-800 mb-6 text-center" data-json-key="purificacao.magia.caracteristicas.title">
+                    {quemSomosData.magia.caracteristicas.title}
+                  </h3>
+                  <div className="grid gap-4">
+                    {quemSomosData.magia.caracteristicas.items && quemSomosData.magia.caracteristicas.items.map((item: { title: string; content: string }, index: number) => (
+                      <div key={index} className="bg-white/80 border-l-4 border-amber-600 p-5 rounded-r-lg hover:bg-white transition-colors">
+                        <h4 className="font-bold text-lg text-amber-900 mb-2" data-json-key={`quemsomos.magia.caracteristicas.items[${index}].title`}>
+                          {item.title}
+                        </h4>
+                        <p className="text-gray-700 leading-relaxed" data-json-key={`quemsomos.magia.caracteristicas.items[${index}].content`}>
+                          {item.content}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </section>
+      )}
+
+      {/* Trabalhos Espirituais com Psicodélicos */}
       <section className="py-16 bg-linear-to-br from-purple-900 via-indigo-900 to-purple-950 relative overflow-hidden">
         {/* Efeitos de fundo m├¡sticos */}
         <div className="absolute inset-0 opacity-20">
@@ -580,62 +633,6 @@ export default function Purificacao() {
                 </div>
             </CardContent>
           </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Crit├®rios e Valores */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          {/* Caixa Estilo Papiro - Valores e Princípios */}
-          <div className="max-w-4xl mx-auto">
-            <div className="relative papiro-box p-12 rounded-lg border-4 border-amber-900/20 shadow-2xl">
-              
-              {/* Textura de papiro */}
-              <div className="absolute inset-0 opacity-[0.03] pointer-events-none papiro-texture">
-              </div>
-              
-              {/* Bordas decorativas do papiro */}
-              <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-amber-800/30 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-amber-800/30 to-transparent"></div>
-              <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-transparent via-amber-800/30 to-transparent"></div>
-              <div className="absolute top-0 right-0 w-1 h-full bg-linear-to-b from-transparent via-amber-800/30 to-transparent"></div>
-              
-              {/* Ornamentos nos cantos */}
-              <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-amber-800/40 rounded-tl-lg"></div>
-              <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-amber-800/40 rounded-tr-lg"></div>
-              <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-amber-800/40 rounded-bl-lg"></div>
-              <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-amber-800/40 rounded-br-lg"></div>
-              
-              {/* Conteúdo interno */}
-              <div className="relative z-10">
-                <h2 className="text-4xl font-bold text-center mb-8 text-amber-950 font-serif" data-json-key="purificacao.valores.title">{valores.title}</h2>
-                
-                {/* Parágrafo introdutório */}
-                {valores.intro && (
-                  <div className="mb-12 max-w-4xl mx-auto">
-                    <p className="text-lg text-amber-900 leading-relaxed text-center font-serif italic" data-json-key="purificacao.valores.intro">
-                      {valores.intro}
-                    </p>
-                  </div>
-                )}
-                
-                {valores.cards && Array.isArray(valores.cards) && (
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {valores.cards.map((card: { title: string; content: string }, idx: number) => (
-                      <Card key={idx} className="shadow-lg card-hover bg-white/80 backdrop-blur-sm border border-amber-200/40">
-                        <CardHeader>
-                          <CardTitle className="text-xl text-[#CFAF5A]">{card.title}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                          <p className="text-gray-700">{card.content}</p>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
           </div>
         </div>
       </section>

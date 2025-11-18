@@ -65,8 +65,8 @@ const NavigationMenu = memo(() => {
     { name: 'Quem Somos', href: '/quemsomos' },
     { name: 'Purificação e Ascensão', href: '/purificacao' },
     { name: 'Tratamentos Associados', href: '/tratamentos' },
-    { name: 'Artigos', href: '/artigos' },
     { name: 'Testemunhos', href: '/testemunhos' },
+    { name: 'Artigos', href: '/artigos' },
     { name: 'Contato', href: '/contato' },
   ];
 
@@ -107,9 +107,9 @@ const NavigationMenu = memo(() => {
                 );
               })}
             </svg>
-            <div className="hidden md:block">
-              <div className="text-xl font-bold text-[#CFAF5A]">Igreja de Metatron</div>
-              <div className="text-xs text-gray-600">O Trabalho de Resgate</div>
+            <div>
+              <div className="text-base md:text-xl font-bold text-[#CFAF5A]">Igreja de Metatron</div>
+              <div className="text-sm md:text-xs text-gray-600">O Trabalho de Resgate</div>
             </div>
           </Link>
 
