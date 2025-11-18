@@ -80,50 +80,6 @@ export default function Contato() {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto space-y-4">
             
-            {/* Sobre a Avaliação Inicial */}
-            <div className="bg-linear-to-br from-white via-amber-50/30 to-yellow-50/20 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-amber-200/60 shadow-xl">
-              <div className="flex items-center justify-center gap-4">
-                <div className="shrink-0 flex items-center justify-center w-14 h-14 rounded-full bg-linear-to-br from-amber-400/30 to-yellow-400/30 border border-amber-300/50">
-                  <Clock className="w-7 h-7 text-amber-700" />
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-amber-900" data-json-key="contato.initialAssessment.title">
-                  {texts.initialAssessment.title}
-                </h2>
-              </div>
-                
-              <div className="grid md:grid-cols-2 gap-6">
-                {/* O Que Esperar */}
-                <div className="bg-white/60 rounded-2xl p-5 border border-amber-200/40">
-                  <h3 className="text-lg font-semibold text-amber-800 mb-3 flex items-center gap-3" data-json-key="contato.initialAssessment.whatToExpect.title">
-                    <div className="w-2 h-2 rounded-full bg-amber-500"></div>
-                    {texts.initialAssessment.whatToExpect.title}
-                  </h3>
-                  <ul className="space-y-3">
-                    {texts.initialAssessment.whatToExpect.items.map((item: string, idx: number) => (
-                      <li key={idx} className="flex items-start gap-3 text-gray-700">
-                        <span className="text-amber-600 mt-1 font-bold">✦</span>
-                        <span data-json-key={`contato.initialAssessment.whatToExpect.items[${idx}]`}>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Nosso Compromisso */}
-                <div className="bg-white/60 rounded-2xl p-5 border border-amber-200/40">
-                  <h3 className="text-lg font-semibold text-amber-800 mb-3 flex items-center gap-3" data-json-key="contato.initialAssessment.commitment.title">
-                    <div className="w-2 h-2 rounded-full bg-amber-500"></div>
-                    {texts.initialAssessment.commitment.title}
-                  </h3>
-                  <div className="flex items-start gap-3">
-                    <ShieldCheck className="w-7 h-7 text-amber-600 shrink-0 mt-1" />
-                    <p className="text-gray-700 leading-relaxed text-sm" data-json-key="contato.initialAssessment.commitment.description">
-                      {texts.initialAssessment.commitment.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             {/* FAÇA CONTATO - DESTAQUE */}
             <div className="relative">
               {/* Glow effect */}
@@ -210,6 +166,50 @@ export default function Contato() {
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sobre a Avaliação Inicial */}
+            <div className="bg-linear-to-br from-white via-amber-50/30 to-yellow-50/20 backdrop-blur-md rounded-3xl p-6 md:p-8 border border-amber-200/60 shadow-xl">
+              <div className="flex items-center justify-center gap-4">
+                <div className="shrink-0 flex items-center justify-center w-14 h-14 rounded-full bg-linear-to-br from-amber-400/30 to-yellow-400/30 border border-amber-300/50">
+                  <Clock className="w-7 h-7 text-amber-700" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold text-amber-900" data-json-key="contato.initialAssessment.title">
+                  {texts.initialAssessment.title}
+                </h2>
+              </div>
+                
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* O Que Esperar */}
+                <div className="bg-white/60 rounded-2xl p-5 border border-amber-200/40">
+                  <h3 className="text-lg font-semibold text-amber-800 mb-3 flex items-center gap-3" data-json-key="contato.initialAssessment.whatToExpect.title">
+                    <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                    {texts.initialAssessment.whatToExpect.title}
+                  </h3>
+                  <ul className="space-y-3">
+                    {texts.initialAssessment.whatToExpect.items.map((item: string, idx: number) => (
+                      <li key={idx} className="flex items-start gap-3 text-gray-700">
+                        <span className="text-amber-600 mt-1 font-bold">✦</span>
+                        <span data-json-key={`contato.initialAssessment.whatToExpect.items[${idx}]`}>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Nosso Compromisso */}
+                <div className="bg-white/60 rounded-2xl p-5 border border-amber-200/40">
+                  <h3 className="text-lg font-semibold text-amber-800 mb-3 flex items-center gap-3" data-json-key="contato.initialAssessment.commitment.title">
+                    <div className="w-2 h-2 rounded-full bg-amber-500"></div>
+                    {texts.initialAssessment.commitment.title}
+                  </h3>
+                  <div className="flex items-start gap-3">
+                    <ShieldCheck className="w-7 h-7 text-amber-600 shrink-0 mt-1" />
+                    <p className="text-gray-700 leading-relaxed text-sm" data-json-key="contato.initialAssessment.commitment.description">
+                      {texts.initialAssessment.commitment.description}
+                    </p>
                   </div>
                 </div>
               </div>
