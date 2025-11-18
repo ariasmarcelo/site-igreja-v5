@@ -383,43 +383,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Tripla Proteção */}
-      <section className="py-20 bg-linear-to-b from-stone-50 to-stone-100 border-b-2 border-stone-300">
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold mb-4 text-stone-800" data-json-key="index.triplaProtecao.title">
-                {texts.triplaProtecao.title}
-              </h2>
-              <p className="text-xl text-stone-600" data-json-key="index.triplaProtecao.subtitle">
-                {texts.triplaProtecao.subtitle}
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8">
-              {texts.triplaProtecao.items.map((item: any, i: number) => {
-                const icons = [Compass, Heart, Sun];
-                const colors = ['teal-600', 'rose-600', 'amber-600'];
-                const bgColors = ['teal-100', 'rose-100', 'amber-100'];
-                const Icon = icons[i];
-
-                return (
-                  <Card key={i} className="border-2 border-stone-200 hover:border-stone-300 hover:shadow-xl transition-all bg-white">
-                    <CardContent className="p-8 text-center">
-                      <div className={`inline-block p-5 bg-${bgColors[i]} rounded-2xl mb-6`}>
-                        <Icon className={`w-14 h-14 text-${colors[i]}`} />
-                      </div>
-                      <h3 className="text-2xl font-bold mb-4 text-stone-800">{item.title}</h3>
-                      <p className="text-stone-600 leading-relaxed">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Testimonials */}
       <Suspense fallback={
         <section className="py-20 bg-stone-50">

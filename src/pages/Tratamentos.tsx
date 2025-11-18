@@ -1,10 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Brain, Heart, Wind, Route, Flower2, Sparkles, AlertTriangle, Users, Infinity as InfinityIcon, Activity, Stethoscope, Waves } from 'lucide-react';
+import { Brain, Heart, Wind, Route, Flower2, Sparkles, AlertTriangle, Users, Infinity as InfinityIcon, Activity, Stethoscope, Waves, Compass, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import { usePageContent } from '@/hooks/useContent';
+import { useContent } from '@/hooks/useContent';
 import { SharedFooter } from '@/components/SharedFooter';
 import { FooterBackground } from '@/components/FooterBackground';
 import { usePageStyles } from '@/hooks/usePageStyles';
@@ -29,7 +29,8 @@ interface TratamentosTexts {
 
 export default function Tratamentos() {
   usePageStyles('tratamentos');
-  const { data: texts, loading, error } = usePageContent<TratamentosTexts>('tratamentos');
+  const { data: allData, loading, error } = useContent<any>({ pages: ['tratamentos', '__shared__'] });
+  const texts = allData ? { ...allData.tratamentos, ...allData.__shared__ } : null;
   
   if (loading || !texts) {
     console.log(`[${new Date().toISOString()}] [TRATAMENTOS] Waiting for data: loading=${loading}`);
@@ -66,7 +67,6 @@ export default function Tratamentos() {
       'accordion-trigger-gradient-emdr',
       'accordion-trigger-gradient-biodynamic-massage',
       'accordion-trigger-gradient-body-therapy',
-      'accordion-trigger-gradient-spiritual',
       'accordion-trigger-gradient-pap'
     ];
     return classMap[index] || classMap[0];
@@ -96,13 +96,32 @@ export default function Tratamentos() {
 
       <div className="container mx-auto px-4 pt-3 pb-16 space-y-6 max-w-6xl">
         
-        {/* Aviso Legal - Card Elevado */}
-        <div className="bg-amber-50 rounded-2xl shadow-lg p-5 border-l-4 border-amber-500">
-          <div className="flex gap-3">
-            <AlertTriangle className="h-6 w-6 text-amber-600 shrink-0 mt-1" />
-            <div>
-              <h3 className="font-bold text-amber-900 mb-2" data-json-key="tratamentos.legal.title">{texts.legal.title}</h3>
-              <p className="text-amber-800 text-sm leading-relaxed" data-json-key="tratamentos.legal.notice">{texts.legal.notice}</p>
+        {/* Aviso Legal - Card Destacado com Design Premium */}
+        <div className="flex justify-end">
+          <div className="relative bg-linear-to-br from-amber-50 via-orange-50 to-amber-100 rounded-2xl shadow-2xl p-4 border-2 border-amber-400 w-fit max-w-full overflow-hidden">
+            {/* Efeito decorativo de fundo */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-amber-400 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-orange-400 rounded-full blur-3xl"></div>
+            </div>
+            
+            {/* Borda decorativa superior */}
+            <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-amber-400 via-orange-500 to-amber-400"></div>
+            
+            <div className="relative flex flex-col md:flex-row gap-3">
+              <div className="shrink-0 flex justify-center md:justify-start">
+                <div className="w-11 h-11 p-2 bg-amber-100 rounded-xl border-2 border-amber-400 shadow-lg flex items-center justify-center">
+                  <AlertTriangle className="w-7 h-7 text-amber-600 shrink-0" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-amber-900 mb-2 flex items-center justify-center md:justify-start gap-2" data-json-key="tratamentos.legal.title">
+                  {texts.legal.title}
+                </h3>
+                <p className="text-amber-900 text-base leading-snug font-medium text-center md:text-left" data-json-key="tratamentos.legal.notice">
+                  {texts.legal.notice}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -124,28 +143,28 @@ export default function Tratamentos() {
             {texts.sections?.intro_title || 'Introdução'}
           </h2>
           
-          <div className="max-w-4xl mx-auto space-y-5 relative z-10">
+          <div className="max-w-5xl mx-auto space-y-5 relative z-10">
             {/* Primeiro parágrafo com destaque */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-blue-100/50">
-              <div className="flex gap-4">
-                <div className="shrink-0 pt-1">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="shrink-0 md:pt-1 flex justify-center md:justify-start">
                   <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-md">
                     <Stethoscope className="w-5 h-5 text-white" />
                   </div>
                 </div>
-                <p className="text-lg md:text-xl text-slate-800 leading-relaxed font-medium" data-json-key="tratamentos.intro.p1">{texts.intro.p1}</p>
+                <p className="text-lg md:text-xl text-slate-800 leading-relaxed font-medium text-center md:text-left" data-json-key="tratamentos.intro.p1">{texts.intro.p1}</p>
               </div>
             </div>
             
             {/* Segundo parágrafo com destaque */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg border border-cyan-100/50">
-              <div className="flex gap-4">
-                <div className="shrink-0 pt-1">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="shrink-0 md:pt-1 flex justify-center md:justify-start">
                   <div className="w-10 h-10 rounded-full bg-linear-to-br from-cyan-500 to-teal-500 flex items-center justify-center shadow-md">
                     <Heart className="w-5 h-5 text-white" />
                   </div>
                 </div>
-                <p className="text-lg md:text-xl text-slate-800 leading-relaxed font-medium" data-json-key="tratamentos.intro.p2">{texts.intro.p2}</p>
+                <p className="text-lg md:text-xl text-slate-800 leading-relaxed font-medium text-center md:text-left" data-json-key="tratamentos.intro.p2">{texts.intro.p2}</p>
               </div>
             </div>
           </div>
@@ -174,11 +193,11 @@ export default function Tratamentos() {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(255,255,255,0.4),transparent_60%)]"></div>
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,rgba(255,255,255,0.3),transparent_60%)]"></div>
                   
-                  <div className="flex items-center gap-4 w-full relative z-10">
-                    <div className="shrink-0 text-slate-700 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)]">
+                  <div className="flex flex-col md:flex-row items-center gap-4 w-full relative z-10">
+                    <div className="shrink-0 text-slate-700 drop-shadow-[0_1px_2px_rgba(255,255,255,0.5)] flex justify-center md:justify-start">
                       {icons[index]}
                     </div>
-                    <div className="flex-1 text-left pr-4">
+                    <div className="flex-1 text-center md:text-left pr-4">
                       <div className="text-xl md:text-2xl font-semibold text-slate-800 mb-1" data-json-key={`tratamentos.treatments[${index}].title`}>
                         {treatment.title.includes('(supervisão geral integrada)') 
                           ? <>
@@ -256,10 +275,121 @@ export default function Tratamentos() {
             ))}
           </Accordion>
         </div>
+
+        {/* Tripla Proteção - Design Premium com Simbolismo */}
+        <div className="mt-12 mb-0">
+          <div className="relative bg-linear-to-br from-slate-50 via-stone-100 to-slate-50 rounded-3xl shadow-2xl border-2 border-stone-300 overflow-hidden">
+            {/* Padrão decorativo de fundo - simbolizando interconexão */}
+            <div className="absolute inset-0 opacity-[0.03]">
+              <div className="absolute top-10 left-10 w-64 h-64 border-4 border-teal-400 rounded-full"></div>
+              <div className="absolute top-10 right-10 w-64 h-64 border-4 border-amber-400 rounded-full"></div>
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-64 h-64 border-4 border-rose-400 rounded-full"></div>
+            </div>
+
+            {/* Efeitos de luz suaves */}
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-200 rounded-full blur-3xl"></div>
+              <div className="absolute top-0 right-1/4 w-96 h-96 bg-amber-200 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-rose-200 rounded-full blur-3xl"></div>
+            </div>
+
+            <div className="relative z-10 p-8 md:p-12">
+              {/* Header com ícone de proteção */}
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center justify-center mb-4">
+                  <div className="relative">
+                    {/* Luz azul pulsante de fundo com efeito blur - aparecer/sumir em 3 segundos */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-12 h-12 bg-blue-400 rounded-full blur-2xl animate-blue-glow"></div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-12 h-12 bg-blue-500 rounded-full blur-xl animate-blue-glow-delay-1"></div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-12 h-12 bg-cyan-300 rounded-full blur-lg animate-blue-glow-delay-2"></div>
+                    </div>
+                    <div className="relative w-32 h-32 rounded-full flex items-center justify-center">
+                      <span className="text-8xl drop-shadow-2xl">🛡️</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <h2 className="text-3xl md:text-4xl font-bold mb-3 text-slate-800 tracking-tight" data-json-key="__shared__.triplaProtecao.title">
+                  {texts.triplaProtecao?.title || 'Tripla Proteção'}
+                </h2>
+                <div className="w-24 h-1 bg-linear-to-r from-transparent via-slate-400 to-transparent mx-auto mb-4"></div>
+                <p className="text-lg md:text-xl text-slate-700 max-w-5xl mx-auto leading-relaxed font-medium" data-json-key="__shared__.triplaProtecao.subtitle">
+                  {texts.triplaProtecao?.subtitle || 'Nossa abordagem integrada garante segurança em todos os níveis'}
+                </p>
+              </div>
+
+              {/* Grid dos três pilares */}
+              <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                {(texts.triplaProtecao?.items || []).map((item: any, i: number) => {
+                  const icons = [Compass, Heart, Sun];
+                  const gradients = [
+                    'from-teal-500 to-cyan-600',
+                    'from-pink-400 to-rose-500',
+                    'from-amber-500 to-orange-600'
+                  ];
+                  const glowColors = ['teal-400', 'pink-300', 'amber-400'];
+                  const Icon = icons[i];
+
+                  return (
+                    <div key={i} className="group relative">
+                      {/* Glow effect no hover */}
+                      <div className={`absolute -inset-1 bg-linear-to-r ${gradients[i]} rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`}></div>
+                      
+                      <div className="relative bg-white rounded-2xl p-6 md:p-8 shadow-lg border-2 border-slate-200 group-hover:border-slate-300 transition-all duration-300 group-hover:scale-105 group-hover:shadow-2xl h-full flex flex-col">
+                        {/* Ícone com gradiente e animação */}
+                        <div className="flex justify-center mb-6">
+                          <div className="relative inline-block">
+                            <div className={`absolute inset-0 bg-${glowColors[i]} rounded-2xl blur-md opacity-40 group-hover:opacity-60 transition-opacity`}></div>
+                            <div className={`relative bg-linear-to-br ${gradients[i]} rounded-2xl shadow-xl transform group-hover:rotate-6 transition-transform duration-300 w-[65px] h-[65px] flex items-center justify-center`}>
+                              <Icon className="w-12 h-12 text-white shrink-0" strokeWidth={2} />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Conteúdo */}
+                        <div className="flex-1 flex flex-col">
+                          <h3 className="text-xl md:text-2xl font-bold mb-4 text-slate-800 text-center group-hover:text-slate-900 transition-colors" data-json-key={`__shared__.triplaProtecao.items[${i}].title`}>
+                            {item.title}
+                          </h3>
+                          <p className="text-slate-600 leading-relaxed text-center text-sm md:text-base group-hover:text-slate-700 transition-colors" data-json-key={`__shared__.triplaProtecao.items[${i}].description`}>
+                            {item.description}
+                          </p>
+                        </div>
+
+                        {/* Barra decorativa inferior */}
+                        <div className="mt-6 pt-4 border-t border-slate-100">
+                          <div className={`w-full h-1 bg-linear-to-r ${gradients[i]} rounded-full opacity-50 group-hover:opacity-100 transition-opacity`}></div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Rodapé com mensagem integrativa */}
+              <div className="mt-10 text-center">
+                <div className="inline-flex items-center gap-2 text-slate-600 text-sm font-medium bg-white/60 backdrop-blur-sm px-6 py-3 rounded-full shadow-md border border-slate-200">
+                  <span className="text-teal-500">●</span>
+                  <span className="text-rose-500">●</span>
+                  <span className="text-amber-500">●</span>
+                  <span className="mx-2" data-json-key="__shared__.triplaProtecao.footerMessage">{texts.triplaProtecao?.footerMessage || 'Integração Corpo • Mente • Espírito'}</span>
+                  <span className="text-teal-500">●</span>
+                  <span className="text-rose-500">●</span>
+                  <span className="text-amber-500">●</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Footer CTA Section com fundo céu, terra e água */}
-      <section className="relative overflow-hidden mt-16">
+      <section className="relative overflow-hidden -mt-4">
         {/* Fundo com transição céu-água */}
         <FooterBackground gradientId="skyGradientTratamentos" />
 

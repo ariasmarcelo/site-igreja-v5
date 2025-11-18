@@ -93,8 +93,8 @@ export default function Contato() {
                   <h2 className="text-4xl md:text-5xl font-bold mb-3 bg-linear-to-r from-green-700 via-emerald-600 to-green-700 bg-clip-text text-transparent" data-json-key="contato.contactCard.title">
                     {texts.contactCard.title}
                   </h2>
-                  <p className="text-lg text-gray-700 max-w-2xl mx-auto">
-                    Entre em contato agora mesmo e dê o primeiro passo
+                  <p className="text-lg text-gray-700 max-w-2xl mx-auto" data-json-key="contato.contactCard.description">
+                    {texts.contactCard?.description || 'Entre em contato agora mesmo e dê o primeiro passo'}
                   </p>
                 </div>
 

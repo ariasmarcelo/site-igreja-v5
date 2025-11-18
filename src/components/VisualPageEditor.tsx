@@ -348,7 +348,7 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
     const subtitle = document.createElement('div');
     subtitle.textContent = jsonKey;
     subtitle.style.cssText = `
-      font-size: 13px;
+      font-size: 15px;
       color: #666;
       margin-bottom: 24px;
       font-family: 'Courier New', monospace;
@@ -401,11 +401,11 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
       textarea.value = currentText;
       textarea.style.cssText = `
         width: 100%;
-        min-height: 200px;
+        min-height: 300px;
         padding: 16px;
         border: 3px solid #CFAF5A;
         border-radius: 8px;
-        font-size: 16px;
+        font-size: 18px;
         font-family: inherit;
         resize: vertical;
         margin-bottom: 24px;
@@ -434,7 +434,7 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
         border-radius: 8px;
         cursor: pointer;
         font-weight: 700;
-        font-size: 16px;
+        font-size: 18px;
         transition: all 0.2s;
         box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
       `;
@@ -460,7 +460,7 @@ const VisualPageEditor = ({ pageId, pageComponent: PageComponent }: VisualPageEd
         border-radius: 8px;
         cursor: pointer;
         font-weight: 600;
-        font-size: 16px;
+        font-size: 18px;
         transition: all 0.2s;
       `;
       cancelButton.onmouseover = () => {

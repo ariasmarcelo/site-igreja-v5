@@ -211,10 +211,9 @@ export default function QuemSomos() {
         {texts.principios?.items && Array.isArray(texts.principios.items) && texts.principios.items.length > 0 && (
         <section className="bg-linear-to-br from-violet-50 via-purple-50 to-violet-100 rounded-2xl shadow-xl p-8 md:p-12 border border-violet-200">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Os Pilares da Instituição</h2>
-            <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-8">
-              Nossa instituição se fundamenta em valores éticos e princípios operacionais que guiam todas as nossas ações, 
-              criando uma base sólida para nosso trabalho de transformação espiritual e desenvolvimento humano.
+            <h2 className="text-4xl font-bold text-gray-800 mb-4" data-json-key="quemsomos.pilares.title">{texts.pilares?.title || 'Os Pilares da Instituição'}</h2>
+            <p className="text-lg text-gray-600 max-w-4xl mx-auto mb-8" data-json-key="quemsomos.pilares.description">
+              {texts.pilares?.description || 'Nossa instituição se fundamenta em valores éticos e princípios operacionais que guiam todas as nossas ações, criando uma base sólida para nosso trabalho de transformação espiritual e desenvolvimento humano.'}
             </p>
           </div>
           

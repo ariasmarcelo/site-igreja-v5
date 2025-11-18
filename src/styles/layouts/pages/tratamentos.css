@@ -6,9 +6,35 @@
                     repeating-linear-gradient(90deg, #0891b2 0px, transparent 1px, transparent 20px);
 }
 
+/* Animação de luz azul pulsante (aparecer/sumir em 3 segundos) */
+@keyframes blue-glow-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+}
+
+.animate-blue-glow {
+  animation: blue-glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-blue-glow-delay-1 {
+  animation: blue-glow-pulse 3s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-blue-glow-delay-2 {
+  animation: blue-glow-pulse 3s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
 /* Gradiente dinâmico do accordion trigger - cada tratamento tem sua cor */
 .accordion-trigger-gradient-psychotherapy {
-  background: linear-gradient(to right, #f59e0b, #d97706);
+  background: linear-gradient(to right, #a855f7, #c084fc);
 }
 
 .accordion-trigger-gradient-neurofeedback {
@@ -28,7 +54,7 @@
 }
 
 .accordion-trigger-gradient-body-therapy {
-  background: linear-gradient(to right, #f43f5e, #e11d48);
+  background: linear-gradient(to right, #059669, #047857);
 }
 
 .accordion-trigger-gradient-spiritual {
@@ -36,5 +62,5 @@
 }
 
 .accordion-trigger-gradient-pap {
-  background: linear-gradient(to right, #a855f7, #9333ea);
+  background: linear-gradient(to right, #3b0764, #1e0a3c);
 }

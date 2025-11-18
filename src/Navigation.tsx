@@ -17,6 +17,40 @@ import NotFound from './pages/NotFound';
 // Lazy load heavy components (Admin Console)
 const AdminConsole = lazy(() => import('./pages/AdminConsole'));
 
+// Componente para atualizar o título da página dinamicamente
+const PageTitleManager = () => {
+  const location = useLocation();
+  const baseSiteName = 'O Trabalho de Resgate';
+
+  useEffect(() => {
+    const routeTitles: Record<string, string> = {
+      '/': 'Principal',
+      '/quemsomos': 'Quem Somos',
+      '/purificacao': 'Purificação e Ascensão',
+      '/tratamentos': 'Tratamentos Associados',
+      '/testemunhos': 'Testemunhos',
+      '/artigos': 'Artigos',
+      '/contato': 'Contato',
+      '/436F6E736F6C45': 'Painel Administrativo',
+    };
+
+    // Títulos especiais para rotas dinâmicas
+    if (location.pathname.startsWith('/artigos/categoria/')) {
+      document.title = `${baseSiteName} - Artigos`;
+      return;
+    }
+    if (location.pathname.startsWith('/artigos/') && location.pathname !== '/artigos') {
+      document.title = `${baseSiteName} - Artigo`;
+      return;
+    }
+
+    const pageTitle = routeTitles[location.pathname];
+    document.title = pageTitle ? `${baseSiteName} - ${pageTitle}` : baseSiteName;
+  }, [location.pathname]);
+
+  return null;
+};
+
 // Componente para gerenciar scroll: mantém posição no refresh (editor), reseta ao navegar (site)
 const ScrollManager = () => {
   const location = useLocation();
@@ -78,38 +112,52 @@ const NavigationMenu = memo(() => {
     <nav className="bg-white shadow-lg sticky top-0 z-40">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
-            <svg
-              viewBox="0 0 100 100"
-              className="w-12 h-12"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="50" cy="50" r="20" fill="#CFAF5A" />
-              {[...Array(12)].map((_, i) => {
-                const angle = (i * 30 * Math.PI) / 180;
-                const x1 = 50 + Math.cos(angle) * 25;
-                const y1 = 50 + Math.sin(angle) * 25;
-                const x2 = 50 + Math.cos(angle) * 40;
-                const y2 = 50 + Math.sin(angle) * 40;
-                return (
-                  <line
-                    key={i}
-                    x1={x1}
-                    y1={y1}
-                    x2={x2}
-                    y2={y2}
-                    stroke="#CFAF5A"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                  />
-                );
-              })}
-            </svg>
-            <div>
-              <div className="text-xl md:text-xl font-bold text-[#CFAF5A]">Igreja de Metatron</div>
-              <div className="text-base md:text-xs text-gray-600">O Trabalho de Resgate</div>
+          {/* Logo - Icon and Text together on desktop, separated on mobile */}
+          <div className="flex items-center gap-3">
+            <Link to="/" className="shrink-0">
+              <svg
+                viewBox="0 0 100 100"
+                className="w-12 h-12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="50" cy="50" r="20" fill="#CFAF5A" />
+                {[...Array(12)].map((_, i) => {
+                  const angle = (i * 30 * Math.PI) / 180;
+                  const x1 = 50 + Math.cos(angle) * 25;
+                  const y1 = 50 + Math.sin(angle) * 25;
+                  const x2 = 50 + Math.cos(angle) * 40;
+                  const y2 = 50 + Math.sin(angle) * 40;
+                  return (
+                    <line
+                      key={i}
+                      x1={x1}
+                      y1={y1}
+                      x2={x2}
+                      y2={y2}
+                      stroke="#CFAF5A"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                    />
+                  );
+                })}
+              </svg>
+            </Link>
+
+            {/* Logo Text - Hidden on mobile, shown on desktop next to icon */}
+            <Link to="/" className="hidden md:block">
+              <div className="text-left">
+                <div className="text-xl font-bold text-[#CFAF5A]">Igreja de Metatron</div>
+                <div className="text-xs text-gray-600">O Trabalho de Resgate</div>
+              </div>
+            </Link>
+          </div>
+
+          {/* Logo Text - Centered on mobile only */}
+          <Link to="/" className="md:hidden absolute left-1/2 -translate-x-1/2">
+            <div className="text-center">
+              <div className="text-xl font-bold text-[#CFAF5A]">Igreja de Metatron</div>
+              <div className="text-base text-gray-600">O Trabalho de Resgate</div>
             </div>
           </Link>
 
@@ -132,7 +180,7 @@ const NavigationMenu = memo(() => {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 absolute right-4"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -173,6 +221,7 @@ const Navigation = () => {
   
   return (
     <BrowserRouter basename={basename}>
+      <PageTitleManager />
       <ScrollManager />
       <NavigationMenu />
 

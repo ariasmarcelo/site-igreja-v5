@@ -62,10 +62,20 @@ function reconstructObjectFromEntries(entries, pageId) {
     
     // Remover prefixo do pageId para construir objeto nested
     // "index.hero.title" -> ["hero", "title"]
-    // "__shared__.footer.copyright" -> ["__shared__", "footer", "copyright"]
-    const keys = entry.fullKey.startsWith(pageId + '.') 
-      ? entry.fullKey.split('.').slice(1)  // Remove pageId, mantém o resto
-      : entry.fullKey.split('.');  // __shared__ ou outros, mantém tudo
+    // "__shared__.footer.copyright" -> ["footer", "copyright"]
+    // "tratamentos.header.title" -> ["header", "title"]
+    let keys;
+    
+    if (entry.page_id === pageId) {
+      // Para a página solicitada, remover o prefixo do pageId
+      keys = entry.cleanKey.split('.');
+    } else if (entry.page_id === '__shared__') {
+      // Para __shared__, usar apenas a cleanKey (sem o prefixo __shared__)
+      keys = entry.cleanKey.split('.');
+    } else {
+      // Para outras páginas, manter a estrutura completa
+      keys = entry.fullKey.split('.');
+    }
     
     if (keys.length === 0) return;
     
@@ -107,34 +117,35 @@ function reconstructObjectFromEntries(entries, pageId) {
 }
 
 // GET - Buscar conteúdo de uma página
-async function handleGet(pageId) {
+function handleGet(pageId) {
   const startTime = Date.now();
   log(`GET pageId=${pageId}`);
   
   // Busca entradas da página específica + __shared__
-  const { data: entries, error } = await supabase
+  return supabase
     .from('text_entries')
     .select('page_id, json_key, content')
-    .in('page_id', [pageId, '__shared__']);
+    .in('page_id', [pageId, '__shared__'])
+    .then(({ data: entries, error }) => {
+      if (error) {
+        log(`ERROR: ${error.message} (${Date.now() - startTime}ms)`);
+        throw error;
+      }
+      
+      if (!entries || entries.length === 0) {
+        log(`NOT FOUND: pageId=${pageId} (${Date.now() - startTime}ms)`);
+        return null;
+      }
 
-  if (error) {
-    log(`ERROR: ${error.message} (${Date.now() - startTime}ms)`);
-    throw error;
-  }
-  
-  if (!entries || entries.length === 0) {
-    log(`NOT FOUND: pageId=${pageId} (${Date.now() - startTime}ms)`);
-    return null;
-  }
-
-  log(`SUCCESS: ${entries.length} entries (${Date.now() - startTime}ms)`);
-  
-  const pageContent = reconstructObjectFromEntries(entries, pageId);
-  return pageContent;
+      log(`SUCCESS: ${entries.length} entries (${Date.now() - startTime}ms)`);
+      
+      const pageContent = reconstructObjectFromEntries(entries, pageId);
+      return pageContent;
+    });
 }
 
 // PUT - Atualizar conteúdo de uma página
-async function handlePut(pageId, edits) {
+function handlePut(pageId, edits) {
   const startTime = Date.now();
   log(`PUT pageId=${pageId}, edits=${Object.keys(edits || {}).length}`);
   log(`EDITS RECEIVED: ${JSON.stringify(edits)}`);
@@ -173,12 +184,18 @@ async function handlePut(pageId, edits) {
     });
   }
   
-  // Aplicar updates
-  for (const update of updates) {
+  // Aplicar updates sequencialmente
+  function processUpdate(index) {
+    if (index >= updates.length) {
+      log(`SUCCESS: ${updates.length} updates completed (${Date.now() - startTime}ms)`);
+      return Promise.resolve({ updatedCount: updates.length });
+    }
+    
+    const update = updates[index];
     log(`UPSERTING: page_id="${update.page_id}" json_key="${update.json_key}" text="${update.newText.substring(0, 50)}..."`);
     
     // Salvar na chave correta
-    const { data, error } = await supabase
+    return supabase
       .from('text_entries')
       .upsert({
         page_id: update.page_id,
@@ -188,35 +205,39 @@ async function handlePut(pageId, edits) {
       }, {
         onConflict: 'page_id,json_key'
       })
-      .select();
-    
-    if (error) {
-      log(`ERROR upserting ${update.json_key}: ${error.message}`);
-      throw error;
-    }
-    
-    log(`SUCCESS: Updated ${data?.length || 0} row(s)`);
-    
-    // Deletar chave legada com prefixo duplicado se existir
-    const legacyKey = `${update.page_id}.${update.json_key}`;
-    if (legacyKey !== update.json_key) {
-      const { error: delError } = await supabase
-        .from('text_entries')
-        .delete()
-        .eq('page_id', update.page_id)
-        .eq('json_key', legacyKey);
-      
-      if (!delError) {
-        log(`🧹 DELETED legacy key: ${legacyKey}`);
-      }
-    }
+      .select()
+      .then(({ data, error }) => {
+        if (error) {
+          log(`ERROR upserting ${update.json_key}: ${error.message}`);
+          throw error;
+        }
+        
+        log(`SUCCESS: Updated ${data?.length || 0} row(s)`);
+        
+        // Deletar chave legada com prefixo duplicado se existir
+        const legacyKey = `${update.page_id}.${update.json_key}`;
+        if (legacyKey !== update.json_key) {
+          return supabase
+            .from('text_entries')
+            .delete()
+            .eq('page_id', update.page_id)
+            .eq('json_key', legacyKey)
+            .then(({ error: delError }) => {
+              if (!delError) {
+                log(`🧹 DELETED legacy key: ${legacyKey}`);
+              }
+              return processUpdate(index + 1);
+            });
+        }
+        
+        return processUpdate(index + 1);
+      });
   }
   
-  log(`SUCCESS: ${updates.length} entries updated (${Date.now() - startTime}ms)`);
-  return { updatedCount: updates.length };
+  return processUpdate(0);
 }
 
-module.exports = async (req, res) => {
+module.exports = (req, res) => {
   // CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -233,60 +254,69 @@ module.exports = async (req, res) => {
 
   const requestStart = Date.now();
   
-  try {
-    // Extrair pageId da URL
-    const pageId = req.query.pageId || req.url?.split('/').pop()?.split('?')[0];
-    
-    if (!pageId) {
-      return res.status(400).json({ 
-        success: false, 
-        message: 'pageId é obrigatório' 
-      });
-    }
-
-    // GET /api/content/:pageId
-    if (req.method === 'GET') {
-      const content = await handleGet(pageId);
-      
-      if (!content) {
-        return res.status(404).json({ 
-          success: false, 
-          message: `Conteúdo não encontrado: ${pageId}` 
-        });
-      }
-      
-      return res.status(200).json({ 
-        success: true, 
-        content,
-        source: 'supabase-db',
-        duration: `${Date.now() - requestStart}ms`
-      });
-    }
-    
-    // PUT /api/content/:pageId
-    if (req.method === 'PUT') {
-      const { edits } = req.body;
-      const result = await handlePut(pageId, edits);
-      
-      return res.status(200).json({ 
-        success: true, 
-        message: 'Conteúdo atualizado com sucesso',
-        ...result,
-        duration: `${Date.now() - requestStart}ms`
-      });
-    }
-    
-    return res.status(405).json({ 
+  // Extrair pageId da URL
+  const pageId = req.query.pageId || req.url?.split('/').pop()?.split('?')[0];
+  
+  if (!pageId) {
+    return res.status(400).json({ 
       success: false, 
-      message: 'Method not allowed. Use GET or PUT.' 
-    });
-    
-  } catch (err) {
-    const duration = Date.now() - requestStart;
-    log(`ERROR: ${err.message} (${duration}ms)`);
-    return res.status(500).json({ 
-      success: false, 
-      message: err.message 
+      message: 'pageId é obrigatório' 
     });
   }
+
+  // GET /api/content/:pageId
+  if (req.method === 'GET') {
+    return handleGet(pageId)
+      .then((content) => {
+        if (!content) {
+          return res.status(404).json({ 
+            success: false, 
+            message: `Conteúdo não encontrado: ${pageId}` 
+          });
+        }
+        
+        return res.status(200).json({ 
+          success: true, 
+          content,
+          source: 'supabase-db',
+          duration: `${Date.now() - requestStart}ms`
+        });
+      })
+      .catch((err) => {
+        const duration = Date.now() - requestStart;
+        log(`ERROR: ${err.message} (${duration}ms)`);
+        return res.status(500).json({ 
+          success: false, 
+          message: err.message 
+        });
+      });
+  }
+  
+  // PUT /api/content/:pageId
+  if (req.method === 'PUT') {
+    const { edits } = req.body;
+    
+    return handlePut(pageId, edits)
+      .then((result) => {
+        return res.status(200).json({ 
+          success: true, 
+          message: 'Conteúdo atualizado com sucesso',
+          ...result,
+          duration: `${Date.now() - requestStart}ms`
+        });
+      })
+      .catch((err) => {
+        const duration = Date.now() - requestStart;
+        log(`ERROR: ${err.message} (${duration}ms)`);
+        return res.status(500).json({ 
+          success: false, 
+          message: err.message 
+        });
+      });
+  }
+  
+  return res.status(405).json({ 
+    success: false, 
+    message: 'Method not allowed. Use GET or PUT.' 
+  });
 };
