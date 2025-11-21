@@ -1,0 +1,128 @@
+﻿{
+    "success":  true,
+    "content":  {
+                    "cta":  {
+                                "title":  "Inicie Sua PrÃ³pria Jornada",
+                                "buttonText":  "Agende Sua AvaliaÃ§Ã£o Inicial",
+                                "subtitle":  "Descubra como podemos ajudar em seu processo de compreensÃ£o e avanÃ§o."
+                            },
+                    "testimonials":  [
+                                         {
+                                             "date":  "17/08/2025",
+                                             "name":  "Isabel Ferrarezi",
+                                             "content":  "Marcelo! Se nÃ£o fosse seu trabalho eu nem sei como estaria agora! Hoje consigo dormir, tenho mais clareza nos acontecimentos do dia a dia, consigo pensar antes de agir, minha ansiedade diminuiu! Sei que ainda temos um caminho pela frente, mas a cada sessÃ£o percebo o quanto estamos avanÃ§ando!! Sou muito grata pelo seu trabalho e atenÃ§Ã£o comigo."
+                                         },
+                                         {
+                                             "date":  "12/09/2025",
+                                             "name":  "Ricardo Mendes",
+                                             "content":  "Depois de 15 anos sofrendo com TDAH severo e incapacidade de concentraÃ§Ã£o, o neurofeedback mudou minha vida. Nas primeiras 20 sessÃµes jÃ¡ notei diferenÃ§a, mas foi apÃ³s completar as 60 sessÃµes que a transformaÃ§Ã£o se consolidou. Hoje consigo trabalhar por horas sem distraÃ§Ã£o, minha memÃ³ria melhorou absurdamente e minha carreira finalmente decolou. Ã impressionante como treinar o cÃ©rebro pode mudar tudo."
+                                         },
+                                         {
+                                             "date":  "28/09/2025",
+                                             "name":  "Camila Santos",
+                                             "content":  "Cheguei aqui em colapso nervoso total apÃ³s um trauma severo. As sessÃµes de EMDR foram intensas, mas transformadoras. Em apenas 10 sessÃµes, memÃ³rias que me paralisavam por anos perderam sua carga emocional. Hoje consigo falar sobre o que aconteceu sem entrar em pÃ¢nico. Meu sistema nervoso finalmente saiu do modo sobrevivÃªncia. Sou outra pessoa."
+                                         },
+                                         {
+                                             "date":  "05/10/2025",
+                                             "name":  "Paulo Henrique",
+                                             "content":  "Atleta profissional, sempre busquei performance mÃ¡xima. O breathwork revolucionou nÃ£o sÃ³ meu desempenho, mas toda minha vida. Aprendi a controlar meu sistema nervoso atravÃ©s da respiraÃ§Ã£o. Minha variabilidade cardÃ­aca melhorou 40%, meu sono Ã© profundo, minha recuperaÃ§Ã£o muscular acelerou. AlÃ©m disso, desenvolvi uma clareza mental e presenÃ§a que nunca tive antes. IndispensÃ¡vel."
+                                         },
+                                         {
+                                             "date":  "18/10/2025",
+                                             "name":  "Mariana Costa",
+                                             "content":  "Sofria de sÃ­ndrome do pÃ¢nico hÃ¡ 8 anos. Tentei 4 medicaÃ§Ãµes diferentes, terapias convencionais, nada funcionava completamente. A psicoterapia transpessoal aqui foi diferente. NÃ£o trataram apenas meus sintomas, mas me ajudaram a entender minha natureza espiritual e a reconectar com minha essÃªncia. Hoje estou sem medicaÃ§Ã£o hÃ¡ 6 meses, livre dos ataques, e vivendo com propÃ³sito e paz."
+                                         },
+                                         {
+                                             "date":  "02/11/2025",
+                                             "name":  "AndrÃ© Oliveira",
+                                             "content":  "Executivo estressado, insÃ´nia crÃ´nica, pressÃ£o alta, ansiedade constante. O protocolo de breathwork combinado com neurofeedback literalmente me salvou de um infarto anunciado. Em 3 meses minha pressÃ£o normalizou, voltei a dormir naturalmente, minha ansiedade caiu 80%. Aprendi que nosso sistema nervoso pode ser reprogramado. Hoje trabalho com alta performance mas sem destruir minha saÃºde."
+                                         },
+                                         {
+                                             "date":  "15/11/2025",
+                                             "name":  "Juliana Ferreira",
+                                             "content":  "Carreguei tensÃµes e traumas no meu corpo por dÃ©cadas. A terapia corporal biodinÃ¢mica foi uma revelaÃ§Ã£o. Cada sessÃ£o liberava camadas de emoÃ§Ãµes presas. Chorava, ria, sentia meu corpo finalmente relaxando. ApÃ³s 20 sessÃµes, dores crÃ´nicas que tinha hÃ¡ 15 anos simplesmente sumiram. Minha postura mudou, minha energia voltou. Ã como se tivesse me reconectado com meu prÃ³prio corpo."
+                                         },
+                                         {
+                                             "date":  "29/11/2025",
+                                             "name":  "Roberto Silva",
+                                             "content":  "Epilepsia resistente a medicamentos por 12 anos. Crises semanais que destruÃ­am minha qualidade de vida. ApÃ³s 70 sessÃµes de neurofeedback, minhas crises reduziram 90%. Hoje tenho uma crise a cada 2-3 meses, quando antes tinha 4 por semana. Minha cogniÃ§Ã£o melhorou, minha memÃ³ria voltou. Recuperei minha vida e minha independÃªncia. GratidÃ£o eterna."
+                                         },
+                                         {
+                                             "date":  "10/12/2025",
+                                             "name":  "Fernanda Lima",
+                                             "content":  "DepressÃ£o profunda e resistente apÃ³s perda familiar traumÃ¡tica. Medicamentos tradicionais nÃ£o funcionavam mais. A psicoterapia assistida por psicodÃ©licos, realizada com protocolo mÃ©dico rigoroso, foi a experiÃªncia mais transformadora da minha vida. Uma Ãºnica sessÃ£o me deu insights que anos de terapia convencional nÃ£o deram. Hoje, 4 meses depois, estou livre da depressÃ£o e ressignifiquei toda minha dor."
+                                         },
+                                         {
+                                             "date":  "22/12/2025",
+                                             "name":  "Carlos Eduardo",
+                                             "content":  "Dores crÃ´nicas por fibromialgia, nada funcionava. Iniciei tratamento com CBD sob supervisÃ£o mÃ©dica. Em 6 semanas, minha dor reduziu de 8/10 para 3/10. Voltei a dormir bem, minha qualidade de vida melhorou drasticamente. Combinado com fisioterapia e o trabalho espiritual aqui, hoje tenho uma vida normal novamente. Zero efeitos colaterais graves que os opioides me causavam."
+                                         },
+                                         {
+                                             "date":  "08/01/2026",
+                                             "name":  "PatrÃ­cia Alves",
+                                             "content":  "VÃ­tima de abuso na infÃ¢ncia, PTSD severo, flashbacks diÃ¡rios por 25 anos. O EMDR combinado com o trabalho de purificaÃ§Ã£o espiritual foi minha salvaÃ§Ã£o. As memÃ³rias traumÃ¡ticas perderam seu poder sobre mim. Hoje consigo viver no presente, nÃ£o mais aprisionada no passado. Meu sistema nervoso finalmente entendeu que o perigo passou. Renasci aos 40 anos."
+                                         },
+                                         {
+                                             "date":  "25/01/2026",
+                                             "name":  "Lucas Rodrigues",
+                                             "content":  "Dependente quÃ­mico por 15 anos, 6 internaÃ§Ãµes fracassadas. O trabalho integrado aqui - psicoterapia, desobsessÃ£o espiritual e neurofeedback - me deu o que nenhuma clÃ­nica conseguiu: compreensÃ£o das causas espirituais e emocionais do meu vÃ­cio. Limpo hÃ¡ 11 meses, sistema nervoso regulado, reconectado com meu propÃ³sito espiritual. Pela primeira vez tenho esperanÃ§a real de futuro."
+                                         },
+                                         {
+                                             "name":  "Beatriz Martins",
+                                             "date":  "12/02/2026",
+                                             "content":  "Ansiedade generalizada e ataques de pÃ¢nico diÃ¡rios hÃ¡ 6 anos. O breathwork foi a ferramenta que me devolveu controle sobre meu prÃ³prio sistema nervoso. Aprendi a sair do estado simpÃ¡tico hiperativo e acessar o parassimpÃ¡tico conscientemente. Hoje, quando sinto ansiedade surgindo, uso as tÃ©cnicas e ela simplesmente nÃ£o se desenvolve. Minha vida mudou completamente. Liberdade real."
+                                         },
+                                         {
+                                             "date":  "28/02/2026",
+                                             "name":  "Marcos Paulo",
+                                             "content":  "EmpresÃ¡rio em burnout total, Ã  beira do colapso nervoso. O protocolo integrado - neurofeedback para regular meu cÃ©rebro hiperativo, breathwork para controlar o estresse e a fundamentaÃ§Ã£o espiritual para encontrar sentido alÃ©m do trabalho - me reconstruiu por completo. Hoje tenho performance profissional alta, mas com equilÃ­brio, saÃºde e conexÃ£o espiritual. Aprendi que sucesso sem bem-estar nÃ£o Ã© sucesso."
+                                         },
+                                         {
+                                             "date":  "15/03/2026",
+                                             "name":  "Ana Carolina",
+                                             "content":  "Sofria de insÃ´nia crÃ´nica hÃ¡ 9 anos. Dormia 3-4h por noite mesmo com medicaÃ§Ã£o pesada. O neurofeedback focado em regular meus padrÃµes cerebrais, combinado com breathwork antes de dormir, foi a soluÃ§Ã£o. Hoje durmo 7-8h naturalmente, sem medicaÃ§Ã£o. Minha saÃºde melhorou em todos aspectos - energia, humor, imunidade. Parece milagre, mas Ã© ciÃªncia aplicada com maestria."
+                                         },
+                                         {
+                                             "date":  "30/03/2026",
+                                             "name":  "Rafael Santos",
+                                             "content":  "Trauma de combate militar, PTSD severo, pesadelos constantes, hipervigilÃ¢ncia insuportÃ¡vel. Tudo mudou com o EMDR. Em 12 sessÃµes intensivas, reprocessei anos de experiÃªncias traumÃ¡ticas. Meus pesadelos cessaram, minha hipervigilÃ¢ncia reduziu drasticamente. Combinado com o trabalho de purificaÃ§Ã£o e limpeza espiritual, finalmente encontrei paz. Voltei a viver, nÃ£o apenas existir em modo alerta constante."
+                                         }
+                                     ],
+                    "triplaProtecao":  {
+                                           "footerMessage":  "IntegraÃ§Ã£o e RegulaÃ§Ã£o Seguras",
+                                           "title":  "Tripla ProteÃ§Ã£o",
+                                           "items":  [
+                                                         {
+                                                             "title":  "TÃ©cnica Precisa",
+                                                             "description":  "Com abordagens baseadas em evidÃªncias e fundadas nos princÃ­pios da Neurofisiologia do Trauma e protocolos terapÃªuticos clÃ­nicos rigorosos."
+                                                         },
+                                                         {
+                                                             "title":  "ConexÃ£o Humana",
+                                                             "description":  "Com profissionais comprometidos com sua cura, vocÃª terÃ¡ um ambiente seguro, compassivo e acolhedor durante todo o processo de tratamento."
+                                                         },
+                                                         {
+                                                             "title":  "ProteÃ§Ã£o Espiritual",
+                                                             "description":  "Com prÃ¡ticas permanentes de proteÃ§Ã£o espiritual e energÃ©tica, Igreja estabiliza todo o trabalho clÃ­nico de todos os profissionais e seus pacientes."
+                                                         }
+                                                     ],
+                                           "subtitle":  "ProteÃ§Ã£o em trÃªs nÃ­veis fundamentais, garantindo seguranÃ§a e eficÃ¡cia em todas as etapas."
+                                       },
+                    "intro":  {
+                                  "description":  "Estes sÃ£o relatos de participantes e praticantes que vivenciaram transformaÃ§Ãµes profundas atravÃ©s dos tratamentos oferecidos pela Igreja de Metatron e Instituto Metatron. Cada jornada Ã© Ãºnica, mas todas compartilham a reconexÃ£o com a essÃªncia espiritual e o retorno ao equilÃ­brio integral."
+                              },
+                    "header":  {
+                                   "title":  "Testemunhos",
+                                   "subtitle":  "Relatos de TransformaÃ§Ã£o Pessoal, FÃ­sica e Espiritual"
+                               },
+                    "disclaimer":  {
+                                       "title":  "Nota Importante",
+                                       "content":  "Resultados podem variar de pessoa para pessoa. Cada jornada de transformaÃ§Ã£o Ã© Ãºnica e depende de diversos fatores, incluindo comprometimento pessoal, condiÃ§Ã£o inicial e frequÃªncia de participaÃ§Ã£o nos trabalhos. Os testemunhos aqui apresentados refletem experiÃªncias individuais e nÃ£o constituem garantia de resultados especÃ­ficos. Todos os tratamentos clÃ­nicos sÃ£o conduzidos por profissionais habilitados e nÃ£o substituem orientaÃ§Ã£o mÃ©dica convencional."
+                                   },
+                    "footer":  {
+                                   "trademark":  "Marcas registradasÂ® protegidas por lei.",
+                                   "copyright":  "Â©2025 Igreja de Metatron. Todos os direitos reservados."
+                               }
+                },
+    "source":  "supabase-db",
+    "duration":  "186ms"
+}

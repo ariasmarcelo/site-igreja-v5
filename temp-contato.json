@@ -1,0 +1,124 @@
+﻿{
+    "success":  true,
+    "content":  {
+                    "faq":  {
+                                "items":  [
+                                              {
+                                                  "answer":  "A primeira consulta Ã© uma avaliaÃ§Ã£o inicial onde conhecemos sua histÃ³ria, suas necessidades e objetivos. Juntos, identificamos o melhor caminho terapÃªutico para vocÃª, seja atravÃ©s dos trabalhos de PurificaÃ§Ã£o e AscensÃ£o ou dos Tratamentos Associados do Instituto Metatron.",
+                                                  "question":  "Como funciona a primeira consulta?"
+                                              },
+                                              {
+                                                  "question":  "Preciso ter alguma crenÃ§a religiosa especÃ­fica?",
+                                                  "answer":  "NÃ£o. A Igreja de Metatron promove prÃ¡ticas religiosas universalistas, sem imposiÃ§Ã£o de crenÃ§as ou dogmas. Respeitamos todas as tradiÃ§Ãµes espirituais e acolhemos pessoas de todas as origens e crenÃ§as."
+                                              },
+                                              {
+                                                  "answer":  "NÃ£o. Nossos tratamentos sÃ£o complementares e nÃ£o substituem orientaÃ§Ã£o mÃ©dica. Todos os serviÃ§os clÃ­nicos sÃ£o prestados por profissionais habilitados, e recomendamos manter acompanhamento mÃ©dico quando necessÃ¡rio.",
+                                                  "question":  "Os tratamentos substituem acompanhamento mÃ©dico?"
+                                              },
+                                              {
+                                                  "question":  "Quanto tempo dura o processo de PurificaÃ§Ã£o e AscensÃ£o?",
+                                                  "answer":  "O tempo varia para cada pessoa, pois respeitamos o ritmo individual de cada jornada. NÃ£o hÃ¡ prazos rÃ­gidos. O importante Ã© a genuinidade e profundidade da transformaÃ§Ã£o, nÃ£o a velocidade do processo."
+                                              },
+                                              {
+                                                  "question":  "O que Ã© a Magia Divina ensinada pela Igreja?",
+                                                  "answer":  "A Magia Divina Ã© a aplicaÃ§Ã£o prÃ¡tica dos PrincÃ­pios HermÃ©ticos atravÃ©s de prÃ¡ticas meditativas, contemplativas e litÃºrgicas. Ela permite que cada pessoa reconheÃ§a e manifeste seu potencial divino interior, promovendo autoconhecimento, cura emocional e transformaÃ§Ã£o espiritual profunda."
+                                              },
+                                              {
+                                                  "answer":  "A Igreja de Metatron Ã© uma entidade religiosa constituÃ­da sob a forma de associaÃ§Ã£o sem fins lucrativos, reconhecida legalmente. O Instituto Metatron Ã© um departamento tÃ©cnico dentro da estrutura da Igreja, responsÃ¡vel pela prestaÃ§Ã£o de serviÃ§os clÃ­nicos e terapÃªuticos por profissionais habilitados.",
+                                                  "question":  "Qual Ã© a natureza jurÃ­dica da Igreja de Metatron?"
+                                              },
+                                              {
+                                                  "question":  "Como funciona a integraÃ§Ã£o entre prÃ¡ticas espirituais e clÃ­nicas?",
+                                                  "answer":  "Os Trabalhos de PurificaÃ§Ã£o e AscensÃ£o sÃ£o de natureza religiosa e espiritual, enquanto os Tratamentos Associados sÃ£o serviÃ§os clÃ­nicos prestados por profissionais habilitados (psicÃ³logos, terapeutas). Ambas as abordagens podem ser combinadas de forma complementar, respeitando a escolha individual de cada pessoa."
+                                              },
+                                              {
+                                                  "answer":  "Sim. Os Trabalhos de PurificaÃ§Ã£o e AscensÃ£o sÃ£o independentes e podem ser realizados separadamente dos Tratamentos Associados. Cada pessoa escolhe livremente quais prÃ¡ticas deseja integrar em sua jornada, sem obrigatoriedade de combinar ambas as modalidades.",
+                                                  "question":  "Posso participar apenas dos trabalhos espirituais sem fazer terapia?"
+                                              },
+                                              {
+                                                  "question":  "A Igreja aceita doaÃ§Ãµes ou contribuiÃ§Ãµes voluntÃ¡rias?",
+                                                  "answer":  "Sim. Como entidade religiosa sem fins lucrativos, a Igreja de Metatron aceita doaÃ§Ãµes e contribuiÃ§Ãµes voluntÃ¡rias de seus membros e simpatizantes. Esses recursos sÃ£o destinados exclusivamente Ã  manutenÃ§Ã£o de suas atividades-fim."
+                                              },
+                                              {
+                                                  "question":  "Quais sÃ£o os princÃ­pios Ã©ticos que regem os trabalhos da Igreja?",
+                                                  "answer":  "O cÃ³digo Ã©tico da Igreja de Metatron inclui o respeito absoluto Ã  autonomia individual, confidencialidade, abordagem trauma-informed, e compromisso com prÃ¡ticas seguras e transparentes."
+                                              }
+                                          ],
+                                "title":  "Perguntas Frequentes!"
+                            },
+                    "header":  {
+                                   "title":  "Entre em Contato",
+                                   "subtitle":  "Estamos aqui para ouvir vocÃª e auxiliar em sua jornada"
+                               },
+                    "contactCard":  {
+                                        "email":  {
+                                                      "label":  "E-mail",
+                                                      "address":  "contato@igrejademetatron.org.br"
+                                                  },
+                                        "title":  "FaÃ§a Contato",
+                                        "whatsapp":  {
+                                                         "label":  "WhatsApp",
+                                                         "number":  "+55 (11) 949-555-555"
+                                                     },
+                                        "whatsappButton":  {
+                                                               "text":  "Atendimento pelo WhatsApp",
+                                                               "description":  "Clique no botÃ£o acima para iniciar uma conversa diretamente pelo WhatsApp"
+                                                           }
+                                    },
+                    "mainSection":  {
+                                        "title":  "FaÃ§a Contato",
+                                        "description":  "Se vocÃª estÃ¡ preocupado com um ente querido ou pensa em indicar alguÃ©m, jÃ¡ passou por outros tratamentos antes e ainda sofre, ou quer ouvir uma voz acolhedora do outro lado da linha, estamos aqui para vocÃª."
+                                    },
+                    "businessHours":  {
+                                          "hours":  {
+                                                        "sunday":  {
+                                                                       "pt-BR":  ""
+                                                                   },
+                                                        "saturday":  "E aos SÃ¡bados, das 9h Ã s 14h",
+                                                        "weekdays":  "De Segunda a Sexta, das 9h Ã s 18h"
+                                                    },
+                                          "title":  "HorÃ¡rio de Atendimento"
+                                      },
+                    "initialAssessment":  {
+                                              "title":  "Sobre a AvaliaÃ§Ã£o Inicial",
+                                              "commitment":  {
+                                                                 "title":  "Nosso Compromisso",
+                                                                 "description":  "Oferecemos um espaÃ§o seguro, acolhedor e livre de julgamentos. Nossa equipe Ã© treinada em abordagens trauma-informed e trabalha com genuÃ­no respeito pela sua jornada Ãºnica. Valorizamos a transparÃªncia, o rigor tÃ©cnico e o cuidado humanizado em cada etapa de O Trabalho de Resgate."
+                                                             },
+                                              "whatToExpect":  {
+                                                                   "items":  [
+                                                                                 "SessÃµes de anamnese servem para compreender sua histÃ³ria, condiÃ§Ãµes atuais e necessidades",
+                                                                                 "AvaliaÃ§Ã£o do estado do seu sistema nervoso",
+                                                                                 "DiscussÃ£o sobre objetivos terapÃªuticos",
+                                                                                 "ApresentaÃ§Ã£o de abordagens e tratamentos adequados"
+                                                                             ],
+                                                                   "title":  "O Que Esperar"
+                                                               }
+                                          },
+                    "triplaProtecao":  {
+                                           "footerMessage":  "IntegraÃ§Ã£o e RegulaÃ§Ã£o Seguras",
+                                           "title":  "Tripla ProteÃ§Ã£o",
+                                           "items":  [
+                                                         {
+                                                             "title":  "TÃ©cnica Precisa",
+                                                             "description":  "Com abordagens baseadas em evidÃªncias e fundadas nos princÃ­pios da Neurofisiologia do Trauma e protocolos terapÃªuticos clÃ­nicos rigorosos."
+                                                         },
+                                                         {
+                                                             "title":  "ConexÃ£o Humana",
+                                                             "description":  "Com profissionais comprometidos com sua cura, vocÃª terÃ¡ um ambiente seguro, compassivo e acolhedor durante todo o processo de tratamento."
+                                                         },
+                                                         {
+                                                             "title":  "ProteÃ§Ã£o Espiritual",
+                                                             "description":  "Com prÃ¡ticas permanentes de proteÃ§Ã£o espiritual e energÃ©tica, Igreja estabiliza todo o trabalho clÃ­nico de todos os profissionais e seus pacientes."
+                                                         }
+                                                     ],
+                                           "subtitle":  "ProteÃ§Ã£o em trÃªs nÃ­veis fundamentais, garantindo seguranÃ§a e eficÃ¡cia em todas as etapas."
+                                       },
+                    "footer":  {
+                                   "trademark":  "Marcas registradasÂ® protegidas por lei.",
+                                   "copyright":  "Â©2025 Igreja de Metatron. Todos os direitos reservados."
+                               }
+                },
+    "source":  "supabase-db",
+    "duration":  "192ms"
+}

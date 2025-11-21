@@ -65,6 +65,11 @@ export default function ArtigosEditor() {
   const [classesTree, setClassesTree] = useState<CategoriaTree[]>([]);
   const [selectedCategorias, setSelectedCategorias] = useState<string[]>([]);
   
+  // Paginação
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10); // Configurável
+  const pageSizeOptions = [5, 10, 20, 50, 100];
+  
   const isSaving = useRef(false);
   const editorScrollRef = useRef<HTMLDivElement>(null);
   const manualStateChange = useRef(false);
@@ -536,6 +541,17 @@ export default function ArtigosEditor() {
     });
   }, [posts, searchTerm, filterClasse, filterCategoria, filterStatus]);
 
+  // Paginação
+  const totalPages = Math.ceil(filteredPosts.length / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedPosts = filteredPosts.slice(startIndex, endIndex);
+
+  // Resetar página quando filtros mudarem
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, filterClasse, filterCategoria, filterStatus, pageSize]);
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('pt-BR', {
       day: '2-digit',
@@ -746,9 +762,82 @@ export default function ArtigosEditor() {
           </CardContent>
         </Card>
       ) : !editingPost ? (
-        <div className="grid grid-cols-1 gap-4">
-          {filteredPosts.map(post => (
-            <Card key={post.id}>
+        <>
+          {/* Informações de paginação e controles */}
+          <Card>
+            <CardContent className="pt-6">
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div className="text-sm text-gray-600">
+                  Mostrando <span className="font-semibold">{startIndex + 1}</span> a{' '}
+                  <span className="font-semibold">{Math.min(endIndex, filteredPosts.length)}</span> de{' '}
+                  <span className="font-semibold">{filteredPosts.length}</span> artigos
+                </div>
+                
+                <div className="flex items-center gap-4">
+                  {/* Seletor de tamanho de página */}
+                  <div className="flex items-center gap-2">
+                    <Label className="text-sm">Por página:</Label>
+                    <Select value={pageSize.toString()} onValueChange={(v) => setPageSize(Number(v))}>
+                      <SelectTrigger className="w-20">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {pageSizeOptions.map(size => (
+                          <SelectItem key={size} value={size.toString()}>{size}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Controles de navegação */}
+                  {totalPages > 1 && (
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(1)}
+                        disabled={currentPage === 1}
+                      >
+                        Primeira
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                        disabled={currentPage === 1}
+                      >
+                        Anterior
+                      </Button>
+                      <span className="text-sm text-gray-600 px-2">
+                        Página <span className="font-semibold">{currentPage}</span> de{' '}
+                        <span className="font-semibold">{totalPages}</span>
+                      </span>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                        disabled={currentPage === totalPages}
+                      >
+                        Próxima
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setCurrentPage(totalPages)}
+                        disabled={currentPage === totalPages}
+                      >
+                        Última
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <div className="grid grid-cols-1 gap-4">
+            {paginatedPosts.map(post => (
+              <Card key={post.id}>
               <CardContent className="pt-6">
                 <div className="flex items-start justify-between">
                   <div className="flex-1">
@@ -810,6 +899,7 @@ export default function ArtigosEditor() {
             </Card>
           ))}
         </div>
+        </>
       ) : null}
 
       {/* Editor Form - Modal */}

@@ -1,0 +1,130 @@
+﻿{
+    "success":  true,
+    "content":  {
+                    "cta":  {
+                                "subtitle":  "Agende sua avaliaÃ§Ã£o inicial para identificar o melhor caminho terapÃªutico para vocÃª.",
+                                "buttonText":  "Agendar AvaliaÃ§Ã£o Inicial",
+                                "title":  "Vamos comeÃ§ar?"
+                            },
+                    "header":  {
+                                   "subtitle":  "Instituto Metatron â Abordagens tÃ©cnico-terapÃªuticas sÃ³lidas e integradas !!!",
+                                   "title":  "Tratamentos Associados"
+                               },
+                    "labels":  {
+                                   "about":  "Sobre o Tratamento:",
+                                   "benefits":  "BenefÃ­cios:",
+                                   "duration":  "DuraÃ§Ã£o TÃ­pica:",
+                                   "indications":  "IndicaÃ§Ãµes:",
+                                   "professional":  "Profissional ResponsÃ¡vel:",
+                                   "contraindications":  "ContraindicaÃ§Ãµes:"
+                               },
+                    "treatments":  [
+                                       {
+                                           "color":  "from-[#3B82F6] to-[#4F46E5]",
+                                           "title":  "Psicoterapia Humanista e Transpessoal (supervisÃ£o geral integrada)",
+                                           "duration":  "SessÃµes semanais ou quinzenais",
+                                           "description":  "Reconhecendo sua natureza e sua identidade, explorando seus estados internos, emoÃ§Ãµes e experiÃªncias com um olhar compassivo e restaurador.",
+                                           "professional":  "PsicÃ³logo(a) habilitado(a) com CRP ativo",
+                                           "details":  "IntervenÃ§Ãµes fundadas na neurofisiologia do trauma, oferecendo compreensÃ£o profunda dos sistemas autÃ´nomos e emocionais. Abordagem que valoriza a experiÃªncia subjetiva, acreditando que somos essencialmente bons e capazes de escolhas conscientes.",
+                                           "indications":  "AutoexploraÃ§Ã£o, reflexÃ£o, ajustes internos, reequilÃ­brio, sublimaÃ§Ã£o e transcendÃªncia"
+                                       },
+                                       {
+                                           "color":  "from-[#2d6b78] to-[#1e4f5a]",
+                                           "title":  "Neurofeedback",
+                                           "duration":  "40 a 80 sessÃµes para resultados completos",
+                                           "description":  "Os benefÃ­cios do Neurofeedback decorrem da melhoria da funÃ§Ã£o cerebral, contribuindo para melhor regulaÃ§Ã£o geral, concentraÃ§Ã£o, cogniÃ§Ã£o e equilÃ­brio do comportamento.",
+                                           "indications":  "Transtornos de ansiedade, dÃ©ficit de atenÃ§Ã£o e hiperatividade (TDAH), depressÃ£o, insÃ´nia, transtorno de estresse pÃ³s-traumÃ¡tico (TEPT), epilepsia, dores crÃ´nicas, desempenho cognitivo",
+                                           "professional":  "Profissional treinado em neurofeedback",
+                                           "contraindications":  "Nenhuma contraindicaÃ§Ã£o absoluta conhecida. NÃ£o invasivo.",
+                                           "details":  "Utiliza predominantemente a eletroencefalografia quantitativa (QEEG), uma tÃ©cnica avanÃ§ada que permite a anÃ¡lise computadorizada detalhada dos padrÃµes de atividade elÃ©trica cerebral em tempo-real. Sistemas modernos incorporam elementos como jogos digitais, que incentivam o cÃ©rebro a otimizar seus padrÃµes de funcionamento. @@@"
+                                       },
+                                       {
+                                           "color":  "from-[#22D3EE] to-[#0EA5E9]",
+                                           "title":  "Breathworking â A CiÃªncia da RespiraÃ§Ã£o Funcional",
+                                           "details":  "As prÃ¡ticas de breathwork tÃªm sido amplamente estudadas por sua capacidade de modular o sistema nervoso autÃ´nomo (SNA) e promover a regulaÃ§Ã£o neurofisiolÃ³gica em condiÃ§Ãµes de estresse crÃ´nico, ansiedade, depressÃ£o e desregulaÃ§Ãµes severas decorrentes de traumas simples, complexos e de desenvolvimento (infÃ¢ncia).",
+                                           "benefits":  "TÃ©cnicas especÃ­ficas de respiraÃ§Ã£o consciente e controlada podem induzir um estado parassimpÃ¡tico predominante, reduzindo a hiperatividade do Sistema Nervoso SimpÃ¡tico (SNS) ligada diretamente ao estresse crÃ´nico",
+                                           "duration":  "SessÃµes individuais ou em grupo",
+                                           "description":  "Breathwork (trabalho respiratÃ³rio) Ã© a versÃ£o moderna do Pranayama, agora com as descobertas e fundamentos da neurofisiologia humana.",
+                                           "indications":  "RegulaÃ§Ã£o do sistema nervoso autÃ´nomo, modulaÃ§Ã£o do eixo hipotÃ¡lamo-pituitÃ¡ria-adrenal (HPA), regulaÃ§Ã£o da atividade das amÃ­gdalas, melhoria da variabilidade da frequÃªncia cardÃ­aca (HRV)",
+                                           "professional":  "Instrutor certificado em breathwork"
+                                       },
+                                       {
+                                           "color":  "from-[#6D28D9] to-[#A78BFA]",
+                                           "title":  "EMDR",
+                                           "details":  "TÃ©cnica eficaz para dessensibilizaÃ§Ã£o e reprocessamento de memÃ³rias traumÃ¡ticas, produzindo remodelaÃ§Ã£o e regulaÃ§Ã£o progressiva e generalizada do sistema nervoso, emoÃ§Ãµes, percepÃ§Ã£o, comportamento e autoimagem. Recomendada pela OMS e APA como intervenÃ§Ã£o de primeira linha.",
+                                           "duration":  "VariÃ¡vel conforme o caso, geralmente 8-12 sessÃµes",
+                                           "description":  "O EMDR estimula mecanismos naturais do sistema nervoso para acessar e reintegrar memÃ³rias traumÃ¡ticas, reduzindo sofrimento emocional e desregulaÃ§Ã£o neurofisiolÃ³gica.",
+                                           "indications":  "Transtorno de estresse pÃ³s-traumÃ¡tico (TEPT), transtornos de ansiedade e depressÃ£o, fobias e transtornos relacionados ao medo, adiÃ§Ãµes e transtornos de controle de impulsos, transtornos alimentares, dores crÃ´nicas e distÃºrbios psicossomÃ¡ticos, traumas complexos",
+                                           "professional":  "Psicoterapeuta treinado em EMDR"
+                                       },
+                                       {
+                                           "color":  "from-[#DB2777] to-[#FB7185]",
+                                           "title":  "Terapia Corporal BiodinÃ¢mica",
+                                           "details":  "A Terapia Corporal BiodinÃ¢mica Ã© uma abordagem terapÃªutica que integra elementos da psicologia e da neurofisiologia para promover a saÃºde do sistema nervoso e do corpo fÃ­sico de forma integral. Durante as sessÃµes, sÃ£o aplicados toques sutis, pressÃ£o leve e movimentos especÃ­ficos para liberar tensÃµes e bloqueios emocionais armazenados em diferentes regiÃµes de todo o corpo.",
+                                           "benefits":  "Ajuda a liberar emoÃ§Ãµes reprimidas e a restaurar o equilÃ­brio nervoso e emocional. Promove a reativaÃ§Ã£o do sistema parassimpÃ¡tico e progressivamente uma melhor regulaÃ§Ã£o nervosa, relaxamento profundo e reduÃ§Ã£o do estado de estresse hipervigilante.",
+                                           "duration":  "SessÃµes semanais ou quinzenais",
+                                           "description":  "Desenvolvida pela psicÃ³loga e fisioterapeuta norueguesa Gerda Boyesen, essa tÃ©cnica faz parte da psicoterapia corporal, que se baseia na ideia de que o corpo e a mente estÃ£o muito profundamente integrados.",
+                                           "indications":  "Ansiedade e depressÃ£o, estresse crÃ´nico, traumas, problemas de sono",
+                                           "professional":  "Terapeuta qualificado em Terapia Corporal BiodinÃ¢mica"
+                                       },
+                                       {
+                                           "color":  "from-[#15803D] to-[#22C55E]",
+                                           "title":  "CBD (Canabidiol)",
+                                           "details":  "O CBD Ã© amplamente utilizado para o alÃ­vio da dor crÃ´nica. Ele atua no sistema endocanabinoide, que regula a percepÃ§Ã£o da dor, proporcionando alÃ­vio sem a severa dependÃªncia e efeitos colaterais causados por opioides. Estudos mostram que o CBD pode ajudar a reduzir sintomas de ansiedade e depressÃ£o, modulando a atividade dos receptores de serotonina no cÃ©rebro.",
+                                           "duration":  "Uso contÃ­nuo conforme prescriÃ§Ã£o mÃ©dica",
+                                           "description":  "O canabidiol (CBD) Ã© um dos compostos encontrados na planta Cannabis Sativa, e Ã© amplamente conhecido por suas propriedades terapÃªuticas.",
+                                           "indications":  "AlÃ­vio da dor crÃ´nica, reduÃ§Ã£o da ansiedade e depressÃ£o, neuroproteÃ§Ã£o, tratamento da epilepsia, alÃ­vio de sintomas em pacientes com cÃ¢ncer",
+                                           "professional":  "MÃ©dico habilitado",
+                                           "contraindications":  "Deve ser usado sob supervisÃ£o mÃ©dica, especialmente em casos de gravidez, lactaÃ§Ã£o ou uso concomitante com outros medicamentos"
+                                       },
+                                       {
+                                           "color":  "from-[#7C3AED] to-[#A855F7]",
+                                           "title":  "Psicoterapia Assistida por PsicodÃ©licos (PAP)",
+                                           "duration":  "SessÃµes preparatÃ³rias, sessÃ£o de experiÃªncia e sessÃµes de integraÃ§Ã£o",
+                                           "description":  "A Psicoterapia Assistida com PsicodÃ©licos (PAP) tem se consolidado como uma abordagem inovadora e eficaz para o tratamento de diversas condiÃ§Ãµes mÃ©dicas e psiquiÃ¡tricas.",
+                                           "indications":  "Tratamento da depressÃ£o resistente, tratamento do transtorno de estresse pÃ³s-traumÃ¡tico (TEPT), tratamento de dependÃªncias quÃ­micas, alÃ­vio do sofrimento existencial em pacientes terminais, terapia para ansiedade e depressÃ£o em pacientes com cÃ¢ncer, promoÃ§Ã£o do crescimento pessoal e espiritual",
+                                           "professional":  "Psicoterapeuta especializado em PAP com supervisÃ£o mÃ©dica",
+                                           "contraindications":  "Requer protocolo de transiÃ§Ã£o gradual e monitorado. Deve ser supervisionado por profissional de saÃºde qualificado.",
+                                           "details":  "A PAP tem mostrado eficÃ¡cia no tratamento da depressÃ£o resistente a tratamentos convencionais. Estudos clÃ­nicos demonstram que substÃ¢ncias como a psilocibina podem induzir estados de consciÃªncia que facilitam a introspecÃ§Ã£o e a resoluÃ§Ã£o de desregulaÃ§Ãµes neurofisiolÃ³gicas como a depressÃ£o. SubstÃ¢ncias como o MDMA tÃªm sido utilizadas para facilitar a reexperiÃªncia controlada de traumas, permitindo a integraÃ§Ã£o e a cura.\n\nA psicoterapia assistida com psicodÃ©licos representa uma abordagem inovadora e promissora na saÃºde mental e no desenvolvimento espiritual. O uso adequado dessas substÃ¢ncias sagradas facilita a autoexploraÃ§Ã£o profunda, o reprocessamento de memÃ³rias perturbadoras e a conexÃ£o com dimensÃµes superiores da consciÃªncia, promovendo ajustes significativos e duradouros no sistema nervoso e na alma."
+                                       }
+                                   ],
+                    "tratamentos_p_Instituto_Metatron___Abordagen_0":  "Instituto Metatron â Abordagens tÃ©cnico-terapÃªuticas sÃ³lidas e integradas",
+                    "intro":  {
+                                  "p2":  "Cada abordagem Ã© parte de um caminho integrado de regulaÃ§Ã£o interna, respeitando os aspectos tÃ©cnicos da terapÃªutica e a dimensÃ£o sagrada da transformaÃ§Ã£o curativa.",
+                                  "p1":  "Os tratamentos listados abaixo sÃ£o abordagens clÃ­nicas modernas, solidamente baseadas em evidÃªncias e sÃ£o conduzidos por profissionais especializados e devidamente habilitados."
+                              },
+                    "triplaProtecao":  {
+                                           "footerMessage":  "IntegraÃ§Ã£o e RegulaÃ§Ã£o Seguras",
+                                           "title":  "Tripla ProteÃ§Ã£o",
+                                           "items":  [
+                                                         {
+                                                             "title":  "TÃ©cnica Precisa",
+                                                             "description":  "Com abordagens baseadas em evidÃªncias e fundadas nos princÃ­pios da Neurofisiologia do Trauma e protocolos terapÃªuticos clÃ­nicos rigorosos."
+                                                         },
+                                                         {
+                                                             "title":  "ConexÃ£o Humana",
+                                                             "description":  "Com profissionais comprometidos com sua cura, vocÃª terÃ¡ um ambiente seguro, compassivo e acolhedor durante todo o processo de tratamento."
+                                                         },
+                                                         {
+                                                             "title":  "ProteÃ§Ã£o Espiritual",
+                                                             "description":  "Com prÃ¡ticas permanentes de proteÃ§Ã£o espiritual e energÃ©tica, Igreja estabiliza todo o trabalho clÃ­nico de todos os profissionais e seus pacientes."
+                                                         }
+                                                     ],
+                                           "subtitle":  "ProteÃ§Ã£o em trÃªs nÃ­veis fundamentais, garantindo seguranÃ§a e eficÃ¡cia em todas as etapas."
+                                       },
+                    "sections":  {
+                                     "treatments_title":  "Modalidades TerapÃªuticas",
+                                     "intro_title":  "IntroduÃ§Ã£o"
+                                 },
+                    "legal":  {
+                                  "notice":  "- NÃ£o substitui orientaÃ§Ã£o mÃ©dica.\n- IntervenÃ§Ãµes com substÃ¢ncias controladas em contextos legalmente autorizados.\n- Os descritivos abaixo sÃ£o apenas para informaÃ§Ã£o.",
+                                  "title":  "Aviso Legal / LimitaÃ§Ãµes:"
+                              },
+                    "footer":  {
+                                   "trademark":  "Marcas registradasÂ® protegidas por lei.",
+                                   "copyright":  "Â©2025 Igreja de Metatron. Todos os direitos reservados."
+                               }
+                },
+    "source":  "supabase-db",
+    "duration":  "190ms"
+}

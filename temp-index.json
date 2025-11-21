@@ -1,0 +1,180 @@
+﻿{
+    "success":  true,
+    "content":  {
+                    "hero":  {
+                                 "title":  "O Trabalho de Resgate",
+                                 "subtitle":  "PurificaÃ§Ã£o, AscensÃ£o e Tratamentos Integrados",
+                                 "description":  {
+                                                     "part1":  "Igreja de Metatron",
+                                                     "part2":  " (prÃ¡ticas religiosas e iniciÃ¡ticas)  ",
+                                                     "part3":  "Instituto Metatron",
+                                                     "part4":  " (tratamentos tÃ©cnico-terapÃªuticos supervisionados)"
+                                                 },
+                                 "buttons":  {
+                                                 "purification":  "PurificaÃ§Ã£o e AscensÃ£o",
+                                                 "treatments":  "Tratamentos Integrados"
+                                             }
+                             },
+                    "igreja":  {
+                                   "title":  "Igreja de Metatron",
+                                   "knowMoreButton":  "ConheÃ§a Nossa HistÃ³ria",
+                                   "description":  [
+                                                       "A Igreja de Metatron nÃ£o Ã© uma igreja convencional. Para nÃ³s, Deus estÃ¡ presente em tudo. Nossa missÃ£o Ã© conduzir cada praticante Ã  cura integral, preparando-o para receber plenamente seu Eu Superior â o Divino Eu, ativo e plenamente presente em seu corpo fÃ­sico.",
+                                                       "Aqui, todas as prÃ¡ticas sÃ£o preparadas para que cada indivÃ­duo reconheÃ§a seu prÃ³prio estado e tenha a chance de engajar-se em um caminho da cura para a RealizaÃ§Ã£o Espiritual verdadeira."
+                                                   ]
+                               },
+                    "triplaProtecao":  {
+                                           "footerMessage":  "IntegraÃ§Ã£o e RegulaÃ§Ã£o Seguras",
+                                           "title":  "Tripla ProteÃ§Ã£o",
+                                           "items":  [
+                                                         {
+                                                             "title":  "TÃ©cnica Precisa",
+                                                             "description":  "Com abordagens baseadas em evidÃªncias e fundadas nos princÃ­pios da Neurofisiologia do Trauma e protocolos terapÃªuticos clÃ­nicos rigorosos."
+                                                         },
+                                                         {
+                                                             "title":  "ConexÃ£o Humana",
+                                                             "description":  "Com profissionais comprometidos com sua cura, vocÃª terÃ¡ um ambiente seguro, compassivo e acolhedor durante todo o processo de tratamento."
+                                                         },
+                                                         {
+                                                             "title":  "ProteÃ§Ã£o Espiritual",
+                                                             "description":  "Com prÃ¡ticas permanentes de proteÃ§Ã£o espiritual e energÃ©tica, Igreja estabiliza todo o trabalho clÃ­nico de todos os profissionais e seus pacientes."
+                                                         }
+                                                     ],
+                                           "subtitle":  "ProteÃ§Ã£o em trÃªs nÃ­veis fundamentais, garantindo seguranÃ§a e eficÃ¡cia em todas as etapas."
+                                       },
+                    "purification":  {
+                                         "phases":  [
+                                                        {
+                                                            "description":  "- Trabalhos de limpeza externa.\n- Ciclos de Limpeza EnergÃ©tica e\n- ReativaÃ§Ã£o do Fluxo de ForÃ§as Solares",
+                                                            "title":  "Fase Inicial"
+                                                        },
+                                                        {
+                                                            "description":  "- Trabalhos de limpeza interna\n- Ciclos de Reconhecimento e LiberaÃ§Ã£o de padrÃµes repetitivos\n- EstabilizaÃ§Ã£o VibratÃ³ria",
+                                                            "title":  "Fase IntermediÃ¡ria"
+                                                        },
+                                                        {
+                                                            "description":  "- RealizaÃ§Ã£o Antahkarana\n- E recebimento do Eu Superior (IniciaÃ§Ã£o)",
+                                                            "title":  "Fase Final"
+                                                        }
+                                                    ],
+                                         "title":  "Trabalho de PurificaÃ§Ã£o e AscensÃ£o"
+                                     },
+                    "instituto":  {
+                                      "description":  [
+                                                          "O Instituto Metatron Ã© o braÃ§o tÃ©cnico-terapÃªutico da Igreja, oferecendo tratamentos especializados baseados na Teoria Polivagal e na neurofisiologia do trauma.",
+                                                          "Todos os profissionais e tratamentos sÃ£o conduzidos por especialistas associados, como mÃ©dicos, psicÃ³logos e fisioterapeutas, oferecendo uma compreensÃ£o profunda e realista dos sistemas autÃ´nomos e emocionais."
+                                                      ],
+                                      "title":  "Instituto Metatron",
+                                      "treatments":  [
+                                                         "Psicoterapia Humanista e Transpessoal",
+                                                         "Neurofeedback",
+                                                         "Breathworking",
+                                                         "EMDR",
+                                                         "Massagem BiodinÃ¢mica",
+                                                         "Terapia Corporal BiodinÃ¢mica",
+                                                         "FundamentaÃ§Ã£o Espiritual SÃ³lida",
+                                                         "Psicoterapia Assistida por PsicodÃ©licos (PAP)"
+                                                     ],
+                                      "ctaButton":  "Ver Todos os Tratamentos",
+                                      "benefits":  [
+                                                       {
+                                                           "title":  "Acolhimento e SeguranÃ§a",
+                                                           "description":  "Propiciamos condiÃ§Ãµes de acolhimento, conforto, amparo, equilÃ­brio, lucidez e fortalecimento interior, visando o bem-estar individual duradouro."
+                                                       },
+                                                       {
+                                                           "title":  "Abordagem Integrada",
+                                                           "description":  "Combinamos rigor cientÃ­fico e valorizaÃ§Ã£o sÃ³bria da dimensÃ£o espiritual, oferecendo intervenÃ§Ã£o terapÃªutica personalizada para promover equilÃ­brio integral."
+                                                       },
+                                                       {
+                                                           "title":  "Desenvolvimento Progressivo",
+                                                           "description":  "Estimulamos o avanÃ§o integrado da saÃºde fÃ­sica, emocional, mental e espiritual para a realizaÃ§Ã£o plena do seu potencial humano."
+                                                       }
+                                                   ],
+                                      "legalNotice":  "Aviso Legal: ServiÃ§os clÃ­nicos sÃ£o prestados por profissionais habilitados; intervenÃ§Ãµes com substÃ¢ncias controladas sÃ³ ocorrem em contextos legalmente autorizados; nÃ£o substitui orientaÃ§Ã£o mÃ©dica."
+                                  },
+                    "benefitsSection":  {
+                                            "title":  "Como Podemos Ajudar?",
+                                            "subtitle":  "Se vocÃª estÃ¡ pronto para a cura, nÃ³s estamos prontos para ajudar."
+                                        },
+                    "fisicoEspiritual":  {
+                                             "title":  "Naquilo que nos acomete, o que Ã© fÃ­sico e o que Ã© espiritual?",
+                                             "subtitle":  "Compreender a natureza de nossos desafios Ã© essencial para escolher o caminho adequado de cura e desenvolvimento.",
+                                             "fisico":  {
+                                                            "title":  "Desafios FÃ­sicos e NeurofisiolÃ³gicos",
+                                                            "subtitle":  " Instituto Metatron ",
+                                                            "description":  "Quando seus desafios tÃªm origem no corpo fÃ­sico e no sistema nervoso, manifestando-se como:",
+                                                            "items":  [
+                                                                          "DesregulaÃ§Ãµes do sistema nervoso autÃ´nomo (ansiedade, pÃ¢nico, hipervigilÃ¢ncia)",
+                                                                          "Traumas armazenados no corpo (memÃ³rias somÃ¡ticas, tensÃµes crÃ´nicas)",
+                                                                          "PadrÃµes emocionais reativos (explosÃµes de raiva, desconexÃ£o emocional)",
+                                                                          "Sintomas psicossomÃ¡ticos (dores fÃ­sicas de origem emocional)",
+                                                                          "Dificuldades de regulaÃ§Ã£o emocional causadas por experiÃªncias traumÃ¡ticas"
+                                                                      ],
+                                                            "abordagem":  {
+                                                                              "title":  "Abordagem do Instituto:",
+                                                                              "description":  "Tratamentos cientÃ­ficos baseados em Teoria Polivagal, neurofisiologia do trauma e tÃ©cnicas terapÃªuticas comprovadas (EMDR, Neurofeedback, Breathwork, Terapia Humanista, etc.) para restaurar o equilÃ­brio do sistema nervoso e processar traumas armazenados no corpo."
+                                                                          }
+                                                        },
+                                             "espiritual":  {
+                                                                "title":  "Desafios Espirituais e EnergÃ©ticos",
+                                                                "subtitle":  " Igreja de Metatron ",
+                                                                "description":  "Quando seus desafios tÃªm origem no campo espiritual e energÃ©tico, manifestando-se como:",
+                                                                "items":  [
+                                                                              "InfluÃªncias espirituais negativas (trabalhos de magia malÃ©fica, forÃ§as maliciosas)",
+                                                                              "ObsessÃµes e possessÃµes (influÃªncias de entidades desencarnadas)",
+                                                                              "Impurezas no campo eletromagnÃ©tico (energias densas, bloqueios energÃ©ticos)",
+                                                                              "PadrÃµes ancestrais limitantes (cargas da linhagem familiar)",
+                                                                              "DesconexÃ£o espiritual (falta de propÃ³sito, crises existenciais profundas)"
+                                                                          ],
+                                                                "abordagem":  {
+                                                                                  "title":  "Abordagem da Igreja:",
+                                                                                  "description":  "Trabalhos espirituais de limpeza energÃ©tica, desobsessÃ£o, restauraÃ§Ã£o do duplo etÃ©rico, purificaÃ§Ã£o do campo eletromagnÃ©tico e desenvolvimento espiritual progressivo atravÃ©s das fases de PurificaÃ§Ã£o, AscensÃ£o e IniciaÃ§Ã£o."
+                                                                              }
+                                                            },
+                                             "integrada":  {
+                                                               "title":  "Abordagem Integrada: O Melhor dos Dois Mundos",
+                                                               "description":  "Na maioria dos casos, os desafios humanos tÃªm componentes fÃ­sicos E espirituais entrelaÃ§ados. Um trauma fÃ­sico pode criar vulnerabilidades energÃ©ticas, e influÃªncias espirituais negativas podem se manifestar como sintomas fÃ­sicos.",
+                                                               "oferecemos":  {
+                                                                                  "title":  "Por isso, a Igreja de Metatron oferece:",
+                                                                                  "items":  [
+                                                                                                "AvaliaÃ§Ã£o completa para identificar a natureza de seus desafios (fÃ­sica, espiritual ou ambas)",
+                                                                                                "Tratamentos cientÃ­ficos atravÃ©s do Instituto Metatron para questÃµes neurofisiolÃ³gicas e traumas somÃ¡ticos",
+                                                                                                "Trabalhos espirituais atravÃ©s da Igreja para limpezas energÃ©ticas e desenvolvimento espiritual",
+                                                                                                "Acompanhamento integrado que aborda simultaneamente corpo, mente e espÃ­rito"
+                                                                                            ]
+                                                                              },
+                                                               "conclusao":  "Essa abordagem integrada garante que vocÃª receba o cuidado completo necessÃ¡rio para sua transformaÃ§Ã£o profunda e duradoura."
+                                                           }
+                                         },
+                    "testimonials":  [
+                                         {
+                                             "name":  "Isabel Ferrarezi",
+                                             "date":  "17/08/2025",
+                                             "content":  "Marcelo! Se nÃ£o fosse seu trabalho eu nem sei como estaria agora! Hoje consigo dormir, tenho mais clareza nos acontecimentos do dia a dia, consigo pensar antes de agir, minha ansiedade diminuiu! Sei que ainda temos um caminho pela frente, mas a cada sessÃ£o percebo o quanto estamos avanÃ§ando!! Sou muito grata pelo seu trabalho e atenÃ§Ã£o comigo."
+                                         }
+                                     ],
+                    "testimonialBadge":  " Consentimento",
+                    "testimonialsSection":  {
+                                                "title":  "Testemunhos"
+                                            },
+                    "testimonialsCta":  "Ver Mais Testemunhos",
+                    "cta":  {
+                                "title":  "Vamos conhecer melhor?",
+                                "buttonText":  "Agende AvaliaÃ§Ã£o Inicial",
+                                "subtitle":  "DÃª o primeiro passo para uma jornada pessoal de reajuste de forma segura e responsÃ¡vel."
+                            },
+                    "treatments":  {
+                                       "title":  "Terapias TÃ©cnico-cientÃ­ficas",
+                                       "description":  [
+                                                           "Abordagens cientÃ­ficas integradas que combinam mÃ©todos validados pela neurociÃªncia com prÃ¡ticas terapÃªuticas humanistas para transformaÃ§Ã£o profunda e duradoura.",
+                                                           "Tratamentos supervisionados por profissionais habilitados com registro ativo em seus respectivos conselhos."
+                                                       ]
+                                   },
+                    "footer":  {
+                                   "trademark":  "Marcas registradasÂ® protegidas por lei.",
+                                   "copyright":  "Â©2025 Igreja de Metatron. Todos os direitos reservados."
+                               }
+                },
+    "source":  "supabase-db",
+    "duration":  "276ms"
+}
